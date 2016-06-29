@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/updata_user_main"
+    android:orientation="vertical" >
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/register_three_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:visibility="visible" >
+
+            <com.uyi.app.ui.custom.RoundedImageView
+                android:id="@+id/register_header_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/upload_head_hint" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/register_shen"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="请选择省份"
+                            android:paddingLeft="5dp"
+                            android:textColor="@color/list_item_content_color"
+                            android:textSize="@dimen/font_style_14" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/drop_icon" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/required_" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/register_city"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="请选择城市"
+                            android:paddingLeft="5dp"
+                            android:textColor="@color/list_item_content_color"
+                            android:textSize="@dimen/font_style_14" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/drop_icon" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/required_" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_address"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/req_address"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/register_chushennianyue"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:hint="出生年月"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/list_item_content_color"
+                        android:textSize="@dimen/font_style_14" />
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/drop_icon" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_phone"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_phone"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_mobile"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_mobile"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_email"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_card"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_card"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_zhiye"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_zhiye"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/register_height"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:ems="10"
+                        android:hint="@string/reg_height"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:textSize="@dimen/font_style_14" >
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="10dp"
+                        android:text="cm"
+                        android:textColor="@color/list_item_content_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/register_weight"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:ems="10"
+                        android:hint="@string/reg_weight"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="5dp"
+                        android:textSize="@dimen/font_style_14" >
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="kg"
+                        android:textColor="@color/list_item_content_color" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/register_three_submit"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/blue_bg"
+                android:text="修改"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+    
+    
+    
+    
+      <ScrollView 
+        android:id="@+id/register_info_one"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:visibility="gone"
+        android:scrollbars="none">
+        <LinearLayout 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:orientation="vertical">
+            <LinearLayout 
+		        android:layout_width="match_parent" 
+		        android:layout_height="wrap_content" 
+		        android:gravity="center"
+		        android:layout_margin="10dp"
+		        android:orientation="horizontal">
+		        <ImageView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:src="@drawable/tips_icon" />
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textColor="#ff7200"
+		            android:text="想得到医生准确指导,请认真填写健康资料,健康资料将作为医生的重要参考依据!" />
+		    </LinearLayout>
+    
+		    <LinearLayout 
+		        android:layout_width="match_parent" 
+		        android:layout_height="wrap_content" 
+		        android:padding="10dp"
+		        android:orientation="vertical">
+		        <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:padding="3dp"
+		            android:layout_width="match_parent" 
+		            android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_gerenjiwangbinshi"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:gravity="top"
+			            android:textSize="@dimen/font_style_14"
+			            android:minHeight="80dp"
+			            android:hint="个人既往史"  >
+			        </EditText>
+		        </LinearLayout>
+		           <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="(请填写有无高血压、糖尿病、消化性溃厰、冠心病、慢性肺病、慢性肾脏疾病等)" />
+		        
+		        <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_chuanrangbingshi"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:minHeight="80dp"
+			            android:hint="传染病史"  >
+			        </EditText>
+		        </LinearLayout>
+		        <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="(有无肝炎、结核、迋疾等传染病史)" />
+		        
+		        
+		          <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_waishang"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:gravity="top"
+			            android:textSize="@dimen/font_style_14"
+			            android:minHeight="80dp"
+			            android:hint="外伤史"  >
+			        </EditText>
+		        </LinearLayout>
+		        <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="(受伤情况、受伤情况、受伤部位等)" />
+		           
+		       <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_shoushushi"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:gravity="top"
+			            android:textSize="@dimen/font_style_14"
+			            android:minHeight="80dp"
+			            android:hint="手术室"  >
+			        </EditText>
+		        </LinearLayout>
+		        <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="手术项目、手术时间、恢复情况等" />
+		       <LinearLayout 
+		            android:id="@+id/register_info_liucanshi_layout"
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_liucanshi"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:minHeight="80dp"
+			            android:hint="女性患者怀孕、分娩、流产史" >
+			        </EditText>
+		        </LinearLayout>
+		       
+		            <LinearLayout 
+		                  android:id="@+id/register_info_yuejing_layout"
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_yuejing"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:minHeight="80dp"
+			            android:hint="女性患者月经情况"  >
+			        </EditText>
+		        </LinearLayout>
+		           <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_guomingshi"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:minHeight="80dp"
+			            android:hint="食物及药物过敏史"  >
+			        </EditText>
+		        </LinearLayout>
+		          <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="(如有过敏,是对什么事物或药物过敏,过敏后的表现是什么)" />
+		          
+		          
+		          
+		            <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_shuxueshi"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:minHeight="80dp"
+			            android:hint="输血史" >
+			        </EditText>
+		        </LinearLayout>
+		          <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="(输血时间,输血频率等)" /> 
+				        
+		          
+		        <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_jiazhubinshi"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:minHeight="80dp"
+			            android:hint="家族病史" >
+			        </EditText>
+		        </LinearLayout>
+		          <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="(家族中有无慢性疾病、肿瘤、精神疾病、罕少见病患者)" /> 
+				        
+		          
+		          
+		           <LinearLayout 
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_muqianfuyaoqingkuang"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="5"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:hint="目前服药情况" >
+			        </EditText>
+		        </LinearLayout>
+		          <TextView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginTop="5dp"
+				        android:textColor="@color/blue"
+				        android:textSize="12dp"
+				        android:text="(药物名称、服用周期、服用频率等)" /> 
+				        
+		          
+		      <LinearLayout
+		             android:background="@drawable/hui_stroke"
+		             android:layout_marginTop="10dp"
+		             android:padding="3dp"
+		             android:layout_width="match_parent" 
+		             android:layout_height="wrap_content">
+		             <EditText
+			            android:id="@+id/register_info_qitabuchongqingkuang"
+			            android:layout_width="match_parent"
+			            android:layout_height="wrap_content"
+			            android:background="@null"
+			            android:ems="10"
+			            android:minLines="1"
+			            android:textSize="@dimen/font_style_14"
+			            android:gravity="top"
+			            android:minHeight="80dp"
+			            android:hint="其他需要补充的情况" >
+			        </EditText>
+		        </LinearLayout>
+		        
+		         <Button
+			            android:id="@+id/register_info_submit"
+			            android:layout_width="match_parent"
+			            android:layout_marginTop="30dp"
+			            android:layout_height="40dp"
+			            android:background="@drawable/blue_bg"
+			            android:text="修改"
+			            android:textColor="@color/white" />
+		    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+</LinearLayout>

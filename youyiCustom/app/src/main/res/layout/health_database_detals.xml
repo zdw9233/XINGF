@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+        <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:scrollbars="none">
+    <LinearLayout 
+        android:layout_width="match_parent" 
+        android:layout_height="match_parent" 
+        android:padding="10dp"
+        android:orientation="vertical">
+        
+            <TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="40dp" 
+            android:textColor="@color/red"
+            android:background="@color/content_background"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="体检时间"/>
+        		<com.uyi.app.ui.custom.FlowRadioGroup 
+				      android:id="@+id/health_database_details_check_date_layout"
+				      android:orientation="vertical"
+				    android:layout_width="match_parent" 
+				    android:layout_height="wrap_content" > 
+				</com.uyi.app.ui.custom.FlowRadioGroup>
+        <TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="40dp" 
+            android:textColor="@color/red"
+            android:background="@color/content_background"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="血压"/>
+        		<com.uyi.app.ui.custom.FlowRadioGroup 
+				      android:id="@+id/health_database_details_xueya_layout"
+				      android:orientation="vertical"
+				    android:layout_width="match_parent" 
+				    android:layout_height="wrap_content" > 
+				</com.uyi.app.ui.custom.FlowRadioGroup>
+         <TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="40dp" 
+            android:textColor="@color/red"
+            android:background="@color/content_background"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="血糖"/>
+       		<com.uyi.app.ui.custom.FlowRadioGroup 
+			      android:id="@+id/health_database_details_xuetang_layout"
+			    android:layout_width="match_parent" 
+			    android:orientation="vertical"
+			    android:layout_height="wrap_content" > 
+			</com.uyi.app.ui.custom.FlowRadioGroup>
+				 <TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="40dp" 
+            android:textColor="@color/red"
+            android:background="@color/content_background"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="血脂"/>
+        		<com.uyi.app.ui.custom.FlowRadioGroup 
+				      android:id="@+id/health_database_details_xuezhi_layout"
+				    android:layout_width="match_parent" 
+				    android:orientation="vertical"
+				    android:layout_height="wrap_content" > 
+				</com.uyi.app.ui.custom.FlowRadioGroup>
+				 <TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="40dp" 
+            android:textColor="@color/red"
+            android:background="@color/content_background"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="血氧"/>
+        		<com.uyi.app.ui.custom.FlowRadioGroup 
+				      android:id="@+id/health_database_details_xueyang_layout"
+				    android:layout_width="match_parent" 
+				    android:orientation="vertical"
+				    android:layout_height="wrap_content" > 
+				</com.uyi.app.ui.custom.FlowRadioGroup>
+				 <TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="40dp" 
+            android:textColor="@color/red"
+            android:background="@color/content_background"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="其他项目"/>
+        		<com.uyi.app.ui.custom.FlowRadioGroup 
+				      android:id="@+id/health_database_details_qita_layout"
+				      android:orientation="vertical"
+				    android:layout_width="match_parent" 
+				    android:layout_height="wrap_content" > 
+				</com.uyi.app.ui.custom.FlowRadioGroup>
+				 <TextView 
+            android:layout_width="match_parent" 
+            android:layout_height="40dp" 
+            android:textColor="@color/red"
+            android:background="@color/content_background"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="检查报告"/>
+        	 
+				  <LinearLayout 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="120dp"
+                    android:gravity="right"
+                    android:textSize="@dimen/font_style_11"
+                    android:layout_height="wrap_content"
+                    android:text="检查项目：" />
+                <TextView
+                    android:id="@+id/health_database_details_jiangchaxiangmu"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/font_style_11"
+                    android:text=" " />
+            </LinearLayout>
+            
+              <LinearLayout 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                 android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="120dp"
+                    android:gravity="right"
+                    android:textSize="@dimen/font_style_11"
+                    android:layout_height="wrap_content"
+                    android:text="检查报告：" />
+				<com.uyi.app.ui.custom.FlowRadioGroup 
+				      android:id="@+id/health_database_details_jiangchabaogao_layout"
+				      android:orientation="vertical"
+				    android:layout_width="match_parent" 
+				    android:layout_height="wrap_content" > 
+				</com.uyi.app.ui.custom.FlowRadioGroup>
+               
+            </LinearLayout>
+            
+                 <LinearLayout 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                 android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="120dp"
+                    android:gravity="right"
+                    android:textSize="@dimen/font_style_11"
+                    android:layout_height="wrap_content"
+                    android:text="心电图：" />
+                <com.uyi.app.ui.custom.FlowRadioGroup 
+                    android:id="@+id/health_database_details_xindiantu_layout"
+                    android:layout_width="0dip" 
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"  > 
+				</com.uyi.app.ui.custom.FlowRadioGroup>
+            </LinearLayout>
+				 
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

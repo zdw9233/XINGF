@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/white"
+    android:orientation="vertical" >
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:layout_weight="1"
+    android:orientation="horizontal" >
+    <com.uyi.app.ui.custom.RoundedImageView
+        android:id="@+id/header"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/user_img" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_style_14"
+            android:text="赵铁柱" />
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/list_item_content_color"
+            android:textSize="@dimen/font_style_12"
+            android:text="年龄：25    性别：女" />
+    </LinearLayout>
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="0.1dip" android:background="@color/content_background"/>
+</LinearLayout>

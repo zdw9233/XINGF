@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/add_icon"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/add_icon"
+                        android:gravity="center"
+                        android:text="常规检测"
+                        android:textColor="@color/text_clr" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightgray" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <CheckedTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/add_icon"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/add_icon"
+                        android:gravity="center"
+                        android:text="趋势图"
+                        android:textColor="@color/text_clr" />
+                </FrameLayout>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/lightgray" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/add_icon"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/add_icon"
+                        android:gravity="center"
+                        android:text="心电图"
+                        android:textColor="@color/text_clr" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightgray" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <CheckedTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/add_icon"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/add_icon"
+                        android:gravity="center"
+                        android:text="中医体质识别"
+                        android:textColor="@color/text_clr" />
+                </FrameLayout>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/add_icon"
+                    android:drawablePadding="4dp"
+                    android:drawableStart="@drawable/add_icon"
+                    android:gravity="center"
+                    android:text="健康报告"
+                    android:textColor="@color/text_clr" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+
+    <LinearLayout
+        android:id="@+id/exclusive_details_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.uyi.app.ui.custom.RoundedImageView
+                android:id="@+id/exclusive_details_header"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/logo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/exclusive_details_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical"
+                    android:text="李医生"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/font_style_14" />
+
+                <TextView
+                    android:id="@+id/exclusive_details_jieshao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="介绍"
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_12" />
+            </LinearLayout> 
+        </LinearLayout>
+        
+          <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/content_background"
+                android:padding="5dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+                      <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收费标准 "
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_13" />
+                        <TextView 
+                            android:id="@+id/exclusive_details_dou"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000 "
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/font_style_13" />
+                          <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="健康豆/年"
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_13" />
+                            <TextView 
+                                android:id="@+id/exclusive_details_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="时间：2016-1-1 "
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_13" />
+                </LinearLayout>
+
+                      <TextView 
+                           android:id="@+id/exclusive_details_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="地点 "
+                    android:gravity="center_vertical"
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_13" />
+
+                  <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+                      <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已预约人数 "
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_13" />
+                        <TextView 
+                             android:id="@+id/exclusive_details_current_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50 "
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/font_style_13" />
+                          <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="最大预约人数 "
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_13" />
+                            <TextView 
+                                 android:id="@+id/exclusive_details_max_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/font_style_13" />
+                </LinearLayout>
+            </LinearLayout>
+
+          <View android:layout_width="wrap_content" android:layout_height="20dp"/>
+          <TextView
+               android:id="@+id/exclusive_details_desc"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="30dp"
+              android:textColor="@color/list_item_content_color"
+             android:textSize="@dimen/font_style_13"
+              android:text="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述" />
+           <View android:layout_width="wrap_content" android:layout_height="20dp"/>
+           
+           
+           <TextView
+               android:id="@+id/exclusive_details_yiyuyue"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="30dp"
+              android:gravity="center"
+              android:textColor="@color/blue"
+             android:textSize="@dimen/font_style_16"
+              android:text="已预约" />
+           
+             <Button
+            android:id="@+id/exclusive_details_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="立即预约"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_bg" />
+           
+    </LinearLayout>
+    
+    <LinearLayout 
+         android:id="@+id/exclusive_details_success_layout"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:padding="5dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+         <LinearLayout 
+	        android:layout_width="match_parent" 
+	        android:layout_height="wrap_content" 
+	        android:layout_margin="30dp"
+	        android:gravity="center"
+	        android:orientation="horizontal">
+             <ImageView 
+                 android:layout_width="50dp"
+                  android:layout_height="50dp" 
+                  android:src="@drawable/success_icon"/>
+              <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/green"
+              android:layout_marginLeft="10dp"
+             android:textSize="@dimen/font_style_20"
+              android:text="预约成功" />
+         </LinearLayout>
+         <Button
+            android:id="@+id/exclusive_details_success_ric"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="查看我的日程"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_bg" />
+    </LinearLayout>
+    
+    <LinearLayout 
+         android:id="@+id/exclusive_details_error_layout"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:padding="5dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+         <LinearLayout 
+	        android:layout_width="match_parent" 
+	        android:layout_height="wrap_content" 
+	        android:layout_marginTop="30dp"
+	        android:layout_marginBottom="30dp"
+	        android:gravity="center"
+	        android:orientation="horizontal">
+             <ImageView 
+                 android:layout_width="50dp"
+                  android:layout_height="50dp" 
+                  android:src="@drawable/error"/>
+              <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@color/red"
+              android:layout_marginLeft="10dp"
+             android:textSize="@dimen/font_style_20"
+              android:text="达到最大人数无法预约" />
+         </LinearLayout>
+         <Button
+            android:id="@+id/exclusive_details_error_return"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="返回咨询列表"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_bg" />
+    </LinearLayout>
+
+</LinearLayout>

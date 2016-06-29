@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/new_consult_layout_start"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:gravity="center"
+    android:background="@color/content_background"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/item_consultation_list_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/add_icon" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:layout_margin="5dp"
+        android:textSize="@dimen/font_style_16"
+        android:text="@string/new_consultation" />
+    
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="血压趋势图" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/capture" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:scrollbars="none">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dsajkfhalksfna你说的看法呢分厘卡nsf来看森林砍伐你啊发烧呢疯狂拉升你来看三分啊森林砍伐nsa了开发nsa离sajkfhalksfna你说的看法呢分厘卡nsf来看森林砍伐你啊发烧呢疯狂拉升你来看三分啊森林砍伐nsa了开发nsa离sajkfhalksfna你说的看法呢分厘卡nsf来看森林砍伐你啊发烧呢疯狂拉升你来看三分啊森林砍伐nsa了开发nsa离sajkfhalksfna你说的看法呢分厘卡nsf来看森林砍伐你啊发烧呢疯狂拉升你来看三分啊森林砍伐nsa了开发nsa离sajkfhalksfna你说的看法呢分厘卡nsf来看森林砍伐你啊发烧呢疯狂拉升你来看三分啊森林砍伐nsa了开发nsa离sajkfhalksfna你说的看法呢分厘卡nsf来看森林砍伐你啊发烧呢疯狂拉升你来看三分啊森林砍伐nsa了开发nsa离sajkfhalksfna你说的看法呢分厘卡nsf来看森林砍伐你啊发烧呢疯狂拉升你来看三分啊森林砍伐nsa了开发nsa离开" />
+    </ScrollView>
+</LinearLayout>

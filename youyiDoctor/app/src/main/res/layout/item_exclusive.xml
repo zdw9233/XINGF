@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:padding="5dp"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+            <TextView
+                  android:id="@+id/item_exclusive_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_12"
+                android:text="2015-12-12" />
+        <TextView
+            android:id="@+id/item_exclusive_address"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_12"
+                android:maxLines="1"
+            android:text="地址：四川省成都市天府广场2号" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                  android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_12"
+                android:text="已预约人数：" />
+
+            <TextView
+                   android:id="@+id/item_exclusive_count"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                  android:textColor="@color/red"
+                android:textSize="@dimen/font_style_12"
+                android:text="10人 " /> 
+                <View android:layout_weight="1" android:layout_width="0dip" android:layout_height="match_parent"/>
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                  android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_12"
+                android:text="最大人数：" />
+
+            <TextView
+                   android:id="@+id/item_exclusive_max_count"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                  android:textColor="@color/red"
+                android:textSize="@dimen/font_style_12"
+                android:text="10人 " /> 
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/item_exclusive_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minEms="4"
+            android:padding="2dp"
+               android:textColor="@color/blue"
+            android:textSize="@dimen/font_style_12"
+            android:background="@drawable/blue_stroke"
+            android:gravity="center"
+            android:text="修改" />
+<View android:layout_width="match_parent" android:layout_height="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minEms="4"
+            android:padding="2dp"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/font_style_12"
+            android:background="@drawable/blue_stroke"
+            android:text="查看详细"  />
+    </LinearLayout>
+    
+</LinearLayout>

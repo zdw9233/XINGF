@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    	<com.uyi.app.ui.custom.HeaderView 
+	    android:id="@+id/headerView"
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content">
+	</com.uyi.app.ui.custom.HeaderView>
+        <include layout="@layout/search_layout"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent" 
+        android:layout_height="match_parent">
+	    <com.uyi.app.ui.custom.EndlessRecyclerView 
+	        xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/recyclerView"
+	    android:orientation="vertical"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

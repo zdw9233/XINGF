@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+    
+    <com.uyi.app.ui.custom.RoundedImageView 
+        android:id="@+id/item_team_logo"
+        android:layout_width="50dp" 
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/logo"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent" 
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:paddingRight="5dp"
+        android:orientation="vertical">
+      <RelativeLayout 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="团队名称"
+                
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_style_16" />
+
+            <TextView
+                android:id="@+id/item_team_my_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/item_team_name"
+                android:layout_toRightOf="@+id/item_team_name"
+                android:background="#ff9c00"
+                android:paddingBottom="1dp"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:paddingTop="1dp"
+                android:text="我的团队"
+                android:textColor="@color/white"
+                android:layout_marginLeft="2dp"
+                android:layout_marginBottom="2dp"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/item_team_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/item_team_my_group"
+                android:layout_alignParentRight="true"
+                android:maxLines="1"
+                android:text="有效期：2014年11月16日到2015年11月16日"
+                android:textColor="@color/red"
+                android:textSize="8sp" />
+
+   </RelativeLayout>
+        <TextView
+            android:id="@+id/item_team_content"
+             android:layout_width="match_parent" 
+             android:layout_height="wrap_content"
+             android:ellipsize="end"
+             android:maxLines="1"
+           
+             android:text="全球最大的中文搜索引擎，秉承”用户体验至上”的理念，致力于让网民更便捷地获取信息，找到所求。除网页搜索外，百度还提供音乐、图片、视频、地图等多样化的搜索服务.."
+             android:textColor="@color/list_item_content_color"
+             android:textSize="@dimen/font_style_12"
+             />
+    </LinearLayout>
+
+</LinearLayout>

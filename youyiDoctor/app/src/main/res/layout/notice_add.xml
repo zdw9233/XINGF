@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="30dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:text="发送对象："
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_13" />
+
+            <TextView
+                android:id="@+id/notice_add_target"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所有咨询过的用户"
+                android:visibility="gone"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_13" />
+            
+            <LinearLayout 
+                android:id="@+id/notice_add_target_zczj_layout"
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/notice_add_yh"
+                    android:layout_margin="10dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" 
+                    android:background="@drawable/hui_stroke"  />
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_12"
+                    android:text="用户" />
+                  <TextView
+                    android:id="@+id/notice_add_zj"
+                    android:layout_margin="10dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" 
+                    android:background="@drawable/hui_stroke" />
+                   <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_12"
+                    android:text="专家" />
+                    <TextView
+                    android:id="@+id/notice_add_zszj"
+                    android:layout_margin="10dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" 
+                    android:background="@drawable/hui_stroke"/>
+                     <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_12"
+                    android:text="资深专家" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:text="标题："
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_13" />
+
+            <EditText
+                android:id="@+id/notice_add_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/hui_stroke"
+                android:ems="10"
+                android:minHeight="25dp"
+                android:textColor="@color/list_item_content_color"
+                android:maxLength="100"
+                android:textSize="@dimen/font_style_13" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:text="内容："
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_13" />
+
+            <EditText
+                android:id="@+id/notice_add_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/hui_stroke"
+                android:ems="10"
+                android:minLines="5"
+                android:gravity="top"
+                android:maxLength="200"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_13" >
+            </EditText>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/notice_add_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/blue_bg"
+            android:text="发送"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

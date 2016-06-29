@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0000"
+   >
+   <LinearLayout 
+       android:layout_marginTop="25dp"
+       android:layout_marginBottom="25dp"
+       android:background="@color/white"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="5dp"
+       android:layout_marginRight="5dp"
+       android:orientation="vertical"
+       >
+       
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+               <com.uyi.app.ui.custom.RoundedImageView
+                android:id="@+id/item_zhuanjia_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/user_img" />
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+     <TextView
+                android:id="@+id/item_zhuanjia_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="- - -"
+                android:textColor="@color/blue" />
+      <LinearLayout 
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                        android:orientation="horizontal">
+                         <LinearLayout 
+                          android:layout_width="0dp"
+                          android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                         <TextView 
+                      android:layout_width="wrap_content"
+                      android:layout_marginTop="10dp"
+                      android:layout_height="wrap_content"
+                      android:text="本月咨询数"
+                      android:textSize="12sp"
+                      />
+                          <TextView 
+                              android:id="@+id/team_zixunshu"
+                      android:layout_width="wrap_content"
+                      android:layout_marginTop="10dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="5dp"
+                      android:text="- - -"
+                      android:textSize="12sp"
+                      android:textColor="@color/red"/>
+                             </LinearLayout>
+               
+                   <LinearLayout 
+                          android:layout_width="0dp"
+                          android:layout_weight="5"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                            <TextView 
+                      android:layout_width="wrap_content"
+                      android:layout_marginTop="10dp"
+        
+                      android:layout_height="wrap_content"
+                      android:text="总咨询数"
+                      android:textSize="12sp"
+                    />
+                             <TextView 
+                              android:id="@+id/team_zonzixunshu"
+                      android:layout_width="wrap_content"
+                      android:layout_marginTop="10dp"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="5dp"
+                      android:text="- - -"
+                      android:textSize="12sp"
+                      android:textColor="@color/red"/>
+                               </LinearLayout>
+                    </LinearLayout>
+</LinearLayout>
+          
+        </LinearLayout>
+       <TextView 
+                android:id="@+id/item_zhuanjia_info"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:layout_marginLeft="10dp"
+           android:minLines="3"
+           android:text="- - -"/>
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         
+         android:orientation="horizontal">
+       <TextView 
+            android:id="@+id/item_zhuanjia_type"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+     android:layout_gravity="center_vertical"
+         android:layout_marginLeft="10dp"
+           android:text="综合评价星级："
+           />
+        <RatingBar
+                      android:id="@+id/docter_details_rating"
+                android:layout_gravity="center_vertical"
+                      style="@style/roomRatingBars"                   
+        android:isIndicator="true"
+ 	android:layout_marginLeft="10dp"
+
+        android:numStars="5"   			
+                  android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+         <TextView 
+  
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:layout_marginBottom="10dp"
+           android:text="患者评语"
+           android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+           />
+         <TextView 
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:layout_marginLeft="5dp"
+             android:layout_marginRight="5dp"
+             android:background="@color/header_background"/>
+         <LinearLayout android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+            >
+
+	    <com.uyi.app.ui.custom.EndlessRecyclerView 
+	        xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/doctor_recyclerView"
+	    android:orientation="vertical"
+	    
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"/>
+      
+         </LinearLayout>
+   </LinearLayout>
+    <Button
+        android:layout_marginTop="15dp"
+    
+       android:layout_width="25dp"
+       android:layout_height="25dp"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentTop="true"
+       android:background="@drawable/layer_close" />
+     <Button
+        android:layout_marginTop="15dp"
+       android:id="@+id/doctor_exit"
+       android:layout_width="40dp"
+       android:layout_height="40dp"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentTop="true"
+       android:background="#00000000" />
+</RelativeLayout> 
+</RelativeLayout> 

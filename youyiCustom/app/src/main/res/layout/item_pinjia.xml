@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical" >
+ <LinearLayout 
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="horizontal" >
+      <com.uyi.app.ui.custom.RoundedImageView
+         android:id="@+id/docter_pinjia_icon"
+      android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                                android:layout_gravity="center_vertical"
+        android:src="@drawable/user_picture" />
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         
+         android:orientation="horizontal">
+       <TextView 
+   
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+     android:layout_gravity="center_vertical"
+         android:layout_marginLeft="10dp"
+           android:text="评价星级："
+           />
+        <RatingBar
+                      android:id="@+id/docter_pinjia_rating"
+                android:layout_gravity="center_vertical"
+                      style="@style/roomRatingBars"                   
+        android:isIndicator="true"
+ 	android:layout_marginLeft="10dp"
+ 
+        android:numStars="5"   			
+                  android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <TextView 
+            android:id="@+id/docter_pinjia_info"
+            	android:layout_marginLeft="10dp"
+            	android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="- - -"/>
+         <TextView 
+            android:id="@+id/docter_pinjia_time"
+            	android:layout_marginLeft="10dp"
+            	android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="- - -"/>
+    </LinearLayout>
+  
+</LinearLayout>
+  <TextView 
+             android:layout_width="match_parent"
+             android:layout_height="1dp"
+             android:layout_marginLeft="5dp"
+             android:layout_marginRight="5dp"
+             android:background="@color/header_background"/>
+</LinearLayout>
+

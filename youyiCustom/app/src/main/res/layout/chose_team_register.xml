@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+    <LinearLayout
+        android:id="@+id/register_four_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_17"
+                android:text="当前城市:"
+                android:id="@+id/textView" />
+            <TextView
+                android:id="@+id/register_four_chose"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+
+                android:textSize="@dimen/font_style_17"
+                android:text="全部城市"
+
+                android:textColor="#ff7200"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/textView"
+                android:layout_toEndOf="@+id/textView" />
+            <TextView
+                android:id="@+id/register_four_selected_caty"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_17"
+                android:text="选择城市"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/imageView1"
+                android:layout_toStartOf="@+id/imageView1" />
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+
+                android:src="@drawable/drop_icon" />
+        </RelativeLayout>
+
+
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.uyi.app.ui.custom.EndlessRecyclerView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/recyclerView"
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+</LinearLayout>

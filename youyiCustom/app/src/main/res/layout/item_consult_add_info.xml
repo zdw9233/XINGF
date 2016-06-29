@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/left_text"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="补充病情描述："
+        android:textSize="@dimen/font_style_11" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <com.uyi.app.ui.custom.FlowRadioGroup
+            android:id="@+id/right_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </com.uyi.app.ui.custom.FlowRadioGroup>
+
+        <TextView
+            android:id="@+id/right_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_style_11" />
+    </LinearLayout>
+
+</LinearLayout>

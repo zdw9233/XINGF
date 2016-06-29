@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal" >
+
+                <com.uyi.app.ui.custom.RoundedImageView
+                    android:id="@+id/constom_info_logo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/constom_info_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/font_style_13" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/constom_info_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:textSize="@dimen/font_style_10" />
+
+                        <TextView
+                            android:id="@+id/constom_info_chushengriqi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/font_style_10" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/custom_jiankang"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:text="健康资料"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_style_12" />
+
+                <TextView
+                      android:id="@+id/custom_gereng"
+                    android:layout_width="60dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/content_background"
+                    android:gravity="center"
+                    android:text="个人资料"
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_12" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dip"
+                android:background="@color/content_background" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                    
+                      <LinearLayout
+                          	android:id="@+id/custom_jiankang_info"
+                    		android:layout_width="match_parent"
+                    		android:layout_height="wrap_content"
+                    		android:visibility="gone"
+                    		android:orientation="vertical" >
+                    		 <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="个人既往病史:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_jiwangbinshi"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>
+                    		
+                    		 <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="传染病史:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_chuanranbinshi"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>
+                    		
+                    		 <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="外伤史:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_waishangshi"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>
+                			
+                    		 
+                    		  <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="手术史:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_shoushushi"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>
+                    		
+                    		   <LinearLayout
+                    		       android:id="@+id/custom_huaiyun_liuchan_layout"
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="女性患者怀孕、分娩、流产史：" />
+                    			 <TextView
+                    		          android:id="@+id/custom_huaiyun_liuchan"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>
+                    		  
+                    		     <LinearLayout
+                    		           android:id="@+id/custom_yuejing_layout"
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="女性患者月经情况:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_yuejing"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>
+                			
+                    		     
+                    		   <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="食物及药物过敏史:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_shiwuguoming"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>    
+                    		     
+                    		       <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="输血史:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_shuxueshi"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>    
+                			
+                    		       
+                    		            <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="家族病史:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_jiazhubingshi"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>    
+                    		       
+                    		       
+                    		         <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="目前服药情况:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_muqianfuyao"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>                
+                    		            
+                    		            
+                    		            
+                    		    <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="其他需要补充的情况:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_qitabuchong"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="个人既往病史" />
+                			</LinearLayout>                   
+                    		            
+                	</LinearLayout>
+                    
+                       <LinearLayout
+                          	android:id="@+id/custom_gerent_info"
+                    		android:layout_width="match_parent"
+                    		android:layout_height="wrap_content"
+                    		android:visibility="gone"
+                    		android:orientation="vertical" >
+                             <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="城市:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_city"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="成都" />
+                			</LinearLayout>       
+                           <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="目前居住地址:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_address"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="成都" />
+                			</LinearLayout>    
+                           
+                            <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="联系电话:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_phone"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="成都" />
+                			</LinearLayout>    
+                			
+                            <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="手机:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_mobile"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="成都" />
+                			</LinearLayout>   
+                			
+                            
+                            <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="邮箱地址:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_email"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="成都" />
+                			</LinearLayout>   
+                			
+                            
+                            
+                              <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="职业:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_zhiye"
+                    		          android:layout_width="match_parent"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="成都" />
+                			</LinearLayout>   
+                			
+                              
+                              
+                              <LinearLayout
+	                    		android:layout_width="match_parent"
+	                    		android:layout_height="wrap_content"
+	                    		android:minHeight="30dp"
+	                    		android:gravity="center_vertical"
+	                    		android:padding="10dp"
+	                    		android:orientation="horizontal" >
+                    		     <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="身高:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_shengao"
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="186CM" />
+                    			 <View android:layout_width="20dp" android:layout_height="1dip"/>
+                    			  <TextView
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:text="体重:" />
+                    			 <TextView
+                    		          android:id="@+id/custom_tizhong"
+                    		          android:layout_width="wrap_content"
+                    		          android:layout_height="wrap_content"
+                    		          android:textSize="@dimen/font_style_10"
+                    		          android:textColor="@color/blue"
+                    		          android:text="70KG" />
+                			</LinearLayout>   
+                       </LinearLayout>
+                    
+                    
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <ImageView
+          
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/layer_close" />
+          <ImageView
+            android:id="@+id/schedule_add_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:src="#00000000" />
+    </RelativeLayout>
+
+</LinearLayout>

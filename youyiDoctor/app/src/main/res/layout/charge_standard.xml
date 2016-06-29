@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+        <com.uyi.app.ui.custom.HeaderView 
+	    android:id="@+id/headerView"
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content">
+	</com.uyi.app.ui.custom.HeaderView>
+	
+        <LinearLayout 
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/charge_standard_text"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/hui_stroke"
+                android:inputType="number"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_12"
+                android:text="健康豆/年" />
+        </LinearLayout>
+        
+         <Button
+		            android:id="@+id/charge_standard_submit"
+		            android:layout_width="match_parent"
+		            android:layout_height="40dp"
+		            android:layout_margin="10dp"
+		            android:text="确认设置"
+		            android:textColor="@color/white"
+		            android:background="@drawable/blue_bg" />
+        
+        
+
+</LinearLayout>

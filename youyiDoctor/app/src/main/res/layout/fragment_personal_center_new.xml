@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:src="@drawable/add_icon" />
+
+
+            <LinearLayout
+                android:id="@+id/schedule"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:background="#0fb8f4"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:src="@drawable/ic_launcher" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="日程"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_18" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="schedule"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/schedule_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_margin="4dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/notice_background"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="12"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_style_10"
+                        android:visibility="gone" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:background="#0ea6fa"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/ic_launcher" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="通知"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:id="@+id/title_en"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="notice"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/notice_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_margin="4dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/notice_background"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="12"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/consulting"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_marginTop="4dp"
+                        android:background="#509ffd"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/ic_launcher" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="专属咨询"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="consulting"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/consulting_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_margin="4dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/notice_background"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="12"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/user"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="#FA9E0D"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_launcher" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:text="用户"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_18" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="user"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="4dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/notice_background"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+              >
+
+                <LinearLayout
+                    android:id="@+id/question"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:background="#8c5af2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_launcher" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:text="健康问答"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_18" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center"
+
+                                android:maxLines="1"
+                                android:text="question"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/question_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="4dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/notice_background"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:text="12"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/message"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_weight="1"
+                        android:background="#FB6179"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/ic_launcher" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="消息管理"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="message"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_margin="4dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/notice_background"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="12"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/announcement"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:background="#52B616"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/ic_launcher" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="公告管理"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="announcement"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_margin="4dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/notice_background"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="12"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <LinearLayout
+                android:id="@+id/discussion"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_weight="1"
+                android:background="#25A6D0"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:maxLines="1"
+                            android:text="讨论组"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_18" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="start"
+                            android:maxLines="1"
+                            android:text="discussion"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/discussion_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_margin="4dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/notice_background"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="12"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_style_10"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/ic_launcher" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

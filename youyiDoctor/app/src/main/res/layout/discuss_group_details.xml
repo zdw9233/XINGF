@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:orientation="vertical" >
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/discuss_group_details_query"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/blue_bg"
+                android:text="查看咨询详情"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/discuss_group_details_consult_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/discuss_group_details_caiyong"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/blue_bg"
+                android:visibility="invisible"
+                android:text="采用选择的意见"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <com.uyi.app.ui.custom.RoundedImageView
+                    android:id="@+id/doctor_logo"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/user_img" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <EditText
+                        android:id="@+id/discuss_group_details_yijian"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:minLines="5"
+                        android:padding="5dp"
+                        android:maxLength="250"
+                        android:textColor="@color/list_item_content_color"
+                        android:textSize="@dimen/font_style_12" >
+                    </EditText>
+					<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:textSize="@dimen/font_style_10" android:text="*意见字数最多250字" android:textColor="@color/red"/>
+                    <Button
+                        android:id="@+id/discuss_group_details_fabiao"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/blue_bg"
+                        android:text="发表意见"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

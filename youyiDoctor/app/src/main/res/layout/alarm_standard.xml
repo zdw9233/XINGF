@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+            <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+       <ScrollView  android:layout_width="match_parent" android:layout_height="wrap_content">
+       
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:padding="10dp" >
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginTop="10dp"
+               android:background="@color/content_background"
+               android:gravity="center_vertical"
+               android:paddingLeft="10dp"
+               android:text="血压"
+               android:textColor="@color/red" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="收缩压小于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/sousuoya_left"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" >
+
+                   <requestFocus />
+               </EditText>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mm/Hg"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="或高于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/sousuoya_right"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mm/Hg"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="舒张压小于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/shuzhangya_left"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mm/Hg"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="或高于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/shuzhangya_dayu"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:textSize="@dimen/font_style_12"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mm/Hg"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="脉搏小于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/maibo_left"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                    android:textSize="@dimen/font_style_12"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="次/分"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="或高于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/maibo_right"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="次/分"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginTop="10dp"
+               android:background="@color/content_background"
+               android:gravity="center_vertical"
+               android:paddingLeft="10dp"
+               android:text="血糖"
+               android:textColor="@color/red" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="空腹血糠低于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/kongfuxuetang_left"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="或高于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/kongfuxuetang_right"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="餐饮2小时后血糠低于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/chanying2xiaoshi_left"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                    android:textSize="@dimen/font_style_12"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="或高于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/chanying2xiaoshi_right"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginTop="10dp"
+               android:background="@color/content_background"
+               android:gravity="center_vertical"
+               android:paddingLeft="10dp"
+               android:text="血脂"
+               android:textColor="@color/red" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="总胆固醇高于:"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/zongduanguchun"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="甘油三酯高于:"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/ganyoushanzhi"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                    android:textSize="@dimen/font_style_12"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="低密度脂蛋白胆固醇高于:"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/dimiduzhidanbai"
+                   android:layout_width="100dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                    android:textSize="@dimen/font_style_12"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="高密度脂蛋白胆固醇低于:"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/gaomiduzhidanbai"
+                   android:layout_width="100dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                    android:textSize="@dimen/font_style_12"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="mmol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginTop="10dp"
+               android:background="@color/content_background"
+               android:gravity="center_vertical"
+               android:paddingLeft="10dp"
+               android:text="血氧"
+               android:textColor="@color/red" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="饱和度最低值:"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/baohedu"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                    android:textSize="@dimen/font_style_12"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="umol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+           </LinearLayout>
+           
+            <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="静息心率 低于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/jinxixinglv_left"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                    android:textSize="@dimen/font_style_12"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="次/分"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+
+               <View
+                   android:layout_width="0dip"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="或高于："
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/jinxixinglv_right"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                    android:textSize="@dimen/font_style_12"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="次/分"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+           
+           
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginTop="10dp"
+               android:background="@color/content_background"
+               android:gravity="center_vertical"
+               android:paddingLeft="10dp"
+               android:text="其他项目"
+               android:textColor="@color/red" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:gravity="center_vertical"
+               android:orientation="horizontal" >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="尿酸超过:"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_12" />
+
+               <EditText
+                   android:id="@+id/niaosuan"
+                   android:layout_width="50dp"
+                   android:layout_height="wrap_content"
+                   android:layout_margin="3dp"
+                   android:layout_weight="1"
+                   android:background="@drawable/hui_stroke"
+                    android:textSize="@dimen/font_style_12"
+                   android:ems="10"
+                   android:inputType="numberDecimal"
+                   android:textColor="@color/list_item_content_color" />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="umol/l"
+                   android:textColor="@color/list_item_content_color"
+                   android:textSize="@dimen/font_style_8" />
+           </LinearLayout>
+
+           <View
+               android:layout_width="1dp"
+               android:layout_height="50dp" />
+
+           <Button
+               android:id="@+id/health_database_add_submit"
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:background="@drawable/blue_bg"
+               android:text="确认设置"
+               android:textColor="@color/white" />
+       </LinearLayout>
+</ScrollView>
+</LinearLayout>

@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/updata_user_main"
+    android:orientation="vertical" >
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.uyi.app.ui.custom.HeaderView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/register_three_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:visibility="visible" >
+
+            <com.uyi.app.ui.custom.RoundedImageView
+                android:id="@+id/register_header_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/upload_head_hint" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="40dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal" >
+
+				<EditText
+					android:id="@+id/register_name"
+					android:layout_width="0dip"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
+					android:background="@drawable/hui_stroke"
+					android:ems="10"
+					android:hint="@string/req_name"
+					android:inputType="text"
+					android:paddingLeft="5dp"
+					android:textSize="@dimen/font_style_14" >
+				</EditText>
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="20dp"
+					android:layout_marginLeft="10dp"
+					android:src="@drawable/required_" />
+			</LinearLayout>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="10dp" />
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal" >
+
+				<LinearLayout
+					android:layout_width="0dip"
+					android:layout_height="40dp"
+					android:layout_weight="1"
+					android:gravity="center_vertical"
+					android:orientation="horizontal" >
+
+					<LinearLayout
+						android:layout_width="0dip"
+						android:layout_height="match_parent"
+						android:layout_weight="1"
+						android:background="@drawable/hui_stroke"
+						android:orientation="horizontal" >
+
+						<TextView
+							android:id="@+id/register_sex"
+							android:layout_width="0dip"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:gravity="center_vertical"
+							android:hint="请选择性别"
+							android:paddingLeft="5dp"
+							android:textColor="@color/list_item_content_color"
+							android:textSize="@dimen/font_style_14" />
+
+						<ImageView
+							android:layout_width="15dp"
+							android:layout_height="15dp"
+							android:layout_gravity="center"
+							android:layout_margin="10dp"
+							android:src="@drawable/drop_icon" />
+					</LinearLayout>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:layout_marginLeft="10dp"
+						android:visibility="invisible"
+						android:src="@drawable/required_" />
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="0dip"
+					android:layout_height="40dp"
+					android:layout_weight="1"
+					android:visibility="invisible"
+					android:gravity="center_vertical"
+					android:orientation="horizontal" >
+
+					<LinearLayout
+						android:layout_width="0dip"
+						android:layout_height="match_parent"
+						android:layout_weight="1"
+						android:background="@drawable/hui_stroke"
+						android:orientation="horizontal" >
+
+						<TextView
+							android:layout_width="0dip"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:gravity="center_vertical"
+							android:hint="请选择性别"
+							android:paddingLeft="5dp"
+							android:textColor="@color/list_item_content_color"
+							android:textSize="@dimen/font_style_14" />
+
+						<ImageView
+							android:layout_width="15dp"
+							android:layout_height="15dp"
+							android:layout_gravity="center"
+							android:layout_margin="10dp"
+							android:src="@drawable/drop_icon" />
+					</LinearLayout>
+
+					<ImageView
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						android:layout_marginLeft="10dp"
+						android:src="@drawable/required_" />
+				</LinearLayout>
+			</LinearLayout>
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/register_shen"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="请选择省份"
+                            android:paddingLeft="5dp"
+                            android:textColor="@color/list_item_content_color"
+                            android:textSize="@dimen/font_style_14" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/drop_icon" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/required_" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/register_city"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:hint="请选择城市"
+                            android:paddingLeft="5dp"
+                            android:textColor="@color/list_item_content_color"
+                            android:textSize="@dimen/font_style_14" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/drop_icon" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/required_" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_address"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/req_address"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/register_chushennianyue"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:hint="出生年月"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/list_item_content_color"
+                        android:textSize="@dimen/font_style_14" />
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+
+                        android:src="@drawable/drop_icon" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+					android:src="@drawable/required_"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_phone"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_phone"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_mobile"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_mobile"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_email"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                   />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_card"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_card"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/register_zhiye"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_zhiye"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" >
+                </EditText>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                 />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/register_height"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:ems="10"
+                        android:hint="@string/reg_height"
+                        android:inputType="number"
+                        android:paddingLeft="5dp"
+                        android:textSize="@dimen/font_style_14" >
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="10dp"
+                        android:text="cm"
+						android:gravity="center"
+                        android:textColor="@color/list_item_content_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dip"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/register_weight"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/hui_stroke"
+                        android:ems="10"
+                        android:hint="@string/reg_weight"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="5dp"
+                        android:textSize="@dimen/font_style_14" >
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="kg"
+						android:gravity="center"
+                        android:textColor="@color/list_item_content_color" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/register_submit"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/blue_bg"
+                android:text="提交资料"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+</LinearLayout>

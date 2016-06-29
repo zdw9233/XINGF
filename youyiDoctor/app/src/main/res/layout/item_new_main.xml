@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/parentView"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/orangered"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_cn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:maxLines="1"
+                android:text="健康报告"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_style_18" />
+
+            <TextView
+                android:id="@+id/title_en"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="end"
+                android:maxLines="1"
+                android:text="report"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_style_10" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

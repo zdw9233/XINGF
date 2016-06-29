@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@color/header_background"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/consult_userinfo_left_layout"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:background="#e3f3fc"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="3dp" >
+
+        <com.uyi.app.ui.custom.RoundedImageView
+            android:id="@+id/consult_userinfo_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/user_img" />
+
+        <TextView
+            android:id="@+id/consult_userinfo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="center_vertical"
+            android:text="张三"
+            android:textColor="@color/list_item_content_color"
+            android:textSize="@dimen/font_style_12" />
+
+         <TextView
+             android:id="@+id/consult_userinfo_yicaiyong"
+             android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="已采用该意见"
+                 android:gravity="center" 
+                android:textColor="@color/green"
+                android:textSize="@dimen/font_style_10" />
+        <LinearLayout
+            android:id="@+id/consult_userinfo_selected_layout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/consult_userinfo_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:src="@drawable/checknormal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择该意见"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_10" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/consult_userinfo_time"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="center_vertical"
+            android:text="发布时间：0000-00-00 00:00"
+            android:textColor="@color/list_item_content_color"
+            android:textSize="@dimen/font_style_12" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dip"
+            android:background="@color/content_background" />
+
+        <TextView
+            android:id="@+id/consult_userinfo_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/list_item_content_color"
+            android:textSize="@dimen/font_style_10" />
+    </LinearLayout>
+
+</LinearLayout>
