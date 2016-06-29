@@ -32,4 +32,5 @@
     <color name="listview_item_pressed">#d4d4d4</color>
     <color name="trans_clr">#00000000</color>
     <color name="text_clr">#252525</color>
+    <color name="text2_clr">#404040</color>
 </resources>
