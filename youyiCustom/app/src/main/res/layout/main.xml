@@ -36,7 +36,7 @@
 	                android:id="@+id/main_tab_1_icon"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:src="@drawable/nav_consultation_selected" />
+	                android:src="@drawable/nav_personalcenter_selected" />
                   <TextView
 	                android:id="@+id/main_tab_1_count"
 	                android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 android:id="@+id/main_tab_1_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/footer_consultation"
+                android:text="@string/footer_individual"
                 android:textSize="@dimen/font_style_13"
                 android:textColor="@color/blue" />
         </LinearLayout>
@@ -132,14 +132,14 @@
                 android:id="@+id/main_tab_4_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/nav_personalcenter_default" />
+                android:src="@drawable/nav_consultation_default" />
 
             <TextView
                 android:id="@+id/main_tab_4_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:textSize="@dimen/font_style_13"
-                android:text="@string/footer_individual"
+                android:text="@string/footer_consultation"
                 android:textColor="@color/footer_somber" />
         </LinearLayout>
     </LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    	<com.uyi.app.ui.custom.HeaderView 
+	    android:id="@+id/headerView"
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content">
+	</com.uyi.app.ui.custom.HeaderView>
+	<EditText
+		android:id="@+id/new_risk_assessment"
+		android:layout_marginTop="20dp"
+		android:padding="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="top"
+		android:background="@drawable/hui_stroke"
+		android:textSize="@dimen/font_style_15"
+		android:minLines="5"/>
+	<Button
+		android:id="@+id/new_risk_submit"
+		android:layout_width="match_parent"
+		android:layout_margin="20dp"
+		android:layout_height="60dp"
+		android:text="新建报告"
+		android:background="@drawable/sel_blue_to_press"
+		android:textSize="20sp"
+		android:textColor="@color/white"
+		/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:layout_marginTop="15dp"
+		android:layout_marginLeft="5dp"
+		android:layout_height="30dp">
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="@dimen/font_style_16"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="5dp"
+			android:textColor="@color/blue"
+			android:text="历史报告:"/>
+
+	</LinearLayout>
+    	    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent" 
+        android:layout_height="match_parent">
+	    <com.uyi.app.ui.custom.EndlessRecyclerView 
+	        xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/recyclerView"
+	    
+	    android:orientation="vertical"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    	
+    </LinearLayout>	

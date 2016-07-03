@@ -1,6 +1,7 @@
 package com.uyi.app.ui.common;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +50,8 @@ public class LoginActivity extends BaseActivity {
 	protected void onInitLayoutAfter() {
 		headerView.showTitle(true);
 		headerView.setTitle(getString(R.string.app_name));
+		login_username.setText("shendandan");
+		login_password.setText("123456t");
 		headerView.setHeaderBackgroundColor(getResources().getColor(R.color.blue));
 		if(UserInfoManager.getLoginUserInfo(activity) != null){
 			finish();
@@ -69,7 +72,8 @@ public class LoginActivity extends BaseActivity {
 		if(v.getId() == R.id.login_register){
 			startActivity(new Intent(activity, RegisterActivity.class));
 		}else if(v.getId() == R.id.login_get_password){
-			startActivity(new Intent(activity, GetPasswordActivity.class));
+//			startActivity(new Intent(activity, GetPasswordActivity.class));
+			startActivity(new Intent(activity, RegisterInfoAcitivity.class));
 		}else if(v.getId() == R.id.guardian_chose){
 			if(isChoise == 0){
 				isChoise = 1;
@@ -93,35 +97,69 @@ public class LoginActivity extends BaseActivity {
 				params.put("logasguardian", false);
 			}else{
 				params.put("logasguardian", true);
-
-
 			}
 			RequestManager.postObject(Constens.LOGIN_URL, activity, params, new Response.Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					UserInfo userInfo = new UserInfo();
 					try {
-						userInfo.authToken = data.getString("authToken");
-						userInfo.type = data.getInt("type");
-						userInfo.userId = data.getInt("id");
-						userInfo.account = data.getString("account");
-						userInfo.realName = data.getString("realName");
-						userInfo.password = password;
-						userInfo.icon = data.getString("icon");
-						userInfo.address = data.has("address")?data.getString("address"):null;
-						userInfo.city = data.has("city")?data.getString("city"):null;
-						userInfo.beans = data.has("beans")?data.getInt("beans"):null;
-						userInfo.consumedBeans = data.has("consumedBeans")?data.getInt("consumedBeans"):null;
-						userInfo.lastLoginTime = data.getString("lastLoginTime");
-						Set<String> tags = new HashSet<String>();
-						tags.add("bulletin");
-						tags.add("message_customer_"+userInfo.userId);
-						JPushInterface.setTags(activity, tags, null);
-						if(userInfo.type != 0){
-							T.showLong(activity, "只能登陆客户账户");
-							return;
+						Log.e("data",data.toString());
+
+						if(data.getBoolean("logasguardian") == true){
+							if(data.getString("guardian").equals("false")){
+							startActivity(new Intent(LoginActivity.this,RegisterGuardianInfo.class));
+								finish();
+							}else{
+								userInfo.authToken = data.getString("authToken");
+								userInfo.type = data.getInt("type");
+								userInfo.userId = data.getInt("id");
+								userInfo.account = data.getString("account");
+								userInfo.realName = data.getString("guardian");
+								userInfo.password = password;
+								userInfo.icon = data.getString("guardianIcon");
+								userInfo.address = data.has("address")?data.getString("address"):null;
+								userInfo.city = data.has("city")?data.getString("city"):null;
+								userInfo.beans = data.has("beans")?data.getInt("beans"):null;
+								userInfo.consumedBeans = data.has("consumedBeans")?data.getInt("consumedBeans"):null;
+								userInfo.lastLoginTime = data.getString("lastLoginTime");
+
+								Set<String> tags = new HashSet<String>();
+								tags.add("bulletin");
+								tags.add("message_customer_"+userInfo.userId);
+								JPushInterface.setTags(activity, tags, null);
+								if(userInfo.type != 0){
+									T.showLong(activity, "只能登陆客户账户");
+									return;
+								}
+								UserInfoManager.setLoginUserInfo(activity, userInfo);
+								finish();
+							}
+						}else{
+							userInfo.authToken = data.getString("authToken");
+							userInfo.type = data.getInt("type");
+							userInfo.userId = data.getInt("id");
+							userInfo.account = data.getString("account");
+							userInfo.realName = data.getString("realName");
+							userInfo.password = password;
+							userInfo.icon = data.getString("icon");
+							userInfo.address = data.has("address")?data.getString("address"):null;
+							userInfo.city = data.has("city")?data.getString("city"):null;
+							userInfo.beans = data.has("beans")?data.getInt("beans"):null;
+							userInfo.consumedBeans = data.has("consumedBeans")?data.getInt("consumedBeans"):null;
+							userInfo.lastLoginTime = data.getString("lastLoginTime");
+
+							Set<String> tags = new HashSet<String>();
+							tags.add("bulletin");
+							tags.add("message_customer_"+userInfo.userId);
+							JPushInterface.setTags(activity, tags, null);
+							if(userInfo.type != 0){
+								T.showLong(activity, "只能登陆客户账户");
+								return;
+							}
+							UserInfoManager.setLoginUserInfo(activity, userInfo);
+							finish();
 						}
-						UserInfoManager.setLoginUserInfo(activity, userInfo);
-						finish();
+
+
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}

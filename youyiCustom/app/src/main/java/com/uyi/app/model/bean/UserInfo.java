@@ -43,6 +43,12 @@ public class UserInfo {
 	@Column
 	public String lastLoginTime;
 	@Column
+	public String guardian;
+	@Column
+	public String guardianIcon;
+	@Column
+	public boolean logasguardian;
+	@Column
 	public boolean login;//当前登录的
 	
 	
@@ -54,7 +60,7 @@ public class UserInfo {
 	}
 
 	public UserInfo(String authToken, Integer type, int userId, String account, String realName, String password,
-			String icon, String address, String city, Integer beans, Integer consumedBeans, String lastLoginTime) {
+			String icon, String address, String city, Integer beans, Integer consumedBeans, String lastLoginTime,String guardian,String guardianIcon) {
 		super();
 		this.authToken = authToken;
 		this.type = type;
@@ -68,16 +74,30 @@ public class UserInfo {
 		this.beans = beans;
 		this.consumedBeans = consumedBeans;
 		this.lastLoginTime = lastLoginTime;
+		this.guardian = guardian;
+		this.guardianIcon = guardianIcon;
 	}
 
 	@Override
 	public String toString() {
-		return "UserInfo [id=" + id + ", authToken=" + authToken + ", type="
-				+ type + ", userId=" + userId + ", account=" + account
-				+ ", realName=" + realName + ", password=" + password
-				+ ", icon=" + icon + ", address=" + address + ", city=" + city
-				+ ", beans=" + beans + ", consumedBeans=" + consumedBeans
-				+ ", lastLoginTime=" + lastLoginTime + ", login=" + login + "]";
+		return "UserInfo{" +
+				"id=" + id +
+				", authToken='" + authToken + '\'' +
+				", type=" + type +
+				", userId=" + userId +
+				", account='" + account + '\'' +
+				", realName='" + realName + '\'' +
+				", password='" + password + '\'' +
+				", icon='" + icon + '\'' +
+				", address='" + address + '\'' +
+				", city='" + city + '\'' +
+				", beans=" + beans +
+				", consumedBeans=" + consumedBeans +
+				", lastLoginTime='" + lastLoginTime + '\'' +
+				", guardian='" + guardian + '\'' +
+				", guardianIcon='" + guardianIcon + '\'' +
+				", logasguardian=" + logasguardian +
+				", login=" + login +
+				'}';
 	}
-	
 }

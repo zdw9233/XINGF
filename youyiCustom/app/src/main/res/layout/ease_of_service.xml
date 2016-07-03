@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.uyi.app.ui.custom.HeaderView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/anxin_banner"/>
+            <RelativeLayout
+                android:id="@+id/anxin_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#70c2eb"
+                android:gravity="center"
+                android:padding="15dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relativeLayout">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_anxin"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务期3个月"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/relativeLayout"
+                    android:layout_alignLeft="@+id/relativeLayout"
+                    android:layout_alignStart="@+id/relativeLayout"
+                    android:layout_marginLeft="60dp"
+                    android:textSize="16sp"
+                    android:layout_marginStart="45dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:text="安心服务包 （体验）"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/relativeLayout"
+                    android:layout_alignLeft="@+id/relativeLayout"
+                    android:layout_alignStart="@+id/relativeLayout" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/anxin_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f7b36f"
+                android:gravity="center"
+                android:padding="15dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relativeLayout1">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_anxin"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务期6个月"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/relativeLayout1"
+                    android:layout_alignLeft="@+id/relativeLayout1"
+                    android:layout_alignStart="@+id/relativeLayout1"
+                    android:layout_marginLeft="60dp"
+                    android:textSize="16sp"
+                    android:layout_marginStart="45dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:text="安心服务包 （半年）"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/relativeLayout1"
+                    android:layout_alignLeft="@+id/relativeLayout1"
+                    android:layout_alignStart="@+id/relativeLayout1" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/anxin_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#7fe07f"
+                android:gravity="center"
+                android:padding="15dp">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relativeLayout2">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_anxin"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务期12个月"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignBottom="@+id/relativeLayout2"
+                    android:layout_alignLeft="@+id/relativeLayout2"
+                    android:layout_alignStart="@+id/relativeLayout2"
+                    android:layout_marginLeft="60dp"
+                    android:textSize="16sp"
+                    android:layout_marginStart="45dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:text="安心服务包 （年度）"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/relativeLayout2"
+                    android:layout_alignLeft="@+id/relativeLayout2"
+                    android:layout_alignStart="@+id/relativeLayout2" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
