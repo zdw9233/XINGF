@@ -1,14 +1,5 @@
 package com.uyi.app.ui.health;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Application;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
@@ -16,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -36,6 +26,14 @@ import com.uyi.app.ui.dialog.Looding;
 import com.uyi.app.ui.health.adapter.HealthManagerAdapter;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FragmentHealthListManager extends BaseFragment
 		implements Pager, OnRefreshListener, OnItemClickListener<Map<String, Object>> {
@@ -116,7 +114,7 @@ public class FragmentHealthListManager extends BaseFragment
 				getActivity(), new Listener<JSONObject>() {
 					@Override
 					public void onResponse(JSONObject data) {
-				
+							System.out.print(data.toString());
 						try {
 							Looding.bulid(getActivity(), null).dismiss();
 							totalPage = data.getInt("pages");
@@ -129,7 +127,7 @@ public class FragmentHealthListManager extends BaseFragment
 								item.put("name", jsonObject.getString("name"));
 								item.put("icon", jsonObject.getString("icon"));
 								item.put("updateTime", jsonObject.getString("updateTime"));
-								item.put("isWarning", jsonObject.getBoolean("isWarning"));
+//								item.put("isWarning", jsonObject.getBoolean("isWarning"));
 
 								datas.add(item);
 							}

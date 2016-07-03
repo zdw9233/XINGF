@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/hui_stroke"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="开始服药日期"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_14" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/drop_icon" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/hui_stroke"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="结束服药日期"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/list_item_content_color"
+                    android:textSize="@dimen/font_style_14" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/drop_icon" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/hui_stroke"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="药物名"
+            android:paddingLeft="5dp"
+            android:textColor="@color/list_item_content_color"
+            android:textSize="@dimen/font_style_14" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/drop_icon" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:orientation="horizontal" >
+
+
+
+        <LinearLayout
+            android:id="@+id/regester_three_yonyaopindu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/hui_stroke"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="用药频度"
+                android:paddingLeft="5dp"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_14" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:src="@drawable/drop_icon" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/regester_three_xiaoshi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/regester_three_yonyaopindu"
+            android:background="@drawable/hui_stroke"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="小时"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_14" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:src="@drawable/drop_icon" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/regester_three_danciyonyaoliang"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/hui_stroke"
+            android:maxLength="5"
+            android:layout_toRightOf="@id/regester_three_xiaoshi"
+            android:inputType="number"
+            android:textSize="@dimen/font_style_13"
+            android:hint="单次用药量"/>
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/regester_three_danwei"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/regester_three_danciyonyaoliang"
+            android:background="@drawable/hui_stroke"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+
+                android:hint="g"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_14" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:src="@drawable/drop_icon" />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/blue"/>
+</LinearLayout>

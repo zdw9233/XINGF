@@ -108,6 +108,8 @@ public  abstract class Constens {
 
 	//登陆
 	public final static String LOGIN_URL = SERVER_URL+"/app/api/account/login";
+	//录入监护人资料
+	public final static String GUADIANINFO = SERVER_URL+"/app/api/account/guardianinfo";
 	//获取问题答案列表
 	public final static String SAFE_QUESTIONS = SERVER_URL+"/app/api/common/safe/questions";
 	

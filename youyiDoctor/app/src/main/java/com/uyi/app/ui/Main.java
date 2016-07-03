@@ -24,7 +24,7 @@ import com.uyi.app.ui.consult.FragmentFollow;
 import com.uyi.app.ui.consult.FragmentLineInspection;
 import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.health.HealthManagerFragment;
+import com.uyi.app.ui.health.FragmentHealthListManager;
 import com.uyi.app.ui.personal.PersonalCenterFragment;
 import com.uyi.app.ui.team.FragmentHealthTeam;
 import com.uyi.app.utils.NetUtils;
@@ -137,7 +137,8 @@ public class Main extends BaseFragmentActivity  {
 
 	public void initView() {
 		fragments.add(new FragmentConsultation(this));//所有咨询
-		fragments.add(new HealthManagerFragment());//健康管理
+//		fragments.add(new HealthManagerFragment());//健康管理
+		fragments.add(new FragmentHealthListManager(this));//健康管理
 		fragments.add(new FragmentHealthTeam(this));//健康团队
 		fragments.add(new PersonalCenterFragment());//个人中心
 		fragments.add(new FragmentFollow(this));//随访	
