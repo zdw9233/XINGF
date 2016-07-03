@@ -1,4 +1,4 @@
-package com.uyi.app.recycle;
+package com.uyi.app.widget.recycle;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -43,12 +43,12 @@ public abstract class BaseAdapter extends
     /**
      * Item点击事件对象
      */
-    private com.uyi.app.recycle.RecyclerView.ItemClickListener mItemClickListener;
+    private com.uyi.app.widget.recycle.RecyclerView.ItemClickListener mItemClickListener;
 
     /**
      * Item长按点击事件对象
      */
-    private com.uyi.app.recycle.RecyclerView.ItemLongClickListener mItemLongClickListener;
+    private com.uyi.app.widget.recycle.RecyclerView.ItemLongClickListener mItemLongClickListener;
 
     /**
      * 父类构造
@@ -284,7 +284,7 @@ public abstract class BaseAdapter extends
      *
      * @param itemClickListener item点击监听
      */
-    public void setItemClickListener(com.uyi.app.recycle.RecyclerView.ItemClickListener itemClickListener) {
+    public void setItemClickListener(com.uyi.app.widget.recycle.RecyclerView.ItemClickListener itemClickListener) {
         this.mItemClickListener = itemClickListener;
     }
 
@@ -293,7 +293,7 @@ public abstract class BaseAdapter extends
      *
      * @param itemLongClickListener item点击监听
      */
-    public void setItemLongClickListener(com.uyi.app.recycle.RecyclerView.ItemLongClickListener itemLongClickListener) {
+    public void setItemLongClickListener(com.uyi.app.widget.recycle.RecyclerView.ItemLongClickListener itemLongClickListener) {
         this.mItemLongClickListener = itemLongClickListener;
     }
 }

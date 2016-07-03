@@ -2,23 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uyi.doctor.app"
     android:versionCode="8"
-    android:versionName="2.10" >
+    android:versionName="2.10">
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="23" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    
-        
-        
-         <permission
+
+
+    <permission
         android:name="com.uyi.doctor.app.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-  
+
     <!-- Required  一些系统要求的权限，如访问网络等-->
     <uses-permission android:name="com.uyi.doctor.app.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -29,10 +29,9 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>  
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    
-    
+
     <!-- Optional for location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -40,178 +39,224 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    
-    
+
+
     <application
         android:name="com.uyi.app.UYIApplication"
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme" >
-        	<service
-  	    	android:permission="oem.permission.SENDMAIL"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:permission="oem.permission.SENDMAIL"
+            android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" >
-                </action>
+                <action android:name="com.baidu.location.service_v2.2"></action>
             </intent-filter>
-   </service>
+        </service>
+
         <activity
             android:name="com.uyi.app.ui.Main"
-             android:screenOrientation="portrait" 
-             android:launchMode="singleTask"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            
+
         </activity>
-        
-        <activity android:name="com.uyi.app.ui.RecylerViewActiviry"  
+
+        <activity
+            android:name="com.uyi.app.ui.report.ReportActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.uyi.app.ui.RecylerViewActiviry"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.common.LoginActivity"  
+        <activity
+            android:name="com.uyi.app.ui.common.LoginActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.common.GetPasswordActivity"  
+        <activity
+            android:name="com.uyi.app.ui.common.GetPasswordActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.common.UpdatePasswordActivity"  
+        <activity
+            android:name="com.uyi.app.ui.common.UpdatePasswordActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.common.UpdateUserInfoActivity"  
+        <activity
+            android:name="com.uyi.app.ui.common.UpdateUserInfoActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.health.HealthManagerMain"  
+        <activity
+            android:name="com.uyi.app.ui.health.HealthManagerMain"
             android:screenOrientation="portrait"></activity>
-        
-        
-        
-        <activity android:name="com.uyi.app.ui.consult.ConsultDetailsActivity"  
+
+
+        <activity
+            android:name="com.uyi.app.ui.consult.ConsultDetailsActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.consult.ConsultEvaluateActivity"  
+        <activity
+            android:name="com.uyi.app.ui.consult.ConsultEvaluateActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.consult.ConsultSuccessActivity"  
+        <activity
+            android:name="com.uyi.app.ui.consult.ConsultSuccessActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.common.ViewPagerImageActivity"  
+        <activity
+            android:name="com.uyi.app.ui.common.ViewPagerImageActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.common.ViewPagerImagebiaoActivity"  
-             android:theme="@style/translucent" 
+        <activity
+            android:name="com.uyi.app.ui.common.ViewPagerImagebiaoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent"></activity>
+        <activity
+            android:name="com.uyi.app.ui.health.HealthDatabaseDetails"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.health.HealthDatabaseDetails"  
+        <activity
+            android:name="com.uyi.app.ui.health.AddHealthDatabase"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.health.AddHealthDatabase"  
+        <activity
+            android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsAddActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsAddActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsDetailsActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsDetailsActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.schedule.DatePickerActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.schedule.DatePickerActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.schedule.ScheduleActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.schedule.ScheduleActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.schedule.AddScheduleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent"></activity>
+
+        <activity
+            android:name="com.uyi.app.ui.personal.message.MessageActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.schedule.AddScheduleActivity"  
-            android:theme="@style/Transparent"
+        <activity
+            android:name="com.uyi.app.ui.personal.message.MessageDetailsActivity"
             android:screenOrientation="portrait"></activity>
-        
-        <activity android:name="com.uyi.app.ui.personal.message.MessageActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.exclusive.ExclusiveActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.message.MessageDetailsActivity"  
+
+        <activity
+            android:name="com.uyi.app.ui.personal.exclusive.NewExclusiveActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+
+
+        <activity
+            android:name="com.uyi.app.ui.personal.exclusive.ExclusiveDetailsActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.exclusive.ExclusiveActivity"  
+        <activity
+            android:name="com.uyi.app.ui.recharge.RechargeActivity"
             android:screenOrientation="portrait"></activity>
-        
-        <activity android:name="com.uyi.app.ui.personal.exclusive.NewExclusiveActivity"  
-             android:windowSoftInputMode="adjustUnspecified|stateHidden"
+
+        <activity
+            android:name="com.uyi.app.ui.personal.notice.NoticeActivity"
             android:screenOrientation="portrait"></activity>
-        
-        
-        
-        <activity android:name="com.uyi.app.ui.personal.exclusive.ExclusiveDetailsActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.notice.NoticeDetailsActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.recharge.RechargeActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.notice.NoticeAddActivity"
             android:screenOrientation="portrait"></activity>
-        
-        <activity android:name="com.uyi.app.ui.personal.notice.NoticeActivity"  
+
+        <activity
+            android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.notice.NoticeDetailsActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerDetailsActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.notice.NoticeAddActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerSendActivity"
             android:screenOrientation="portrait"></activity>
-        
-        <activity android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.messagemanager.QueryCustomerActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerDetailsActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.discuss.DiscussGroupActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name="com.uyi.app.ui.personal.discuss.DiscussGroupDetailsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"></activity>
+
+        <activity
+            android:name="com.uyi.app.ui.consult.CustomInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent"></activity>
+        <activity
+            android:name="com.uyi.app.ui.consult.HistoryConsultActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerSendActivity"  
+        <activity
+            android:name="com.uyi.app.ui.personal.customer.CustomerActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.messagemanager.QueryCustomerActivity"  
+        <activity
+            android:name="com.uyi.app.ui.consult.HistoryDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent"></activity>
+
+        <activity
+            android:name="com.uyi.app.ui.consult.NewConsultActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name="com.uyi.app.ui.common.RegisterActivityctivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+
+        <activity
+            android:name="com.uyi.app.ui.team.TeamDetailsActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.discuss.DiscussGroupActivity"  
-             android:windowSoftInputMode="adjustPan"
+        <activity
+            android:name="com.uyi.app.ui.team.JiaRuChenGongActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.discuss.DiscussGroupDetailsActivity"  
-             android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait"></activity>
-        
-        <activity android:name="com.uyi.app.ui.consult.CustomInfoActivity"  
-              android:theme="@style/Transparent"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.consult.HistoryConsultActivity"  
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.personal.customer.CustomerActivity"  
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.consult.HistoryDetailsActivity"  
-              android:theme="@style/Transparent"
-            android:screenOrientation="portrait"></activity>
-        
-        <activity android:name="com.uyi.app.ui.consult.NewConsultActivity"  
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name="com.uyi.app.ui.common.RegisterActivityctivity"  
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:screenOrientation="portrait"></activity>
-        
-                <activity android:name="com.uyi.app.ui.team.TeamDetailsActivity"  
-            android:screenOrientation="portrait"></activity>
-              <activity android:name="com.uyi.app.ui.team.JiaRuChenGongActivity"  
-            android:screenOrientation="portrait"></activity>
-              <activity android:name="com.uyi.app.ui.team.city.CityListActivity"  
-            android:windowSoftInputMode="adjustPan|stateHidden" 
-            android:screenOrientation="portrait"></activity>
-              <activity android:name="com.uyi.app.ui.personal.standard.ChargeStandardActivity"  
-            android:windowSoftInputMode="adjustPan|stateHidden" 
-            android:screenOrientation="portrait"></activity>
-              <activity android:name="com.uyi.app.ui.personal.standard.AlarmStandardActivity"  
-            android:windowSoftInputMode="adjustPan|stateHidden" 
-            android:screenOrientation="portrait"></activity>
- 
-        
+        <activity
+            android:name="com.uyi.app.ui.team.city.CityListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity
+            android:name="com.uyi.app.ui.personal.standard.ChargeStandardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity
+            android:name="com.uyi.app.ui.personal.standard.AlarmStandardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+
+
         <!-- alipay sdk begin -->
-        <activity android:name="com.uyi.app.ui.recharge.AlipayActivity"  
-            android:theme="@style/Transparent"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.uyi.app.ui.recharge.AlipayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent"></activity>
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
 
         <!-- alipay sdk end -->
-        
- 
 
-     
+
         <!-- Required SDK核心功能-->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.uyi.doctor.app" />
             </intent-filter>
@@ -220,10 +265,9 @@
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false" >
-        </service>
-    
-        
+            android:exported="false"></service>
+
+
         <!-- Required SDK 核心功能-->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
@@ -250,13 +294,13 @@
             </intent-filter>
 
         </service>
-        
+
         <!-- Required SDK核心功能-->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
             android:exported="false">
-             <intent-filter android:priority="1000">
+            <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
                 <category android:name="com.uyi.doctor.app" />
             </intent-filter>
@@ -264,26 +308,29 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
-             <!-- Optional -->
+            <!-- Optional -->
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
                 <data android:scheme="package" />
             </intent-filter>
-   
+
         </receiver>
-        
+
         <!-- Required SDK核心功能-->
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"/>
-        
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
         <!-- User defined.  For test only  用户自定义的广播接收器-->
         <receiver
             android:name="com.uyi.app.receiver.JpushNotificationReceiver"
-            android:exported="false"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
-                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />  
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
@@ -292,19 +339,17 @@
                 <category android:name="com.uyi.doctor.app" />
             </intent-filter>
         </receiver>
- 
-        
+
+
         <!-- Required  . Enable it you can get statistics data with channel -->
-        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="b2c5d1390d9e9a8af257dac1" /> <!--  </>值来自开发者平台取得的AppKey-->
-        
-        
-        
-        
-        
-        
-        
-        
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="b2c5d1390d9e9a8af257dac1" /> <!--  </>值来自开发者平台取得的AppKey-->
+
+
     </application>
 
 </manifest>
