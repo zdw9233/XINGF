@@ -86,6 +86,26 @@ public class RegisterInfoAcitivity extends BaseActivity {
 	private UserInfo userInfo;
 	private String gender;			//性别
 	public int update = 0;			//1为更新信息
+	int height = 0;
+	int weight = 0;
+	String healthCondition = "";
+	int chronicDiseaseType = 0;
+	String medical = "";
+	String infection ="";
+	String trauma = "";
+	String operation = "";
+	String pregnancy = "";
+	String menstruation ="";
+	String allergic ="";
+	String blood ="";
+	String familyMedical ="";
+	String others ="";
+	String vaccinationHistory ="";
+	String retrospection ="";
+//	String menstruation ="";
+//	String menstruation ="";
+//	String menstruation ="";
+//	String menstruation ="";
 	
 	@Override
 	protected void onInitLayoutAfter() {

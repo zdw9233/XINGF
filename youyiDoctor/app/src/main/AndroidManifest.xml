@@ -91,8 +91,18 @@
         <activity
             android:name="com.uyi.app.ui.health.HealthManagerMain"
             android:screenOrientation="portrait"></activity>
-
-
+        <activity
+            android:name="com.uyi.app.ui.health.HealthManagerFragment"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.uyi.app.ui.health.RiskAssessmentActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.uyi.app.ui.health.LifeStyleActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.uyi.app.ui.health.DietPlanActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.uyi.app.ui.consult.ConsultDetailsActivity"
             android:screenOrientation="portrait"></activity>

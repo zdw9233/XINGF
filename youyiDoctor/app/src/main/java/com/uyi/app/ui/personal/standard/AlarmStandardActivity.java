@@ -1,10 +1,11 @@
 package com.uyi.app.ui.personal.standard;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -13,6 +14,7 @@ import com.uyi.app.ErrorCode;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.ui.health.FragmentHealthListManager;
 import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
@@ -21,9 +23,8 @@ import com.uyi.doctor.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -57,7 +58,10 @@ public class AlarmStandardActivity extends BaseActivity {
 	
 	@ViewInject(R.id.jinxixinglv_left) private EditText jinxixinglv_left;
 	@ViewInject(R.id.jinxixinglv_right) private EditText jinxixinglv_right;
-	
+
+	@ViewInject(R.id.suijixuetang_left) private EditText suijixuetang_left;
+	@ViewInject(R.id.suijixuetang_right) private EditText suijixuetang_right;
+
 	@ViewInject(R.id.niaosuan) private EditText niaosuan; 
 	
 	@ViewInject(R.id.health_database_add_submit) private Button health_database_add_submit;
@@ -65,10 +69,11 @@ public class AlarmStandardActivity extends BaseActivity {
 	@Override
 	protected void onInitLayoutAfter() {
 		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("报警标准").setTitleColor(getResources().getColor(R.color.blue));
-		RequestManager.getObject(Constens.DOCTOR_HEALTH_WARNING_DATA, activity, new Listener<JSONObject>() {
+		RequestManager.getObject(String.format(Constens.COSTOM_HEALTH_WARNING_DATA, FragmentHealthListManager.customer), activity, new Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject data) {
 				L.d(TAG, data.toString());
+				System.out.print( data.toString());
 				sousuoya_left.setText(JSONObjectUtils.getInt(data, "spLow")+"");
 				sousuoya_right.setText(JSONObjectUtils.getInt(data, "spHigh")+"");
 				shuzhangya_left.setText(JSONObjectUtils.getInt(data, "dpLow")+"");
@@ -89,7 +94,9 @@ public class AlarmStandardActivity extends BaseActivity {
 				
 				jinxixinglv_left.setText(JSONObjectUtils.getInt(data, "hrLow")+"");
 				jinxixinglv_right.setText(JSONObjectUtils.getInt(data, "hrHigh")+"");
-				
+
+				suijixuetang_left.setText(JSONObjectUtils.getInt(data, "rbsLow")+"");
+				suijixuetang_right.setText(JSONObjectUtils.getInt(data, "rbsHigh")+"");
 				
 				
 				zongduanguchun.setText(JSONObjectUtils.getDouble(data, "bfChol")+"");
@@ -193,9 +200,14 @@ public class AlarmStandardActivity extends BaseActivity {
 			if(!ValidationUtils.isNull(baohedu.getText().toString())){
 				params.put("spo", baohedu.getText().toString());
 			}
+			if(!ValidationUtils.isNull(suijixuetang_left.getText().toString())){
+				params.put("rbsLow", suijixuetang_left.getText().toString());
+			}
+			if(!ValidationUtils.isNull(suijixuetang_right.getText().toString())){
+				params.put("rbsHigh", suijixuetang_right.getText().toString());
+			}
 			
-			
-			RequestManager.postObject(Constens.DOCTOR_HEALTH_WARNING_DATA, activity, params, new Listener<JSONObject>() {
+			RequestManager.postObject(String.format(Constens.COSTOM_HEALTH_WARNING_DATA, FragmentHealthListManager.customer), activity, params, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					T.showShort(activity, "修改成功!");
 				}

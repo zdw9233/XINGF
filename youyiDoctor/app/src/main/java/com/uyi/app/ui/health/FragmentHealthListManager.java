@@ -160,7 +160,7 @@ public class FragmentHealthListManager extends BaseFragment
 
 	@Override
 	public void onItemClick(int position, Map<String, Object> data) {
-		startActivity(new Intent(getActivity(), HealthManagerMain.class));
+		startActivity(new Intent(getActivity(), HealthManagerFragment.class));
 		customer = (int) data.get("id");
 		// Intent intent = new Intent(getActivity(),TeamDetailsActivity.class);
 		// intent.putExtra("id", (int)data.get("id"));

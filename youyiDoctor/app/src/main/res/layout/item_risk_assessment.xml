@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
    >
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -20,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="血压/检查报告"
+        android:maxLines="1"
         android:textSize="16dp"
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
@@ -39,6 +41,7 @@
         android:id="@+id/deils"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="这是想抢是大的萨达萨达撒打算的撒的撒的撒的撒的撒的撒旦撒旦撒旦撒旦撒旦撒旦撒旦撒旦撒大师的撒的撒的撒的撒打算的撒的撒的撒的撒的撒的"/>
