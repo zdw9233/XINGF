@@ -41,8 +41,10 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 				public void onClick(View v) {
 					if(hodler.deils.getVisibility() == View.GONE){
 						hodler.deils.setVisibility(View.VISIBLE);
+						hodler.riskindix.setVisibility(View.VISIBLE);
 					}else{
 						hodler.deils.setVisibility(View.GONE);
+						hodler.riskindix.setVisibility(View.GONE);
 					}
 
 				}
@@ -50,7 +52,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 			hodler.title.setText(data.get("content").toString());
 		hodler.time.setText(data.get("createTime").toString());
 		hodler.deils.setText(data.get("content").toString());
-
+			hodler.riskindix.setText(data.get("percentage").toString());
 
 		}
 	}
@@ -65,11 +67,13 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 			title = (TextView) v.findViewById(R.id.title);
 			time = (TextView) v.findViewById(R.id.time);
 			deils = (TextView) v.findViewById(R.id.deils);
+			riskindix = (TextView) v.findViewById(R.id.risk_index);
 
 		}
         private TextView title;
         private TextView time;
 		private TextView deils;
+		private TextView riskindix;
 		private RelativeLayout item;
     }
 
