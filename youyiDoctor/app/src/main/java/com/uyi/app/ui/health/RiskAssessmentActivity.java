@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -19,6 +20,8 @@ import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
+import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
+import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
 import com.uyi.app.ui.dialog.Looding;
 import com.uyi.app.ui.health.adapter.RiskAssessmentAdapter;
 import com.uyi.app.utils.T;
@@ -32,22 +35,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by ThinkPad on 2016/7/1.
  */
 @ContentView(R.layout.risk_assessment)
-public class RiskAssessmentActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String,Object>>, EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener {
+public class RiskAssessmentActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String,Object>>, EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener,AbstractSpinerAdapter.IOnItemSelectListener {
     @ViewInject(R.id.headerView) private HeaderView headerView;
     @ViewInject(R.id.new_risk_assessment) private EditText new_risk_assessment;
+    @ViewInject(R.id.risk_indexs) private TextView risk_indexs;
     @ViewInject(R.id.new_risk_submit) private Button new_risk_submit;
     @ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
     @ViewInject(R.id.swipeRefreshLayout) private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayoutManager linearLayoutManager;
     private RiskAssessmentAdapter healthDatabaseAdapter;
     private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
-
+    private SpinerPopWindow spinerPopWindow;
+    List<String> riskIndixs = new ArrayList<String>() ;
     @Override
     protected void onInitLayoutAfter() {
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("风险评估").setTitleColor(getResources().getColor(R.color.blue));
@@ -61,17 +67,29 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         recyclerView.setProgressView(R.layout.item_progress);
         recyclerView.setAdapter(healthDatabaseAdapter);
         recyclerView.setPager(this);
+        for (int i = 0;i<100;i++){
+            riskIndixs.add(""+i);
+        }
+        spinerPopWindow = new SpinerPopWindow(this);
+        spinerPopWindow.setItemListener(this);
+        spinerPopWindow.refreshData(riskIndixs, 1);
+
+
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipeRefreshLayout.setOnRefreshListener(this);
         onRefresh();
     }
-@OnClick(R.id.new_risk_submit)
+@OnClick({R.id.new_risk_submit,R.id.risk_indexs})
 public void onClick(View v){
-    if(v.getId() ==R.id.new_risk_submit ){
+    if(v.getId() == R.id.risk_indexs){
+        spinerPopWindow.setWidth(risk_indexs.getWidth());
+        spinerPopWindow.refreshData(riskIndixs, 0);
+        spinerPopWindow.showAsDropDown(risk_indexs);
+    }else if(v.getId() ==R.id.new_risk_submit ){
         try {
             JSONObject params = new JSONObject();
-            params.put("percentage","%20");
+            params.put("percentage",risk_indexs.getText().toString());
             params.put("content",""+new_risk_assessment.getText().toString());
             params.put("customerid",FragmentHealthListManager.customer+"");
             params.put("checked",false);
@@ -142,7 +160,7 @@ public void onClick(View v){
 
                                 item.put("content", jsonObject.getString("content"));
                                 item.put("createTime", jsonObject.getString("createTime"));
-//                                item.put("percentage", jsonObject.getString("percentage"));
+                                item.put("percentage", jsonObject.getString("percentage"));
 //                                item.put("createTime", jsonObject.getString("createTime"));
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));
 
@@ -163,5 +181,10 @@ public void onClick(View v){
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onItemClick(int pos) {
+        risk_indexs.setText(riskIndixs.get(pos));
     }
 }
