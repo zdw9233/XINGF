@@ -166,26 +166,27 @@ public class Main extends BaseFragmentActivity {
     protected void onInitLayoutAfter() {
         if (UserInfoManager.getLoginUserInfo(activity) == null) {
             startActivityForResult(new Intent(activity, LoginActivity.class), Constens.BACK_LOGIN);
-        }
-        ViewUtils.inject(this);
-        initView();
+        } else {
+            ViewUtils.inject(this);
+            initView();
 
-        if (NetUtils.isConnected(activity)) {
-            manager.isUpdate(activity, new CheckUpdateCallbackListenner() {
-                @Override
-                public void success(boolean isUpdate) {
-                    if (isUpdate) {
-                        manager.update(activity);
+            if (NetUtils.isConnected(activity)) {
+
+                manager.isUpdate(activity, new CheckUpdateCallbackListenner() {
+                    @Override
+                    public void success(boolean isUpdate) {
+                        if (isUpdate) {
+                            manager.update(activity);
+                        }
                     }
-                }
-            });
+                });
+            }
+
+            UserService.loadUserInfo(application);
+            MessageService.loadMessagesAll(activity);
+            fm = getSupportFragmentManager();
+            replaceView(0);
         }
-
-
-        UserService.loadUserInfo(application);
-        MessageService.loadMessagesAll(activity);
-        fm = getSupportFragmentManager();
-        replaceView(0);
     }
 
     @Override

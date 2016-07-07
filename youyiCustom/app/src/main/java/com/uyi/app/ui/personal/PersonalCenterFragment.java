@@ -73,6 +73,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
             case R.id.sxfw:
                 break;  //随心服务
             case R.id.txfw:
+                startActivity(new Intent(context, SugarServiceActivity.class));
                 break;  //糖心服务
             case R.id.dzfw:
                 break;   //定制服务

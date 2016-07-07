@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.uyi.app.adapter.BaseRecyclerAdapter;
-import com.uyi.app.ui.common.ChoseTeamActivity;
+import com.uyi.app.ui.common.RegisterActivity;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.custom.app.R;
 import com.volley.ImageCacheManager;
@@ -46,7 +46,7 @@ public class TeamAdapter extends BaseRecyclerAdapter<Map<String, Object>> {
 			hodler.chose_team.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					((ChoseTeamActivity)mActivity).gotoChooesTeam(RealPosition,data);
+					((RegisterActivity)mActivity).gotoChooesTeam(RealPosition,data);
 				}
 			});
 		}
