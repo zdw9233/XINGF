@@ -24,11 +24,132 @@
     android:textSize="14sp"
     android:textStyle="bold" />
 
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+           >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/small_diagnosis"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_style_10"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="12-20"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+           >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/small_assessment"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_style_10"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="12-20"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+           >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/small_life"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_style_10"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="12-20"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+          >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/small_diet"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_style_10"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="12-20"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+         >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/small_alarm"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_style_10"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="12-20"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+           >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/small_telephone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_style_10"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="12-20"/>
+        </LinearLayout>
+    </LinearLayout>
+
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentRight="true"
     android:layout_centerVertical="true"
+    android:visibility="gone"
     android:layout_marginRight="5dp"
     android:orientation="vertical" >
 
@@ -36,6 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="资料更新时间"
+        android:visibility="gone"
         android:textSize="12sp" />
 
     <TextView
@@ -43,8 +165,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="---"
+        android:visibility="gone"
         android:layout_gravity="center_horizontal"
         android:textSize="11sp" />
+
 </LinearLayout>
 
 </RelativeLayout> 

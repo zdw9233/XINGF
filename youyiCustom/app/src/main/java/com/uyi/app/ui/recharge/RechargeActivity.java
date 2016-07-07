@@ -1,9 +1,11 @@
 package com.uyi.app.ui.recharge;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import com.alipay.sdk.app.PayTask;
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -22,11 +24,8 @@ import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.uyi.app.recycle.BaseAdapter;
+import com.uyi.app.widget.recycle.BaseAdapter;
 import com.uyi.app.utils.ImageUtil;
 import com.uyi.custom.app.R;
 

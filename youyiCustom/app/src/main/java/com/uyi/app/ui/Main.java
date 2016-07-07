@@ -83,7 +83,7 @@ public class Main extends BaseFragmentActivity {
     @OnClick({R.id.main_tab_1, R.id.main_tab_2, R.id.main_tab_3, R.id.main_tab_4})
     public void onClickTab(View view) {
 
-        main_tab_1_icon.setImageResource(R.drawable.nav_consultation_default);
+        main_tab_1_icon.setImageResource(R.drawable.nav_personalcenter_default);
         main_tab_1_text.setTextColor(getResources().getColor(R.color.footer_somber));
 
         main_tab_2_icon.setImageResource(R.drawable.nav_manage_default);
@@ -92,13 +92,13 @@ public class Main extends BaseFragmentActivity {
         main_tab_3_icon.setImageResource(R.drawable.nav_team_default);
         main_tab_3_text.setTextColor(getResources().getColor(R.color.footer_somber));
 
-        main_tab_4_icon.setImageResource(R.drawable.nav_personalcenter_default);
+        main_tab_4_icon.setImageResource(R.drawable.nav_consultation_default);
         main_tab_4_text.setTextColor(getResources().getColor(R.color.footer_somber));
 
         switch (view.getId()) {
             case R.id.main_tab_1:
                 currentPage = 1;
-                main_tab_1_icon.setImageResource(R.drawable.nav_consultation_selected);
+                main_tab_1_icon.setImageResource(R.drawable.nav_personalcenter_selected);
                 main_tab_1_text.setTextColor(getResources().getColor(R.color.blue));
                 replaceView(0);
                 break;
@@ -119,7 +119,7 @@ public class Main extends BaseFragmentActivity {
 //			startActivity(intent);
                 System.out.println("登陆信息======" + UserInfoManager.getLoginUserInfo(Main.this).toString());
                 currentPage = 4;
-                main_tab_4_icon.setImageResource(R.drawable.nav_personalcenter_selected);
+                main_tab_4_icon.setImageResource(R.drawable.nav_consultation_selected);
                 main_tab_4_text.setTextColor(getResources().getColor(R.color.blue));
                 replaceView(3);
                 break;
@@ -152,10 +152,10 @@ public class Main extends BaseFragmentActivity {
 
 
     public void initView() {
-        fragments.add(new FragmentConsultation(this));//所有咨询
+        fragments.add(new PersonalCenterFragment());//个人中心
         fragments.add(new HealthManagerFragment());//健康管理
         fragments.add(new FragmentHealthTeam(this));//健康团队
-        fragments.add(new PersonalCenterFragment());//个人中心
+        fragments.add(new FragmentConsultation(this));//所有咨询
         fragments.add(new FragmentFollow(this));//随访
         fragments.add(new FragmentHealthDatabase(this));//健康数据库
         fragments.add(new FragmentLineInspection(this));//线下检查

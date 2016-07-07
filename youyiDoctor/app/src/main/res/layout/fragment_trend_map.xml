@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="血压趋势图"
+            android:textSize="@dimen/font_style_18" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/xyqst"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="血糖趋势图"
+            android:textSize="@dimen/font_style_18" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/xtqst"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/commit_report"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:background="@drawable/sel_blue_btn_bg"
+            android:padding="16dp"
+            android:text="提交报告"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

@@ -381,6 +381,19 @@ public  abstract class Constens {
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
 	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
 	/**
+	 * /**
+	 * 查风险评估列表
+	 */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+	public final static String DOCTOR_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=false&page=%s&pageSize=%s";
+	/**
+	 * /**
+	 * /**
+	 * 插入风险评估列表
+	 */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+	public final static String DOCTOR_HEALTH_RISK_INSERT = SERVER_URL + "/app/api/doctor/setting/riskreport/insert";
+	/**
 	 * 查询所有健康团队
 	 */
 	public final static String HEALTH_GROUPS_ALL = SERVER_URL+"/app/api/account/query/health/groups?name=%s&cityId=%s&page=%s&pageSize=%s";
@@ -418,6 +431,11 @@ public  abstract class Constens {
 	 * 报警标准
 	 */
 	public final static String DOCTOR_HEALTH_WARNING_DATA = SERVER_URL+"/app/api/doctor/health/info/warning/data";
+	/**
+	 * 获取用户报警标准
+	 */
+	public final static String COSTOM_HEALTH_WARNING_DATA = SERVER_URL+"/app/api/doctor/health/info/warning/data/%s";
+
 
 	/**
 	 * 医生解除报警

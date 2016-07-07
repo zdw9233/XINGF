@@ -1,12 +1,5 @@
 package com.uyi.app.ui.dialog;
 
-import com.uyi.app.UserInfoManager;
-import com.uyi.app.ui.common.UpdatePasswordActivity;
-import com.uyi.app.ui.common.UpdateUserInfoActivity;
-import com.uyi.app.ui.personal.standard.AlarmStandardActivity;
-import com.uyi.app.ui.personal.standard.ChargeStandardActivity;
-import com.uyi.doctor.app.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +7,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
+
+import com.uyi.app.UserInfoManager;
+import com.uyi.app.ui.common.UpdatePasswordActivity;
+import com.uyi.app.ui.common.UpdateUserInfoActivity;
+import com.uyi.app.ui.personal.standard.ChargeStandardActivity;
+import com.uyi.doctor.app.R;
 
 /**
  * 点击右边出来的菜单
@@ -77,8 +76,8 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 			intent.putExtra("update", 1);
 			getContext().startActivity(intent);
 		}else if(v.getId() == R.id.right_menu_baoj){
-			Intent intent = new Intent(getContext(), AlarmStandardActivity.class);
-			getContext().startActivity(intent);
+//			Intent intent = new Intent(getContext(), AlarmStandardActivity.class);
+//			getContext().startActivity(intent);
 		}else if(v.getId() == R.id.right_menu_shofei){
 			Intent intent = new Intent(getContext(), ChargeStandardActivity.class);
 			getContext().startActivity(intent);

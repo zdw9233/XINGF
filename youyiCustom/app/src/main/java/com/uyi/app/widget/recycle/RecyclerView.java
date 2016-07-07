@@ -1,4 +1,4 @@
-package com.uyi.app.recycle;
+package com.uyi.app.widget.recycle;
 
 import android.content.Context;
 import android.util.AttributeSet;
