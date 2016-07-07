@@ -19,6 +19,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.team.TeamDetailsActivity;
 import com.uyi.app.ui.team.adapter.TeamAdapter;
 import com.uyi.app.ui.team.city.CityListActivity;
 import com.uyi.custom.app.R;
@@ -188,5 +189,12 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
 //		startActivityForResult(intent,Constens.START_ACTIVITY_FOR_RESULT);
 //		healthTeamAdapter.notifyItemChanged(position);
     }
-
+    public void gotoChooesTeam(int position, Map<String, Object> data){
+        Intent intent = new Intent(ChoseTeamActivity.this, TeamDetailsActivity.class);
+        intent.putExtra("id", (int) data.get("id"));
+        intent.putExtra("isMy", (int) data.get("isMy"));
+        startActivity(intent);
+        startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
+//        healthTeamAdapter.notifyItemChanged(position);
+    }
 }
