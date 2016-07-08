@@ -71,6 +71,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     public void click(View v) {
         switch (v.getId()) {
             case R.id.sxfw:
+                startActivity(new Intent(context, EaseServiceActivity.class));
                 break;  //随心服务
             case R.id.txfw:
                 startActivity(new Intent(context, SugarServiceActivity.class));

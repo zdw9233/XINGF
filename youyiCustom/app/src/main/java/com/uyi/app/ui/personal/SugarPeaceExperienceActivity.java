@@ -37,7 +37,7 @@ public void onClick(View v){
 }
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-
+        headerView.setKitkat(systemBarConfig);
     }
 
 }

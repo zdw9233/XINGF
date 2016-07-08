@@ -89,7 +89,7 @@ public class RequestManager {
     	JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
-				Map<String, String> headers = new HashMap<String, String>();
+				Map<String, String> headers = new HashMap<>();
 				if(UserInfoManager.getLoginUserInfo(UYIApplication.getContext())!= null){
 					headers.put("authToken",UserInfoManager.getLoginUserInfo(UYIApplication.getContext()).authToken);
 					L.d("authToken",UserInfoManager.getLoginUserInfo(UYIApplication.getContext()).authToken );

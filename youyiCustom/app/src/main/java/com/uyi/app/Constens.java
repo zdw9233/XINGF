@@ -384,5 +384,9 @@ public abstract class Constens {
      * 获取服务包的信息
      */
     public final static String GET_SERVICE_PACKAGE = SERVER_URL.concat("/app/api/servicePackage/query/package/%s");
+    /**
+     * 购买服务包
+     */
+    public final static String BUY_SERVICE_PACKAGE = SERVER_URL.concat("/app/api/servicePackage/buy/package");
 
 }
