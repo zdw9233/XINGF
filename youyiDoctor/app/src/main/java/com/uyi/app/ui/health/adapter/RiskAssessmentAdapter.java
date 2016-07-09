@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,10 +42,10 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 				public void onClick(View v) {
 					if(hodler.deils.getVisibility() == View.GONE){
 						hodler.deils.setVisibility(View.VISIBLE);
-						hodler.riskindix.setVisibility(View.VISIBLE);
+						hodler.riskitem.setVisibility(View.VISIBLE);
 					}else{
 						hodler.deils.setVisibility(View.GONE);
-						hodler.riskindix.setVisibility(View.GONE);
+						hodler.riskitem.setVisibility(View.GONE);
 					}
 
 				}
@@ -63,6 +64,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
     public static class Holder extends BaseRecyclerAdapter<Map<String,Object>>.Holder {
         public Holder(BaseRecyclerAdapter<Map<String,Object>> base, View v) {
         	base.super(v);
+			riskitem = (LinearLayout) v.findViewById(R.id.risk_item);
 			item = (RelativeLayout) v.findViewById(R.id.item);
 			title = (TextView) v.findViewById(R.id.title);
 			time = (TextView) v.findViewById(R.id.time);
@@ -75,6 +77,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 		private TextView deils;
 		private TextView riskindix;
 		private RelativeLayout item;
+		private LinearLayout riskitem;
     }
 
 }

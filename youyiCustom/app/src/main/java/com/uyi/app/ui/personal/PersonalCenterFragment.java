@@ -51,7 +51,9 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     protected void onInitLayoutAfter() {
         mViewPager.setAdapter(new PersonalPagerAdapter(context));
         mViewPager.addOnPageChangeListener(this);
-        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("个人中心").setTitleColor(getResources().getColor(R.color.blue));
+
+            headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("个人中心").setTitleColor(getResources().getColor(R.color.blue));
+
     }
 
     @Override

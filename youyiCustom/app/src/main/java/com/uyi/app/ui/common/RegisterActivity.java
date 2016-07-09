@@ -31,7 +31,6 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
-import com.uyi.app.adapter.BaseRecyclerAdapter;
 import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
@@ -47,8 +46,8 @@ import com.uyi.app.ui.team.adapter.TeamAdapter;
 import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.FileUtils;
-import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
@@ -74,7 +73,7 @@ import java.util.Map;
  *
  */
 @ContentView(R.layout.register)
-public class RegisterActivity extends BaseActivity implements IOnItemSelectListener, OnDateSetListener,EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener,BaseRecyclerAdapter.OnItemClickListener<Map<String, Object>> {
+public class RegisterActivity extends BaseActivity implements IOnItemSelectListener, OnDateSetListener,EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener {
 	private PopupWindow mSetPhotoPop;
     private File mCurrentPhotoFile;
     private static final int CAMERA_WITH_DATA = 1882;
@@ -195,7 +194,6 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
 		activity =this;
 		linearLayoutManager = new LinearLayoutManager(this);
 		TeamAdapter = new TeamAdapter(this);
-		TeamAdapter.setOnItemClickListener(this);
 		TeamAdapter.setDatas(datas);
 		recyclerView.setLayoutManager(linearLayoutManager);
 		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
@@ -902,91 +900,101 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
 		isLooding = false;
 		Looding.bulid(activity, null).show();
 		if(register_four_chose.getText().equals("全部城市")){
-			RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL_NOTOKEN,"","",pageNo,pageSize),RegisterActivity.this, new Response.Listener<JSONObject>() {
-				@Override
-				public void onResponse(JSONObject data) {
-					try {
-						totalPage = data.getInt("pages");
-						JSONArray array = data.getJSONArray("results");
-						for(int i = 0;i<array.length();i++){
-							Map<String,Object> item = new HashMap<String,Object>();
-							JSONObject jsonObject = array.getJSONObject(i);
+		RequestManager.getObjectNOtoken(String.format(Constens.HEALTH_GROUPS_ALL_NOTOKEN,"","",pageNo,pageSize),RegisterActivity.this, new Response.Listener<JSONObject>() {
+@Override
+public void onResponse(JSONObject data) {
+		try {
+		totalPage = data.getInt("pages");
+		JSONArray array = data.getJSONArray("results");
+		for(int i = 0;i<array.length();i++){
+		Map<String,Object> item = new HashMap<String,Object>();
+		JSONObject jsonObject = array.getJSONObject(i);
 
-							item.put("id", jsonObject.getInt("id"));
-							item.put("name", jsonObject.getString("name"));
-							item.put("info", jsonObject.getString("info"));
-							item.put("logo", jsonObject.getString("logo"));
-							Looding.bulid(activity, null).dismiss();
-							datas.add(item);
-						}
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-					TeamAdapter.notifyDataSetChanged();
-					swipeRefreshLayout.setRefreshing(false);
-					if(pageNo <= totalPage){
-						isLooding = true;
-						pageNo ++;
-					}else{
-						recyclerView.setRefreshing(false);
-
-					}
-				}
-			});
-		}else{
-			RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL_NOTOKEN,"",fourcity,pageNo,pageSize),RegisterActivity.this, new Response.Listener<JSONObject>() {
-				@Override
-				public void onResponse(JSONObject data) {
-					try {
-						totalPage = data.getInt("pages");
-						JSONArray  array = data.getJSONArray("results");
-						for(int i = 0;i<array.length();i++){
-							Map<String,Object> item = new HashMap<String,Object>();
-							JSONObject jsonObject = array.getJSONObject(i);
-
-							item.put("id", jsonObject.getInt("id"));
-							item.put("name", jsonObject.getString("name"));
-							item.put("info", jsonObject.getString("info"));
-							item.put("logo", jsonObject.getString("logo"));
-
-							datas.add(item);
-						}
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-					TeamAdapter.notifyDataSetChanged();
-					swipeRefreshLayout.setRefreshing(false);
-					Looding.bulid(activity, null).dismiss();
-					if(pageNo < totalPage){
-						isLooding = true;
-						pageNo ++;
-					}else{
-						recyclerView.setRefreshing(false);
-
-					}
-				}
-			});
+		item.put("id", jsonObject.getInt("id"));
+		item.put("name", jsonObject.getString("name"));
+		item.put("info", jsonObject.getString("info"));
+		item.put("logo", jsonObject.getString("logo"));
+		Looding.bulid(activity, null).dismiss();
+		datas.add(item);
 		}
-	}
+		} catch (JSONException e) {
+		e.printStackTrace();
+		}
+		TeamAdapter.notifyDataSetChanged();
+		swipeRefreshLayout.setRefreshing(false);
+		if(pageNo <= totalPage){
+		isLooding = true;
+		pageNo ++;
+		}else{
+		recyclerView.setRefreshing(false);
+
+		}
+		}
+		});
+		}else{
+		RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL_NOTOKEN,"",fourcity,pageNo,pageSize),RegisterActivity.this, new Response.Listener<JSONObject>() {
+@Override
+public void onResponse(JSONObject data) {
+		try {
+		totalPage = data.getInt("pages");
+		JSONArray  array = data.getJSONArray("results");
+		for(int i = 0;i<array.length();i++){
+		Map<String,Object> item = new HashMap<String,Object>();
+		JSONObject jsonObject = array.getJSONObject(i);
+
+		item.put("id", jsonObject.getInt("id"));
+		item.put("name", jsonObject.getString("name"));
+		item.put("info", jsonObject.getString("info"));
+		item.put("logo", jsonObject.getString("logo"));
+
+		datas.add(item);
+		}
+		} catch (JSONException e) {
+		e.printStackTrace();
+		}
+		TeamAdapter.notifyDataSetChanged();
+		swipeRefreshLayout.setRefreshing(false);
+		Looding.bulid(activity, null).dismiss();
+		if(pageNo < totalPage){
+		isLooding = true;
+		pageNo ++;
+		}else{
+		recyclerView.setRefreshing(false);
+
+		}
+		}
+		});
+		}
+		}
 
 
 
-	@Override
-	public void onRefresh() {
+@Override
+public void onRefresh() {
 		pageNo = 1;
 		isLooding = true;
 		datas.clear();
 		recyclerView.setRefreshing(false);
 		loadNextPage();
 
-	}
-	@Override
-	public void onItemClick(int position, Map<String, Object> data) {
-	groupId = (int)datas.get(position).get("id");
-		try {
-			registerLast();
-		} catch (JSONException e) {
-			e.printStackTrace();
 		}
-	}
-}
+//	@Override
+//	public void onItemClick(int position, Map<String, Object> data) {
+//	groupId = (int)datas.get(position).get("id");
+//		try {
+//			registerLast();
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
+//	}
+public void gotoChooesTeam(int position, Map<String, Object> data){
+		groupId = (int)datas.get(position).get("id");
+		try {
+		registerLast();
+		} catch (JSONException e) {
+		e.printStackTrace();
+		}
+//        healthTeamAdapter.notifyItemChanged(position);
+
+		}
+		}

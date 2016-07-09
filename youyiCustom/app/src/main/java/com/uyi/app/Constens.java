@@ -100,6 +100,13 @@ public  abstract class Constens {
 	 */
 //	public final static String SERVER_URL = "http://www.uyidoctor.com";
 
+	/**
+	 * /**
+	 * 查风险评估列表
+	 */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+	public final static String COSTMERS_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=false&page=%s&pageSize=%s";
+
 	//获取协议
 	public final static String REGISTER_AGREEMENT = SERVER_URL+"/app/api/common/protocol";
 
@@ -169,9 +176,12 @@ public  abstract class Constens {
 	 * 患者更新基本信息
 	 */
 	public final static String ACCOUNT_UPDATE = SERVER_URL+"/app/api/account/update";
-	
-	
-	
+
+
+	/**
+	 * 患者更t填写健康治疗
+	 */
+	public final static String ACCOUNT_UPDATE_HEALTHINFO = SERVER_URL+"/app/api/account/update/healthCondition";
 	
 	/**
 	 * 创建咨询
