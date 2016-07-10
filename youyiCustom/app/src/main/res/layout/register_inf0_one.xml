@@ -382,7 +382,6 @@
 										android:layout_marginTop="10dp"
 										android:padding="3dp"
 										android:layout_width="match_parent"
-										android:visibility="gone"
 										android:layout_height="wrap_content">
 										<EditText
 											android:id="@+id/register_info_liucanshi"
@@ -403,7 +402,6 @@
 										android:id="@+id/register_info_yuejing_layout"
 										android:background="@drawable/hui_stroke"
 										android:layout_marginTop="10dp"
-										android:visibility="gone"
 										android:padding="3dp"
 										android:layout_width="match_parent"
 										android:layout_height="wrap_content">

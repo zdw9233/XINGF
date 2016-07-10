@@ -196,5 +196,6 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
         startActivity(intent);
         startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
 //        healthTeamAdapter.notifyItemChanged(position);
+
     }
 }

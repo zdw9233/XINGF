@@ -37,10 +37,14 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
             case R.id.database:    //健康数据库
                 break;
             case R.id.assessment: //风险评估
+                startActivity(new Intent(getContext(),RiskAssessmentActivity.class));
+
                 break;
             case R.id.life:      //生活方式
+                startActivity(new Intent(getContext(),LifeStyleActivity.class));
                 break;
             case R.id.diet:     //饮食计划
+                startActivity(new Intent(getContext(),DietPlanActivity.class));
                 break;
         }
     }

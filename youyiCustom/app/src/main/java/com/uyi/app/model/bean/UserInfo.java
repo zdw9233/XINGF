@@ -31,7 +31,7 @@ public class UserInfo {
 	@Column
 	public String password;
 	@Column
-	public String icon;
+	public String icon = "";
 	@Column
 	public String address;
 	@Column
