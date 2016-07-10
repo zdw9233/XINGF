@@ -265,7 +265,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
 				}
 				JSONObject params  = new JSONObject();
 				params.put("healthInfo", healthInfoObject);
-				RequestManager.postObject(Constens.ACCOUNT_UPDATE_HEALTHINFO, activity, params, new Response.Listener<JSONObject>() {
+				RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, new Response.Listener<JSONObject>() {
 					public void onResponse(JSONObject arg0) {
 						if(update == 1){
 							T.showShort(activity, "修改成功!");
@@ -355,7 +355,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
 				}
 				JSONObject params  = new JSONObject();
 				params.put("healthInfo", healthInfoObject);
-				RequestManager.postObject(Constens.ACCOUNT_UPDATE_HEALTHINFO, activity, params, new Response.Listener<JSONObject>() {
+				RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, new Response.Listener<JSONObject>() {
 					public void onResponse(JSONObject arg0) {
 						if(update == 1){
 							T.showShort(activity, "修改成功!");

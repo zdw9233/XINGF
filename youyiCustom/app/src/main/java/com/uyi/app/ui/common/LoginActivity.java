@@ -59,9 +59,10 @@ public class LoginActivity extends BaseActivity {
     protected void onInitLayoutAfter() {
         headerView.showTitle(true);
         headerView.setTitle(getString(R.string.app_name));
-        login_username.setText("fuwenquan");
+        login_username.setText("zxcvbnm1");
         login_password.setText("123456t");
         headerView.setHeaderBackgroundColor(getResources().getColor(R.color.blue));
+        iconxuanzhe.setVisibility(View.GONE);
         if (UserInfoManager.getLoginUserInfo(activity) != null) {
             finish();
         }
@@ -81,15 +82,15 @@ public class LoginActivity extends BaseActivity {
         if (v.getId() == R.id.login_register) {
             startActivity(new Intent(activity, RegisterActivity.class));
         } else if (v.getId() == R.id.login_get_password) {
-//			startActivity(new Intent(activity, GetPasswordActivity.class));
-            startActivity(new Intent(activity, RegisterInfoAcitivity.class));
+			startActivity(new Intent(activity, GetPasswordActivity.class));
+//            startActivity(new Intent(activity, RegisterInfoAcitivity.class));
         } else if (v.getId() == R.id.guardian_chose) {
             if (isChoise == 0) {
                 isChoise = 1;
-                iconxuanzhe.setBackgroundResource(R.drawable.iconfont_xuanzhong);
+                iconxuanzhe.setVisibility(View.VISIBLE);
             } else {
                 isChoise = 0;
-                iconxuanzhe.setBackgroundResource(R.drawable.hui_stroke);
+                iconxuanzhe.setVisibility(View.GONE);
             }
         } else if (v.getId() == R.id.login_submit) {
             String account = login_username.getText().toString();
@@ -129,7 +130,9 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
-
+//                                userInfo.guardianIcon =  data.getString("guardianIcon");
+//                                userInfo.guardian =  data.getString("guardian");
+                                userInfo.logasguardian = true;
                                 Set<String> tags = new HashSet<String>();
                                 tags.add("bulletin");
                                 tags.add("message_customer_" + userInfo.userId);
@@ -154,7 +157,7 @@ public class LoginActivity extends BaseActivity {
                             userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                             userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                             userInfo.lastLoginTime = data.getString("lastLoginTime");
-
+                            userInfo.logasguardian = false;
                             Set<String> tags = new HashSet<String>();
                             tags.add("bulletin");
                             tags.add("message_customer_" + userInfo.userId);

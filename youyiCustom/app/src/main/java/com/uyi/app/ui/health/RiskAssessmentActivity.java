@@ -107,7 +107,7 @@ public void onClick(View v){
         isLooding = false;
         Looding.bulid(activity, null).show();
      System.out.println(UserInfoManager.getLoginUserInfo(activity).userId);
-        RequestManager.getObject(String.format(Constens.COSTMERS_HEALTH_RISK,UserInfoManager.getLoginUserInfo(this).userId , pageNo, pageSize),
+        RequestManager.getObject(String.format(Constens.CUSTOMER_HEALTH_RISK,UserInfoManager.getLoginUserInfo(this).userId , pageNo, pageSize),
                 activity, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {

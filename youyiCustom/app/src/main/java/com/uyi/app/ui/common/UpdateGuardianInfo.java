@@ -26,19 +26,24 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
+import com.uyi.app.model.bean.HealthInfo;
+import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
+import com.uyi.app.ui.dialog.Looding;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.FileUtils;
+import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
+import com.volley.ImageCacheManager;
 import com.volley.RequestManager;
 
 import org.json.JSONArray;
@@ -55,7 +60,7 @@ import java.util.List;
  * Created by ThinkPad on 2016/6/27.
  */
 @ContentView(R.layout.update_guardian_info)
-public class RegisterGuardianInfo  extends BaseActivity implements AbstractSpinerAdapter.IOnItemSelectListener {
+public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAdapter.IOnItemSelectListener {
     Bitmap photo;
     private PopupWindow mSetPhotoPop;
     public int spinerIndex = 1;
@@ -114,13 +119,13 @@ public class RegisterGuardianInfo  extends BaseActivity implements AbstractSpine
     @ViewInject(R.id.register_height) private EditText register_height;
     @ViewInject(R.id.register_weight) private EditText register_weight;
     @ViewInject(R.id.register_submit) private Button register_submit;
-
+    private HealthInfo healthInfo;//病人ID
+    private UserInfo userInfo;
 
     @Override
     protected void onInitLayoutAfter() {
         activity = this;
-        headerView.showTitle(true);
-        headerView.setTitle("填写监护人资料");
+        headerView.showLeftReturn(true).showTitle(true).setTitle("修改监护人资料");
         headerView.setHeaderBackgroundColor(getResources().getColor(R.color.blue));
         spinerPopWindow = new SpinerPopWindow(activity);
         spinerPopWindow.setItemListener(this);
@@ -128,6 +133,10 @@ public class RegisterGuardianInfo  extends BaseActivity implements AbstractSpine
         xinbie.add("女");
         xinbieCode.add("MALE");
         xinbieCode.add("FAMALE");
+
+
+
+
         RequestManager.getArray(Constens.PROVINCDS,activity, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray array) {
@@ -141,6 +150,47 @@ public class RegisterGuardianInfo  extends BaseActivity implements AbstractSpine
                 }
             }
         });
+
+        userInfo = UserInfoManager.getLoginUserInfo(activity);
+        if(userInfo != null){
+
+            ImageCacheManager.loadImage(userInfo.icon, ImageCacheManager.getImageListener(register_header_image, null, null));
+
+            Looding.bulid(activity, null).show();
+            RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Response.Listener<JSONObject>() {
+                public void onResponse(JSONObject data) {
+                    try {
+                        Looding.bulid(activity, null).dismiss();
+                            System.out.println(data.toString());
+                        register_name.setText(data.getJSONObject("guardianInfo").getString("name"));
+                        if(data.getJSONObject("guardianInfo").getString("gender") == "FAMALE"){
+                            register_sex.setText("女");
+                        }else{
+                            register_sex.setText("男");
+                        }
+                        register_shen.setText(data.getJSONObject("guardianInfo").getJSONObject("province").getString("name"));
+                        register_city.setText(data.getJSONObject("guardianInfo").getJSONObject("city").getString("name"));
+                        register_address.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"address"));
+                        address = JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"address");
+                        register_chushennianyue.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"birthday"));
+                        register_phone.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"backupPhoneNumber"));
+                        phone = JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"backupPhoneNumber");
+                        register_mobile.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"phoneNumber"));
+                        register_email.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"email"));
+                        email = JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"email");
+                        register_card.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"idCardNumber"));
+                        cityId =data.getJSONObject("guardianInfo").getJSONObject("city").getInt("id");
+                        register_zhiye.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"occupation"));
+                        occupation = JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"occupation");
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
 
     }
 
@@ -283,7 +333,7 @@ if(view.getId() == R.id.register_header_image){
         params.put("icon", icon);
         params.put("occupation", occupation);
 
-        RequestManager.postObjectNotoken(Constens.GUADIANINFO, activity, params, new Response.Listener<JSONObject>() {
+        RequestManager.postObject(Constens.GUADIANINFO, activity, params, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
 //                try {
 //                    Log.e("data",data.toString());

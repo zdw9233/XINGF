@@ -108,28 +108,26 @@
             android:layout_marginTop="15dp"
             android:visibility="visible"
             android:background="@android:color/white" >
-            <Button
-
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-
-                android:background="@drawable/hui_stroke"
-
-              />
             <TextView
-                android:id="@+id/iconxuanzhe"
+                android:id="@+id/iconxuanzhe0"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-
                 android:background="@drawable/hui_stroke"
 
-                android:layout_marginRight="2dp"
-              />
+                />
+            <TextView
+            android:id="@+id/iconxuanzhe"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/iconfont_xuanzhong"
+            android:layout_marginRight="2dp"
+            />
+
             <TextView
                 android:id="@+id/guardian_chose_describe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iconxuanzhe"
+                android:layout_toRightOf="@+id/iconxuanzhe0"
                 android:text="监护人登陆"
                 android:maxLines="1"
                 android:layout_centerVertical="true"

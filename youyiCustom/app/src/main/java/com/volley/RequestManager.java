@@ -128,7 +128,25 @@ public class RequestManager {
 		};
     	addRequest(request , tag);
     }
-    
+	/**
+	 *
+	 * @param url
+	 * @param tag
+	 * @param params
+	 * @param listener
+	 */
+	public static void postObjectNotoken(String url, Object tag, JSONObject params, Response.Listener<JSONObject> litenner ,RequestErrorListener errorListener) {
+		JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				Map<String, String> headers = new HashMap<>();
+				headers.put("Content-Type", "application/json;charset=UTF-8");
+				headers.put("User-Agent", "Android");
+				return headers;
+			}
+		};
+		addRequest(request , tag);
+	}
     
     
     public static void getArray(String url, Object tag, Response.Listener<JSONArray> successListener) {
