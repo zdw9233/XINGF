@@ -103,7 +103,7 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 //			}
 //			RequestManager.postObject(String.format(Constens.SWEEP_UP), getContext(), params , new Response.Listener<JSONObject>() {
 //				public void onResponse(JSONObject data) {
-//					Looding.bulid(getContext(),null).dismiss();
+//					Loading.bulid(getContext(),null).dismiss();
 //					System.out.println("成功");
 ////					team_goup_jiaru.setVisibility(View.GONE);
 //					Toast.makeText(getContext(), "上传成功！", 0).show();
@@ -111,7 +111,7 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 //				}
 //			}, new RequestErrorListener() {
 //				public void requestError(VolleyError e) {
-//					Looding.bulid(getContext(),null).dismiss();
+//					Loading.bulid(getContext(),null).dismiss();
 //					System.out.println(e.toString());
 //					Toast.makeText(getContext(), "上传失败", 0).show();
 //				}

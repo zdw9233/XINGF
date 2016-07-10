@@ -21,14 +21,11 @@ import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.os.UserManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -120,12 +117,12 @@ public class FragmentConsultation extends BaseFragment implements  Pager, OnRefr
 	@Override
 	public void loadNextPage() {
 		isLooding = false;
-		Looding.bulid(getView().getContext(),null).show();
+		Loading.bulid(getView().getContext(),null).show();
 		RequestManager.getObject(String.format(Constens.HEALTH_CONSULTS, "1","1",pageNo,pageSize), getView().getContext(), new Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject data) {
 				try {
-					Looding.bulid(context,null).dismiss();
+					Loading.bulid(context,null).dismiss();
 					initLoad = false;
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");

@@ -8,14 +8,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.adapter.BaseRecyclerAdapter.OnItemClickListener;
-import com.uyi.app.model.bean.Consult;
-import com.uyi.app.model.bean.MyGroups;
 import com.uyi.app.ui.Main;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.DividerItemDecoration;
@@ -23,15 +20,12 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
-import com.uyi.app.ui.personal.message.MessageDetailsActivity;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.adapter.HealthTeamAdapter;
 import com.uyi.app.ui.team.city.CityListActivity;
-import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
-import android.R.string;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
@@ -39,10 +33,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -129,7 +121,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 	@Override
 	public void loadNextPage() {//所有团队
 		isLooding = false;
-		Looding.bulid(getActivity(), null).show();
+		Loading.bulid(getActivity(), null).show();
 		if(team_selected_caty.getText().equals("全部城市")){
 			RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,team_edit_text.getText().toString(),"",pageNo,pageSize),getActivity(), new Listener<JSONObject>() {
 				@Override
@@ -158,7 +150,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 					}
 					healthTeamAdapter.notifyDataSetChanged();
 					swipeRefreshLayout.setRefreshing(false);
-					Looding.bulid(getActivity(), null).dismiss();
+					Loading.bulid(getActivity(), null).dismiss();
 					if(pageNo <= totalPage){
 						isLooding = true;
 						pageNo ++;
@@ -196,7 +188,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 				}
 				healthTeamAdapter.notifyDataSetChanged();
 				swipeRefreshLayout.setRefreshing(false); 
-				Looding.bulid(getActivity(), null).dismiss();
+				Loading.bulid(getActivity(), null).dismiss();
 				if(pageNo < totalPage){ 
 					isLooding = true;
 					pageNo ++;

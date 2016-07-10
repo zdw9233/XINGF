@@ -23,7 +23,7 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.FlowRadioGroup;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
@@ -152,14 +152,14 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
 			new_consult_group_right.setVisibility(View.GONE);
 			new_consult_layout.setVisibility(View.VISIBLE);
 		}else{
-			Looding.bulid(activity, null).show();
+			Loading.bulid(activity, null).show();
 			/**
 			 * 查询健康团队
 			 */
 			RequestManager.getArray(Constens.HEALTH_GROUPS, activity, new Response.Listener<JSONArray>() {
 				@Override
 				public void onResponse(JSONArray array) {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					if(array.length() == 0 ){
 						T.showShort(application, "请先加入健康团队");
 						finish();
@@ -368,13 +368,13 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
 				JSONObject params = (JSONObject) msg.obj;
 				RequestManager.postObject(Constens.ACCOUNT_HEALTH_CONSULT, activity, params, new Listener<JSONObject>() {
 					public void onResponse(JSONObject arg0) {
-						Looding.bulid(activity,"").dismiss();
+						Loading.bulid(activity,"").dismiss();
 						setResult(RESULT_OK);
 						finish();
 					}
 				}, new RequestErrorListener() {
 					public void requestError(VolleyError e) {
-						Looding.bulid(activity,"").dismiss();
+						Loading.bulid(activity,"").dismiss();
 						setResult(RESULT_OK);
 						finish();
 					}
@@ -450,7 +450,7 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
 //					T.showLong(activity, "资料不完整!");
 //					return;
 //				}
-				Looding.bulid(activity,"正在保存..").show();
+				Loading.bulid(activity,"正在保存..").show();
 				L.d(TAG, isSubmit+"3");
 				Thread thread = new Thread(new Runnable() {
 					@Override

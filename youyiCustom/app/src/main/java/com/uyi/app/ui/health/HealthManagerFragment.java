@@ -9,6 +9,7 @@ import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
+import com.uyi.app.ui.report.ReportMainActivity;
 import com.uyi.custom.app.R;
 
 /**
@@ -29,6 +30,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.diagnosis:
+                startActivity(new Intent(context, ReportMainActivity.class));
                 break; //主诊报告
             case R.id.report:     //健康报告
                 break;

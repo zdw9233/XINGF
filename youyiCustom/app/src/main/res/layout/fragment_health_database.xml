@@ -2,24 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <com.uyi.app.ui.custom.HeaderView 
-	    android:id="@+id/headerView"
-	    android:layout_width="match_parent" 
-	    android:layout_height="wrap_content">
-	</com.uyi.app.ui.custom.HeaderView> 
-    
-        <include layout="@layout/new_health_database_start"/>
-    <LinearLayout 
-        android:layout_width="match_parent" 
-        android:layout_height="match_parent" 
-        android:padding="5dp"
-        android:orientation="vertical">
-      <LinearLayout
+    android:orientation="vertical">
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <include layout="@layout/new_health_database_start" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -33,9 +35,9 @@
                 android:layout_width="0dip"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:paddingLeft="5dp"
                 android:background="@drawable/hui_stroke"
                 android:gravity="center_vertical"
+                android:paddingLeft="5dp"
                 android:textColor="@color/list_item_content_color" />
 
             <View
@@ -54,9 +56,9 @@
                 android:layout_width="0dip"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:paddingLeft="5dp"
                 android:background="@drawable/hui_stroke"
                 android:gravity="center_vertical"
+                android:paddingLeft="5dp"
                 android:textColor="@color/list_item_content_color" />
         </LinearLayout>
 
@@ -68,18 +70,18 @@
             android:background="@drawable/blue_bg"
             android:text="查询"
             android:textColor="@color/white" />
-    
-    
+
+
         <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_width="match_parent" 
-        android:layout_height="match_parent">
-	    <com.uyi.app.ui.custom.EndlessRecyclerView 
-	        xmlns:android="http://schemas.android.com/apk/res/android"
-	    	android:id="@+id/recyclerView"
-	    	android:orientation="vertical"
-	   	 	android:layout_width="match_parent"
-	    	android:layout_height="match_parent"/>
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.uyi.app.ui.custom.EndlessRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 </LinearLayout>

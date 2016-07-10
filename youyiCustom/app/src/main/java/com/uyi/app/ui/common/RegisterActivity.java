@@ -41,7 +41,7 @@ import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter.IOnItemSelectListener;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.ui.team.adapter.TeamAdapter;
 import com.uyi.app.utils.BitmapUtils;
@@ -838,7 +838,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
     }
 
     public void registerLast() throws JSONException {
-        Looding.bulid(activity, null).show();
+        Loading.bulid(activity, null).show();
 
         JSONObject params = new JSONObject();
         params.put("account", accunt);
@@ -877,7 +877,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                         userInfo.lastLoginTime = data.getString("lastLoginTime");
                         UserInfoManager.setLoginUserInfo(application, userInfo);
                         replaceView(5);
-                        Looding.bulid(activity, null).dismiss();
+                        Loading.bulid(activity, null).dismiss();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -945,7 +945,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
     @Override
     public void loadNextPage() {//所有团队
         isLooding = false;
-        Looding.bulid(activity, null).show();
+        Loading.bulid(activity, null).show();
         if (register_four_chose.getText().equals("全部城市")) {
             RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL_NOTOKEN, "", "", pageNo, pageSize), RegisterActivity.this, new Response.Listener<JSONObject>() {
                 @Override
@@ -961,7 +961,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                             item.put("name", jsonObject.getString("name"));
                             item.put("info", jsonObject.getString("info"));
                             item.put("logo", jsonObject.getString("logo"));
-                            Looding.bulid(activity, null).dismiss();
+                            Loading.bulid(activity, null).dismiss();
                             datas.add(item);
                         }
                     } catch (JSONException e) {
@@ -1001,7 +1001,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                     }
                     TeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
-                    Looding.bulid(activity, null).dismiss();
+                    Loading.bulid(activity, null).dismiss();
                     if (pageNo < totalPage) {
                         isLooding = true;
                         pageNo++;

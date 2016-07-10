@@ -1,8 +1,12 @@
 package com.uyi.app.ui.health;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -13,8 +17,7 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.FlowRadioGroup;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
-import com.uyi.app.utils.DensityUtils;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.ValidationUtils;
@@ -22,14 +25,9 @@ import com.uyi.custom.app.R;
 import com.volley.ImageCacheManager;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 
@@ -65,7 +63,7 @@ public class HealthDatabaseDetails extends BaseActivity implements OnClickListen
 		if(id == null){
 			finish();
 		}
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFO, id), activity, new Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject data) {
@@ -149,7 +147,7 @@ public class HealthDatabaseDetails extends BaseActivity implements OnClickListen
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 			}
 		});
 	}
