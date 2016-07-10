@@ -25,6 +25,6 @@ public class LifeStyleActivity extends BaseActivity {
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-
+        headerView.setKitkat(systemBarConfig);
     }
 }

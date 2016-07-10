@@ -25,6 +25,6 @@ public class DietPlanActivity extends BaseActivity {
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-
+        headerView.setKitkat(systemBarConfig);
     }
 }

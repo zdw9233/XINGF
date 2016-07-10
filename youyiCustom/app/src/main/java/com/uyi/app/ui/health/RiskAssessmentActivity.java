@@ -19,7 +19,7 @@ import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.RiskAssessmentAdapter;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
@@ -105,7 +105,7 @@ public void onClick(View v){
     @Override
     public void loadNextPage() {
         isLooding = false;
-        Looding.bulid(activity, null).show();
+        Loading.bulid(activity, null).show();
      System.out.println(UserInfoManager.getLoginUserInfo(activity).userId);
         RequestManager.getObject(String.format(Constens.CUSTOMER_HEALTH_RISK,UserInfoManager.getLoginUserInfo(this).userId , pageNo, pageSize),
                 activity, new Response.Listener<JSONObject>() {
@@ -113,7 +113,7 @@ public void onClick(View v){
                     public void onResponse(JSONObject data) {
                         System.out.print("_________________________________"+data.toString());
                         try {
-                            Looding.bulid(activity, null).dismiss();
+                            Loading.bulid(activity, null).dismiss();
                             totalPage = data.getInt("pages");
                             JSONArray array = data.getJSONArray("results");
                             for (int i = 0; i < array.length(); i++) {
