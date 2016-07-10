@@ -31,7 +31,7 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.uyi.app.Constens;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.FragmentHealthTeam;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
@@ -84,7 +84,7 @@ public class CityListActivity extends Activity implements TextWatcher
 		initLocation();
 		requestLocationInfo();
 				
-		Looding.bulid(CityListActivity.this, "努力加载中...").show();
+		Loading.bulid(CityListActivity.this, "努力加载中...").show();
 		RequestManager.getArray(Constens.HEALTH_CITYs,this, new Response.Listener<JSONArray>() {
 			@Override
 			public void onResponse(JSONArray array) {
@@ -109,7 +109,7 @@ public class CityListActivity extends Activity implements TextWatcher
 				curSearchTask.execute(""); 
 							}	
 		});
-		Looding.bulid(CityListActivity.this, "努力加载中...").dismiss();
+		Loading.bulid(CityListActivity.this, "努力加载中...").dismiss();
 		filterList = new ArrayList<ContactItemInterface>();
 		adapter = new CityAdapter(this,R.layout.city_item, list);
 		back = (LinearLayout) findViewById(R.id.back_city);

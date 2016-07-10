@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="收缩压"
+            android:textSize="@dimen/font_style_18" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/ssy"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="舒张压"
+            android:textSize="@dimen/font_style_18" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/szy"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="空腹血糖"
+            android:textSize="@dimen/font_style_18" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/kfxt"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="餐后血糖"
+            android:textSize="@dimen/font_style_18" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/chxt"
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</ScrollView>

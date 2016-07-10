@@ -3,7 +3,6 @@ package com.uyi.app.ui.health;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +24,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.HealthDatabaseAdapter;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.DateUtils;
@@ -35,20 +34,15 @@ import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cn.aigestudio.datepicker.cons.DPMode;
-import cn.aigestudio.datepicker.views.DatePicker;
 
 
 /**
@@ -243,10 +237,10 @@ public class FragmentHealthDatabase extends BaseFragment implements OnTabChanage
 	@Override
 	public void loadNextPage() {
 		isLooding = false;
-		Looding.bulid(context, null).show();
+		Loading.bulid(context, null).show();
 		RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, startDate,endDate,pageNo,pageSize),context, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
-				Looding.bulid(context, null).dismiss();
+				Loading.bulid(context, null).dismiss();
 				try {
 					L.d(TAG, data.toString());
 					totalPage = data.getInt("pages");

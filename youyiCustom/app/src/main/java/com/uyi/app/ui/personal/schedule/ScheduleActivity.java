@@ -3,9 +3,6 @@ package com.uyi.app.ui.personal.schedule;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,13 +17,12 @@ import com.uyi.app.Constens;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.dialog.MessageConform.MessageType;
 import com.uyi.app.ui.dialog.MessageConform.OnMessageClick;
 import com.uyi.app.ui.dialog.MessageConform.Result;
 import com.uyi.app.utils.DateUtils;
-import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
@@ -108,13 +104,13 @@ public class ScheduleActivity extends BaseActivity implements OnClickListener {
 	}
 	
 	public void load(){
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		String sdate = DateUtils.toDate(cal.getTime());
 		try {
 		String url = String.format(Constens.ACCOUNT_SCHEDULES,"",URLEncoder.encode(sdate+" 00:00:00", "UTF-8"),URLEncoder.encode(sdate+" 23:59:59", "UTF-8"),pageNo,pageSize);
 		RequestManager.getObject(url, activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 				schedule_layout.removeAllViews();
 				schedule_time.setText(DateUtils.toDate(cal.getTime(),"yyyy年MM月dd日"));
 				try {

@@ -124,11 +124,11 @@ public class RegisterInfoAcitivity extends BaseActivity {
 		mInflater = LayoutInflater.from(this) ;
 //		userInfo = UserInfoManager.getLoginUserInfo(activity);
 //		if(userInfo != null){
-//			Looding.bulid(activity, null).show();
+//			Loading.bulid(activity, null).show();
 //			RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Listener<JSONObject>() {
 //				public void onResponse(JSONObject data) {
 //					try {
-//						Looding.bulid(activity, null).dismiss();
+//						Loading.bulid(activity, null).dismiss();
 //						JSONObject healthInfo = data.getJSONObject("healthInfo");
 //						register_info_gerenjiwangbinshi.setText(JSONObjectUtils.getString(healthInfo, "medical") );
 //						register_info_chuanrangbingshi.setText(JSONObjectUtils.getString(healthInfo, "infection") );

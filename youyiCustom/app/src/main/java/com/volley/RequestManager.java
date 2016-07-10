@@ -18,7 +18,6 @@ import com.android.volley.toolbox.Volley;
 import com.uyi.app.ErrorCode;
 import com.uyi.app.UYIApplication;
 import com.uyi.app.UserInfoManager;
-import com.uyi.app.ui.dialog.Looding;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 
