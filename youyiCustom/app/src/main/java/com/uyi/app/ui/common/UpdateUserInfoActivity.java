@@ -37,7 +37,7 @@ import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter.IOnItemSelectListener;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.DateUtils;
@@ -172,11 +172,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 			
 
 			
-			Looding.bulid(activity, null).show();
+			Loading.bulid(activity, null).show();
 			RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					try {
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						ImageCacheManager.loadImage(JSONObjectUtils.getString(data,"icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
 						register_shen.setText(data.getJSONObject("province").getString("name"));
 						register_city.setText(data.getJSONObject("city").getString("name"));
@@ -468,11 +468,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 				zhiye = occupation;
 				shenggao = register_height.getText().toString();
 				tizhong = register_weight.getText().toString();
-				Looding.bulid(activity, null).show();
+				Loading.bulid(activity, null).show();
 				RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
 					@Override
 					public void requestError(VolleyError e) {
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						if(e.networkResponse != null ){
 							if(e.networkResponse.statusCode == 204){
 								T.showShort(activity, "修改成功!");
@@ -625,11 +625,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 				params.put("height", height);
 				params.put("weight", weight);
 				params.put("healthInfo", healthInfoObject);
-				Looding.bulid(activity, null).show();
+				Loading.bulid(activity, null).show();
 				RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
 					@Override
 					public void requestError(VolleyError e) {
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						if(e.networkResponse != null ){
 							if(e.networkResponse.statusCode == 204){
 								T.showShort(activity, "修改成功!");

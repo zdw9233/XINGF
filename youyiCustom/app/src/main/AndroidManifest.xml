@@ -80,6 +80,12 @@
             android:name="com.uyi.app.ui.report.ReportActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.uyi.app.ui.health.HealthReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.health.HealthDatabaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.uyi.app.ui.Main"
             android:screenOrientation="portrait"></activity>
         <activity

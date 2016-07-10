@@ -443,50 +443,21 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/question" />
-
                     <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp">
+                        android:layout_width="80dp"
+                        android:layout_height="56dp">
 
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="end"
-                                android:maxLines="1"
-                                android:text="健康问答"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/font_style_18" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:text="question"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/font_style_10" />
-
-                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/question" />
 
                         <TextView
                             android:id="@+id/question_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
+                            android:layout_gravity="bottom|end"
                             android:layout_margin="4dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/notice_background"
@@ -497,8 +468,36 @@
                             android:text="12"
                             android:textColor="@color/white"
                             android:textSize="@dimen/font_style_10"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
                     </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="健康问答"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_18" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="question"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
             </TableRow>
         </LinearLayout>

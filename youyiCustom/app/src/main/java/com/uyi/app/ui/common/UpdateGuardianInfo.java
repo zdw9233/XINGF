@@ -34,7 +34,7 @@ import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.DateUtils;
@@ -156,11 +156,11 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
 
             ImageCacheManager.loadImage(userInfo.icon, ImageCacheManager.getImageListener(register_header_image, null, null));
 
-            Looding.bulid(activity, null).show();
+            Loading.bulid(activity, null).show();
             RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Response.Listener<JSONObject>() {
                 public void onResponse(JSONObject data) {
                     try {
-                        Looding.bulid(activity, null).dismiss();
+                        Loading.bulid(activity, null).dismiss();
                             System.out.println(data.toString());
                         register_name.setText(data.getJSONObject("guardianInfo").getString("name"));
                         if(data.getJSONObject("guardianInfo").getString("gender") == "FAMALE"){

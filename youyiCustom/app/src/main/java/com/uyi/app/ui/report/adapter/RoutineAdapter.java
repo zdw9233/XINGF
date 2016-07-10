@@ -4,9 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.uyi.app.ui.report.model.Report;
-import com.uyi.app.utils.L;
 import com.uyi.app.widget.recycle.BaseAdapter;
 import com.uyi.custom.app.R;
 
@@ -140,8 +138,6 @@ public class RoutineAdapter extends BaseAdapter {
     private Report.TimeValue getTimeValue(int position) {
         int type = getTypeIndex(position);
         int listPosition = type == 0 ? position : position - index[type - 1];
-        L.e(new Gson().toJson(index));
-        L.e("position =   " + listPosition);
         try {
             List<Report.TimeValue> timeValue = (List<Report.TimeValue>) Report.class.getMethod(GET_METHOD[type]).invoke(report);
             return timeValue.get(listPosition);

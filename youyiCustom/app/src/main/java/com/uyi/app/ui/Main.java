@@ -25,7 +25,6 @@ import com.uyi.app.ui.consult.FragmentFollow;
 import com.uyi.app.ui.consult.FragmentLineInspection;
 import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.health.FragmentHealthDatabase;
 import com.uyi.app.ui.health.FragmentWearableDevice;
 import com.uyi.app.ui.health.HealthManagerFragment;
 import com.uyi.app.ui.personal.PersonalCenterFragment;
@@ -157,9 +156,9 @@ public class Main extends BaseFragmentActivity {
         fragments.add(new FragmentHealthTeam(this));//健康团队
         fragments.add(new FragmentConsultation(this));//所有咨询
         fragments.add(new FragmentFollow(this));//随访
-        fragments.add(new FragmentHealthDatabase(this));//健康数据库
         fragments.add(new FragmentLineInspection(this));//线下检查
         fragments.add(new FragmentWearableDevice(this));//可穿戴设备
+//        fragments.add(new HealthDatabaseActivity(this));//健康数据库
     }
 
     @Override
@@ -236,7 +235,8 @@ public class Main extends BaseFragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constens.BACK_LOGIN && resultCode == RESULT_OK) {
-            onInitLayoutAfter();
+
+
         }
     }
 

@@ -1,6 +1,10 @@
 package com.uyi.app.ui.personal;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -42,6 +46,8 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     private int[] radioIds = {R.id.radioButton1, R.id.radioButton2};
 
+    private MessageReceiver mMessageReceiver;
+
     @Override
     protected int getLayoutResouesId() {
         return R.layout.fragment_personal_center_new;
@@ -52,7 +58,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
         mViewPager.setAdapter(new PersonalPagerAdapter(context));
         mViewPager.addOnPageChangeListener(this);
 
-            headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("个人中心").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("个人中心").setTitleColor(getResources().getColor(R.color.blue));
 
     }
 
@@ -111,10 +117,38 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (mMessageReceiver == null) {
+            mMessageReceiver = new MessageReceiver();
+        }
+        IntentFilter intentFilter = new IntentFilter("com.uyi.message");
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver, intentFilter);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
         L.d(TAG, "onResume");
         MessageService.loadMessagesAll(context);
+        refreshMessage();
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refreshMessage();
+        }
+    }
+
+    private void refreshMessage() {
         // 日程
         int count = MessageService.getMessageCount(context, MessageService.RC);
         if (count == 0) {
@@ -150,5 +184,4 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
             mQuestionNum.setText(count + "");
         }
     }
-
 }

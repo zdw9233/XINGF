@@ -13,7 +13,7 @@ import com.uyi.custom.app.R;
  */
 public class TrendMapFragment extends BaseFragment {
     @ViewInject(R.id.ssy)
-    private SimpleDraweeView ssy;  //收缩压
+    private SimpleDraweeView ssy;  //晨起收缩压
     @ViewInject(R.id.szy)
     private SimpleDraweeView szy;  //舒张压
     @ViewInject(R.id.kfxt)

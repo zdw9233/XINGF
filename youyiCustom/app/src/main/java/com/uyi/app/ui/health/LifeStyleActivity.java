@@ -14,17 +14,18 @@ import com.uyi.custom.app.R;
  */
 @ContentView(R.layout.life_style)
 public class LifeStyleActivity extends BaseActivity {
-    @ViewInject(R.id.headerView) private HeaderView headerView;
-    @ViewInject(R.id.life_style_details) private TextView life_style_details;
+    @ViewInject(R.id.headerView)
+    private HeaderView headerView;
+    @ViewInject(R.id.life_style_details)
+    private TextView life_style_details;
+
     @Override
     protected void onInitLayoutAfter() {
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("生活方式").setTitleColor(getResources().getColor(R.color.blue));
-
-
     }
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-
+        headerView.setKitkat(systemBarConfig);
     }
 }
