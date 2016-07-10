@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="收缩压"
+            android:text="晨起收缩压"
             android:textSize="@dimen/font_style_18" />
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="舒张压"
+            android:text="晨起舒张压"
             android:textSize="@dimen/font_style_18" />
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="餐后血糖"
+            android:text="餐后2小时血糖"
             android:textSize="@dimen/font_style_18" />
 
         <com.facebook.drawee.view.SimpleDraweeView
