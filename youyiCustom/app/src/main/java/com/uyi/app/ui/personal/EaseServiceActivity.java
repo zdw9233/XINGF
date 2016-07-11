@@ -70,20 +70,20 @@ public class EaseServiceActivity extends BaseActivity {
             public void onResponse(JSONObject jsonObject) {
                 L.e(jsonObject.toString());
                 try {
-                    if ( jsonObject.has("id")) {
+                    if (jsonObject.has("id")) {
                         int id = jsonObject.getInt("id");
                         int beans = jsonObject.getInt("beans");
                         Intent intent = new Intent();
-                        if (TYPE_AX_3_MONTH.equals(type)){
-                            intent.setClass(EaseServiceActivity.this,EasePeaceExperienceActivity.class);
-                        }else if (TYPE_AX_6_MONTH.equals(type)){
-                            intent.setClass(EaseServiceActivity.this,EaseHalfYearActivity.class);
-                        }else {
-                            intent.setClass(EaseServiceActivity.this,EaseOneYearActivity.class);
+                        if (TYPE_AX_3_MONTH.equals(type)) {
+                            intent.setClass(EaseServiceActivity.this, EasePeaceExperienceActivity.class);
+                        } else if (TYPE_AX_6_MONTH.equals(type)) {
+                            intent.setClass(EaseServiceActivity.this, EaseHalfYearActivity.class);
+                        } else {
+                            intent.setClass(EaseServiceActivity.this, EaseOneYearActivity.class);
                         }
-                        intent.putExtra("id",id);
-                        intent.putExtra("beans",beans);
-                        intent.putExtra("name",jsonObject.getString("name"));
+                        intent.putExtra("id", id);
+                        intent.putExtra("beans", beans);
+                        intent.putExtra("name", jsonObject.getString("name"));
                         startActivity(intent);
                     }
                 } catch (JSONException e) {

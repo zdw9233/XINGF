@@ -1,32 +1,35 @@
 package com.uyi.app.ui.common;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONStringer;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
-import com.google.gson.JsonObject;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.ErrorCode;
-import com.uyi.app.UYIApplication;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.HealthInfo;
 import com.uyi.app.model.bean.UserInfo;
-import com.uyi.app.service.UserService;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
@@ -34,7 +37,7 @@ import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter.IOnItemSelectListener;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.DateUtils;
@@ -49,28 +52,16 @@ import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.app.DatePickerDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.JsonWriter;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -179,14 +170,14 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 		userInfo = UserInfoManager.getLoginUserInfo(activity);
 		if(userInfo != null){
 			
-			ImageCacheManager.loadImage(userInfo.icon, ImageCacheManager.getImageListener(register_header_image, null, null));
+
 			
-			Looding.bulid(activity, null).show();
+			Loading.bulid(activity, null).show();
 			RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					try {
-						Looding.bulid(activity, null).dismiss();
-						
+						Loading.bulid(activity, null).dismiss();
+						ImageCacheManager.loadImage(JSONObjectUtils.getString(data,"icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
 						register_shen.setText(data.getJSONObject("province").getString("name"));
 						register_city.setText(data.getJSONObject("city").getString("name"));
 						register_address.setText(JSONObjectUtils.getString(data,"address"));
@@ -477,11 +468,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 				zhiye = occupation;
 				shenggao = register_height.getText().toString();
 				tizhong = register_weight.getText().toString();
-				Looding.bulid(activity, null).show();
+				Loading.bulid(activity, null).show();
 				RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
 					@Override
 					public void requestError(VolleyError e) {
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						if(e.networkResponse != null ){
 							if(e.networkResponse.statusCode == 204){
 								T.showShort(activity, "修改成功!");
@@ -634,11 +625,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 				params.put("height", height);
 				params.put("weight", weight);
 				params.put("healthInfo", healthInfoObject);
-				Looding.bulid(activity, null).show();
+				Loading.bulid(activity, null).show();
 				RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
 					@Override
 					public void requestError(VolleyError e) {
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						if(e.networkResponse != null ){
 							if(e.networkResponse.statusCode == 204){
 								T.showShort(activity, "修改成功!");

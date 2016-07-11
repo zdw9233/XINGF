@@ -283,7 +283,7 @@ if(view.getId() == R.id.register_header_image){
         params.put("icon", icon);
         params.put("occupation", occupation);
 
-        RequestManager.postObject(Constens.GUADIANINFO, activity, params, new Response.Listener<JSONObject>() {
+        RequestManager.postObjectNotoken(Constens.GUADIANINFO, activity, params, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
 //                try {
 //                    Log.e("data",data.toString());

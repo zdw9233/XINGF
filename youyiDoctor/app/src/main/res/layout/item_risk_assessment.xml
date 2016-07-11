@@ -37,15 +37,28 @@
         android:text="2016-12-12"/>
 
 </RelativeLayout>
-    <TextView
-        android:id="@+id/risk_index"
+    <LinearLayout
+        android:id="@+id/risk_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="@dimen/font_style_16"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="风险系数:"/>
+        <TextView
+            android:id="@+id/risk_index"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_style_16"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text=""/>
+    </LinearLayout>
     <TextView
         android:id="@+id/deils"
         android:layout_width="match_parent"

@@ -27,20 +27,15 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
-
-import com.uyi.app.sweep.CameraManager;
-import com.uyi.app.sweep.CaptureActivityHandler;
-import com.uyi.app.sweep.InactivityTimer;
 
 
 /**
@@ -205,7 +200,7 @@ public class CaptureActivity extends Activity implements Callback {
 //		bundle.putString("QWE", result);
 //		intent.putExtras(bundle);
 //		startActivity(intent);
-		Looding.bulid(CaptureActivity.this,null).show();
+		Loading.bulid(CaptureActivity.this,null).show();
 		JSONObject params = new JSONObject();
 		
 		try {
@@ -223,12 +218,12 @@ public class CaptureActivity extends Activity implements Callback {
 
 	RequestManager.postObject(String.format(Constens.SWEEP_UP), CaptureActivity.this, params , new Response.Listener<JSONObject>() {
 		public void onResponse(JSONObject data) {
-			Looding.bulid(CaptureActivity.this,null).dismiss();
+			Loading.bulid(CaptureActivity.this,null).dismiss();
 			System.out.println("成功");
 			System.out.println(data.toString());
 //			team_goup_jiaru.setVisibility(View.GONE);
 //			Toast.makeText(result.this, "绑定成功！", 0).show();
-//			Looding.bulid(CaptureActivity.this, null).dismiss();
+//			Loading.bulid(CaptureActivity.this, null).dismiss();
 			 Intent intent=new Intent();
 				intent.putExtra("info",result);
 				intent.setClass(CaptureActivity.this, Bangdingchenggong.class);
@@ -238,7 +233,7 @@ public class CaptureActivity extends Activity implements Callback {
 		}
 	}, new RequestErrorListener() {
 		public void requestError(VolleyError e) {
-			Looding.bulid(CaptureActivity.this,null).dismiss();
+			Loading.bulid(CaptureActivity.this,null).dismiss();
 			System.out.println(e.toString());
 //			Toast.makeText(result.this, "绑定失败", 0).show();
 //			startActivity(new Intent(CaptureActivity.this, Bangdingshibai.class));

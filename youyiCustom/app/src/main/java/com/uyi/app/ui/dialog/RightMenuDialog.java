@@ -7,8 +7,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.uyi.app.UserInfoManager;
 import com.uyi.app.sweep.CaptureActivity;
+import com.uyi.app.ui.common.UpdateGuardianInfo;
 import com.uyi.app.ui.common.UpdatePasswordActivity;
 import com.uyi.app.ui.common.UpdateUserInfoActivity;
 import com.uyi.app.ui.recharge.RechargeActivity;
@@ -21,11 +24,13 @@ import com.uyi.custom.app.R;
  */
 public class RightMenuDialog extends AbstrctDialog implements android.view.View.OnClickListener {
 
-	
-	private LinearLayout right_menu_update_password; 
-	private LinearLayout right_menu_update_info; 
-	private LinearLayout right_menu_update_pay; 
-	private LinearLayout right_menu_sweep; 
+
+	private LinearLayout right_menu_update_password;
+	private LinearLayout right_menu_update_info_guardian;
+	private LinearLayout right_menu_update_info;
+	private LinearLayout right_menu_update_pay;
+	private LinearLayout right_menu_sweep;
+	private TextView xiugai;
 	
 	public RightMenuDialog(Context context) {
 		super(context,R.style.dialog);
@@ -41,12 +46,19 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 		setContentView(R.layout.right_menu_dialog);
 		right_menu_update_password = $( R.id.right_menu_update_password);
 		right_menu_update_info = $( R.id.right_menu_update_info);
+		right_menu_update_info_guardian = $(R.id.right_menu_update_guardian_info);
+		xiugai = $(R.id.right_xiugai);
 		right_menu_update_pay = $( R.id.right_menu_update_pay);
 		right_menu_sweep = $(R.id.right_menu_Sweep);
 		right_menu_update_password.setOnClickListener(this);
 		right_menu_update_info.setOnClickListener(this);
+		right_menu_update_info_guardian.setOnClickListener(this);
 		right_menu_update_pay.setOnClickListener(this);
 		right_menu_sweep.setOnClickListener(this);
+		if( UserInfoManager.getLoginUserInfo(getContext()).logasguardian){
+			right_menu_update_info_guardian.setVisibility(View.VISIBLE);
+			xiugai.setText("修改被监护人资料");
+		}
 	}
 
 
@@ -69,6 +81,9 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 			Intent intent = new Intent(getContext(), UpdateUserInfoActivity.class);
 			intent.putExtra("update", 1);
 			getContext().startActivity(intent);
+		}else if(v.getId() == R.id.right_menu_update_guardian_info){
+			Intent intent = new Intent(getContext(), UpdateGuardianInfo.class);
+			getContext().startActivity(intent);
 		}else if(v.getId() == R.id.right_menu_update_pay){
 			Intent intent = new Intent(getContext(), RechargeActivity.class);
 			getContext().startActivity(intent);
@@ -88,7 +103,7 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 //			}
 //			RequestManager.postObject(String.format(Constens.SWEEP_UP), getContext(), params , new Response.Listener<JSONObject>() {
 //				public void onResponse(JSONObject data) {
-//					Looding.bulid(getContext(),null).dismiss();
+//					Loading.bulid(getContext(),null).dismiss();
 //					System.out.println("成功");
 ////					team_goup_jiaru.setVisibility(View.GONE);
 //					Toast.makeText(getContext(), "上传成功！", 0).show();
@@ -96,7 +111,7 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 //				}
 //			}, new RequestErrorListener() {
 //				public void requestError(VolleyError e) {
-//					Looding.bulid(getContext(),null).dismiss();
+//					Loading.bulid(getContext(),null).dismiss();
 //					System.out.println(e.toString());
 //					Toast.makeText(getContext(), "上传失败", 0).show();
 //				}

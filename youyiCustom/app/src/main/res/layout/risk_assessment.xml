@@ -1,94 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    	<com.uyi.app.ui.custom.HeaderView 
-	    android:id="@+id/headerView"
-	    android:layout_width="match_parent" 
-	    android:layout_height="wrap_content">
-	</com.uyi.app.ui.custom.HeaderView>
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:background="@color/content_background"
-		android:layout_margin="5dp"
-		android:orientation="horizontal"
-		android:layout_height="30dp">
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textSize="@dimen/font_style_16"
-			android:layout_gravity="center_vertical"
-			android:layout_marginLeft="5dp"
-			android:textColor="#ff7200"
-			android:text="最新报告"/>
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-	</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:background="@color/content_background"
+        android:orientation="horizontal">
 
-	<RelativeLayout
-		android:layout_marginTop="5dp"
-		android:layout_width="match_parent"
-		android:layout_height="30dp">
-		<TextView
-			android:id="@+id/new_assessment_title"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textSize="@dimen/font_style_16"
-			android:layout_centerVertical="true"
-			android:layout_marginLeft="5dp"
-			android:text="血压/检查报告"/>
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textSize="@dimen/font_style_12"
-			android:layout_centerVertical="true"
-			android:layout_marginRight="3dp"
-			android:layout_alignParentRight="true"
-			android:textColor="@color/list_item_content_color"
-			android:text="2016-11-15"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="最新报告"
+            android:textColor="#ff7200"
+            android:textSize="@dimen/font_style_16" />
 
-	</RelativeLayout>
-	<LinearLayout
-		android:id="@+id/assessment_deils"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:padding="5dp"
-		android:visibility="gone"
-		android:orientation="vertical">
-<TextView
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
+    </LinearLayout>
 
-	android:text="zhe这是罪行的保湿的骄傲是肯定会撒谎的了开始的离开撒哈拉口袋里卡的萨达萨达的萨达撒的撒的撒的撒的撒"/>
-	</LinearLayout>
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:orientation="horizontal"
-		android:layout_marginTop="25dp"
-		android:layout_marginLeft="5dp"
-		android:layout_height="30dp">
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textSize="@dimen/font_style_16"
-			android:layout_gravity="center_vertical"
-			android:layout_marginLeft="5dp"
-			android:textColor="@color/blue"
-			android:text="历史报告:"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp">
 
-	</LinearLayout>
-    	    <android.support.v4.widget.SwipeRefreshLayout
+        <TextView
+            android:id="@+id/new_assessment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="血压/检查报告"
+            android:textSize="@dimen/font_style_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="3dp"
+            android:text="2016-11-15"
+            android:textColor="@color/list_item_content_color"
+            android:textSize="@dimen/font_style_12" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/assessment_deils"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/risk_index"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="风险系数:"
+            android:textSize="@dimen/font_style_16" />
+
+        <TextView
+            android:id="@+id/deils"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="zhe这是罪行的保湿的骄傲是肯定会撒谎的了开始的离开撒哈拉口袋里卡的萨达萨达的萨达撒的撒的撒的撒的撒" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="历史报告:"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/font_style_16" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
-        android:layout_width="match_parent" 
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
-	    <com.uyi.app.ui.custom.EndlessRecyclerView 
-	        xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:id="@+id/recyclerView"
-	    
-	    android:orientation="vertical"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"/>
-        </android.support.v4.widget.SwipeRefreshLayout>
-    	
-    </LinearLayout>	
+
+        <com.uyi.app.ui.custom.EndlessRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recyclerView"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

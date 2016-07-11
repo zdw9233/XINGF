@@ -18,7 +18,6 @@ import com.android.volley.toolbox.Volley;
 import com.uyi.app.ErrorCode;
 import com.uyi.app.UYIApplication;
 import com.uyi.app.UserInfoManager;
-import com.uyi.app.ui.dialog.Looding;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 
@@ -44,7 +43,16 @@ public class RequestManager {
     public static void getObject(String url, Object tag, Response.Listener<JSONObject> successListener) {
     	getObject(url, tag, null, successListener,null);
     }
-
+	/**
+	 *
+	 * @param <T>
+	 * @param url
+	 * @param tag
+	 * @param listener
+	 */
+	public static void getObjectNOtoken(String url, Object tag, Response.Listener<JSONObject> successListener) {
+		getObject(url, tag, null, successListener,null);
+	}
     /**
      * 
      * @param url
@@ -67,7 +75,25 @@ public class RequestManager {
 		};
     	addRequest(request , tag);
     }
-
+	/**
+	 *
+	 * @param url
+	 * @param tag
+	 * @param params
+	 * @param listener
+	 */
+	public static void getObjectNotoken(String url, Object tag,JSONObject params,Response.Listener<JSONObject> successListener,RequestErrorListener errorListener) {
+		JsonObjectRequest  request = new JsonObjectRequest(Method.GET,url, params, successListener, responseError(errorListener)){
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				Map<String, String> headers = new HashMap<String, String>();
+				headers.put("Content-Type", "application/json;charset=UTF-8");
+				headers.put("User-Agent", "Android");
+				return headers;
+			}
+		};
+		addRequest(request , tag);
+	}
     /**
      * 
      * @param url
@@ -101,7 +127,25 @@ public class RequestManager {
 		};
     	addRequest(request , tag);
     }
-    
+	/**
+	 *
+	 * @param url
+	 * @param tag
+	 * @param params
+	 * @param listener
+	 */
+	public static void postObjectNotoken(String url, Object tag, JSONObject params, Response.Listener<JSONObject> litenner ,RequestErrorListener errorListener) {
+		JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				Map<String, String> headers = new HashMap<>();
+				headers.put("Content-Type", "application/json;charset=UTF-8");
+				headers.put("User-Agent", "Android");
+				return headers;
+			}
+		};
+		addRequest(request , tag);
+	}
     
     
     public static void getArray(String url, Object tag, Response.Listener<JSONArray> successListener) {

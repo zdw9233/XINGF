@@ -18,7 +18,7 @@ import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.TeamDetailsActivity;
 import com.uyi.app.ui.team.adapter.TeamAdapter;
 import com.uyi.app.ui.team.city.CityListActivity;
@@ -99,7 +99,7 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
     @Override
     public void loadNextPage() {//所有团队
         isLooding = false;
-        Looding.bulid(this, null).show();
+        Loading.bulid(this, null).show();
         if(register_four_chose.getText().equals("全部城市")){
             RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,"","",pageNo,pageSize),ChoseTeamActivity.this, new Response.Listener<JSONObject>() {
                 @Override
@@ -123,7 +123,7 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
                     }
                     TeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
-                    Looding.bulid(ChoseTeamActivity.this, null).dismiss();
+                    Loading.bulid(ChoseTeamActivity.this, null).dismiss();
                     if(pageNo <= totalPage){
                         isLooding = true;
                         pageNo ++;
@@ -156,7 +156,7 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
                     }
                   TeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
-                    Looding.bulid(ChoseTeamActivity.this, null).dismiss();
+                    Loading.bulid(ChoseTeamActivity.this, null).dismiss();
                     if(pageNo < totalPage){
                         isLooding = true;
                         pageNo ++;
@@ -196,5 +196,6 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
         startActivity(intent);
         startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
 //        healthTeamAdapter.notifyItemChanged(position);
+
     }
 }
