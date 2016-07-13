@@ -21,10 +21,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.ErrorCode;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.HealthInfo;
 import com.uyi.app.model.bean.UserInfo;
@@ -44,6 +46,7 @@ import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
 import com.volley.ImageCacheManager;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONArray;
@@ -82,8 +85,8 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
     private String email;
     private String idCardNumber;
     private String occupation;
-    private Integer height;
-    private Integer weight;
+    private String id;
+
     private List<String> xinbie = new ArrayList<String>();
     private  List<String> xinbieCode = new ArrayList<String>();
 
@@ -125,8 +128,7 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
     @Override
     protected void onInitLayoutAfter() {
         activity = this;
-        headerView.showLeftReturn(true).showTitle(true).setTitle("修改监护人资料");
-        headerView.setHeaderBackgroundColor(getResources().getColor(R.color.blue));
+        headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("修改监护人资料").setTitleColor(getResources().getColor(R.color.blue));
         spinerPopWindow = new SpinerPopWindow(activity);
         spinerPopWindow.setItemListener(this);
         xinbie.add("男");
@@ -154,7 +156,6 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
         userInfo = UserInfoManager.getLoginUserInfo(activity);
         if(userInfo != null){
 
-            ImageCacheManager.loadImage(userInfo.icon, ImageCacheManager.getImageListener(register_header_image, null, null));
 
             Loading.bulid(activity, null).show();
             RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Response.Listener<JSONObject>() {
@@ -163,11 +164,16 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
                         Loading.bulid(activity, null).dismiss();
                             System.out.println(data.toString());
                         register_name.setText(data.getJSONObject("guardianInfo").getString("name"));
-                        if(data.getJSONObject("guardianInfo").getString("gender") == "FAMALE"){
+
+                        ImageCacheManager.loadImage(data.getJSONObject("guardianInfo").getString("icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
+                        gender = data.getJSONObject("guardianInfo").getString("gender");
+
+                        if(data.getJSONObject("guardianInfo").getString("gender") .equals("FAMALE")){
                             register_sex.setText("女");
                         }else{
                             register_sex.setText("男");
                         }
+                        id =data.getJSONObject("guardianInfo").getString("id");
                         register_shen.setText(data.getJSONObject("guardianInfo").getJSONObject("province").getString("name"));
                         register_city.setText(data.getJSONObject("guardianInfo").getJSONObject("city").getString("name"));
                         register_address.setText(JSONObjectUtils.getString(data.getJSONObject("guardianInfo"),"address"));
@@ -263,14 +269,6 @@ if(view.getId() == R.id.register_header_image){
 //			T.showLong(application, "必填项填写完毕!");
 //			return;
 //		}
-		if(ValidationUtils.isNull(register_height.getText().toString())){
-			register_height.setText("0");
-		}
-		if(ValidationUtils.isNull(register_weight.getText().toString())){
-			register_weight.setText("0");
-		}
-		height  = Integer.parseInt(register_height.getText().toString());
-		weight  =  Integer.parseInt(register_weight.getText().toString());;
 
         if(!ValidationUtils.isMobile(mobile)){
             T.showLong(application, "手机号码格式不正确!");
@@ -279,18 +277,18 @@ if(view.getId() == R.id.register_header_image){
         if(!ValidationUtils.isNull(phone)){
             if(!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)){
                 T.showLong(application, "联系电话格式不正确!");
-                return;
-            }
+        return;
+    }
+}
+if(!ValidationUtils.isNull(email)){
+        if(!ValidationUtils.pattern(Constens.EMAIL_REGEX, email)){
+        T.showLong(application, "邮箱格式不正确!");
+        return;
         }
-        if(!ValidationUtils.isNull(email)){
-            if(!ValidationUtils.pattern(Constens.EMAIL_REGEX, email)){
-                T.showLong(application, "邮箱格式不正确!");
-                return;
-            }
         }
         if(!ValidationUtils.pattern(Constens.ID_CARD_REGEX, idCardNumber)){
-            T.showLong(application, "身份证号码格式不正确!");
-            return;
+        T.showLong(application, "身份证号码格式不正确!");
+        return;
         }
 //		JSONObject param = new JSONObject();
 //		param.put("idCardNumber",idCardNumber);
@@ -321,32 +319,41 @@ if(view.getId() == R.id.register_header_image){
             }
         }
         JSONObject params = new JSONObject();
-        params.put("name", realName);
-        params.put("phoneNumber", mobile);
-        params.put("birthday", birthday);
-        params.put("gender", gender);
-        params.put("cityId", cityId);
-        params.put("backupPhoneNumber", register_phone);
-        params.put("email", email);
-        params.put("address", address);
-        params.put("idCardNumber", idCardNumber);
-        params.put("icon", icon);
-        params.put("occupation", occupation);
-
-        RequestManager.postObject(Constens.GUADIANINFO, activity, params, new Response.Listener<JSONObject>() {
-            public void onResponse(JSONObject data) {
-//                try {
-//                    Log.e("data",data.toString());
-//
-//
-//
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-                Log.e("data",data.toString());
+        JSONObject guardianInfo = new JSONObject();
+        JSONObject city = new JSONObject();
+        city.put("id",cityId);
+        guardianInfo.put("id", id);
+        guardianInfo.put("name", realName);
+        guardianInfo.put("phoneNumber", mobile);
+        guardianInfo.put("birthday", birthday);
+        guardianInfo.put("gender", gender);
+        guardianInfo.put("city", city);
+        guardianInfo.put("backupPhoneNumber", phone);
+        guardianInfo.put("email", email);
+        guardianInfo.put("address", address);
+        guardianInfo.put("idCardNumber", idCardNumber);
+        Log.e("icon",icon.toString());
+        guardianInfo.put("icon", icon);
+        guardianInfo.put("occupation", occupation);
+        params.put("guardianInfo",guardianInfo);
+        RequestManager.postObject(Constens.GUADIANINFO, activity, params, null, new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
+                Loading.bulid(activity, null).dismiss();
+                if(e.networkResponse != null ){
+                    if(e.networkResponse.statusCode == 204){
+                        T.showShort(activity, "修改成功!");
+                        UpdateGuardianInfo.this.finish();
+                    }else{
+                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+                    }
+                }else{
+                    T.showShort(activity, "修改成功!");
+                    UpdateGuardianInfo.this.finish();
+                }
             }
-        }, null);
+        });
+
 
     }
 

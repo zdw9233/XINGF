@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -25,11 +23,12 @@ public class JiaRuChenGongActivity extends BaseActivity{
 	@ViewInject(R.id.jiaru_headerView) private HeaderView jiaru_headerView;
 	@Override
 	protected void onInitLayoutAfter() {
-		jiaru_headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("团队详情").setTitleColor(getResources().getColor(R.color.blue)).showRight(true) ;
+		jiaru_headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("转入团队").setTitleColor(getResources().getColor(R.color.blue)).showRight(true) ;
 		jiaru_zixun.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				JiaRuChenGongActivity.this.finish();
 				startActivity(new Intent(activity, NewConsultActivity.class));
 				
 			}

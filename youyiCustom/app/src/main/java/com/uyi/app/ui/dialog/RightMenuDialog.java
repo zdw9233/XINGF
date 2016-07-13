@@ -3,6 +3,7 @@ package com.uyi.app.ui.dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.sweep.CaptureActivity;
+import com.uyi.app.ui.common.ServiceNumberActivity;
 import com.uyi.app.ui.common.UpdateGuardianInfo;
 import com.uyi.app.ui.common.UpdatePasswordActivity;
 import com.uyi.app.ui.common.UpdateUserInfoActivity;
@@ -30,6 +32,7 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 	private LinearLayout right_menu_update_info;
 	private LinearLayout right_menu_update_pay;
 	private LinearLayout right_menu_sweep;
+	private LinearLayout right_menu_service;
 	private TextView xiugai;
 	
 	public RightMenuDialog(Context context) {
@@ -39,13 +42,14 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		requestWindowFeature(Window.FEATURE_NO_TITLE);  
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		Window dialogWindow = getWindow();
 		dialogWindow.setGravity(Gravity.RIGHT | Gravity.TOP);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.right_menu_dialog);
 		right_menu_update_password = $( R.id.right_menu_update_password);
 		right_menu_update_info = $( R.id.right_menu_update_info);
+		right_menu_service = $( R.id.right_menu_service);
 		right_menu_update_info_guardian = $(R.id.right_menu_update_guardian_info);
 		xiugai = $(R.id.right_xiugai);
 		right_menu_update_pay = $( R.id.right_menu_update_pay);
@@ -54,7 +58,9 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 		right_menu_update_info.setOnClickListener(this);
 		right_menu_update_info_guardian.setOnClickListener(this);
 		right_menu_update_pay.setOnClickListener(this);
+		right_menu_service.setOnClickListener(this);
 		right_menu_sweep.setOnClickListener(this);
+		Log.e("logasguardian=======",UserInfoManager.getLoginUserInfo(getContext()).logasguardian+"");
 		if( UserInfoManager.getLoginUserInfo(getContext()).logasguardian){
 			right_menu_update_info_guardian.setVisibility(View.VISIBLE);
 			xiugai.setText("修改被监护人资料");
@@ -88,6 +94,11 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 			Intent intent = new Intent(getContext(), RechargeActivity.class);
 			getContext().startActivity(intent);
 			
+		}else if(v.getId() == R.id.right_menu_service){
+//个人信息（服务次数）
+			Intent intent = new Intent(getContext(), ServiceNumberActivity.class);
+			getContext().startActivity(intent);
+
 		}else if(v.getId() == R.id.right_menu_Sweep){
 			Intent intent = new Intent(getContext(), CaptureActivity.class);
 			getContext().startActivity(intent);

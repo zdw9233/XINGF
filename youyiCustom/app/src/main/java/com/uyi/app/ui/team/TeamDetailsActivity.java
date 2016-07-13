@@ -102,12 +102,13 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 						System.out.println("成功");
 //						team_goup_jiaru.setVisibility(View.GONE);
 						startActivity(new Intent(activity, JiaRuChenGongActivity.class));
+						TeamDetailsActivity.this.finish();
 					}
 				}, new RequestErrorListener() {
 					public void requestError(VolleyError e) {
 						Loading.bulid(activity,null).dismiss();
 						System.out.println(e.toString());
-						Toast.makeText(activity, "已经加入该团队或者健康豆不足", 0).show();
+						Toast.makeText(activity, "必须结束所有咨询才能转入其它团队！", 0).show();
 					}
 				});
 				
@@ -117,7 +118,7 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 			team_goup_jiaru.setText("已加入");
 			team_goup_jiaru.setEnabled(false);
 		}else{
-			team_goup_jiaru.setText("加入团队");
+			team_goup_jiaru.setText("转入团队");
 			team_goup_jiaru.setEnabled(true);
 		}
 		team_headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("团队详情").setTitleColor(getResources().getColor(R.color.blue)).showRight(true) ;

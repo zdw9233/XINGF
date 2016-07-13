@@ -1,12 +1,10 @@
 package com.uyi.app.ui.personal.exclusive;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -26,11 +24,13 @@ import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -91,7 +91,6 @@ public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnI
 	public void onRefresh() {
 		pageNo = 1;
 		isLooding = true;
-		datas.clear();
 		recyclerView.setRefreshing(false);
 		loadNextPage();		
 	}
@@ -112,6 +111,7 @@ public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnI
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");
+					if (pageNo == 1) datas.clear();
 					for(int i = 0;i<array.length();i++){
 						Map<String,Object> item = new HashMap<String,Object>();
 						JSONObject jsonObject = array.getJSONObject(i);

@@ -34,7 +34,8 @@ android:layout_marginLeft="20dp"
         android:layout_centerVertical="true"
         android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/item_user_layout1"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
            >
@@ -44,6 +45,7 @@ android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/small_diagnosis"/>
             <TextView
+                android:id="@+id/item_user_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_style_10"
@@ -52,9 +54,10 @@ android:layout_marginLeft="20dp"
                 android:text="12-20"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/item_user_layout2"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_marginLeft="2dp"
             android:orientation="vertical"
            >
             <ImageView
@@ -63,6 +66,7 @@ android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/small_assessment"/>
             <TextView
+                android:id="@+id/item_user_time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_style_10"
@@ -71,8 +75,9 @@ android:layout_marginLeft="20dp"
                 android:text="12-20"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:id="@+id/item_user_layout3"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"   android:layout_marginLeft="2dp"
             android:orientation="vertical"
            >
             <ImageView
@@ -81,6 +86,7 @@ android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/small_life"/>
             <TextView
+                android:id="@+id/item_user_time3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_style_10"
@@ -89,8 +95,9 @@ android:layout_marginLeft="20dp"
                 android:text="12-20"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:id="@+id/item_user_layout4"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"   android:layout_marginLeft="2dp"
             android:orientation="vertical"
           >
             <ImageView
@@ -99,6 +106,7 @@ android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/small_diet"/>
             <TextView
+                android:id="@+id/item_user_time4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_style_10"
@@ -107,8 +115,9 @@ android:layout_marginLeft="20dp"
                 android:text="12-20"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:id="@+id/item_user_layout5"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"   android:layout_marginLeft="2dp"
             android:orientation="vertical"
          >
             <ImageView
@@ -117,6 +126,7 @@ android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/small_alarm"/>
             <TextView
+                android:id="@+id/item_user_time5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_style_10"
@@ -125,8 +135,9 @@ android:layout_marginLeft="20dp"
                 android:text="12-20"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"   android:layout_marginLeft="10dp"
+            android:id="@+id/item_user_layout6"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"   android:layout_marginLeft="2dp"
             android:orientation="vertical"
            >
             <ImageView
@@ -135,6 +146,7 @@ android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/small_telephone"/>
             <TextView
+                android:id="@+id/item_user_time6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_style_10"

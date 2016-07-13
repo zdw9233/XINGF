@@ -1,16 +1,24 @@
 package com.uyi.app.ui.health;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.report.ReportMainActivity;
 import com.uyi.custom.app.R;
+import com.volley.RequestManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 健康管理 Created by ThinkPad on 2016/6/13.
@@ -18,6 +26,19 @@ import com.uyi.custom.app.R;
 public class HealthManagerFragment extends BaseFragment implements HeaderView.OnTabChanage {
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
+    @ViewInject(R.id.schedule_num)
+    private TextView schedule_num;
+    @ViewInject(R.id.notice_num)
+    private TextView notice_num;
+    @ViewInject(R.id.consulting_num)
+    private TextView consulting_num;
+    @ViewInject(R.id.assessment_num)
+    private TextView assessment_num;
+    @ViewInject(R.id.life_num)
+    private TextView life_num;
+    @ViewInject(R.id.diet_num)
+    private TextView diet_num;
+    JSONObject params;
 
     @OnClick({
             R.id.diagnosis, //主诊报告
@@ -31,22 +52,41 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         switch (v.getId()) {
             case R.id.diagnosis:
                 startActivity(new Intent(context, ReportMainActivity.class));
+                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER,1), getContext(),new Response.Listener<JSONObject>() {
+                    public void onResponse(JSONObject data) {
+
+                    }
+                });
                 break; //主诊报告
             case R.id.report:     //健康报告
                 startActivity(new Intent(context, HealthReportActivity.class));
+
                 break;
             case R.id.database:    //健康数据库
                 startActivity(new Intent(context, HealthDatabaseActivity.class));
                 break;
             case R.id.assessment: //风险评估
                 startActivity(new Intent(getContext(), RiskAssessmentActivity.class));
-
+                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER,2), getContext(),new Response.Listener<JSONObject>() {
+                    public void onResponse(JSONObject data) {
+                    }
+                });
                 break;
             case R.id.life:      //生活方式
                 startActivity(new Intent(getContext(), LifeStyleActivity.class));
+                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER, 3), getContext(),new Response.Listener<JSONObject>() {
+                    public void onResponse(JSONObject data) {
+                        Log.e("yes","true=============================================");
+                    }
+
+                });
                 break;
             case R.id.diet:     //饮食计划
                 startActivity(new Intent(getContext(), DietPlanActivity.class));
+                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER, 4), getContext(),new Response.Listener<JSONObject>() {
+                    public void onResponse(JSONObject data) {
+                    }
+                });
                 break;
         }
     }
@@ -65,7 +105,38 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon)
                 .showTab(false).showRight(true).showTitle(true)
                 .setTitle("健康管理").setTitleColor(getResources().getColor(R.color.blue));
+
+        RequestManager.getObject(Constens.MESSEGE_COMSTOMER, getContext(),new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                System.out.println(data.toString());
+                try {
+                     if(data.getString("isDiagnosis").equals("true")){
+                      schedule_num.setVisibility(View.VISIBLE);
+                     }
+                    if(data.getString("isAssessment").equals("true")){
+                        assessment_num.setVisibility(View.VISIBLE);
+                    }
+                    if(data.getString("isLife").equals("true")){
+                        life_num .setVisibility(View.VISIBLE);
+                    }
+                    if(data.getString("isDiet").equals("true")){
+                        diet_num .setVisibility(View.VISIBLE);
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+
+
     }
+
+
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {

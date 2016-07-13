@@ -52,7 +52,7 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
     public static int cityid = -1;
     @Override
     protected void onInitLayoutAfter() {
-        headerView.showLeftHeader(false,null).showTitle(true).setTitle("健康团队").setTitleColor(getResources().getColor(R.color.blue)).showRight(true);
+        headerView.showLeftReturn(true).showTitle(true).setTitle("健康团队").setTitleColor(getResources().getColor(R.color.blue)).showRight(true);
 
         linearLayoutManager = new LinearLayoutManager(this);
        TeamAdapter = new TeamAdapter(this);
