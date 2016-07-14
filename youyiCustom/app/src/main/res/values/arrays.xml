@@ -23,4 +23,14 @@
         <item>个人资料</item>
         <item>健康资料</item>
     </string-array>
+    <string-array name="time_unit">
+        <item>小时</item>
+        <item>日</item>
+        <item>月</item>
+        <item>年</item>
+    </string-array>
+    <string-array name="medicine_unit">
+        <item>g</item>
+        <item>ml</item>
+    </string-array>
 </resources>
