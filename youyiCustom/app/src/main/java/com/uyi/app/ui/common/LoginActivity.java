@@ -115,6 +115,37 @@ public class LoginActivity extends BaseActivity {
 
                         if (data.getBoolean("logasguardian")) {
                             if (data.getString("guardian").equals("false")) {
+
+                                userInfo.authToken = data.getString("authToken");
+                                userInfo.type = data.getInt("type");
+                                userInfo.userId = data.getInt("id");
+                                userInfo.account = data.getString("account");
+//                                userInfo.realName = data.getString("guardian");
+                                userInfo.password = password;
+//                                userInfo.icon = data.getString("guardianIcon");
+                                userInfo.address = data.has("address") ? data.getString("address") : null;
+                                userInfo.city = data.has("city") ? data.getString("city") : null;
+                                userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
+                                userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
+                                userInfo.lastLoginTime = data.getString("lastLoginTime");
+                                if(data.has("liefstyle")){
+                                    userInfo.liefstyle = data.getString("liefstyle");
+                                }
+                                if(data.has("eatinghabiit")){
+                                    userInfo.eatinghabiit = data.getString("eatinghabiit");
+                                }
+//                                userInfo.guardianIcon =  data.getString("guardianIcon");
+//                                userInfo.guardian =  data.getString("guardian");
+                                userInfo.logasguardian = true;
+                                Set<String> tags = new HashSet<String>();
+                                tags.add("bulletin");
+                                tags.add("message_customer_" + userInfo.userId);
+                                JPushInterface.setTags(activity, tags, null);
+                                if (userInfo.type != 0) {
+                                    T.showLong(activity, "只能登陆客户账户");
+                                    return;
+                                }
+                                UserInfoManager.setLoginUserInfo(activity, userInfo);
                                 startActivity(new Intent(LoginActivity.this, RegisterGuardianInfo.class));
                                 finish();
                             } else {
@@ -130,6 +161,12 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
+                                if(data.has("liefstyle")){
+                                    userInfo.liefstyle = data.getString("liefstyle");
+                                }
+                                if(data.has("eatinghabiit")){
+                                    userInfo.eatinghabiit = data.getString("eatinghabiit");
+                                }
 //                                userInfo.guardianIcon =  data.getString("guardianIcon");
 //                                userInfo.guardian =  data.getString("guardian");
                                 userInfo.logasguardian = true;
@@ -157,6 +194,12 @@ public class LoginActivity extends BaseActivity {
                             userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                             userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                             userInfo.lastLoginTime = data.getString("lastLoginTime");
+                            if(data.has("liefstyle")){
+                                userInfo.liefstyle = data.getString("liefstyle");
+                            }
+                            if(data.has("eatinghabiit")){
+                                userInfo.eatinghabiit = data.getString("eatinghabiit");
+                            }
                             userInfo.logasguardian = false;
                             Set<String> tags = new HashSet<String>();
                             tags.add("bulletin");

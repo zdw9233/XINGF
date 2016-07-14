@@ -3,14 +3,11 @@ package com.uyi.app.ui.health;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
@@ -39,12 +36,12 @@ import java.util.Map;
 public class RiskAssessmentActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String, Object>>, EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener {
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
-    @ViewInject(R.id.new_assessment_title)
-    private TextView new_assessment_title;
+    @ViewInject(R.id.new_assessment_time)
+    private TextView new_assessment_time;
     @ViewInject(R.id.risk_index)
     private TextView risk_index;
-    @ViewInject(R.id.assessment_deils)
-    private LinearLayout assessment_deils;
+    @ViewInject(R.id.deils)
+    private TextView deils;
     int isgone = 0;
     @ViewInject(R.id.recyclerView)
     private EndlessRecyclerView recyclerView;
@@ -73,18 +70,7 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         onRefresh();
     }
 
-    @OnClick(R.id.new_assessment_title)
-    public void onClick(View v) {
-        if (v.getId() == R.id.new_assessment_title) {
-            if (isgone == 0) {
-                assessment_deils.setVisibility(View.VISIBLE);
-                isgone = 1;
-            } else {
-                assessment_deils.setVisibility(View.GONE);
-                isgone = 0;
-            }
-        }
-    }
+
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
@@ -100,7 +86,6 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
     public void onRefresh() {
         pageNo = 1;
         isLooding = true;
-        datas.clear();
         recyclerView.setRefreshing(false);
         loadNextPage();
     }
@@ -124,6 +109,7 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                             Loading.bulid(activity, null).dismiss();
                             totalPage = data.getInt("pages");
                             JSONArray array = data.getJSONArray("results");
+                            if (pageNo == 1) datas.clear();
                             for (int i = 0; i < array.length(); i++) {
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
@@ -131,11 +117,19 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                                 item.put("content", jsonObject.getString("content"));
                                 item.put("createTime", jsonObject.getString("createTime"));
                                 item.put("percentage", jsonObject.getString("percentage"));
-//                                item.put("createTime", jsonObject.getString("createTime"));
+                                item.put("checked", jsonObject.getString("checked"));
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));
 
                                 datas.add(item);
                             }
+                            if(datas.size() > 0){
+                                new_assessment_time.setText(datas.get(0).get("createTime").toString());
+                                risk_index.setText("风险指数："+datas.get(0).get("percentage").toString());
+                                deils.setText(datas.get(0).get("content").toString());
+                            }else{
+                                risk_index.setText("无");
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

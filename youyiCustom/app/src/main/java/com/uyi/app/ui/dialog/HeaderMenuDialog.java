@@ -1,5 +1,15 @@
 package com.uyi.app.ui.dialog;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.service.MessageService;
@@ -9,17 +19,7 @@ import com.uyi.app.ui.dialog.MessageConform.OnMessageClick;
 import com.uyi.app.ui.dialog.MessageConform.Result;
 import com.uyi.app.ui.personal.message.MessageActivity;
 import com.uyi.app.ui.personal.schedule.ScheduleActivity;
-import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.view.Window;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
 /**
@@ -124,6 +124,7 @@ public class HeaderMenuDialog extends AbstrctDialog implements android.view.View
 	public void onClick(Result result, Object object) {
 		if(result == Result.OK){
 			UserInfoManager.clearLoginUserInfo(getContext());
+			Log.e("====================","login");
 			getContext().startActivity(new Intent(getContext(), LoginActivity.class));
 		}
 	}

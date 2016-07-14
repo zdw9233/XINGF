@@ -104,6 +104,7 @@ public class FragmentFollow extends BaseFragment implements OnRefreshListener, P
                 try {
                     totalPage = data.getInt("pages");
                     JSONArray array = data.getJSONArray("results");
+                    if (pageNo == 1) datas.clear();
                     for (int i = 0; i < array.length(); i++) {
                         Consult consult = new Consult();
                         JSONObject jsonObject = array.getJSONObject(i);
@@ -136,7 +137,6 @@ public class FragmentFollow extends BaseFragment implements OnRefreshListener, P
     public void onRefresh() {
         pageNo = 1;
         isLooding = true;
-        datas.clear();
         recyclerView.setRefreshing(false);
         loadNextPage();
     }

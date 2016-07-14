@@ -83,7 +83,7 @@ public class HeaderView extends LinearLayout implements View.OnClickListener {
 		view_header_two.setOnClickListener(this);
 		view_header_three.setOnClickListener(this);
 		
-		rightMenuDialog = new RightMenuDialog(context);
+
 		headerMenuDialog = new HeaderMenuDialog(context);
 	}
 	
@@ -244,7 +244,8 @@ public class HeaderView extends LinearLayout implements View.OnClickListener {
 			view_header_right_icon.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-						rightMenuDialog.show();
+					rightMenuDialog = new RightMenuDialog(context);
+					rightMenuDialog.show();
 				}
 			});
 		}else{

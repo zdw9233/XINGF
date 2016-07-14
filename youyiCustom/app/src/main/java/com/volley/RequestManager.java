@@ -1,5 +1,7 @@
 package com.volley;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +40,6 @@ public class RequestManager {
      * @param <T>
      * @param url
      * @param tag
-     * @param listener
      */
     public static void getObject(String url, Object tag, Response.Listener<JSONObject> successListener) {
     	getObject(url, tag, null, successListener,null);
@@ -48,7 +49,6 @@ public class RequestManager {
 	 * @param <T>
 	 * @param url
 	 * @param tag
-	 * @param listener
 	 */
 	public static void getObjectNOtoken(String url, Object tag, Response.Listener<JSONObject> successListener) {
 		getObject(url, tag, null, successListener,null);
@@ -58,7 +58,6 @@ public class RequestManager {
      * @param url
      * @param tag
      * @param params
-     * @param listener
      */
     public static void getObject(String url, Object tag,JSONObject params,Response.Listener<JSONObject> successListener,RequestErrorListener errorListener) {
     	JsonObjectRequest  request = new JsonObjectRequest(Method.GET,url, params, successListener, responseError(errorListener)){
@@ -80,7 +79,6 @@ public class RequestManager {
 	 * @param url
 	 * @param tag
 	 * @param params
-	 * @param listener
 	 */
 	public static void getObjectNotoken(String url, Object tag,JSONObject params,Response.Listener<JSONObject> successListener,RequestErrorListener errorListener) {
 		JsonObjectRequest  request = new JsonObjectRequest(Method.GET,url, params, successListener, responseError(errorListener)){
@@ -98,7 +96,6 @@ public class RequestManager {
      * 
      * @param url
      * @param tag
-     * @param listener
      */
     public static void postObject(String url, Object tag, Response.Listener<JSONObject> successListener) {
     	postObject(url, tag, null, successListener,null);
@@ -111,10 +108,12 @@ public class RequestManager {
      * @param params
      * @param listener
      */
-    public static void postObject(String url, Object tag, JSONObject params, Response.Listener<JSONObject> litenner ,RequestErrorListener errorListener) {
+    public static void postObject(String url, Object tag, final JSONObject params, Response.Listener<JSONObject> litenner , RequestErrorListener errorListener) {
     	JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){
+
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
+				Log.e("url",params.toString());
 				Map<String, String> headers = new HashMap<>();
 				if(UserInfoManager.getLoginUserInfo(UYIApplication.getContext())!= null){
 					headers.put("authToken",UserInfoManager.getLoginUserInfo(UYIApplication.getContext()).authToken);

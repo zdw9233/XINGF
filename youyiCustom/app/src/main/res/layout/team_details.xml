@@ -290,6 +290,6 @@
 	          android:paddingTop="10dp"
 	          android:layout_gravity="center_vertical"
 	          android:paddingBottom="10dp"	   
-	          android:text="立即加入"/>
+	          android:text="立即转入"/>
 	      </LinearLayout>
 </LinearLayout>

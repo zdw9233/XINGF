@@ -15,7 +15,7 @@
        android:layout_marginLeft="10dp"
        android:layout_marginRight="10dp"
        android:layout_height="wrap_content"
-       android:text="android实现欢迎界面的自动跳转，就是打开某一个安卓手机应用，出现的欢迎界面停留几秒钟，自动进入应用程序的主界面。在网上看到很多种实现办法，但是感觉这种方法还是比较简单的。"
+       android:text=""
        android:textSize="@dimen/font_style_15"
        android:minLines="10"/>
 </LinearLayout>

@@ -103,10 +103,13 @@ public abstract class Constens {
     //登陆
     public final static String LOGIN_URL = SERVER_URL + "/app/api/account/login";
     //录入监护人资料
-    public final static String GUADIANINFO = SERVER_URL + "/app/api/account/guardianinfo";
+    public final static String GUADIANINFO = SERVER_URL + "/app/api/account/update";
     //获取问题答案列表
     public final static String SAFE_QUESTIONS = SERVER_URL + "/app/api/common/safe/questions";
-
+    //是否有新的未读
+    public final static String MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/get/manage/customer";
+    //更新是否有未读
+    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/updata/manage/customer?type=%s";
     /**
      * 客户充值健康豆 ${money} POST
      */
@@ -152,7 +155,10 @@ public abstract class Constens {
      * 市查询
      */
     public final static String PROVINCD = SERVER_URL + "/app/api/common/cities/province/%s";
-
+    /**
+     * 服務查询
+     */
+    public final static String SERVICE_NUMBER =  SERVER_URL + "/app/api/servicePackage/getCustomerServiceDetail";
     /**
      * 患者注册
      */

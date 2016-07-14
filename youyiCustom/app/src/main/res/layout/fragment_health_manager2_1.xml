@@ -24,7 +24,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/add_icon" />
+                android:src="@drawable/health_management_banner" />
 
 
             <LinearLayout
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
                 android:layout_marginBottom="4dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#34b7ff"
                 android:orientation="horizontal">
@@ -43,7 +43,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/diagnosis" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -122,7 +122,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/report" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -193,7 +193,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/database" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -264,7 +264,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/assessment" />
 
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -298,6 +298,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/assessment_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -335,7 +336,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/life" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -374,6 +375,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/life_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -407,7 +409,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/diet" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -445,6 +447,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/diet_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
