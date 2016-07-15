@@ -16,7 +16,7 @@
             android:layout_height="35dp"
             android:background="@drawable/hui_stroke"
             android:padding="8dp"
-            android:text="2016-6-5" />
+            android:text="请选择就医时间" />
 
         <TextView
             android:id="@+id/choice_date"

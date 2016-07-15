@@ -1,5 +1,7 @@
 package com.uyi.app.ui.common;
 
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -19,10 +22,14 @@ import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.HealthInfo;
 import com.uyi.app.model.bean.UserInfo;
+import com.uyi.app.ui.common.model.AbnormalEvent;
 import com.uyi.app.ui.common.model.Health;
+import com.uyi.app.ui.common.model.Medicine;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.ui.personal.schedule.DatePickerActivity;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.UYIUtils;
 import com.uyi.app.utils.ValidationUtils;
@@ -30,10 +37,14 @@ import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -97,7 +108,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
     @ViewInject(R.id.regester_info_xueguanfashengshijian)
     private TextView regester_info_xueguanfashengshijian;
     @ViewInject(R.id.regester_info_xueguanfashengleixing)
-    private TextView regester_info_xueguanfashengleixing;
+    private Spinner regester_info_xueguanfashengleixing;
     @ViewInject(R.id.register_info_qitaleixin)
     private EditText register_info_qitaleixin;
     @ViewInject(R.id.register_info_four_submit)
@@ -160,32 +171,19 @@ public class RegisterInfoAcitivity extends BaseActivity {
     private UserInfo userInfo;
     private String gender;            //性别
     public int update = 0;            //1为更新信息
-    String height = "";
-    String weight = "";
-    String healthCondition = "";
-    String chronicDiseaseType = "0";
-    String medical = "";
-    String infection = "";
-    String trauma = "";
-    String operation = "";
-    String pregnancy = "";
-    String menstruation = "";
-    String allergic = "";
-    String blood = "";
-    String familyMedical = "";
-    String others = "";
-    String vaccinationHistory = "";
-    String retrospection = "";
-//	String menstruation ="";
-//	String menstruation ="";
-//	String menstruation ="";
-//	String menstruation ="";
-
 
     private Health health;
     private Health.HealthInfoBean mHealthInfo;
     private List<Health.HealthInfoBean.ExternalSituationsBean> externalSituationsList;
     private List<Health.HealthInfoBean.MedicationUsingSituationsBean> medicationUsingSituationsList;
+
+    private List<View> outViews;
+    private List<View> yyViews;
+
+    private String[] ywmString;
+
+    private HashMap<String, Medicine> medicines = new HashMap<>();
+    private HashMap<String, AbnormalEvent> abnormalEvents = new HashMap<>();
 
     @Override
     protected void onInitLayoutAfter() {
@@ -231,10 +229,43 @@ public class RegisterInfoAcitivity extends BaseActivity {
 //			});
 //		}
         health = new Health();
-        health.healthInfo = mHealthInfo;
         mHealthInfo = new Health.HealthInfoBean();
+        health.healthInfo = mHealthInfo;
+        externalSituationsList = new ArrayList<>();
+        medicationUsingSituationsList = new ArrayList<>();
         mHealthInfo.externalSituations = externalSituationsList;
         mHealthInfo.medicationUsingSituations = medicationUsingSituationsList;
+        outViews = new ArrayList<>();
+        yyViews = new ArrayList<>();
+
+        initViews();
+
+        requestDrowMenuData();
+    }
+
+    private void requestDrowMenuData() {
+        RequestManager.getArray(Constens.ABNORMAL_EVENT, this, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                com.alibaba.fastjson.JSONArray objects = JSON.parseArray(jsonArray.toString());
+                for (int i = 0; i < objects.size(); i++) {
+                    AbnormalEvent event = JSON.parseObject(objects.getString(i), AbnormalEvent.class);
+                    abnormalEvents.put(event.name, event);
+                    regester_info_xueguanfashengleixing.setAdapter(new ArrayAdapter<>(RegisterInfoAcitivity.this, R.layout.layout_spinner_item, R.id.textView2, toStringArray(abnormalEvents.keySet())));
+                }
+            }
+        });
+        RequestManager.getArray(Constens.GET_MEDICINE, this, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                com.alibaba.fastjson.JSONArray objects = JSON.parseArray(jsonArray.toString());
+                for (int i = 0; i < objects.size(); i++) {
+                    Medicine event = JSON.parseObject(objects.getString(i), Medicine.class);
+                    medicines.put(event.name, event);
+                    yaowuName.setAdapter(new ArrayAdapter<>(RegisterInfoAcitivity.this, R.layout.layout_spinner_item, R.id.textView2, ywmString = toStringArray(medicines.keySet())));
+                }
+            }
+        });
     }
 
     public void replaceView(int index) {
@@ -282,17 +313,26 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 break;
             case 2:
                 String jbs = register_info_gerenjiwangbinshi.getText().toString();
-                String crbs = register_info_gerenjiwangbinshi.getText().toString();
-                String wss = register_info_gerenjiwangbinshi.getText().toString();
-                String sss = register_info_gerenjiwangbinshi.getText().toString();
-                String nxhzhr = register_info_gerenjiwangbinshi.getText().toString();
-                String nxhzjxqk = register_info_gerenjiwangbinshi.getText().toString();
-                String zds = register_info_gerenjiwangbinshi.getText().toString();
-                String sxs = register_info_gerenjiwangbinshi.getText().toString();
-                String qtbs = register_info_gerenjiwangbinshi.getText().toString();
-                String jzbs = register_info_gerenjiwangbinshi.getText().toString();
-                String yfjzs = register_info_gerenjiwangbinshi.getText().toString();
-                String xthg = register_info_gerenjiwangbinshi.getText().toString();
+                String crbs = register_info_chuanrangbingshi.getText().toString();
+                String wss = register_info_waishang.getText().toString();
+                String sss = register_info_shoushushi.getText().toString();
+                String nxhzhr = register_info_liucanshi.getText().toString();
+                String nxhzjxqk = register_info_yuejing.getText().toString();
+                String zds = register_info_zhongdushi.getText().toString();
+                String sxs = register_info_shuxueshi.getText().toString();
+                String qtbs = register_info_qitabinshi.getText().toString();
+                String jzbs = register_info_jiazhubinshi.getText().toString();
+                String yfjzs = register_info_yufangjiezhonshi.getText().toString();
+                String xthg = register_info_xitonghuigu.getText().toString();
+
+                externalSituationsList.clear();
+                for (int i = 0; i < outViews.size(); i++) {
+                    OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
+                    Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
+                    bean.content = outHolder.msgText.getText().toString();
+                    bean.treatmentTime = outHolder.dateText.getText().toString();
+                    externalSituationsList.add(bean);
+                }
 
                 mHealthInfo.medical = jbs;
                 mHealthInfo.infection = crbs;
@@ -308,12 +348,62 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 mHealthInfo.retrospection = xthg;
                 break;
             case 3:
-                String singleDose = regester_three_danciyonyaoliang.getText().toString();
-
+                medicationUsingSituationsList.clear();
+                for (int i = 0; i < yyViews.size(); i++) {
+                    Holder holder = (Holder) yyViews.get(i).getTag();
+                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
+                    bean.endTime = holder.endTime.getText().toString();
+                    bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
+                    Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
+                    if (m != null) {
+                        bean.medicineId = m.id;
+                        bean.medicineName = m.name;
+                    }
+                    bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
+                    bean.singleDose = holder.dcyyl.getText().toString();
+                    bean.startTime = holder.startTime.getText().toString();
+                    bean.usingFrequency = (String) holder.yypd.getSelectedItem();
+                    medicationUsingSituationsList.add(bean);
+                }
+                String gms = register_info_guomingshi.getText().toString();  //过敏史
+                String cyy = register_info_chengyingdeyaowu.getText().toString(); //成瘾史
+                mHealthInfo.historyOfAllergy = gms;
+                mHealthInfo.drugAddiction = cyy;
                 break;
             case 4:
+                Health.HealthInfoBean.AbnormalEventJsonsBean abnormalEventJsonsBean = new Health.HealthInfoBean.AbnormalEventJsonsBean();
+                String fsTime = regester_info_xueguanfashengshijian.getText().toString(); // 发生时间
+                String fsType = regester_info_xueguanfashengleixing.getSelectedItem().toString(); //发生类型
+                abnormalEventJsonsBean.description = register_info_qitaleixin.getText().toString();
+                AbnormalEvent ae = abnormalEvents.get(fsType);
+                if (ae != null) {
+                    abnormalEventJsonsBean.eventType = ae.eventType;
+                    abnormalEventJsonsBean.id = ae.id;
+                    abnormalEventJsonsBean.name = ae.name;
+                }
+                abnormalEventJsonsBean.time = fsTime;
+                mHealthInfo.abnormalEventJsons = abnormalEventJsonsBean;
                 break;
         }
+    }
+
+    private void initViews() {
+        Holder holder = new Holder();
+        holder.startTime = tv_start_time;
+        holder.endTime = tv_end_time;
+        holder.dcyyl = regester_three_danciyonyaoliang;
+        holder.timeUnit = timeUnit;
+        holder.valueUnit = valueUnit;
+        holder.yaowuName = yaowuName;
+        holder.yypd = yypd;
+        register_info_three.setTag(holder);
+        yyViews.add(register_info_three);
+
+        OutHolder outHolder = new OutHolder();
+        outHolder.dateText = (TextView) findViewById(R.id.tv_two_date);
+        outHolder.msgText = (EditText) findViewById(R.id.register_info_xitongwaijiuyi);
+        register_info_two.setTag(outHolder);
+        outViews.add(register_info_two);
     }
 
     @OnClick({
@@ -326,7 +416,10 @@ public class RegisterInfoAcitivity extends BaseActivity {
             R.id.addmedicationsituation,
             R.id.layout_start_time,
             R.id.layout_end_time,
+            R.id.regester_info_xueguanfashengshijian,
+            R.id.tv_two_choice_date,
             R.id.tv_add_system_out
+
     })
     public void onUpdate(View v) {
         switch (v.getId()) {
@@ -334,214 +427,280 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 finish();
                 break;
             case R.id.addmedicationsituation:
+                if (checkYYBeforeIsFull()) {
+                    View view = mInflater.inflate(R.layout.item_medicationsituation, null);
 
-                View view = mInflater.inflate(R.layout.item_medicationsituation, null);
-
-                Spinner yaowuName = (Spinner) view.findViewById(R.id.yaowuName);
-                yaowuName.setAdapter(new ArrayAdapter<>(this, R.layout.layout_spinner_item, R.id.textView2, new String[]{"药物名"}));
-                Spinner yypd = (Spinner) view.findViewById(R.id.yypd);
-                yypd.setAdapter(new ArrayAdapter<>(this, R.layout.layout_spinner_item, R.id.textView2, new String[]{"用药频度"}));
-
-                add_view_layout.addView(view);
-
+                    final Holder holder = new Holder();
+                    holder.startTime = (TextView) view.findViewById(R.id.tv_start_time);
+                    holder.endTime = (TextView) view.findViewById(R.id.tv_end_time);
+                    holder.dcyyl = (EditText) view.findViewById(R.id.regester_three_danciyonyaoliang);
+                    holder.timeUnit = (Spinner) view.findViewById(R.id.timeUnit);
+                    holder.valueUnit = (Spinner) view.findViewById(R.id.valueUnit);
+                    holder.yaowuName = (Spinner) view.findViewById(R.id.yaowuName);
+                    holder.yaowuName.setAdapter(new ArrayAdapter<>(this, R.layout.layout_spinner_item, R.id.textView2, ywmString));
+                    holder.yypd = (Spinner) view.findViewById(R.id.yypd);
+                    final int num = yyViews.size();
+                    holder.startTime.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startDatePicker(200 + num, null);
+                        }
+                    });
+                    holder.endTime.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String sDate = holder.startTime.getText().toString().trim();
+                            if (sDate.equals("开始服药日期")) sDate = null;
+                            startDatePicker(300 + num, sDate);
+                        }
+                    });
+                    view.setTag(holder);
+                    yyViews.add(view);
+                    add_view_layout.addView(view);
+                } else T.showShort(this, "请完善用药信息再试");
                 break;
             case R.id.register_info_one_submit:
                 replaceView(2);
+                setValue(1);
                 break;
             case R.id.register_info_two_submit:
                 replaceView(3);
+                setValue(2);
                 break;
             case R.id.register_info_three_submit:
                 replaceView(4);
+                setValue(3);
                 break;
-            case R.id.register_info_four_submit:
-                if (userInfo == null) {
-                    T.showLong(activity, "获取注册信息失败!");
-                    return;
-                }
-                healthInfo.setMedical(register_info_gerenjiwangbinshi.getText().toString());
-                healthInfo.setInfection(register_info_chuanrangbingshi.getText().toString());
-                healthInfo.setTrauma(register_info_waishang.getText().toString());
-                healthInfo.setOperation(register_info_shoushushi.getText().toString());
-                healthInfo.setPregnancy(register_info_liucanshi.getText().toString());
-                healthInfo.setMenstruation(register_info_yuejing.getText().toString());
-                healthInfo.setAllergic(register_info_guomingshi.getText().toString());
-                healthInfo.setBlood(register_info_shuxueshi.getText().toString());
-                healthInfo.setFamilyMedical(register_info_jiazhubinshi.getText().toString());
-                healthInfo.setCurrent(register_info_muqianfuyaoqingkuang.getText().toString());
-                healthInfo.setOthers(register_info_qitabuchongqingkuang.getText().toString());
-                healthInfo.setUserId(userInfo.userId);
+            case R.id.register_info_four_submit:  //提交健康资料
+                setValue(4);
+                L.e(JSON.toJSONString(health));
+                JSONObject object = null;
                 try {
-                    JSONObject healthInfoObject = new JSONObject();
-                    if (!ValidationUtils.isNull(healthInfo.getMedical())) {
-                        healthInfoObject.put("medical", healthInfo.getMedical());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getInfection())) {
-                        healthInfoObject.put("infection", healthInfo.getInfection());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getTrauma())) {
-                        healthInfoObject.put("trauma", healthInfo.getTrauma());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getOperation())) {
-                        healthInfoObject.put("operation", healthInfo.getOperation());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getPregnancy())) {
-                        healthInfoObject.put("pregnancy", healthInfo.getPregnancy());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getMenstruation())) {
-                        healthInfoObject.put("menstruation", healthInfo.getMenstruation());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getAllergic())) {
-                        healthInfoObject.put("allergic", healthInfo.getAllergic());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getBlood())) {
-                        healthInfoObject.put("blood", healthInfo.getBlood());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getFamilyMedical())) {
-                        healthInfoObject.put("familyMedical", healthInfo.getFamilyMedical());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getCurrent())) {
-                        healthInfoObject.put("current", healthInfo.getCurrent());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getOthers())) {
-                        healthInfoObject.put("others", healthInfo.getOthers());
-                    }
-                    JSONObject params = new JSONObject();
-                    params.put("healthInfo", healthInfoObject);
-                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, new Response.Listener<JSONObject>() {
-                        public void onResponse(JSONObject arg0) {
-                            if (update == 1) {
-                                T.showShort(activity, "修改成功!");
-                            } else {
-                                register_info_one.setVisibility(View.GONE);
-                                register_info_two.setVisibility(View.VISIBLE);
-                                headerView.setTitle("填写完成");
-                            }
-                        }
-                    }, new RequestErrorListener() {
-                        @Override
-                        public void requestError(VolleyError e) {
-                            if (update == 1) {
-                                T.showShort(activity, "修改成功!");
-                            } else {
-                                register_info_one.setVisibility(View.GONE);
-                                register_info_two.setVisibility(View.VISIBLE);
-                                headerView.setTitle("填写完成");
-                            }
-                        }
-                    });
+                    object = new JSONObject(JSON.toJSONString(health));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-//			replaceView(5);
-                break;
-            case R.id.register_info_submit:
-                if (userInfo == null) {
-                    T.showLong(activity, "获取注册信息失败!");
-                    return;
-                }
-                healthInfo.setMedical(register_info_gerenjiwangbinshi.getText().toString());
-                healthInfo.setInfection(register_info_chuanrangbingshi.getText().toString());
-                healthInfo.setTrauma(register_info_waishang.getText().toString());
-                healthInfo.setOperation(register_info_shoushushi.getText().toString());
-                healthInfo.setPregnancy(register_info_liucanshi.getText().toString());
-                healthInfo.setMenstruation(register_info_yuejing.getText().toString());
-                healthInfo.setAllergic(register_info_guomingshi.getText().toString());
-                healthInfo.setBlood(register_info_shuxueshi.getText().toString());
-                healthInfo.setFamilyMedical(register_info_jiazhubinshi.getText().toString());
-                healthInfo.setCurrent(register_info_muqianfuyaoqingkuang.getText().toString());
-                healthInfo.setOthers(register_info_qitabuchongqingkuang.getText().toString());
-                healthInfo.setUserId(userInfo.userId);
-                try {
-                    JSONObject healthInfoObject = new JSONObject();
-                    if (!ValidationUtils.isNull(healthInfo.getMedical())) {
-                        healthInfoObject.put("medical", healthInfo.getMedical());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getInfection())) {
-                        healthInfoObject.put("infection", healthInfo.getInfection());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getTrauma())) {
-                        healthInfoObject.put("trauma", healthInfo.getTrauma());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getOperation())) {
-                        healthInfoObject.put("operation", healthInfo.getOperation());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getPregnancy())) {
-                        healthInfoObject.put("pregnancy", healthInfo.getPregnancy());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getMenstruation())) {
-                        healthInfoObject.put("menstruation", healthInfo.getMenstruation());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getAllergic())) {
-                        healthInfoObject.put("allergic", healthInfo.getAllergic());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getBlood())) {
-                        healthInfoObject.put("blood", healthInfo.getBlood());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getFamilyMedical())) {
-                        healthInfoObject.put("familyMedical", healthInfo.getFamilyMedical());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getCurrent())) {
-                        healthInfoObject.put("current", healthInfo.getCurrent());
-                    }
-
-                    if (!ValidationUtils.isNull(healthInfo.getOthers())) {
-                        healthInfoObject.put("others", healthInfo.getOthers());
-                    }
-                    JSONObject params = new JSONObject();
-                    params.put("healthInfo", healthInfoObject);
-                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, new Response.Listener<JSONObject>() {
-                        public void onResponse(JSONObject arg0) {
-                            if (update == 1) {
-                                T.showShort(activity, "修改成功!");
-                            } else {
-                                register_info_one.setVisibility(View.GONE);
-                                register_info_five.setVisibility(View.VISIBLE);
-                                headerView.setTitle("填写完成");
-                            }
-                        }
-                    }, new RequestErrorListener() {
+                if (update == 0) {
+                    RequestManager.postObject(Constens.UPDATE_HEALTH_ZL, this, object, null, new RequestErrorListener() {
                         @Override
                         public void requestError(VolleyError e) {
-                            if (update == 1) {
-                                T.showShort(activity, "修改成功!");
-                            } else {
-                                register_info_one.setVisibility(View.GONE);
-                                register_info_five.setVisibility(View.VISIBLE);
-                                headerView.setTitle("填写完成");
-                            }
+                            L.e(e.toString());
+                            e.printStackTrace();
                         }
                     });
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+//                if (userInfo == null) {
+//                    T.showLong(activity, "获取注册信息失败!");
+//                    return;
+//                }
+//                healthInfo.setMedical(register_info_gerenjiwangbinshi.getText().toString());
+//                healthInfo.setInfection(register_info_chuanrangbingshi.getText().toString());
+//                healthInfo.setTrauma(register_info_waishang.getText().toString());
+//                healthInfo.setOperation(register_info_shoushushi.getText().toString());
+//                healthInfo.setPregnancy(register_info_liucanshi.getText().toString());
+//                healthInfo.setMenstruation(register_info_yuejing.getText().toString());
+//                healthInfo.setAllergic(register_info_guomingshi.getText().toString());
+//                healthInfo.setBlood(register_info_shuxueshi.getText().toString());
+//                healthInfo.setFamilyMedical(register_info_jiazhubinshi.getText().toString());
+//                healthInfo.setCurrent(register_info_muqianfuyaoqingkuang.getText().toString());
+//                healthInfo.setOthers(register_info_qitabuchongqingkuang.getText().toString());
+//                healthInfo.setUserId(userInfo.userId);
+//                try {
+//                    JSONObject healthInfoObject = new JSONObject();
+//                    if (!ValidationUtils.isNull(healthInfo.getMedical())) {
+//                        healthInfoObject.put("medical", healthInfo.getMedical());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getInfection())) {
+//                        healthInfoObject.put("infection", healthInfo.getInfection());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getTrauma())) {
+//                        healthInfoObject.put("trauma", healthInfo.getTrauma());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getOperation())) {
+//                        healthInfoObject.put("operation", healthInfo.getOperation());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getPregnancy())) {
+//                        healthInfoObject.put("pregnancy", healthInfo.getPregnancy());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getMenstruation())) {
+//                        healthInfoObject.put("menstruation", healthInfo.getMenstruation());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getAllergic())) {
+//                        healthInfoObject.put("allergic", healthInfo.getAllergic());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getBlood())) {
+//                        healthInfoObject.put("blood", healthInfo.getBlood());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getFamilyMedical())) {
+//                        healthInfoObject.put("familyMedical", healthInfo.getFamilyMedical());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getCurrent())) {
+//                        healthInfoObject.put("current", healthInfo.getCurrent());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getOthers())) {
+//                        healthInfoObject.put("others", healthInfo.getOthers());
+//                    }
+//                    JSONObject params = new JSONObject();
+//                    params.put("healthInfo", healthInfoObject);
+//                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, new Response.Listener<JSONObject>() {
+//                        public void onResponse(JSONObject arg0) {
+//                            if (update == 1) {
+//                                T.showShort(activity, "修改成功!");
+//                            } else {
+//                                register_info_one.setVisibility(View.GONE);
+//                                register_info_two.setVisibility(View.VISIBLE);
+//                                headerView.setTitle("填写完成");
+//                            }
+//                        }
+//                    }, new RequestErrorListener() {
+//                        @Override
+//                        public void requestError(VolleyError e) {
+//                            if (update == 1) {
+//                                T.showShort(activity, "修改成功!");
+//                            } else {
+//                                register_info_one.setVisibility(View.GONE);
+//                                register_info_two.setVisibility(View.VISIBLE);
+//                                headerView.setTitle("填写完成");
+//                            }
+//                        }
+//                    });
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+////			replaceView(5);
+
                 break;
+//            case R.id.register_info_submit:
+//                if (userInfo == null) {
+//                    T.showLong(activity, "获取注册信息失败!");
+//                    return;
+//                }
+//                healthInfo.setMedical(register_info_gerenjiwangbinshi.getText().toString());
+//                healthInfo.setInfection(register_info_chuanrangbingshi.getText().toString());
+//                healthInfo.setTrauma(register_info_waishang.getText().toString());
+//                healthInfo.setOperation(register_info_shoushushi.getText().toString());
+//                healthInfo.setPregnancy(register_info_liucanshi.getText().toString());
+//                healthInfo.setMenstruation(register_info_yuejing.getText().toString());
+//                healthInfo.setAllergic(register_info_guomingshi.getText().toString());
+//                healthInfo.setBlood(register_info_shuxueshi.getText().toString());
+//                healthInfo.setFamilyMedical(register_info_jiazhubinshi.getText().toString());
+//                healthInfo.setCurrent(register_info_muqianfuyaoqingkuang.getText().toString());
+//                healthInfo.setOthers(register_info_qitabuchongqingkuang.getText().toString());
+//                healthInfo.setUserId(userInfo.userId);
+//                try {
+//                    JSONObject healthInfoObject = new JSONObject();
+//                    if (!ValidationUtils.isNull(healthInfo.getMedical())) {
+//                        healthInfoObject.put("medical", healthInfo.getMedical());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getInfection())) {
+//                        healthInfoObject.put("infection", healthInfo.getInfection());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getTrauma())) {
+//                        healthInfoObject.put("trauma", healthInfo.getTrauma());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getOperation())) {
+//                        healthInfoObject.put("operation", healthInfo.getOperation());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getPregnancy())) {
+//                        healthInfoObject.put("pregnancy", healthInfo.getPregnancy());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getMenstruation())) {
+//                        healthInfoObject.put("menstruation", healthInfo.getMenstruation());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getAllergic())) {
+//                        healthInfoObject.put("allergic", healthInfo.getAllergic());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getBlood())) {
+//                        healthInfoObject.put("blood", healthInfo.getBlood());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getFamilyMedical())) {
+//                        healthInfoObject.put("familyMedical", healthInfo.getFamilyMedical());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getCurrent())) {
+//                        healthInfoObject.put("current", healthInfo.getCurrent());
+//                    }
+//
+//                    if (!ValidationUtils.isNull(healthInfo.getOthers())) {
+//                        healthInfoObject.put("others", healthInfo.getOthers());
+//                    }
+//                    JSONObject params = new JSONObject();
+//                    params.put("healthInfo", healthInfoObject);
+//                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, new Response.Listener<JSONObject>() {
+//                        public void onResponse(JSONObject arg0) {
+//                            if (update == 1) {
+//                                T.showShort(activity, "修改成功!");
+//                            } else {
+//                                register_info_one.setVisibility(View.GONE);
+//                                register_info_five.setVisibility(View.VISIBLE);
+//                                headerView.setTitle("填写完成");
+//                            }
+//                        }
+//                    }, new RequestErrorListener() {
+//                        @Override
+//                        public void requestError(VolleyError e) {
+//                            if (update == 1) {
+//                                T.showShort(activity, "修改成功!");
+//                            } else {
+//                                register_info_one.setVisibility(View.GONE);
+//                                register_info_five.setVisibility(View.VISIBLE);
+//                                headerView.setTitle("填写完成");
+//                            }
+//                        }
+//                    });
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                break;
             case R.id.layout_start_time:
+                startDatePicker(200, null);
                 break;
             case R.id.layout_end_time:
+                String sDate = tv_start_time.getText().toString().trim();
+                if (sDate.equals("开始服药日期")) sDate = null;
+                startDatePicker(300, sDate);
                 break;
             case R.id.tv_add_system_out:
-                View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
-                add_system_out_layout.addView(vs);
+                if (checkOutBeforeIsFull()) {
+                    View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
+                    OutHolder outHolder = new OutHolder();
+                    outHolder.dateText = (TextView) vs.findViewById(R.id.date);
+                    outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
+                    final int pos = outViews.size();
+                    vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startDatePicker(100 + pos, null);
+                        }
+                    });
+                    vs.setTag(outHolder);
+                    outViews.add(vs);
+                    add_system_out_layout.addView(vs);
+                } else T.showShort(this, "请完善就医情况");
+                break;
+            case R.id.regester_info_xueguanfashengshijian:
+                startDatePicker(400, null);
+                break;
+            case R.id.tv_two_choice_date://系统外就医时间选择
+                startDatePicker(100, null);
                 break;
         }
     }
@@ -562,5 +721,91 @@ public class RegisterInfoAcitivity extends BaseActivity {
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
         headerView.setKitkat(systemBarConfig);
+    }
+
+    private class OutHolder {
+        public TextView dateText;
+        public EditText msgText;
+    }
+
+    private class Holder {
+        public TextView startTime;
+        public TextView endTime;
+        public Spinner yaowuName;
+        public Spinner yypd;
+        public Spinner timeUnit;
+        public EditText dcyyl;
+        public Spinner valueUnit;
+    }
+
+    private boolean checkYYBeforeIsFull() {
+        for (View view : yyViews) {
+            Holder holder = (Holder) view.getTag();
+            if (TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
+                    TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
+                    holder.yaowuName.getSelectedItem().equals("药物名") ||
+                    holder.yypd.getSelectedItem().equals("用药频度") ||
+                    TextUtils.isEmpty(holder.dcyyl.getText().toString().trim())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkOutBeforeIsFull() {
+        for (View view : outViews) {
+            OutHolder holder = (OutHolder) view.getTag();
+            if (holder.dateText.getText().toString().equals("请选择就医时间") ||
+                    TextUtils.isEmpty(holder.msgText.getText().toString().trim())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private String[] toStringArray(Set<String> strings) {
+        String[] strings1 = new String[strings.size()];
+        int i = 0;
+        for (String s : strings) {
+            strings1[i] = s;
+            i++;
+        }
+        return strings1;
+    }
+
+    /**
+     * @param requestCode 100-199 系统外就医 200-299 服药开始时间，300-399服药结束时间 400-499 血管事件发生时间
+     */
+    private void startDatePicker(int requestCode, String sDate) {
+        Intent intent
+                = new Intent(this, DatePickerActivity.class);
+        intent.putExtra("sDate", sDate);
+        startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            int ys = requestCode % 100;
+            String date = data.getStringExtra("date");
+            switch (requestCode / 100) {
+                case 1:    //系统外就医
+                    OutHolder outHolder = (OutHolder) outViews.get(ys).getTag();
+                    outHolder.dateText.setText(date);
+                    break;
+                case 2:        //服药开始时间
+                    Holder holder = (Holder) yyViews.get(ys).getTag();
+                    holder.startTime.setText(date);
+                    break;
+                case 3:     //服药结束时间
+                    Holder holder1 = (Holder) yyViews.get(ys).getTag();
+                    holder1.endTime.setText(date);
+                    break;
+                case 4:         //血管时间发生时间
+                    regester_info_xueguanfashengshijian.setText(date);
+                    break;
+            }
+        }
     }
 }

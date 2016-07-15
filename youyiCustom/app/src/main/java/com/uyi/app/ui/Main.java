@@ -235,8 +235,7 @@ public class Main extends BaseFragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constens.BACK_LOGIN && resultCode == RESULT_OK) {
-
-
+            onInitLayoutAfter();
         }
     }
 

@@ -26,6 +26,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_start_time"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -63,6 +64,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_end_time"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -123,7 +125,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:dropDownWidth="match_parent"
-                android:entries="@array/time_unit"
+                android:entries="@array/medicine_pd"
                 android:gravity="center_vertical" />
 
             <ImageView
