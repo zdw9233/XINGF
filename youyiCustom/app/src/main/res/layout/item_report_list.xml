@@ -15,9 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:drawableLeft="@mipmap/file_report"
+            android:drawableLeft="@drawable/file_report"
             android:drawablePadding="16dp"
-            android:drawableStart="@mipmap/file_report"
+            android:drawableStart="@drawable/file_report"
             android:gravity="center_vertical"
             android:text="检测项目"
             android:textColor="@color/text_clr"
@@ -52,4 +52,7 @@
             android:textColor="@color/text2_clr" />
     </TableRow>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
 </LinearLayout>
