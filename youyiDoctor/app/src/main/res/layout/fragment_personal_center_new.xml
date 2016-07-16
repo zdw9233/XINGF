@@ -23,7 +23,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/add_icon" />
+                android:src="@drawable/index_banner" />
 
 
             <LinearLayout
@@ -42,7 +42,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/schedule" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -123,7 +123,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/notice" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -194,7 +194,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/consulting" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -265,7 +265,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/user" />
 
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -336,7 +336,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/question" />
 
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -414,7 +414,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/messagemanager" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -485,7 +485,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/announcement" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -609,7 +609,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/discussion" />
 
             </LinearLayout>
         </LinearLayout>

@@ -130,7 +130,6 @@ public class RequestManager {
 	 * @param url
 	 * @param tag
 	 * @param params
-	 * @param listener
 	 */
 	public static void postObjectNotoken(String url, Object tag, JSONObject params, Response.Listener<JSONObject> litenner ,RequestErrorListener errorListener) {
 		JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){
@@ -271,6 +270,7 @@ public class RequestManager {
 			public void onErrorResponse(VolleyError e) {
 				if(l == null){
 					T.show(UYIApplication.getContext(), ErrorCode.getErrorByNetworkResponse(e.networkResponse), -1);
+//					Log.e("tag","P都没有返回");
 				}else{
 					l.requestError(e);
 				}

@@ -58,7 +58,7 @@
         </service>
 
         <activity
-            android:name="com.uyi.app.ui.Main"
+            android:name="com.uyi.app.ui.common.WelcomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
@@ -75,6 +75,12 @@
 
         <activity
             android:name="com.uyi.app.ui.RecylerViewActiviry"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.uyi.app.ui.health.HealthDatabaseActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.uyi.app.ui.Main"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.uyi.app.ui.common.LoginActivity"

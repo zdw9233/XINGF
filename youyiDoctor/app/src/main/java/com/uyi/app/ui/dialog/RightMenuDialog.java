@@ -48,10 +48,10 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 		right_menu_baoj.setOnClickListener(this);
 		right_menu_shofei.setOnClickListener(this);
 		int type = UserInfoManager.getLoginUserInfo(getContext()).type;
-		if(type == 2){
-			right_menu_baoj.setVisibility(View.VISIBLE);
-			right_menu_shofei.setVisibility(View.VISIBLE);
-		}
+//		if(type == 2){
+//			right_menu_baoj.setVisibility(View.VISIBLE);
+//			right_menu_shofei.setVisibility(View.VISIBLE);
+//		}
 		
 	}
 

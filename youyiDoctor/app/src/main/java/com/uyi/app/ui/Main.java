@@ -136,11 +136,11 @@ public class Main extends BaseFragmentActivity  {
 	
 
 	public void initView() {
-		fragments.add(new FragmentConsultation(this));//所有咨询
+		fragments.add(new PersonalCenterFragment());//个人中心
 //		fragments.add(new HealthManagerFragment());//健康管理
 		fragments.add(new FragmentHealthListManager(this));//健康管理
 		fragments.add(new FragmentHealthTeam(this));//健康团队
-		fragments.add(new PersonalCenterFragment());//个人中心
+		fragments.add(new FragmentConsultation(this));//所有咨询
 		fragments.add(new FragmentFollow(this));//随访	
 		fragments.add(new FragmentFollow(this));//随访
 		fragments.add(new FragmentLineInspection(this));//线下检查

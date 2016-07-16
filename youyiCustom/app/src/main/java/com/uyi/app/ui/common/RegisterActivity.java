@@ -708,7 +708,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         idCardNumber = register_card.getText().toString();
         occupation = register_zhiye.getText().toString();
 
-        if (ValidationUtils.isNull(birthday, realName, mobile, idCardNumber)) {
+        if (ValidationUtils.isNull(birthday, realName, idCardNumber)) {
             T.showLong(application, "必填项填写完毕!");
             return;
         }
@@ -724,10 +724,11 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
 //		}
 //		height  = Integer.parseInt(register_height.getText().toString());
 //		weight  =  Integer.parseInt(register_weight.getText().toString());;
-
+        if (!ValidationUtils.isNull(mobile)) {
         if (!ValidationUtils.isMobile(mobile)) {
             T.showLong(application, "手机号码格式不正确!");
             return;
+        }
         }
         if (!ValidationUtils.isNull(phone)) {
             if (!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)) {

@@ -7,7 +7,8 @@
     <com.uyi.app.ui.custom.HeaderView
         android:id="@+id/headerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+       />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/add_icon" />
+                android:background="@drawable/health_manabanner" />
 
 
             <LinearLayout
@@ -43,7 +44,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/diagnosis" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -122,7 +123,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/report" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -193,7 +194,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="12dp"
                             android:layout_marginStart="12dp"
-                            android:src="@drawable/ic_launcher" />
+                            android:src="@drawable/database" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -264,7 +265,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/assessment" />
 
                     <FrameLayout
                         android:layout_width="wrap_content"
@@ -335,7 +336,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/life" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -407,7 +408,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="12dp"
                         android:layout_marginStart="12dp"
-                        android:src="@drawable/ic_launcher" />
+                        android:src="@drawable/diet" />
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -477,7 +478,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/alarm1" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -547,7 +548,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="12dp"
                     android:layout_marginStart="12dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:src="@drawable/telephone" />
 
                 <FrameLayout
                     android:layout_width="match_parent"

@@ -34,7 +34,8 @@ import cn.jpush.android.api.JPushInterface;
 
 @ContentView(R.layout.login)
 public class LoginActivity extends BaseActivity {
-
+    public static  String userName;
+    public static  String passWord;
     @ViewInject(R.id.iconxuanzhe)
     private TextView iconxuanzhe;
     @ViewInject(R.id.guardian_chose)
@@ -102,6 +103,8 @@ public class LoginActivity extends BaseActivity {
             JSONObject params = new JSONObject();
             params.put("account", account);
             params.put("password", password);
+            userName = account;
+            passWord = password;
             if (isChoise == 0) {
                 params.put("logasguardian", false);
             } else {
@@ -114,6 +117,7 @@ public class LoginActivity extends BaseActivity {
                         Log.e("data", data.toString());
 
                         if (data.getBoolean("logasguardian")) {
+
                             if (data.getString("guardian").equals("false")) {
 
                                 userInfo.authToken = data.getString("authToken");
@@ -137,15 +141,16 @@ public class LoginActivity extends BaseActivity {
 //                                userInfo.guardianIcon =  data.getString("guardianIcon");
 //                                userInfo.guardian =  data.getString("guardian");
                                 userInfo.logasguardian = true;
-                                Set<String> tags = new HashSet<String>();
-                                tags.add("bulletin");
-                                tags.add("message_customer_" + userInfo.userId);
-                                JPushInterface.setTags(activity, tags, null);
+//                                Set<String> tags = new HashSet<String>();
+//                                tags.add("bulletin");
+//                                tags.add("message_customer_" + userInfo.userId);
+//                                JPushInterface.setTags(activity, tags, null);
                                 if (userInfo.type != 0) {
                                     T.showLong(activity, "只能登陆客户账户");
                                     return;
                                 }
                                 UserInfoManager.setLoginUserInfo(activity, userInfo);
+                                setResult(RESULT_OK);
                                 startActivity(new Intent(LoginActivity.this, RegisterGuardianInfo.class));
                                 finish();
                             } else {
@@ -154,6 +159,7 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.userId = data.getInt("id");
                                 userInfo.account = data.getString("account");
                                 userInfo.realName = data.getString("guardian");
+                                userInfo.guardian = data.getString("guardian");
                                 userInfo.password = password;
                                 userInfo.icon = data.getString("guardianIcon");
                                 userInfo.address = data.has("address") ? data.getString("address") : null;

@@ -11,7 +11,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.uyi.app.Constens;
 import com.uyi.app.ui.Main;
 import com.uyi.app.utils.ImageUtil;
-import com.uyi.custom.app.R;
+import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
 import org.json.JSONException;

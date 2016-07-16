@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.service.MessageService;
 import com.uyi.app.ui.common.RegisterInfoAcitivity;
@@ -24,7 +27,14 @@ import com.uyi.app.ui.personal.message.MessageActivity;
 import com.uyi.app.ui.personal.questions.HealthyQuestionsActivity;
 import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.app.utils.L;
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestManager;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 个人中心（新） Created by Leeii on 2016/6/19.
@@ -44,7 +54,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     private TextView mConsultingNum;
     @ViewInject(R.id.question_num)
     private TextView mQuestionNum;
-
+    List<T> list = new ArrayList<>();
     private int[] radioIds = {R.id.radioButton1, R.id.radioButton2};
 
     private MessageReceiver mMessageReceiver;
@@ -56,10 +66,28 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     @Override
     protected void onInitLayoutAfter() {
-        mViewPager.setAdapter(new PersonalPagerAdapter(context));
+        RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN,UserInfoManager.getLoginUserInfo(getContext()).userId), this,new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+
+                try {
+                    Log.e("DATA  = ", data.toString());
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+
+
+
+        mViewPager.setAdapter(new PersonalPagerAdapter(context,list));
         mViewPager.addOnPageChangeListener(this);
 
-        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("个人中心").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
+
     }
 
     @Override
