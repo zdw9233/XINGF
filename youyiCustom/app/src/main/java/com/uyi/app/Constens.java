@@ -174,7 +174,6 @@ public abstract class Constens {
      * 服務查询
      */
     public final static String SERVICE_NUMBER =  SERVER_URL + "/app/api/account/getCustomerServiceCount";
-    public final static String SERVICE_NUMBER = SERVER_URL + "/app/api/servicePackage/getCustomerServiceDetail";
     /**
      * 患者注册
      */
