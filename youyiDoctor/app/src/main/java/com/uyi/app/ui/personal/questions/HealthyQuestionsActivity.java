@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.adapter.BaseRecyclerAdapter.OnItemClickListener;
 import com.uyi.app.ui.custom.BaseActivity;
@@ -20,9 +19,8 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.questions.adapter.HealthyQuestionsAdapter;
-import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
@@ -31,8 +29,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
-import android.widget.LinearLayout;
 
 
 /**
@@ -117,10 +113,10 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 	@Override
 	public void loadNextPage() {
 		isLooding = false;
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.HEALTH_ADVICES,pageNo,pageSize),activity, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");

@@ -8,7 +8,7 @@
     <string-array name="health_manager">
         <item>健康报告</item>
         <item>健康数据库</item>
-       <!-- <item>可穿戴设备</item> -->
+        <!-- <item>可穿戴设备</item> -->
     </string-array>
     <string-array name="message_notifaction">
         <item>消息</item>
@@ -22,5 +22,9 @@
     <string-array name="update_user_info">
         <item>个人资料</item>
         <item>健康资料</item>
+    </string-array>
+    <string-array name="medicine">
+        <item>收缩压</item>
+        <item>舒张压</item>
     </string-array>
 </resources>

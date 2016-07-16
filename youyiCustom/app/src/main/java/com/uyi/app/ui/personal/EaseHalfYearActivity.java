@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -15,9 +14,8 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.MessageConform;
-import com.uyi.app.utils.L;
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
-import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONException;
@@ -73,14 +71,10 @@ public class EaseHalfYearActivity extends BaseActivity implements DialogInterfac
         RequestManager.postObject(Constens.BUY_SERVICE_PACKAGE, this, object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-                L.e(jsonObject.toString());
+                T.showShort(EaseHalfYearActivity.this, "购买成功！");
+                onBackPressed();
             }
-        }, new RequestErrorListener() {
-            @Override
-            public void requestError(VolleyError e) {
-                e.printStackTrace();
-            }
-        });
+        }, null);
 
     }
 

@@ -1,7 +1,6 @@
 package com.uyi.app.ui.personal.discuss;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -10,14 +9,12 @@ import org.json.JSONObject;
 
 import com.android.volley.VolleyError;
 import com.android.volley.Request.Method;
-import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.ErrorCode;
-import com.uyi.app.UYIApplication;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.consult.ConsultDetailsActivity;
@@ -25,15 +22,13 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
-import com.uyi.app.utils.L;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
-import com.volley.StringParamsRequest;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -83,7 +78,7 @@ public class DiscussGroupDetailsActivity extends BaseActivity {
 		consultId = getIntent().getIntExtra("id", 0);
 		isMyConsult = getIntent().getBooleanExtra("isMyConsult", false);
 		status = getIntent().getIntExtra("status", 0);
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		ImageCacheManager.loadImage(UserInfoManager.getLoginUserInfo(activity).icon, ImageCacheManager.getImageListener(doctor_logo, null, null));
 		loadData();
 	}
@@ -96,7 +91,7 @@ public class DiscussGroupDetailsActivity extends BaseActivity {
 			@Override
 			public void onResponse(JSONObject data) {
 				try {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					JSONArray array = data.getJSONArray("results");
 					for(int i = 0;i<array.length();i++){
 						JSONObject object = array.getJSONObject(i);
@@ -173,15 +168,15 @@ public class DiscussGroupDetailsActivity extends BaseActivity {
 					for(Map.Entry<Integer, Integer> map : used.entrySet()){
 						array.put(map.getKey());
 					}
-					Looding.bulid(activity, null).show();
+					Loading.bulid(activity, null).show();
 					RequestManager.requestString(Method.POST, String.format(Constens.HEALTH_CONSULT_USE_DISCUSS, consultId), activity, array.toString(), new Listener<String>() {
 						public void onResponse(String arg0) {
-							Looding.bulid(activity, null).dismiss();
+							Loading.bulid(activity, null).dismiss();
 								loadData();
 						}
 					}, new RequestErrorListener() {
 						public void requestError(VolleyError e) {
-							Looding.bulid(activity, null).dismiss();
+							Loading.bulid(activity, null).dismiss();
 							if(e.networkResponse == null){
 								loadData();
 							}else{
@@ -204,10 +199,10 @@ public class DiscussGroupDetailsActivity extends BaseActivity {
 				JSONObject params = new JSONObject();
 				try {
 					params.put("advice", content);
-					Looding.bulid(activity, null).show();
+					Loading.bulid(activity, null).show();
 					RequestManager.postObject(String.format(Constens.HEALTH_CONSULT_DISCUSS, consultId), activity, params, null, new RequestErrorListener() {
 						public void requestError(VolleyError e) {
-							Looding.bulid(activity, null).dismiss();
+							Loading.bulid(activity, null).dismiss();
 							if(e.networkResponse == null){
 								loadData();
 							}else{

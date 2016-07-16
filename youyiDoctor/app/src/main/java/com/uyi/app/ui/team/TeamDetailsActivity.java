@@ -41,7 +41,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.adapter.DocterDtailsAdapter;
 import com.uyi.app.ui.team.adapter.HealthTeamDoctorAdapter;
 import com.uyi.doctor.app.R;
@@ -86,7 +86,7 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 			
 			@Override
 			public void onClick(View v) {
-				Looding.bulid(activity, "加入团队...").show();
+				Loading.bulid(activity, "加入团队...").show();
 				JSONObject params = new JSONObject();
 				
 					try {
@@ -99,14 +99,14 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 			
 				RequestManager.postObject(String.format(Constens.HEALTH_GROUPS_JIARU,id), activity, params , new Response.Listener<JSONObject>() {
 					public void onResponse(JSONObject data) {
-						Looding.bulid(activity,null).dismiss();
+						Loading.bulid(activity,null).dismiss();
 						System.out.println("成功");
 //						team_goup_jiaru.setVisibility(View.GONE);
 						startActivity(new Intent(activity, JiaRuChenGongActivity.class));
 					}
 				}, new RequestErrorListener() {
 					public void requestError(VolleyError e) {
-						Looding.bulid(activity,null).dismiss();
+						Loading.bulid(activity,null).dismiss();
 						System.out.println(e.toString());
 						Toast.makeText(activity, "已经加入该团队或者健康豆不足", 0).show();
 					}
@@ -125,12 +125,12 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 		adapter = new HealthTeamDoctorAdapter(activity, datas, R.layout.item_team_docter_list);
 		team_group_docter.setAdapter(adapter);
 		team_group_docter.setOnItemClickListener(this);
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_DETAILS, id), activity,new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				System.out.println(data.toString());
 				try {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					team_group_name.setText(data.getString("name"));
 					team_group_info.setText(data.getString("info"));
 					tezm_money.setText(data.getString("beans"));
@@ -216,13 +216,13 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 		mydoctor = new HashMap<String, Object>();
 		
 		mydoctor.clear();
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		doctorId = (int) datas.get(arg2).get("id");
 		System.out.println(doctorId+"++++++++++++++++++++++++++");
 		RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_DOCTER_DETAILS, doctorId), activity,new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				System.out.println(data.toString());
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 			
 					try {
 						

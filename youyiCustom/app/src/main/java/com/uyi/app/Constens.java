@@ -173,7 +173,7 @@ public abstract class Constens {
     /**
      * 服務查询
      */
-    public final static String SERVICE_NUMBER =  SERVER_URL + "/app/api/account/getCustomerServiceCount";
+    public final static String SERVICE_NUMBER = SERVER_URL + "/app/api/account/getCustomerServiceCount";
     /**
      * 患者注册
      */
@@ -437,4 +437,12 @@ public abstract class Constens {
      * 获取报告详情
      */
     public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/13?cusid=%d&repId=%d";
+    /**
+     * 获取定制服务
+     */
+    public static final String GET_CUSTOM_SERVICE = SERVER_URL + "/app/api/servicePackage/query/custom";
+    /**
+     * 购买定制服务
+     */
+    public static final String BUY_CUSTOM_SERVICE = SERVER_URL + "/app/api/servicePackage/buy/custom";
 }

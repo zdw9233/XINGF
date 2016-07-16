@@ -15,7 +15,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -31,7 +30,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.adapter.HealthTeamAdapter;
 import com.uyi.app.ui.team.city.CityListActivity;
 import com.uyi.doctor.app.R;
@@ -122,7 +121,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 	@Override
 	public void loadNextPage() {//所有团队
 		isLooding = false;
-		Looding.bulid(getActivity(), null).show();
+		Loading.bulid(getActivity(), null).show();
 		if(team_selected_caty.getText().equals("全部城市")){
 			RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,team_edit_text.getText().toString(),"",pageNo,pageSize),getActivity(), new Listener<JSONObject>() {
 				@Override
@@ -130,6 +129,8 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 					try {
 						System.out.println(data.toString());
 						totalPage = data.getInt("pages");
+						if (pageNo == 1)
+							datas.clear();
 						JSONArray  array = data.getJSONArray("results");
 						for(int i = 0;i<array.length();i++){
 							Map<String,Object> item = new HashMap<String,Object>();
@@ -154,7 +155,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 					}
 					healthTeamAdapter.notifyDataSetChanged();
 					swipeRefreshLayout.setRefreshing(false);
-					Looding.bulid(getActivity(), null).dismiss();
+					Loading.bulid(getActivity(), null).dismiss();
 					if(pageNo <= totalPage){
 						isLooding = true;
 						pageNo ++;
@@ -171,6 +172,8 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");
+					if (pageNo == 1)
+						datas.clear();
 					for(int i = 0;i<array.length();i++){
 						Map<String,Object> item = new HashMap<String,Object>();
 						JSONObject jsonObject = array.getJSONObject(i);
@@ -194,7 +197,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 				}
 				healthTeamAdapter.notifyDataSetChanged();
 				swipeRefreshLayout.setRefreshing(false); 
-				Looding.bulid(getActivity(), null).dismiss();
+				Loading.bulid(getActivity(), null).dismiss();
 				if(pageNo < totalPage){ 
 					isLooding = true;
 					pageNo ++;
@@ -213,7 +216,6 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 	public void onRefresh() {
 		pageNo = 1;
 		isLooding = true;	
-		datas.clear();
 		recyclerView.setRefreshing(false);
 //		Nextdatas();
 		loadNextPage();

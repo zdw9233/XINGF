@@ -10,7 +10,7 @@ import com.uyi.app.ErrorCode;
 import com.uyi.app.UYIApplication;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.T;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
@@ -30,12 +30,12 @@ public class AlipayActivity  extends BaseActivity{
 	@Override
 	protected void onInitLayoutAfter() {
 		String beans = getIntent().getStringExtra("beans");
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		JSONObject param = new JSONObject();
 		RequestManager.postObject(String.format(Constens.CUSTOMER_BUY_MOBILE_COIN, beans), activity, param,new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					orderNo = data.getString("orderNo");
 					startPay(data.getString("retult"));
 				} catch (Exception e) {
@@ -45,7 +45,7 @@ public class AlipayActivity  extends BaseActivity{
 		},new RequestErrorListener() {
 			@Override
 			public void requestError(VolleyError e) {
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 				T.show(UYIApplication.getContext(), ErrorCode.getErrorByNetworkResponse(e.networkResponse), -1);
 				finish();
 			}

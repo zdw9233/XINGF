@@ -14,7 +14,7 @@ import com.uyi.app.ui.consult.CustomInfoActivity;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.dialog.MessageConform.MessageType;
 import com.uyi.app.ui.dialog.MessageConform.OnMessageClick;
@@ -92,7 +92,7 @@ public class MessageDetailsActivity extends BaseActivity implements OnClickListe
 		}
 		headerView.getRightLayout().setOnClickListener(this);
 		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("详情内容").setTitleColor(getResources().getColor(R.color.blue)).showRight(true) ;
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		
 		String url = String.format(Constens.ACCOUNT_MESSAGE, id,type);
 		if(type == 3){
@@ -101,7 +101,7 @@ public class MessageDetailsActivity extends BaseActivity implements OnClickListe
 		RequestManager.getObject(url, activity,new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					L.d(TAG, data.toString());
 					if(type == 3){
 						message_details_title.setText(data.getString("title"));
@@ -177,12 +177,12 @@ public class MessageDetailsActivity extends BaseActivity implements OnClickListe
 			array.put(id);
 			params.put("ids", array);
 			if(operate == 2){
-				Looding.bulid(activity, null).show();
+				Loading.bulid(activity, null).show();
 			}
 			RequestManager.postObject(Constens.ACCOUNT_MESSAGE_OPERATE, activity, params, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					if(operate == 2){
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						setResult(RESULT_OK);
 						finish();
 					}
@@ -190,7 +190,7 @@ public class MessageDetailsActivity extends BaseActivity implements OnClickListe
 			}, new RequestErrorListener() {
 				public void requestError(VolleyError e) {
 					if(operate == 2){
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						setResult(RESULT_OK);
 						finish();
 					}

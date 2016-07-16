@@ -1,10 +1,13 @@
 package com.uyi.app.ui.consult;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
 
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
@@ -12,19 +15,15 @@ import com.uyi.app.UYIApplication;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
-import com.uyi.app.utils.L;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RatingBar;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -79,7 +78,7 @@ public class ConsultEvaluateActivity extends BaseActivity implements OnClickList
 		if(ValidationUtils.isNull(comment)){
 			return;
 		}
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		try {
 			JSONObject params = new JSONObject();
 			params.put("star", star);
@@ -87,13 +86,13 @@ public class ConsultEvaluateActivity extends BaseActivity implements OnClickList
 			RequestManager.postObject(String.format(Constens.HEALTH_CONSULT_CONSULT, this.consultId),activity,params, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					T.showLong(UYIApplication.getContext(), "评价成功!");
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					finish();
 				}
 			},new RequestErrorListener() {
 				public void requestError(VolleyError e) {
 					T.showLong(UYIApplication.getContext(), "评价成功!");
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					finish();
 				}
 			});

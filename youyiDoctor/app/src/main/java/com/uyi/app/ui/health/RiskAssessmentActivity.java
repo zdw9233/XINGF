@@ -22,7 +22,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.RiskAssessmentAdapter;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
@@ -143,7 +143,7 @@ public void onClick(View v){
     @Override
     public void loadNextPage() {
         isLooding = false;
-        Looding.bulid(activity, null).show();
+        Loading.bulid(activity, null).show();
 //        System.out.println(UserInfoManager.getLoginUserInfo(activity).toString());
         RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_RISK, FragmentHealthListManager.customer, pageNo, pageSize),
                 activity, new Response.Listener<JSONObject>() {
@@ -151,7 +151,7 @@ public void onClick(View v){
                     public void onResponse(JSONObject data) {
                         System.out.print("_________________________________"+data.toString());
                         try {
-                            Looding.bulid(activity, null).dismiss();
+                            Loading.bulid(activity, null).dismiss();
                             totalPage = data.getInt("pages");
                             JSONArray array = data.getJSONArray("results");
                             for (int i = 0; i < array.length(); i++) {

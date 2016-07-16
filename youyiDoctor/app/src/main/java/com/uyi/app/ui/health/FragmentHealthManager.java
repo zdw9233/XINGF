@@ -23,7 +23,7 @@ import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter.IOnItemSelectListener;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.L;
@@ -129,14 +129,14 @@ Bitmap bitmap = null;
 				T.showLong(context, "请选择结束时间");
 				return;
 			}
-			Looding.bulid(main, null).show();
+			Loading.bulid(main, null).show();
 			System.out.println(FragmentHealthListManager.customer+"");
 			final String url = String.format(Constens.HEALTH_REPORT, FragmentHealthListManager.customer,selectedType,startDate,endDate);
 			System.out.println(url);
 			imageUrl = url;
 			ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
 				public void onResponse(Bitmap bm) {
-					Looding.bulid(main, null).dismiss();
+					Loading.bulid(main, null).dismiss();
 					if(bm != null){
 						L.d(TAG, "bmnotnull");
 						if(health_manager_tubiao != null){

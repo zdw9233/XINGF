@@ -1,17 +1,5 @@
 package com.uyi.app.service;
 
-import org.json.JSONObject;
-
-import com.android.volley.Response.Listener;
-import com.uyi.app.Constens;
-import com.uyi.app.UserInfoManager;
-import com.uyi.app.model.bean.UserInfo;
-import com.uyi.app.ui.dialog.Looding;
-import com.uyi.app.utils.JSONObjectUtils;
-import com.volley.RequestManager;
-
-import android.content.Context;
-
 
 /**
  * 用户信息

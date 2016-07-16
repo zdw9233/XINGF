@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import java.util.Locale;
 
 /**
- * Created by ThinkPad on 2016/7/2.
+ * EaseServiceActivity  Created by ThinkPad on 2016/7/2.
  */
 @ContentView(R.layout.ease_of_service)
 public class EaseServiceActivity extends BaseActivity {
@@ -34,9 +34,9 @@ public class EaseServiceActivity extends BaseActivity {
     private RelativeLayout anxin_two;
     @ViewInject(R.id.anxin_three)
     private RelativeLayout anxin_three;
-    private final String TYPE_AX_3_MONTH = "AX1"; //  糖心服务3个月
-    private final String TYPE_AX_6_MONTH = "AX2";   //糖心服务半年
-    private final String TYPE_AX_12_MONTH = "AX3";  //糖心服务一年
+    private final String TYPE_AX_3_MONTH = "AX1"; //  安心服务3个月
+    private final String TYPE_AX_6_MONTH = "AX2";   //安心服务半年
+    private final String TYPE_AX_12_MONTH = "AX3";  //安心服务一年
 
     @Override
     protected void onInitLayoutAfter() {
