@@ -1,13 +1,5 @@
 package com.uyi.app.sweep;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import zxing.standopen.Bangdingchenggong;
-import zxing.standopen.Bangdingshibai;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -36,6 +28,14 @@ import com.uyi.app.ui.dialog.Loading;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import zxing.standopen.Bangdingchenggong;
+import zxing.standopen.Bangdingshibai;
 
 
 /**
@@ -206,7 +206,7 @@ public class CaptureActivity extends Activity implements Callback {
 		try {
 			
 				params.put("timeCompany",4);
-			params.put("customerId",UserInfoManager.getLoginUserInfo(CaptureActivity.this).userId );
+			params.put("customerId", UserInfoManager.getLoginUserInfo(CaptureActivity.this).userId);
 			params.put("ccid",result);
 //			params.put("useTime",endTime.getText().toString());
 			

@@ -331,7 +331,9 @@ public class RegisterInfoAcitivity extends BaseActivity {
                     Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
                     bean.content = outHolder.msgText.getText().toString();
                     bean.treatmentTime = outHolder.dateText.getText().toString();
-                    externalSituationsList.add(bean);
+                    if (!bean.treatmentTime.equals("请选择就医时间")) {
+                        externalSituationsList.add(bean);
+                    }
                 }
 
                 mHealthInfo.medical = jbs;
@@ -363,7 +365,13 @@ public class RegisterInfoAcitivity extends BaseActivity {
                     bean.singleDose = holder.dcyyl.getText().toString();
                     bean.startTime = holder.startTime.getText().toString();
                     bean.usingFrequency = (String) holder.yypd.getSelectedItem();
-                    medicationUsingSituationsList.add(bean);
+                    if (!(TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
+                            TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
+                            holder.yaowuName.getSelectedItem().equals("药物名") ||
+                            holder.yypd.getSelectedItem().equals("用药频度") ||
+                            TextUtils.isEmpty(holder.dcyyl.getText().toString().trim()))) {
+                        medicationUsingSituationsList.add(bean);
+                    }
                 }
                 String gms = register_info_guomingshi.getText().toString();  //过敏史
                 String cyy = register_info_chengyingdeyaowu.getText().toString(); //成瘾史
@@ -380,6 +388,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
                     abnormalEventJsonsBean.eventType = ae.eventType;
                     abnormalEventJsonsBean.id = ae.id;
                     abnormalEventJsonsBean.name = ae.name;
+                    abnormalEventJsonsBean.eventId = ae.id;
                 }
                 abnormalEventJsonsBean.time = fsTime;
                 mHealthInfo.abnormalEventJsons = abnormalEventJsonsBean;
@@ -473,6 +482,10 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 break;
             case R.id.register_info_four_submit:  //提交健康资料
                 setValue(4);
+                if (TextUtils.isEmpty(health.healthInfo.abnormalEventJsons.time)) {
+                    T.showShort(this, "请选择血管事件的时间");
+                    return;
+                }
                 L.e(JSON.toJSONString(health));
                 JSONObject object = null;
                 try {
@@ -481,9 +494,17 @@ public class RegisterInfoAcitivity extends BaseActivity {
                     e.printStackTrace();
                 }
                 if (update == 0) {
-                    RequestManager.postObject(Constens.UPDATE_HEALTH_ZL, this, object, null, new RequestErrorListener() {
+                    RequestManager.postObject(Constens.UPDATE_HEALTH_ZL, this, object, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject jsonObject) {
+                            if (jsonObject.has("success")) {
+                                T.showShort(RegisterInfoAcitivity.this, "添加成功");
+                            }
+                        }
+                    }, new RequestErrorListener() {
                         @Override
                         public void requestError(VolleyError e) {
+                            T.showShort(RegisterInfoAcitivity.this, "请求失败，请核实数据完整性");
                             L.e(e.toString());
                             e.printStackTrace();
                         }

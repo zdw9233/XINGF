@@ -35,14 +35,26 @@ public class Report {
      * ⑥增加运动，运动有利于减轻体重和改善胰岛素抵抗，提高心血管适应调节能力，稳定血压水平，较好的运动方式是低或中等强度的慢跑、步行或游泳，一般每周3~5次，每次20~60分钟。鉴于您所提供的体检报告针对高血压并发症的筛查还有所欠缺，我们建议您择期再复查sdfsdfdf，这些检查项目有助于发现心脑血管相关的危险因素和靶器官损害，在您完成体检后，请及时将报告上传至APP，我们的医生团队也会根据您自身情况做出对比和解读。
      */
 
-    private String morningDiastolicPressure_pic;
-    private String morningSystolicPressure_pic;
-    private String fastBloodSugar_pic;
-    private String postPrandilaSugar_pic;
+    public String fatPercentage;
+    public String basalMetabolism;
+    public String waterContent;
+    public String waist;
+    public String hipline;
+    public String whr;
+    public String fatPercentage_tred;
+    public String basalMetabolism_tred;
+    public String waterContent_tred;
+    public String waist_tred;
+    public String hipline_tred;
+    public String whr_tred;
+    public String bloodPressure_pic;
+    public String bloodSugar_pic;
     private String comment1;
     private String comment2;
     private String comment3;
     private String comment4;
+
+
     private List<TimeValue> bmi;
     /**
      * uptime : 2016-06-17
@@ -111,37 +123,20 @@ public class Report {
 
     private List<TimeValue> electrocardiogram;
 
-    public String getMorningDiastolicPressure_pic() {
-        return morningDiastolicPressure_pic;
-    }
-
-    public void setMorningDiastolicPressure_pic(String morningDiastolicPressure_pic) {
-        this.morningDiastolicPressure_pic = morningDiastolicPressure_pic;
-    }
-
-    public String getMorningSystolicPressure_pic() {
-        return morningSystolicPressure_pic;
-    }
-
-    public void setMorningSystolicPressure_pic(String morningSystolicPressure_pic) {
-        this.morningSystolicPressure_pic = morningSystolicPressure_pic;
-    }
-
-    public String getFastBloodSugar_pic() {
-        return fastBloodSugar_pic;
-    }
-
-    public void setFastBloodSugar_pic(String fastBloodSugar_pic) {
-        this.fastBloodSugar_pic = fastBloodSugar_pic;
-    }
-
-    public String getPostPrandilaSugar_pic() {
-        return postPrandilaSugar_pic;
-    }
-
-    public void setPostPrandilaSugar_pic(String postPrandilaSugar_pic) {
-        this.postPrandilaSugar_pic = postPrandilaSugar_pic;
-    }
+    /**
+     * fatPercentage : 3.2%
+     * basalMetabolism : 4.5
+     * waterContent : 3.3
+     * waist : 1.5
+     * hipline : 5.7
+     * whr : 7.6
+     * fatPercentage_tred : 1
+     * basalMetabolism_tred : 1
+     * waterContent_tred : 1
+     * waist_tred : 1
+     * hipline_tred : 1
+     * whr_tred : 1
+     */
 
     public String getComment1() {
         return comment1;

@@ -113,7 +113,6 @@ public class RequestManager {
 
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
-				Log.e("url",params.toString());
 				Map<String, String> headers = new HashMap<>();
 				if(UserInfoManager.getLoginUserInfo(UYIApplication.getContext())!= null){
 					headers.put("authToken",UserInfoManager.getLoginUserInfo(UYIApplication.getContext()).authToken);

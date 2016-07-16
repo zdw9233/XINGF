@@ -111,7 +111,7 @@ public abstract class Constens {
     //是否有新的未读
     public final static String MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/get/manage/customer";
     //更新是否有未读
-    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/updata/manage/customer?type=%s";
+    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/doctor/update/manage/customer/%d";
     /**
      * 客户充值健康豆 ${money} POST
      */
@@ -352,7 +352,7 @@ public abstract class Constens {
 
     /**
      * 客户消息/公告删除/标记已读 POST
-     * <p/>
+     * <p>
      * ${operate} 	1: 标记已读   	 2: 删除
      * ${type}		1: 消息		 2: 公告
      * ${ids}
@@ -415,5 +415,13 @@ public abstract class Constens {
     /**
      * 更新健康资料
      */
-    public static final String UPDATE_HEALTH_ZL = SERVER_URL + "/app/api/account/update/healthCondition";
+    public static final String UPDATE_HEALTH_ZL = SERVER_URL + "/app/api/account/update/healthdailyhealth";
+    /**
+     * 获取主诊报告列表
+     */
+    public static final String GET_REPORT_LIST = SERVER_URL + "/app/api/account/majordignosereport/infos?customerid=%d&page=%d&pageSize=20";
+    /**
+     * 获取报告详情
+     */
+    public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/13?cusid=%d&repId=%d";
 }

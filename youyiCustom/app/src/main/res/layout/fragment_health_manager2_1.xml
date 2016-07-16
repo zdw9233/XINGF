@@ -86,15 +86,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_margin="4dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/notice_background"
+                        android:background="@drawable/shape_new_bg"
                         android:gravity="center"
                         android:maxLines="1"
+                        android:paddingBottom="2dp"
                         android:paddingLeft="2dp"
                         android:paddingRight="2dp"
-                        android:text="12"
+                        android:paddingTop="2dp"
+                        android:text="new"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/font_style_10"
+                        android:textSize="@dimen/font_style_8"
                         android:visibility="gone" />
                 </FrameLayout>
             </LinearLayout>
@@ -303,15 +304,17 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_margin="4dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/notice_background"
+                            android:background="@drawable/shape_new_bg"
                             android:gravity="center"
                             android:maxLines="1"
+                            android:paddingBottom="2dp"
                             android:paddingLeft="2dp"
                             android:paddingRight="2dp"
+                            android:paddingTop="2dp"
+                            android:text="new"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/font_style_10"
-                            android:visibility="gone" />
+                            android:textSize="@dimen/font_style_8"
+                            android:visibility="gone"/>
                     </FrameLayout>
                 </LinearLayout>
             </TableRow>
@@ -380,15 +383,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_margin="4dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/notice_background"
+                            android:background="@drawable/shape_new_bg"
                             android:gravity="center"
                             android:maxLines="1"
+                            android:paddingBottom="2dp"
                             android:paddingLeft="2dp"
                             android:paddingRight="2dp"
-                            android:text="12"
+                            android:paddingTop="2dp"
+                            android:text="new"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/font_style_10"
+                            android:textSize="@dimen/font_style_8"
                             android:visibility="gone" />
                     </FrameLayout>
                 </LinearLayout>
@@ -452,15 +456,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_margin="4dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/notice_background"
+                            android:background="@drawable/shape_new_bg"
                             android:gravity="center"
                             android:maxLines="1"
+                            android:paddingBottom="2dp"
                             android:paddingLeft="2dp"
                             android:paddingRight="2dp"
-                            android:text="12"
+                            android:paddingTop="2dp"
+                            android:text="new"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/font_style_10"
+                            android:textSize="@dimen/font_style_8"
                             android:visibility="gone" />
                     </FrameLayout>
                 </LinearLayout>

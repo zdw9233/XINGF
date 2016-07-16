@@ -141,17 +141,18 @@ public class RoutineAdapter extends BaseAdapter {
         try {
             List<Report.TimeValue> timeValue = (List<Report.TimeValue>) Report.class.getMethod(GET_METHOD[type]).invoke(report);
             return timeValue.get(listPosition);
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-        } catch (NoSuchMethodException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
     }
 
     private int isFirstOrLast(int position) {
+        if (position == 0) return 1;
         for (int i = 0; i < index.length; i++) {
             if (position == index[i] - 1 && i > 0 && position == index[i - 1]) return 2;
             if (position == index[i] - 1) return -1;   // 最后一个

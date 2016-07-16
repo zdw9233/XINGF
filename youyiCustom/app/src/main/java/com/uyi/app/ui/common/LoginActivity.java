@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity {
         if (v.getId() == R.id.login_register) {
             startActivity(new Intent(activity, RegisterActivity.class));
         } else if (v.getId() == R.id.login_get_password) {
-			startActivity(new Intent(activity, GetPasswordActivity.class));
+            startActivity(new Intent(activity, GetPasswordActivity.class));
 //            startActivity(new Intent(activity, RegisterInfoAcitivity.class));
         } else if (v.getId() == R.id.guardian_chose) {
             if (isChoise == 0) {
@@ -128,10 +128,10 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
-                                if(data.has("liefstyle")){
+                                if (data.has("liefstyle")) {
                                     userInfo.liefstyle = data.getString("liefstyle");
                                 }
-                                if(data.has("eatinghabiit")){
+                                if (data.has("eatinghabiit")) {
                                     userInfo.eatinghabiit = data.getString("eatinghabiit");
                                 }
 //                                userInfo.guardianIcon =  data.getString("guardianIcon");
@@ -161,10 +161,10 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
-                                if(data.has("liefstyle")){
+                                if (data.has("liefstyle")) {
                                     userInfo.liefstyle = data.getString("liefstyle");
                                 }
-                                if(data.has("eatinghabiit")){
+                                if (data.has("eatinghabiit")) {
                                     userInfo.eatinghabiit = data.getString("eatinghabiit");
                                 }
 //                                userInfo.guardianIcon =  data.getString("guardianIcon");
@@ -194,10 +194,10 @@ public class LoginActivity extends BaseActivity {
                             userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                             userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                             userInfo.lastLoginTime = data.getString("lastLoginTime");
-                            if(data.has("liefstyle")){
+                            if (data.has("liefstyle")) {
                                 userInfo.liefstyle = data.getString("liefstyle");
                             }
-                            if(data.has("eatinghabiit")){
+                            if (data.has("eatinghabiit")) {
                                 userInfo.eatinghabiit = data.getString("eatinghabiit");
                             }
                             userInfo.logasguardian = false;

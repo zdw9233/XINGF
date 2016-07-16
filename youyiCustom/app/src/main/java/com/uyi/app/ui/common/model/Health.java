@@ -99,6 +99,7 @@ public class Health {
             public String name;
             public int eventType;
             public String description;
+            public int eventId;
         }
 
         public static class MedicationUsingSituationsBean {

@@ -865,7 +865,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                 if (data.has("id")) {
                     try {
                         UserInfo userInfo = new UserInfo();
-                        userInfo.userId = data.getInt("id");
+                        userInfo.userId = (data.getInt("id"));
                         userInfo.authToken = data.getString("authToken");
                         userInfo.type = data.getInt("type");
                         userInfo.account = data.getString("account");
