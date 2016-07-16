@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="128dp"
+            android:layout_height="35dp"
+            android:background="@drawable/hui_stroke"
+            android:padding="8dp"
+            android:text="请选择就医时间" />
+
+        <TextView
+            android:id="@+id/choice_date"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="选择日期"
+            android:textColor="@color/blue" />
+    </TableRow>
+
+    <EditText
+        android:id="@+id/et_system_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/hui_stroke"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="系统外就医情况"
+        android:inputType="textPostalAddress"
+        android:minHeight="80dp"
+        android:minLines="1"
+        android:padding="3dp"
+        android:textSize="@dimen/font_style_14" />
+
+</LinearLayout>

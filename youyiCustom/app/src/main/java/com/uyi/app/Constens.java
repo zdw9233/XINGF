@@ -1,6 +1,8 @@
 package com.uyi.app;
 
 public abstract class Constens {
+
+
     public static int START_ACTIVITY_FOR_RESULT = 10000;//跳转界面
     public static int BACK_LOGIN = 10001;//登陆
     public static int PHOTO_REQUEST_GALLERY = 10020;//相册
@@ -172,6 +174,7 @@ public abstract class Constens {
      * 服務查询
      */
     public final static String SERVICE_NUMBER =  SERVER_URL + "/app/api/account/getCustomerServiceCount";
+    public final static String SERVICE_NUMBER = SERVER_URL + "/app/api/servicePackage/getCustomerServiceDetail";
     /**
      * 患者注册
      */
@@ -412,5 +415,19 @@ public abstract class Constens {
      * 购买服务包
      */
     public final static String BUY_SERVICE_PACKAGE = SERVER_URL.concat("/app/api/servicePackage/buy/package");
+    //lee 新增接口
+    /**
+     * 心血管事件
+     */
+    public static final String ABNORMAL_EVENT = SERVER_URL + "/app/api/common/abnormalEvent";
 
+    /**
+     * 药物名
+     */
+    public static final String GET_MEDICINE = SERVER_URL + "/app/api/common/medicine";
+
+    /**
+     * 更新健康资料
+     */
+    public static final String UPDATE_HEALTH_ZL = SERVER_URL + "/app/api/account/update/healthCondition";
 }

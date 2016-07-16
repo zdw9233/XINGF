@@ -17,6 +17,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.service.MessageService;
+import com.uyi.app.ui.common.RegisterInfoAcitivity;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
@@ -112,6 +113,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
                 startActivity(new Intent(context, SugarServiceActivity.class));
                 break;  //糖心服务
             case R.id.dzfw:
+                startActivity(new Intent(context, RegisterInfoAcitivity.class));
                 break;   //定制服务
             case R.id.schedule:
                 startActivity(new Intent(context, ScheduleActivity.class));

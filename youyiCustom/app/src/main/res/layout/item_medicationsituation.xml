@@ -3,28 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="40dp"
-            android:layout_weight="1"
             android:layout_marginRight="5dp"
+            android:layout_weight="1"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/hui_stroke"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_start_time"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -51,17 +53,18 @@
             android:layout_weight="1"
 
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:background="@drawable/hui_stroke"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_end_time"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -84,140 +87,127 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/hui_stroke"
-        android:orientation="horizontal" >
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/hui_stroke">
 
-        <TextView
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:hint="药物名"
-            android:paddingLeft="5dp"
-            android:textColor="@color/list_item_content_color"
-            android:textSize="@dimen/font_style_14" />
+        <Spinner
+            android:id="@+id/yaowuName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical" />
+    </FrameLayout>
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:src="@drawable/drop_icon" />
-    </LinearLayout>
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
-        android:padding="10dp"
-        android:orientation="horizontal" >
-
-
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
 
         <LinearLayout
-            android:id="@+id/regester_three_yonyaopindu"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="3"
             android:background="@drawable/hui_stroke"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/yypd"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:hint="用药频度"
-                android:paddingLeft="5dp"
-                android:textColor="@color/list_item_content_color"
-                android:textSize="@dimen/font_style_14" />
+                android:layout_weight="1"
+                android:background="@null"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/medicine_pd"
+                android:gravity="center_vertical" />
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:src="@drawable/drop_icon" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/small_down_arrow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="2"
+            android:background="@drawable/hui_stroke"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/timeUnit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/time_unit"
+                android:gravity="center_vertical" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/small_down_arrow" />
         </LinearLayout>
 
 
-
-
-        <LinearLayout
-            android:id="@+id/regester_three_xiaoshi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@id/regester_three_yonyaopindu"
-            android:background="@drawable/hui_stroke"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:hint="小时"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="@color/list_item_content_color"
-                android:textSize="@dimen/font_style_14" />
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:src="@drawable/drop_icon" />
-        </LinearLayout>
         <EditText
             android:id="@+id/regester_three_danciyonyaoliang"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/hui_stroke"
-            android:maxLength="5"
-            android:layout_toRightOf="@id/regester_three_xiaoshi"
+            android:hint="单次用药量"
             android:inputType="number"
-            android:textSize="@dimen/font_style_13"
-            android:hint="单次用药量"/>
-
-
-
-
+            android:maxLength="5"
+            android:textSize="@dimen/font_style_13" />
 
         <LinearLayout
-            android:id="@+id/regester_three_danwei"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/regester_three_danciyonyaoliang"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_weight="2"
             android:background="@drawable/hui_stroke"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="40dp"
+            <Spinner
+                android:id="@+id/valueUnit"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center"
-
-                android:hint="g"
-                android:textColor="@color/list_item_content_color"
-                android:textSize="@dimen/font_style_14" />
+                android:layout_weight="1"
+                android:background="@null"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/medicine_unit"
+                android:gravity="center_vertical" />
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:src="@drawable/drop_icon" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/small_down_arrow" />
         </LinearLayout>
 
+    </LinearLayout>
 
-
-    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/blue"/>
+        android:background="@color/blue" />
 </LinearLayout>
