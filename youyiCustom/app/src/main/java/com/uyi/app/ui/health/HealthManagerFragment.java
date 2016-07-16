@@ -109,7 +109,6 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon)
                 .showTab(false).showRight(true).showTitle(true)
                 .setTitle("健康管理").setTitleColor(getResources().getColor(R.color.blue));
-        requestIsNew();
     }
 
 
