@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.uyi.app.Constens;
 import com.uyi.app.utils.SPUtils;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONException;
@@ -65,7 +67,7 @@ public class MessageService {
      * @param code
      */
     public static void loadMessages(final Context context, final int code) {
-        RequestManager.getObject(String.format(Constens.ACCOUNT_STATISTICS, code), context, new Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.ACCOUNT_STATISTICS, code), context, null, new Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
                     int total = data.getInt("total");
@@ -74,6 +76,11 @@ public class MessageService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        }, new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
+                
             }
         });
     }

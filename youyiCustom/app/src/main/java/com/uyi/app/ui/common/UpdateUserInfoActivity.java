@@ -113,7 +113,6 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private Button register_three_submit;
 
 
-
     private SpinerPopWindow spinerPopWindow;
     /**
      * 省
@@ -138,7 +137,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private File tempFile = new File(Environment.getExternalStorageDirectory(), "header.jpg");
     //健康资料
     int index = 1;//fragment页码
-//    @ViewInject(R.id.register_info_one)
+    //    @ViewInject(R.id.register_info_one)
 //    private ScrollView register_info_one;
 //    @ViewInject(R.id.register_info_gerenjiwangbinshi)
 //    private EditText register_info_gerenjiwangbinshi;
@@ -289,6 +288,8 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 
     private HealthInfo healthInfo;//病人ID
     private UserInfo userInfo;
+    private boolean isMedicineFirst = true;
+    private boolean isOutFirst = true;
 
     @Override
     protected void onInitLayoutAfter() {
@@ -337,30 +338,65 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                         register_card.setText(JSONObjectUtils.getString(data, "idCardNumber"));
                         register_zhiye.setText(JSONObjectUtils.getString(data, "occupation"));
                         zhiye = JSONObjectUtils.getString(data, "occupation");
-                        register_height.setText(JSONObjectUtils.getInt(data, "height") + "");
-                        shenggao = JSONObjectUtils.getInt(data, "height") + "";
-                        register_weight.setText(JSONObjectUtils.getInt(data, "weight") + "");
-                        tizhong = JSONObjectUtils.getInt(data, "weight") + "";
+//                        register_height.setText(JSONObjectUtils.getInt(data, "height") + "");
+//                        shenggao = JSONObjectUtils.getInt(data, "height") + "";
+//                        register_weight.setText(JSONObjectUtils.getInt(data, "weight") + "");
+//                        tizhong = JSONObjectUtils.getInt(data, "weight") + "";
 
                         if (data.has("healthInfo")) {
-                            JSONObject healthInfo = data.getJSONObject("healthInfo");
+                            health = JSON.parseObject(data.toString(), Health.class);
                             L.d(TAG, data.toString());
+                            if (health.healthInfo == null) {
+                                health.healthInfo = mHealthInfo;
+                            } else {
+                                mHealthInfo = health.healthInfo;
+                                if (mHealthInfo.externalSituations == null)
+                                    mHealthInfo.externalSituations = externalSituationsList;
+                                else {
+                                    externalSituationsList = mHealthInfo.externalSituations;
+                                }
+                                if (mHealthInfo.medicationUsingSituations == null)
+                                    mHealthInfo.medicationUsingSituations = medicationUsingSituationsList;
+                                else {
+                                    medicationUsingSituationsList = mHealthInfo.medicationUsingSituations;
+                                }
+                            }
 
                             if (ValidationUtils.equlse(UYIUtils.convertGender(data.getString("gender")), "男")) {
                                 register_info_yuejing_layout.setVisibility(View.GONE);
                                 register_info_liucanshi_layout.setVisibility(View.GONE);
                             }
-                            register_info_gerenjiwangbinshi.setText(JSONObjectUtils.getString(healthInfo, "medical"));
-                            register_info_chuanrangbingshi.setText(JSONObjectUtils.getString(healthInfo, "infection"));
-                            register_info_waishang.setText(JSONObjectUtils.getString(healthInfo, "trauma"));
-                            register_info_shoushushi.setText(JSONObjectUtils.getString(healthInfo, "operation"));
-                            register_info_liucanshi.setText(JSONObjectUtils.getString(healthInfo, "pregnancy"));
-                            register_info_yuejing.setText(JSONObjectUtils.getString(healthInfo, "menstruation"));
-                            register_info_guomingshi.setText(JSONObjectUtils.getString(healthInfo, "allergic"));
-                            register_info_shuxueshi.setText(JSONObjectUtils.getString(healthInfo, "blood"));
-                            register_info_jiazhubinshi.setText(JSONObjectUtils.getString(healthInfo, "familyMedical"));
-                            register_info_muqianfuyaoqingkuang.setText(JSONObjectUtils.getString(healthInfo, "current"));
-                            register_info_qitabuchongqingkuang.setText(JSONObjectUtils.getString(healthInfo, "others"));
+                            Health.HealthInfoBean b = health.healthInfo;
+                            register_info_gerenjiwangbinshi.setText(b.medical);
+                            register_info_chuanrangbingshi.setText(b.infection);
+                            register_info_waishang.setText(b.trauma);
+                            register_info_shoushushi.setText(b.operation);
+                            register_info_liucanshi.setText(b.pregnancy);
+                            register_info_yuejing.setText(b.menstruation);
+                            register_info_guomingshi.setText(b.historyOfAllergy);
+                            register_info_shuxueshi.setText(b.blood);
+                            register_info_jiazhubinshi.setText(b.familyMedical);
+                            register_info_muqianfuyaoqingkuang.setText(b.current);
+                            register_info_qitabuchongqingkuang.setText(b.others);
+                            register_height.setText(health.height);
+                            register_weight.setText(health.weight);
+                            register_info_one_jiankangzhuangkuang.setText(health.healthCondition);
+                            int[] ints = {R.id.rb_gxy, R.id.rb_tnb, R.id.rb_gxy_tnb};
+                            if (health.chronicDiseaseType != 0)
+                                radioGroup.check(ints[health.chronicDiseaseType - 1]);
+                            register_info_chengyingdeyaowu.setText(b.drugAddiction);
+                            Health.HealthInfoBean.AbnormalEventJsonsBean j = b.abnormalEventJsons;
+                            if (j != null) {
+                                regester_info_xueguanfashengshijian.setText(j.time);
+                                int i = 0;
+                                for (String s : abnormalEvents.keySet()) {
+                                    if (s.equals(j.name)) {
+                                        regester_info_xueguanfashengleixing.setSelection(i);
+                                    }
+                                    i++;
+                                }
+                                register_info_qitaleixin.setText(j.description);
+                            }
                         }
 
                     } catch (Exception e) {
@@ -383,6 +419,56 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 
         requestDrowMenuData();
     }
+
+    private void initMedicineViews() {
+        if (medicationUsingSituationsList == null || medicationUsingSituationsList.size() == 0)
+            return;
+        for (int i = 0; i < medicationUsingSituationsList.size(); i++) {
+            Health.HealthInfoBean.MedicationUsingSituationsBean bb = medicationUsingSituationsList.get(i);
+
+            Holder holder = (Holder) yyViews.get(i).getTag();
+            holder.endTime.setText(bb.endTime);
+            holder.timeUnit.setSelection(getTimeUnitSelection(bb.frequencyUnit));
+            holder.yaowuName.setSelection(getSelection(medicines.keySet(), bb.medicineName));
+            holder.valueUnit.setSelection(bb.medicineUnit.equals("g") ? 0 : 1);
+            holder.dcyyl.setText(bb.singleDose);
+            holder.startTime.setText(bb.startTime);
+            holder.yypd.setSelection(Integer.valueOf(bb.usingFrequency));
+            if (i != medicationUsingSituationsList.size() - 1)
+                addOneMedicineView();
+        }
+    }
+
+    private int getSelection(Set<String> strings, String s) {
+        int i = 0;
+        for (String s1 : strings) {
+            if (s1.equals(s)) return i;
+            i++;
+        }
+        return 0;
+    }
+
+    private int getTimeUnitSelection(String unit) {
+        if ("小时".equals(unit)) return 0;
+        if ("日".equals(unit)) return 1;
+        if ("月".equals(unit)) return 2;
+        if ("年".equals(unit)) return 3;
+        return 0;
+    }
+
+    private void initOutViews() {
+        if (externalSituationsList == null || externalSituationsList.size() == 0)
+            return;
+        for (int i = 0; i < externalSituationsList.size(); i++) {
+            Health.HealthInfoBean.ExternalSituationsBean bb = externalSituationsList.get(i);
+            OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
+            outHolder.dateText.setText(bb.treatmentTime);
+            outHolder.msgText.setText(bb.content);
+            if (i != externalSituationsList.size() - 1)
+                addOneOutView();
+        }
+    }
+
     private void initViews() {
         Holder holder = new Holder();
         holder.startTime = tv_start_time;
@@ -401,6 +487,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         register_info_two.setTag(outHolder);
         outViews.add(register_info_two);
     }
+
     private String[] toStringArray(Set<String> strings) {
         String[] strings1 = new String[strings.size()];
         int i = 0;
@@ -410,6 +497,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         }
         return strings1;
     }
+
     private void setValue(int index) {
         switch (index) {
             case 1:
@@ -512,6 +600,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 break;
         }
     }
+
     private class OutHolder {
         public TextView dateText;
         public EditText msgText;
@@ -551,6 +640,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         }
         return true;
     }
+
     /**
      * @param requestCode 100-199 系统外就医 200-299 服药开始时间，300-399服药结束时间 400-499 血管事件发生时间
      */
@@ -560,6 +650,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         intent.putExtra("sDate", sDate);
         startActivityForResult(intent, requestCode);
     }
+
     private void requestDrowMenuData() {
         RequestManager.getArray(Constens.ABNORMAL_EVENT, this, new Response.Listener<JSONArray>() {
             @Override
@@ -584,6 +675,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             }
         });
     }
+
     public void replaceView(int index) {
         this.index = index;
         register_info_one.setVisibility(View.GONE);
@@ -603,6 +695,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             register_info_four.setVisibility(View.VISIBLE);
         }
     }
+
     @OnClick({R.id.register_wenti, R.id.register_xinbie, R.id.register_shen, R.id.register_city, R.id.register_chushennianyue, R.id.register_header_image,
             R.id.register_info_submit,
             R.id.register_info_one_submit,
@@ -641,42 +734,22 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 break;
             case R.id.addmedicationsituation:
                 if (checkYYBeforeIsFull()) {
-                    View view = mInflater.inflate(R.layout.item_medicationsituation, null);
-
-                    final Holder holder = new Holder();
-                    holder.startTime = (TextView) view.findViewById(R.id.tv_start_time);
-                    holder.endTime = (TextView) view.findViewById(R.id.tv_end_time);
-                    holder.dcyyl = (EditText) view.findViewById(R.id.regester_three_danciyonyaoliang);
-                    holder.timeUnit = (Spinner) view.findViewById(R.id.timeUnit);
-                    holder.valueUnit = (Spinner) view.findViewById(R.id.valueUnit);
-                    holder.yaowuName = (Spinner) view.findViewById(R.id.yaowuName);
-                    holder.yaowuName.setAdapter(new ArrayAdapter<>(this, R.layout.layout_spinner_item, R.id.textView2, ywmString));
-                    holder.yypd = (Spinner) view.findViewById(R.id.yypd);
-                    final int num = yyViews.size();
-                    holder.startTime.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startDatePicker(200 + num, null);
-                        }
-                    });
-                    holder.endTime.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String sDate = holder.startTime.getText().toString().trim();
-                            if (sDate.equals("开始服药日期")) sDate = null;
-                            startDatePicker(300 + num, sDate);
-                        }
-                    });
-                    view.setTag(holder);
-                    yyViews.add(view);
-                    add_view_layout.addView(view);
+                    addOneMedicineView();
                 } else T.showShort(this, "请完善用药信息再试");
                 break;
             case R.id.register_info_one_submit:
+                if (isOutFirst) {
+                    isOutFirst = false;
+                    initOutViews();
+                }
                 replaceView(2);
                 setValue(1);
                 break;
             case R.id.register_info_two_submit:
+                if (isMedicineFirst) {
+                    isMedicineFirst = false;
+                    initMedicineViews();
+                }
                 replaceView(3);
                 setValue(2);
                 break;
@@ -705,14 +778,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                 T.showShort(UpdateUserInfoActivity.this, "修改成功");
                             }
                         }
-                    }, new RequestErrorListener() {
-                        @Override
-                        public void requestError(VolleyError e) {
-                            T.showShort(UpdateUserInfoActivity.this, "请求失败，请核实数据完整性");
-                            L.e(e.toString());
-                            e.printStackTrace();
-                        }
-                    });
+                    }, null);
                 }
 
                 break;
@@ -726,20 +792,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 break;
             case R.id.tv_add_system_out:
                 if (checkOutBeforeIsFull()) {
-                    View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
-                    OutHolder outHolder = new OutHolder();
-                    outHolder.dateText = (TextView) vs.findViewById(R.id.date);
-                    outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
-                    final int pos = outViews.size();
-                    vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startDatePicker(100 + pos, null);
-                        }
-                    });
-                    vs.setTag(outHolder);
-                    outViews.add(vs);
-                    add_system_out_layout.addView(vs);
+                    addOneOutView();
                 } else T.showShort(this, "请完善就医情况");
                 break;
             case R.id.regester_info_xueguanfashengshijian:
@@ -749,6 +802,55 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 startDatePicker(100, null);
                 break;
         }
+    }
+
+    private void addOneMedicineView() {
+        View view = mInflater.inflate(R.layout.item_medicationsituation, null);
+
+        final Holder holder = new Holder();
+        holder.startTime = (TextView) view.findViewById(R.id.tv_start_time);
+        holder.endTime = (TextView) view.findViewById(R.id.tv_end_time);
+        holder.dcyyl = (EditText) view.findViewById(R.id.regester_three_danciyonyaoliang);
+        holder.timeUnit = (Spinner) view.findViewById(R.id.timeUnit);
+        holder.valueUnit = (Spinner) view.findViewById(R.id.valueUnit);
+        holder.yaowuName = (Spinner) view.findViewById(R.id.yaowuName);
+        holder.yaowuName.setAdapter(new ArrayAdapter<>(this, R.layout.layout_spinner_item, R.id.textView2, ywmString));
+        holder.yypd = (Spinner) view.findViewById(R.id.yypd);
+        final int num = yyViews.size();
+        holder.startTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startDatePicker(200 + num, null);
+            }
+        });
+        holder.endTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sDate = holder.startTime.getText().toString().trim();
+                if (sDate.equals("开始服药日期")) sDate = null;
+                startDatePicker(300 + num, sDate);
+            }
+        });
+        view.setTag(holder);
+        yyViews.add(view);
+        add_view_layout.addView(view);
+    }
+
+    private void addOneOutView() {
+        View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
+        OutHolder outHolder = new OutHolder();
+        outHolder.dateText = (TextView) vs.findViewById(R.id.date);
+        outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
+        final int pos = outViews.size();
+        vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startDatePicker(100 + pos, null);
+            }
+        });
+        vs.setTag(outHolder);
+        outViews.add(vs);
+        add_system_out_layout.addView(vs);
     }
 
     public void loadCity() {
@@ -817,8 +919,27 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == Constens.PHOTO_REQUEST_TAKEPHOTO) {
+        if (resultCode == RESULT_OK && requestCode < 1000) {
+            int ys = requestCode % 100;
+            String date = data.getStringExtra("date");
+            switch (requestCode / 100) {
+                case 1:    //系统外就医
+                    OutHolder outHolder = (OutHolder) outViews.get(ys).getTag();
+                    outHolder.dateText.setText(date);
+                    break;
+                case 2:        //服药开始时间
+                    Holder holder = (Holder) yyViews.get(ys).getTag();
+                    holder.startTime.setText(date);
+                    break;
+                case 3:     //服药结束时间
+                    Holder holder1 = (Holder) yyViews.get(ys).getTag();
+                    holder1.endTime.setText(date);
+                    break;
+                case 4:         //血管时间发生时间
+                    regester_info_xueguanfashengshijian.setText(date);
+                    break;
+            }
+        } else if (requestCode == Constens.PHOTO_REQUEST_TAKEPHOTO) {
             if (resultCode == RESULT_OK) {
                 if (tempFile != null) {
                     startPhotoZoom(Uri.fromFile(tempFile));
@@ -847,27 +968,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 }
             }
         }
-//        if (resultCode == RESULT_OK) {
-//            int ys = requestCode % 100;
-//            String date = data.getStringExtra("date");
-//            switch (requestCode / 100) {
-//                case 1:    //系统外就医
-//                    OutHolder outHolder = (OutHolder) outViews.get(ys).getTag();
-//                    outHolder.dateText.setText(date);
-//                    break;
-//                case 2:        //服药开始时间
-//                    Holder holder = (Holder) yyViews.get(ys).getTag();
-//                    holder.startTime.setText(date);
-//                    break;
-//                case 3:     //服药结束时间
-//                    Holder holder1 = (Holder) yyViews.get(ys).getTag();
-//                    holder1.endTime.setText(date);
-//                    break;
-//                case 4:         //血管时间发生时间
-//                    regester_info_xueguanfashengshijian.setText(date);
-//                    break;
-//            }
-//        }
+//
     }
 
 
@@ -882,10 +983,10 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             type = postion;
             if (type == 1) {
                 register_three_layout.setVisibility(View.VISIBLE);
-                register_info_one.setVisibility(View.GONE);
+                replaceView(index);
             } else {
                 register_three_layout.setVisibility(View.GONE);
-                register_info_one.setVisibility(View.VISIBLE);
+                replaceView(index);
             }
         }
     }

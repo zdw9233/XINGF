@@ -1,7 +1,9 @@
 package com.uyi.app.ui.common;
 
+import android.Manifest;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -9,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -517,7 +520,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                     try {
                         province.add(array.getJSONObject(i).getString("name"));
                         city = array.getJSONObject(0).getInt("id");
-                        Log.e("id" ,city+"");
+                        Log.e("id", city + "");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -728,10 +731,10 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
 //		height  = Integer.parseInt(register_height.getText().toString());
 //		weight  =  Integer.parseInt(register_weight.getText().toString());;
         if (!ValidationUtils.isNull(mobile)) {
-        if (!ValidationUtils.isMobile(mobile)) {
-            T.showLong(application, "手机号码格式不正确!");
-            return;
-        }
+            if (!ValidationUtils.isMobile(mobile)) {
+                T.showLong(application, "手机号码格式不正确!");
+                return;
+            }
         }
         if (!ValidationUtils.isNull(phone)) {
             if (!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)) {
@@ -866,12 +869,11 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         params.put("safeAnswer", safeAnswer);
         params.put("occupation", occupation);
         params.put("groupId", groupId);
-Log.e("parse++++++++++++++++++++", params.toString());
         L.d(TAG, params.toString());
         RequestManager.postObject(Constens.ACCOUNT_REGISTER, activity, params, new Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject data) {
-                Log.e("data=",data.toString());
+                Log.e("data=", data.toString());
                 if (data.has("id")) {
                     try {
                         UserInfo userInfo = new UserInfo();
@@ -910,7 +912,10 @@ Log.e("parse++++++++++++++++++++", params.toString());
                 mSetPhotoPop.dismiss();
                 // 拍照获取
 //                doTakePhoto();
-                requestTakePhoto();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
+                } else
+                    requestTakePhoto();
 
             }
 
@@ -1047,6 +1052,14 @@ Log.e("parse++++++++++++++++++++", params.toString());
             registerLast();
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0x100) {
+            requestTakePhoto();
         }
     }
 }

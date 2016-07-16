@@ -6,13 +6,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
@@ -29,6 +29,7 @@ import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONObject;
@@ -68,29 +69,23 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     @Override
     protected void onInitLayoutAfter() {
-        RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, null, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
                     PersonalPagerAdapter.PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
                     mPagerAdapter.setPagerData(pagerData);
                     mPagerAdapter.notifyDataSetChanged();
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
             }
-        });
-        RequestManager.getObject(String.format("http://121.42.142.228:8080/app/api/servicePackage/query/custom"), this, new Response.Listener<JSONObject>() {
-            public void onResponse(JSONObject data) {
-                try {
-                    Log.e("data=",data.toString());
-                }catch (Exception e){
-
-                }
+        }, new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
 
             }
         });
-
 
         mViewPager.setAdapter(mPagerAdapter = new PersonalPagerAdapter(context, list));
         mViewPager.addOnPageChangeListener(this);

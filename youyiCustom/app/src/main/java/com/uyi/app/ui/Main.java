@@ -180,10 +180,9 @@ public class Main extends BaseFragmentActivity {
                     }
                 });
             }
-
+            fm = getSupportFragmentManager();
             UserService.loadUserInfo(application);
             MessageService.loadMessagesAll(activity);
-            fm = getSupportFragmentManager();
             replaceView(0);
         }
     }
