@@ -186,7 +186,6 @@ public class LoginActivity extends BaseActivity {
                                 }
                                 UserInfoManager.setLoginUserInfo(activity, userInfo);
                                 finish();
-                                req
                             }
                         } else {
                             userInfo.authToken = data.getString("authToken");
