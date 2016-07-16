@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -59,6 +59,8 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     private MessageReceiver mMessageReceiver;
 
+    PersonalPagerAdapter mPagerAdapter;
+
     @Override
     protected int getLayoutResouesId() {
         return R.layout.fragment_personal_center_new;
@@ -66,24 +68,16 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     @Override
     protected void onInitLayoutAfter() {
-        RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN,UserInfoManager.getLoginUserInfo(getContext()).userId), this,new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
-
-                try {
-                    Log.e("DATA  = ", data.toString());
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                PersonalPagerAdapter.PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
+                mPagerAdapter.setPagerData(pagerData);
+                mPagerAdapter.notifyDataSetChanged();
             }
         });
 
 
-
-
-
-
-        mViewPager.setAdapter(new PersonalPagerAdapter(context,list));
+        mViewPager.setAdapter(mPagerAdapter = new PersonalPagerAdapter(context, list));
         mViewPager.addOnPageChangeListener(this);
 
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
