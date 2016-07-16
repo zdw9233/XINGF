@@ -20,7 +20,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.exclusive.adapter.ExclusiveAdapter;
 import com.uyi.app.ui.personal.exclusive.adapter.ExclusiveAdapter.OnExclusiveUpdateListenner;
 import com.uyi.app.utils.L;
@@ -102,10 +102,10 @@ public class ExclusiveActivity extends BaseActivity implements  OnItemClickListe
 	public void loadNextPage() {
 		isLooding = false;
 		L.d(TAG, datas.size()+"");
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.DOCTOR_EXCLUSIVE_CONSULTS,pageNo,pageSize),activity, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");

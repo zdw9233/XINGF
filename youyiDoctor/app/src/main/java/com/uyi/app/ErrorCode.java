@@ -7,7 +7,6 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import com.android.volley.NetworkResponse;
-import com.uyi.app.ui.dialog.Looding;
 import com.uyi.app.utils.L;
 
 

@@ -16,7 +16,6 @@ import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
 import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;

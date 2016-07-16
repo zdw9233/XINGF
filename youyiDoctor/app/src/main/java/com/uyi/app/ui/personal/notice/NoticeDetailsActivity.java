@@ -11,7 +11,7 @@ import com.uyi.app.Constens;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
@@ -36,11 +36,11 @@ public class NoticeDetailsActivity extends BaseActivity {
 	protected void onInitLayoutAfter() {
 		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("公告详情").setTitleColor(getResources().getColor(R.color.blue));
 		id = getIntent().getIntExtra("id", 0);
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.DOCTOR_MY_MESSAGE, id,2), activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 				JSONArray tos = data.getJSONArray("tos");//发送对象
 				notice_detail_target.setText(toTos(tos));
 				notice_detail_title.setText(data.getString("title"));

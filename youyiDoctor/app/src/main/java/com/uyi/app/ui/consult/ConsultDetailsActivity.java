@@ -22,10 +22,9 @@ import com.uyi.app.ui.custom.FlowRadioGroup;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.discuss.DiscussGroupDetailsActivity;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
-import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.UYIUtils;
 import com.uyi.app.utils.ValidationUtils;
@@ -145,11 +144,11 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	
 	
 	public void load(){
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.HEALTH_CONSULT, id), activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					consult_details_layout.setVisibility(View.VISIBLE);
 					JSONObject customer = data.getJSONObject("customer");
 					ImageCacheManager.loadImage(customer.getString("icon"), ImageCacheManager.getImageListener(consult_details_logo, null, null));
@@ -549,7 +548,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	 */
 	public void submit(int type){
 		try {
-			Looding.bulid(activity, null).show();
+			Loading.bulid(activity, null).show();
 			JSONObject params = new JSONObject();
 			if(type == 8){//返回患者
 				type = 1;
@@ -563,7 +562,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 			}
 			RequestManager.postObject(String.format(Constens.DOCTOR_PROCESS_HEALTH_CONSULT_, id), activity, params, null, new RequestErrorListener() {
 				public void requestError(VolleyError e) {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					if(e.networkResponse != null){
 						T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
 					}else{

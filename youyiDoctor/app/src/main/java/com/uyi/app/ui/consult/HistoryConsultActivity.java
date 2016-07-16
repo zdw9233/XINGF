@@ -19,7 +19,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -95,14 +95,14 @@ public class HistoryConsultActivity extends BaseActivity implements OnItemClickL
 	@Override
 	public void loadNextPage() {
 		isLooding = false;
-		Looding.bulid(activity,null).show();
+		Loading.bulid(activity,null).show();
 //		curl "http://121.42.142.228:8080/app/api/doctor/health/consults?customerId=57&page=1&pageSize=10"
 		RequestManager.getObject(String.format(Constens.HEALTH_CONSULTS+"&customerId="+customerId, "1","1",pageNo,pageSize), activity, new Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject data) {
 				try {
 					L.d(TAG, data.toString());
-					Looding.bulid(activity,null).dismiss(); 
+					Loading.bulid(activity,null).dismiss();
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");
 					for(int i = 0;i<array.length();i++){

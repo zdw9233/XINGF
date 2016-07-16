@@ -115,6 +115,8 @@ public class FragmentLineInspection extends BaseFragment implements  OnTabChanag
 			public void onResponse(JSONObject data) {
 				try {
 					totalPage = data.getInt("pages");
+					if (pageNo == 1)
+						datas.clear();
 					JSONArray  array = data.getJSONArray("results");
 					for(int i = 0;i<array.length();i++){
 						Consult consult  = new Consult();
@@ -155,7 +157,6 @@ public class FragmentLineInspection extends BaseFragment implements  OnTabChanag
 		name = search_layout_edit.getText().toString();
 		pageNo = 1;
 		isLooding = true;
-		datas.clear();
 		recyclerView.setRefreshing(false);
 		loadNextPage();
 	}

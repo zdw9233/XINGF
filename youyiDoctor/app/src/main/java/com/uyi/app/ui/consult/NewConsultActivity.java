@@ -18,9 +18,8 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.FlowRadioGroup;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.BitmapUtils;
-import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
@@ -287,7 +286,7 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
 					return;
 				}
 				
-				Looding.bulid(activity,"正在保存图片..").show();
+				Loading.bulid(activity,"正在保存图片..").show();
 				JSONArray checkItems = new JSONArray(); 
 				for(int i = 0;i < jc_images.size();i++){
 					JSONObject medicalPics1 = new JSONObject();
@@ -310,11 +309,11 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
 				params.put("medicalTxt", medicaltxt);
 				params.put("checkItems", checkItems);
 				params.put("medicalPics", medicalPics);
-				Looding.bulid(activity,"正在上传..").show();
+				Loading.bulid(activity,"正在上传..").show();
 				RequestManager.postObject(Constens.ACCOUNT_HEALTH_CONSULT, activity, params, null, new RequestErrorListener() {
 					@Override
 					public void requestError(VolleyError e) {
-						Looding.bulid(activity,"").dismiss();
+						Loading.bulid(activity,"").dismiss();
 						setResult(RESULT_OK);
 						finish();
 					}

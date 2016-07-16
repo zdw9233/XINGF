@@ -22,7 +22,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.HealthManagerAdapter;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -108,7 +108,7 @@ public class FragmentHealthListManager extends BaseFragment
 	@Override
 	public void loadNextPage() {// 所有条目
 		isLooding = false;
-		Looding.bulid(getActivity(), null).show();
+		Loading.bulid(getActivity(), null).show();
 		System.out.println(UserInfoManager.getLoginUserInfo(getActivity()).toString());
 		RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_MANAGER, health_edit_text.getText().toString(), pageNo, pageSize),
 				getActivity(), new Listener<JSONObject>() {
@@ -116,7 +116,7 @@ public class FragmentHealthListManager extends BaseFragment
 					public void onResponse(JSONObject data) {
 							System.out.print(data.toString());
 						try {
-							Looding.bulid(getActivity(), null).dismiss();
+							Loading.bulid(getActivity(), null).dismiss();
 							totalPage = data.getInt("pages");
 							JSONArray array = data.getJSONArray("results");
 							for (int i = 0; i < array.length(); i++) {
@@ -175,7 +175,8 @@ public class FragmentHealthListManager extends BaseFragment
 
 	@Override
 	public void onItemClick(int position, Map<String, Object> data) {
-		startActivity(new Intent(getActivity(), HealthManagerFragment.class));
+		Intent intent = new Intent(getActivity(), HealthManagerFragment.class);
+		startActivity(intent);
 		customer = (int) data.get("id");
 		// Intent intent = new Intent(getActivity(),TeamDetailsActivity.class);
 		// intent.putExtra("id", (int)data.get("id"));

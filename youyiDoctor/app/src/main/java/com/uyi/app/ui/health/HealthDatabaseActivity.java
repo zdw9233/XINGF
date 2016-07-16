@@ -21,7 +21,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.HealthDatabaseAdapter;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.DateUtils;
@@ -147,10 +147,10 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
 	@Override
 	public void loadNextPage() {
 		isLooding = false;
-		Looding.bulid(HealthDatabaseActivity.this, null).show();
+		Loading.bulid(HealthDatabaseActivity.this, null).show();
 		RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS,FragmentHealthListManager.customer, startDate,endDate,pageNo,pageSize),HealthDatabaseActivity.this, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
-				Looding.bulid(HealthDatabaseActivity.this, null).dismiss();
+				Loading.bulid(HealthDatabaseActivity.this, null).dismiss();
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");
