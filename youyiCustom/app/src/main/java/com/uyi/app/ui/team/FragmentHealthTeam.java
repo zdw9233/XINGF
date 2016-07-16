@@ -140,6 +140,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
         isLooding = false;
         if (mLoading == null) {
             mLoading = Loading.bulid(getActivity(), null);
+            mLoading .show();
         }
         mLoading.show();
         if (team_selected_caty.getText().equals("全部城市")) {

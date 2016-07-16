@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -164,7 +163,7 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
                         Loading.bulid(activity, null).dismiss();
                             System.out.println(data.toString());
                         register_name.setText(data.getJSONObject("guardianInfo").getString("name"));
-
+                        icon = data.getJSONObject("guardianInfo").getString("icon");
                         ImageCacheManager.loadImage(data.getJSONObject("guardianInfo").getString("icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
                         gender = data.getJSONObject("guardianInfo").getString("gender");
 
@@ -332,7 +331,6 @@ if(!ValidationUtils.isNull(email)){
         guardianInfo.put("email", email);
         guardianInfo.put("address", address);
         guardianInfo.put("idCardNumber", idCardNumber);
-        Log.e("icon",icon.toString());
         guardianInfo.put("icon", icon);
         guardianInfo.put("occupation", occupation);
         params.put("guardianInfo",guardianInfo);

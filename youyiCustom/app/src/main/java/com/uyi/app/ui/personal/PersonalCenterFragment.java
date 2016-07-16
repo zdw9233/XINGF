@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -70,9 +71,24 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     protected void onInitLayoutAfter() {
         RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
-                PersonalPagerAdapter.PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
-                mPagerAdapter.setPagerData(pagerData);
-                mPagerAdapter.notifyDataSetChanged();
+                try {
+                    PersonalPagerAdapter.PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
+                    mPagerAdapter.setPagerData(pagerData);
+                    mPagerAdapter.notifyDataSetChanged();
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+        RequestManager.getObject(String.format("http://121.42.142.228:8080/app/api/servicePackage/query/custom"), this, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    Log.e("data=",data.toString());
+                }catch (Exception e){
+
+                }
+
             }
         });
 

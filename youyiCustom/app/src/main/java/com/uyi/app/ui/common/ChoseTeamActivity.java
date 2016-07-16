@@ -50,6 +50,8 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
     public boolean initLoad = true;//初始化加载
     public Main main;
     public static int cityid = -1;
+    private Loading mLoading;
+
     @Override
     protected void onInitLayoutAfter() {
         headerView.showLeftReturn(true).showTitle(true).setTitle("健康团队").setTitleColor(getResources().getColor(R.color.blue)).showRight(true);
@@ -99,7 +101,10 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
     @Override
     public void loadNextPage() {//所有团队
         isLooding = false;
-        Loading.bulid(this, null).show();
+        if (mLoading == null) {
+            mLoading = Loading.bulid(this, null);
+            mLoading .show();
+        }
         if(register_four_chose.getText().equals("全部城市")){
             RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,"","",pageNo,pageSize),ChoseTeamActivity.this, new Response.Listener<JSONObject>() {
                 @Override
@@ -123,7 +128,8 @@ public class ChoseTeamActivity extends BaseActivity  implements EndlessRecyclerV
                     }
                     TeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
-                    Loading.bulid(ChoseTeamActivity.this, null).dismiss();
+                    if (mLoading != null && mLoading.isShowing())
+                        mLoading.dismiss();
                     if(pageNo <= totalPage){
                         isLooding = true;
                         pageNo ++;

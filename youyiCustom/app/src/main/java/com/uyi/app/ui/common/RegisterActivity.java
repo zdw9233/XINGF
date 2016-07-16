@@ -13,6 +13,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -515,6 +516,8 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                 for (int i = 0; i < array.length(); i++) {
                     try {
                         province.add(array.getJSONObject(i).getString("name"));
+                        city = array.getJSONObject(0).getInt("id");
+                        Log.e("id" ,city+"");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -842,6 +845,12 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         Loading.bulid(activity, null).show();
 
         JSONObject params = new JSONObject();
+//        JSONObject cityid = new JSONObject();
+//        if (city != null){
+//            cityid.put("id",city);
+//
+//        }
+        params.put("cityId", city);
         params.put("account", accunt);
         params.put("password", pwd);
         params.put("phoneNumber", mobile);
@@ -851,18 +860,18 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         params.put("idCardNumber", idCardNumber);
         params.put("backupPhoneNumber", phone);
         params.put("email", email);
-        params.put("cityId", city);
         params.put("address", address);
         params.put("icon", icon);
         params.put("safeQuestion", safeQuestion);
         params.put("safeAnswer", safeAnswer);
         params.put("occupation", occupation);
         params.put("groupId", groupId);
-
+Log.e("parse++++++++++++++++++++", params.toString());
         L.d(TAG, params.toString());
         RequestManager.postObject(Constens.ACCOUNT_REGISTER, activity, params, new Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject data) {
+                Log.e("data=",data.toString());
                 if (data.has("id")) {
                     try {
                         UserInfo userInfo = new UserInfo();
@@ -970,6 +979,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                     }
                     TeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
+                    Loading.bulid(activity, null).dismiss();
                     if (pageNo <= totalPage) {
                         isLooding = true;
                         pageNo++;

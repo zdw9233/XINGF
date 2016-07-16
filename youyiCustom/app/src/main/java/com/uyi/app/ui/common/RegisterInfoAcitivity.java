@@ -499,6 +499,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
                         public void onResponse(JSONObject jsonObject) {
                             if (jsonObject.has("success")) {
                                 T.showShort(RegisterInfoAcitivity.this, "添加成功");
+                                replaceView(5);
                             }
                         }
                     }, new RequestErrorListener() {
