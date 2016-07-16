@@ -67,8 +67,8 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         recyclerView.setProgressView(R.layout.item_progress);
         recyclerView.setAdapter(healthDatabaseAdapter);
         recyclerView.setPager(this);
-        for (int i = 0;i<100;i++){
-            riskIndixs.add(""+i);
+        for (int i = 0; i < 100;i++){
+            riskIndixs.add(""+i+"%");
         }
         spinerPopWindow = new SpinerPopWindow(this);
         spinerPopWindow.setItemListener(this);

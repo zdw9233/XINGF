@@ -134,12 +134,12 @@ public class FragmentHealthListManager extends BaseFragment
 								item.put("diet", manageCustomerHealthListJson.getString("diet"));
 								item.put("alarm", manageCustomerHealthListJson.getString("alarm"));
 								item.put("telephone", manageCustomerHealthListJson.getString("telephone"));
-								item.put("isDiagnosis", manageCustomerHealthListJson.getString("isDiagnosis"));
-								item.put("isAssessment", manageCustomerHealthListJson.getString("isAssessment"));
-								item.put("isLife", manageCustomerHealthListJson.getString("isLife"));
-								item.put("isDiet", manageCustomerHealthListJson.getString("isDiet"));
-								item.put("isAlarm", manageCustomerHealthListJson.getString("isAlarm"));
-								item.put("isTelephone", manageCustomerHealthListJson.getString("isTelephone"));
+//								item.put("isDiagnosis", manageCustomerHealthListJson.getString("isDiagnosis"));
+//								item.put("isAssessment", manageCustomerHealthListJson.getString("isAssessment"));
+//								item.put("isLife", manageCustomerHealthListJson.getString("isLife"));
+//								item.put("isDiet", manageCustomerHealthListJson.getString("isDiet"));
+//								item.put("isAlarm", manageCustomerHealthListJson.getString("isAlarm"));
+//								item.put("isTelephone", manageCustomerHealthListJson.getString("isTelephone"));
 
 
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));

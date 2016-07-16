@@ -26,6 +26,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
+import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
@@ -49,7 +50,11 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by ThinkPad on 2016/6/27.
@@ -213,14 +218,7 @@ if(view.getId() == R.id.register_header_image){
 //			T.showLong(application, "必填项填写完毕!");
 //			return;
 //		}
-		if(ValidationUtils.isNull(register_height.getText().toString())){
-			register_height.setText("0");
-		}
-		if(ValidationUtils.isNull(register_weight.getText().toString())){
-			register_weight.setText("0");
-		}
-		height  = Integer.parseInt(register_height.getText().toString());
-		weight  =  Integer.parseInt(register_weight.getText().toString());;
+
 
         if(!ValidationUtils.isMobile(mobile)){
             T.showLong(application, "手机号码格式不正确!");
@@ -271,29 +269,54 @@ if(view.getId() == R.id.register_header_image){
             }
         }
         JSONObject params = new JSONObject();
-        params.put("name", realName);
+        params.put("account",LoginActivity.userName);
+        params.put("realName", realName);
         params.put("phoneNumber", mobile);
         params.put("birthday", birthday);
         params.put("gender", gender);
         params.put("cityId", cityId);
-        params.put("backupPhoneNumber", register_phone);
+        params.put("backupPhoneNumber", phone);
         params.put("email", email);
         params.put("address", address);
         params.put("idCardNumber", idCardNumber);
         params.put("icon", icon);
         params.put("occupation", occupation);
 
-        RequestManager.postObjectNotoken(Constens.GUADIANINFO, activity, params, new Response.Listener<JSONObject>() {
+        RequestManager.postObject(Constens.REGISTERGUADIANINFO, activity, params, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
-//                try {
-//                    Log.e("data",data.toString());
-//
-//
-//
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    Log.e("data",data.toString());
+                    UserInfo userInfo = new UserInfo();
+                    userInfo.type = data.getInt("type");
+                    userInfo.userId = data.getInt("id");
+                    userInfo.account = data.getString("account");
+                    userInfo.realName = data.getString("guardian");
+//                    userInfo.password = password;
+                    userInfo.icon = data.getString("guardianIcon");
+                    userInfo.address = data.has("address") ? data.getString("address") : null;
+                    userInfo.city = data.has("city") ? data.getString("city") : null;
+                    userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
+                    userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
+                    userInfo.lastLoginTime = data.getString("lastLoginTime");
+                    if(data.has("liefstyle")){
+                        userInfo.liefstyle = data.getString("liefstyle");
+                    }
+                    if(data.has("eatinghabiit")){
+                        userInfo.eatinghabiit = data.getString("eatinghabiit");
+                    }
+//                                userInfo.guardianIcon =  data.getString("guardianIcon");
+                    userInfo.guardian =  data.getString("guardian");
+                    userInfo.logasguardian = true;
+                    Set<String> tags = new HashSet<String>();
+                    tags.add("bulletin");
+                    tags.add("message_customer_" + userInfo.userId);
+                    JPushInterface.setTags(activity, tags, null);
+                    setResult(RESULT_OK);
+                    finish();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 Log.e("data",data.toString());
             }
         }, null);

@@ -44,7 +44,7 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
                 startActivity(new Intent(this, HealthManagerMain.class));
                 break;
             case R.id.database:    //健康数据库
-                startActivity(new Intent(this, AlarmStandardActivity.class));
+                startActivity(new Intent(this, HealthDatabaseActivity.class));
                 break;
             case R.id.assessment: //风险评估
                 startActivity(new Intent(this, RiskAssessmentActivity.class));

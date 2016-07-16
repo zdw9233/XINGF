@@ -9,8 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.uyi.app.Constens;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
+import com.volley.RequestManager;
+
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -34,15 +41,39 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	}
 
 	@Override
-	public void onBind(final ViewHolder viewHolder, int RealPosition, Map<String, Object> data) {
+	public void onBind(final ViewHolder viewHolder, int RealPosition,final Map<String, Object> data) {
 		if(viewHolder instanceof Holder){
 			final Holder hodler = (Holder)viewHolder;
 			hodler.item.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
+					try {
+						JSONObject params = new JSONObject();
+
+						RequestManager.postObject(String.format(Constens.CUSTOMER_HEALTH_RISK_UPDATA,data.get("id").toString()), context,params, new Response.Listener<JSONObject>() {
+							public void onResponse(JSONObject data) {
+								System.out.print("+++++++++++++++++++++"+data.toString());
+								hodler.checked.setVisibility(View.GONE);
+							}
+						}, new RequestErrorListener() {
+							public void requestError(VolleyError e) {
+//                    if(e.networkResponse != null){
+//                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+//                    }else{
+//                        T.showShort(activity, "提交成功!");
+//                        onRefresh();
+//                    }
+//								T.showShort(context, "失败!");
+							}
+						});
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
 					if(hodler.deils.getVisibility() == View.GONE){
 						hodler.deils.setVisibility(View.VISIBLE);
 						hodler.riskitem.setVisibility(View.VISIBLE);
+
 					}else{
 						hodler.deils.setVisibility(View.GONE);
 						hodler.riskitem.setVisibility(View.GONE);

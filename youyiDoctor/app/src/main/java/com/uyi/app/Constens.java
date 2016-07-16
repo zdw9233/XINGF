@@ -44,6 +44,8 @@ public  abstract class Constens {
 //	public final static String SERVER_URL = "http://www.uyidoctor.com";
 	//登陆
 	public final static String LOGIN_URL = SERVER_URL+"/app/api/account/login";
+	//获取欢迎图片
+	public final static String WELCOME_PICTRUE = SERVER_URL + "/app/api/common/mainpageurl/%s";
 	//获取问题答案列表
 	public final static String SAFE_QUESTIONS = SERVER_URL+"/app/api/common/safe/questions";
 	
@@ -386,6 +388,18 @@ public  abstract class Constens {
 	 */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
 	public final static String DOCTOR_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=false&page=%s&pageSize=%s";
+	/**
+	 * /**
+	 * 查生活方式和饮食
+	 */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+	public final static String DOCTOR_HEALTH_LIFE_DIET = SERVER_URL + "/app/api/doctor/customer/%s/info";
+	/**
+	 * /**
+	 * 改生活方式和饮食
+	 */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+	public final static String DOCTOR_HEALTH_LIFE_DIET_UPDATA = SERVER_URL + "/app/api/doctor/customer/%s/update";
 	/**
 	 * /**
 	 * /**

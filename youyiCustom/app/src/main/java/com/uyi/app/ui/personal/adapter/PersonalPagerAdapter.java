@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+
+import java.util.List;
 
 /**
  * PersonalPagerAdapter  Created by Leeii on 2016/6/19.
@@ -14,9 +17,11 @@ import com.uyi.custom.app.R;
 public class PersonalPagerAdapter extends PagerAdapter {
 
     private Context mContext;
+    private List<T> list;
 
-    public PersonalPagerAdapter(Context mContext) {
+    public PersonalPagerAdapter(Context mContext, List<T> list) {
         this.mContext = mContext;
+        this.list = list;
     }
 
     @Override
