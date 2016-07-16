@@ -118,7 +118,7 @@ public abstract class Constens {
     //是否有新的未读
     public final static String MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/get/manage/customer";
     //更新是否有未读
-    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/update/manage/customer?type=%s";
+    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/doctor/update/manage/customer/%d";
     /**
      * 客户充值健康豆 ${money} POST
      */

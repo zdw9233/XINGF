@@ -58,7 +58,7 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
 //            }
 //        });
         mAdapter.setItemClickListener(this);
-        mHeaderView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(this).icon)
+        mHeaderView.showLeftReturn(true)
                 .showTitle(true).showRight(true).setTitle("主诊报告列表")
                 .setTitleColor(getResources().getColor(R.color.blue));
         mRecyclerView.addOnScrollListener(new RecyclerListener(this));
