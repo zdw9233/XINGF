@@ -74,6 +74,12 @@
 
         </activity>
         <activity
+            android:name="com.uyi.app.ui.report.ReportListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.personal.CustomServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.uyi.app.ui.common.ServiceNumberActivity"
             android:screenOrientation="portrait" />
         <activity

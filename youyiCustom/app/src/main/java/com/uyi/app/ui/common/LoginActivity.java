@@ -34,7 +34,8 @@ import cn.jpush.android.api.JPushInterface;
 
 @ContentView(R.layout.login)
 public class LoginActivity extends BaseActivity {
-
+    public static String userName;
+    public static String passWord;
     @ViewInject(R.id.iconxuanzhe)
     private TextView iconxuanzhe;
     @ViewInject(R.id.guardian_chose)
@@ -59,8 +60,6 @@ public class LoginActivity extends BaseActivity {
     protected void onInitLayoutAfter() {
         headerView.showTitle(true);
         headerView.setTitle(getString(R.string.app_name));
-        login_username.setText("zxcvbnm1");
-        login_password.setText("123456t");
         headerView.setHeaderBackgroundColor(getResources().getColor(R.color.blue));
         iconxuanzhe.setVisibility(View.GONE);
         if (UserInfoManager.getLoginUserInfo(activity) != null) {
@@ -73,6 +72,7 @@ public class LoginActivity extends BaseActivity {
     protected void onRestart() {
         super.onRestart();
         if (UserInfoManager.getLoginUserInfo(activity) != null) {
+            setResult(RESULT_OK);
             finish();
         }
     }
@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity {
         if (v.getId() == R.id.login_register) {
             startActivity(new Intent(activity, RegisterActivity.class));
         } else if (v.getId() == R.id.login_get_password) {
-			startActivity(new Intent(activity, GetPasswordActivity.class));
+            startActivity(new Intent(activity, GetPasswordActivity.class));
 //            startActivity(new Intent(activity, RegisterInfoAcitivity.class));
         } else if (v.getId() == R.id.guardian_chose) {
             if (isChoise == 0) {
@@ -102,6 +102,8 @@ public class LoginActivity extends BaseActivity {
             JSONObject params = new JSONObject();
             params.put("account", account);
             params.put("password", password);
+            userName = account;
+            passWord = password;
             if (isChoise == 0) {
                 params.put("logasguardian", false);
             } else {
@@ -114,8 +116,8 @@ public class LoginActivity extends BaseActivity {
                         Log.e("data", data.toString());
 
                         if (data.getBoolean("logasguardian")) {
-                            if (data.getString("guardian").equals("false")) {
 
+                            if (data.getString("guardian").equals("false")) {
                                 userInfo.authToken = data.getString("authToken");
                                 userInfo.type = data.getInt("type");
                                 userInfo.userId = data.getInt("id");
@@ -128,32 +130,32 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
-                                if(data.has("liefstyle")){
+                                if (data.has("liefstyle")) {
                                     userInfo.liefstyle = data.getString("liefstyle");
                                 }
-                                if(data.has("eatinghabiit")){
+                                if (data.has("eatinghabiit")) {
                                     userInfo.eatinghabiit = data.getString("eatinghabiit");
                                 }
 //                                userInfo.guardianIcon =  data.getString("guardianIcon");
 //                                userInfo.guardian =  data.getString("guardian");
                                 userInfo.logasguardian = true;
-                                Set<String> tags = new HashSet<String>();
-                                tags.add("bulletin");
-                                tags.add("message_customer_" + userInfo.userId);
-                                JPushInterface.setTags(activity, tags, null);
+//                                Set<String> tags = new HashSet<String>();
+//                                tags.add("bulletin");
+//                                tags.add("message_customer_" + userInfo.userId);
+//                                JPushInterface.setTags(activity, tags, null);
                                 if (userInfo.type != 0) {
                                     T.showLong(activity, "只能登陆客户账户");
                                     return;
                                 }
                                 UserInfoManager.setLoginUserInfo(activity, userInfo);
-                                startActivity(new Intent(LoginActivity.this, RegisterGuardianInfo.class));
-                                finish();
+                                startActivityForResult(new Intent(LoginActivity.this, RegisterGuardianInfo.class), 0x100);
                             } else {
                                 userInfo.authToken = data.getString("authToken");
                                 userInfo.type = data.getInt("type");
                                 userInfo.userId = data.getInt("id");
                                 userInfo.account = data.getString("account");
                                 userInfo.realName = data.getString("guardian");
+                                userInfo.guardian = data.getString("guardian");
                                 userInfo.password = password;
                                 userInfo.icon = data.getString("guardianIcon");
                                 userInfo.address = data.has("address") ? data.getString("address") : null;
@@ -161,10 +163,10 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
-                                if(data.has("liefstyle")){
+                                if (data.has("liefstyle")) {
                                     userInfo.liefstyle = data.getString("liefstyle");
                                 }
-                                if(data.has("eatinghabiit")){
+                                if (data.has("eatinghabiit")) {
                                     userInfo.eatinghabiit = data.getString("eatinghabiit");
                                 }
 //                                userInfo.guardianIcon =  data.getString("guardianIcon");
@@ -194,10 +196,10 @@ public class LoginActivity extends BaseActivity {
                             userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                             userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                             userInfo.lastLoginTime = data.getString("lastLoginTime");
-                            if(data.has("liefstyle")){
+                            if (data.has("liefstyle")) {
                                 userInfo.liefstyle = data.getString("liefstyle");
                             }
-                            if(data.has("eatinghabiit")){
+                            if (data.has("eatinghabiit")) {
                                 userInfo.eatinghabiit = data.getString("eatinghabiit");
                             }
                             userInfo.logasguardian = false;
@@ -237,4 +239,12 @@ public class LoginActivity extends BaseActivity {
         headerView.setKitkat(systemBarConfig);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0x100 && resultCode == RESULT_OK) {
+            setResult(RESULT_OK);
+            finish();
+        }
+    }
 }

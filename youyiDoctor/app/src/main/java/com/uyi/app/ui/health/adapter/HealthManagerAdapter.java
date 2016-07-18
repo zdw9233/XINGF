@@ -61,24 +61,24 @@ public class HealthManagerAdapter extends BaseRecyclerAdapter<Map<String, Object
 			hodler.item_user_time5.setText(data.get("alarm").toString());
 			hodler.item_user_time6.setText(data.get("telephone").toString());
 
-			if(data.get("isDiagnosis").toString().equals("false")){
-				hodler.layout1.setVisibility(View.GONE);
-			}
-			if(data.get("isAssessment").toString().equals("false")){
-				hodler.layout2.setVisibility(View.GONE);
-			}
-			if(data.get("isLife").toString().equals("false")){
-				hodler.layout3.setVisibility(View.GONE);
-			}
-			if(data.get("isDiet").toString().equals("false")){
-				hodler.layout4.setVisibility(View.GONE);
-			}
-			if(data.get("isAlarm").toString().equals("false")){
-				hodler.layout5.setVisibility(View.GONE);
-			}
-			if(data.get("isTelephone").toString().equals("false")){
-				hodler.layout6.setVisibility(View.GONE);
-			}
+//			if(data.get("isDiagnosis").toString().equals("false")){
+//				hodler.layout1.setVisibility(View.GONE);
+//			}
+//			if(data.get("isAssessment").toString().equals("false")){
+//				hodler.layout2.setVisibility(View.GONE);
+//			}
+//			if(data.get("isLife").toString().equals("false")){
+//				hodler.layout3.setVisibility(View.GONE);
+//			}
+//			if(data.get("isDiet").toString().equals("false")){
+//				hodler.layout4.setVisibility(View.GONE);
+//			}
+//			if(data.get("isAlarm").toString().equals("false")){
+//				hodler.layout5.setVisibility(View.GONE);
+//			}
+//			if(data.get("isTelephone").toString().equals("false")){
+//				hodler.layout6.setVisibility(View.GONE);
+//			}
 ImageCacheManager.loadImage(data.get("icon").toString(), ImageCacheManager.getImageListener(hodler.item_health_header, null, null));
 		}
 	}

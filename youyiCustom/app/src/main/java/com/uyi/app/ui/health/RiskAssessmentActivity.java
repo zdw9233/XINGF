@@ -113,7 +113,7 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                             for (int i = 0; i < array.length(); i++) {
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
-
+                                item.put("id", jsonObject.getString("id"));
                                 item.put("content", jsonObject.getString("content"));
                                 item.put("createTime", jsonObject.getString("createTime"));
                                 item.put("percentage", jsonObject.getString("percentage"));

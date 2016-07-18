@@ -2,7 +2,6 @@ package com.uyi.app.ui.personal.schedule;
 
 import java.util.Date;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.android.volley.VolleyError;
@@ -13,7 +12,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
@@ -77,11 +76,11 @@ public class AddScheduleActivity extends BaseActivity {
 		try {
 			params.put("scheduleDate", date);
 			params.put("content", content);
-			Looding.bulid(activity, null).show(); 
+			Loading.bulid(activity, null).show();
 			L.d(TAG, params.toString());
 			RequestManager.postObject(Constens.ACCOUNT_SCHEDULE, activity, params, new Listener<JSONObject>() {
 				public void onResponse(JSONObject arg0) {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					T.showShort(activity, "添加成功");
 					setResult(RESULT_OK);
 					finish();
@@ -89,7 +88,7 @@ public class AddScheduleActivity extends BaseActivity {
 			}, new RequestErrorListener() {
 				@Override
 				public void requestError(VolleyError e) {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					T.showShort(activity, "添加成功");
 					setResult(RESULT_OK);
 					finish();

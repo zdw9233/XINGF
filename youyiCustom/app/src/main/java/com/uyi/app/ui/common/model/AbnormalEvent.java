@@ -1,10 +1,9 @@
 package com.uyi.app.ui.common.model;
 
 /**
- * Created by Leeii on 2016/7/15.
+ * Created by Leeii on 2016/7/16.
  */
 public class AbnormalEvent {
-
     /**
      * id : 1
      * name : 脑血拴

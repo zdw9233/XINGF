@@ -20,7 +20,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.notice.adapter.NoticeAdapter;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -119,10 +119,10 @@ public class NoticeActivity extends BaseActivity implements OnItemClickListener<
 	@Override
 	public void loadNextPage() {
 		isLooding = false;
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.DOCTOR_MY_MESSAGES,2,pageNo,pageSize),activity, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");

@@ -1,13 +1,12 @@
 package com.uyi.app.ui.health;
 
-import java.io.ByteArrayOutputStream;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -17,32 +16,28 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UYIApplication;
 import com.uyi.app.UserInfoManager;
-import com.uyi.app.ui.common.ViewPagerImageActivity;
 import com.uyi.app.ui.common.ViewPagerImagebiaoActivity;
-import com.uyi.app.ui.consult.ConsultDetailsActivity;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter.IOnItemSelectListener;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
-import com.volley.ImageCacheManager;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 健康管理
@@ -93,10 +88,8 @@ Bitmap bitmap = null;
 		spinerPopWindow = new SpinerPopWindow(getView().getContext());
 		spinerPopWindow.setItemListener(this);
 //		headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTab(true).showRight(true).setOnTabChanage(this);
-		headerView.showLeftReturn(true).showTab(true).showRight(true).setOnTabChanage(this);
+		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("健康报告").setTitleColor(getResources().getColor(R.color.blue));
 		String[] str = getResources().getStringArray(R.array.health_manager);
-		headerView.setTitleTabs(str);
-		headerView.selectTabItem(1);
 		spinerPopWindow.refreshData(zbString, 1);
 		// ImageCacheManager.loadImage(imageUrl,
 		// ImageCacheManager.getImageListener(imageView1,
@@ -136,14 +129,14 @@ Bitmap bitmap = null;
 				T.showLong(context, "请选择结束时间");
 				return;
 			}
-			Looding.bulid(main, null).show();
+			Loading.bulid(main, null).show();
 			System.out.println(FragmentHealthListManager.customer+"");
 			final String url = String.format(Constens.HEALTH_REPORT, FragmentHealthListManager.customer,selectedType,startDate,endDate);
 			System.out.println(url);
 			imageUrl = url;
 			ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
 				public void onResponse(Bitmap bm) {
-					Looding.bulid(main, null).dismiss();
+					Loading.bulid(main, null).dismiss();
 					if(bm != null){
 						L.d(TAG, "bmnotnull");
 						if(health_manager_tubiao != null){

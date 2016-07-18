@@ -113,7 +113,6 @@ public class RequestManager {
 
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
-				Log.e("url",params.toString());
 				Map<String, String> headers = new HashMap<>();
 				if(UserInfoManager.getLoginUserInfo(UYIApplication.getContext())!= null){
 					headers.put("authToken",UserInfoManager.getLoginUserInfo(UYIApplication.getContext()).authToken);
@@ -131,7 +130,6 @@ public class RequestManager {
 	 * @param url
 	 * @param tag
 	 * @param params
-	 * @param listener
 	 */
 	public static void postObjectNotoken(String url, Object tag, JSONObject params, Response.Listener<JSONObject> litenner ,RequestErrorListener errorListener) {
 		JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){
@@ -272,6 +270,7 @@ public class RequestManager {
 			public void onErrorResponse(VolleyError e) {
 				if(l == null){
 					T.show(UYIApplication.getContext(), ErrorCode.getErrorByNetworkResponse(e.networkResponse), -1);
+//					Log.e("tag","P都没有返回");
 				}else{
 					l.requestError(e);
 				}

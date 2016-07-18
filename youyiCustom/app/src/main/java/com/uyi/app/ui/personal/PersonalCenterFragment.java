@@ -10,11 +10,14 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.service.MessageService;
-import com.uyi.app.ui.common.RegisterInfoAcitivity;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
@@ -24,7 +27,15 @@ import com.uyi.app.ui.personal.message.MessageActivity;
 import com.uyi.app.ui.personal.questions.HealthyQuestionsActivity;
 import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.app.utils.L;
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
+import com.volley.RequestManager;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 个人中心（新） Created by Leeii on 2016/6/19.
@@ -44,10 +55,12 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     private TextView mConsultingNum;
     @ViewInject(R.id.question_num)
     private TextView mQuestionNum;
-
+    List<T> list = new ArrayList<>();
     private int[] radioIds = {R.id.radioButton1, R.id.radioButton2};
 
     private MessageReceiver mMessageReceiver;
+
+    PersonalPagerAdapter mPagerAdapter;
 
     @Override
     protected int getLayoutResouesId() {
@@ -56,10 +69,28 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     @Override
     protected void onInitLayoutAfter() {
-        mViewPager.setAdapter(new PersonalPagerAdapter(context));
+        RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, null, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    PersonalPagerAdapter.PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
+                    mPagerAdapter.setPagerData(pagerData);
+                    mPagerAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+
+                }
+
+            }
+        }, new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
+
+            }
+        });
+
+        mViewPager.setAdapter(mPagerAdapter = new PersonalPagerAdapter(context, list));
         mViewPager.addOnPageChangeListener(this);
 
-        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("个人中心").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
 
     }
 
@@ -86,7 +117,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
                 startActivity(new Intent(context, SugarServiceActivity.class));
                 break;  //糖心服务
             case R.id.dzfw:
-                startActivity(new Intent(context, RegisterInfoAcitivity.class));
+                startActivity(new Intent(context, CustomServiceActivity.class));
                 break;   //定制服务
             case R.id.schedule:
                 startActivity(new Intent(context, ScheduleActivity.class));

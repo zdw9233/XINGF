@@ -40,6 +40,9 @@ public class ReportMainActivity extends BaseActivity {
 
     @OnClick(R.id.detail_report)
     public void onClick(View v) {
-        startActivity(new Intent(this, ReportActivity.class));
+        int id = getIntent().getIntExtra("reportId", 0);
+        Intent intent = new Intent(this, ReportActivity.class);
+        intent.putExtra("reportId", id);
+        startActivity(intent);
     }
 }

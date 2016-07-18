@@ -1,10 +1,6 @@
 package com.uyi.app.model.dao.impl;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context;
 
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -13,7 +9,11 @@ import com.lidroid.xutils.exception.DbException;
 import com.uyi.app.model.bean.OrderBy;
 import com.uyi.app.model.dao.BaseDao;
 
-import android.content.Context;
+import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseDaoImpl<T> implements BaseDao<T> {
 
@@ -97,7 +97,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	@Override
 	public boolean update(T t) {
 		try {
-			dbUtils.update(t, null);
+			dbUtils.update(t);
 			return true;
 		} catch (DbException e) {
 			e.printStackTrace();
@@ -210,8 +210,4 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			e.printStackTrace();
 		}
 	}
-
-
-
-
 }

@@ -1,7 +1,9 @@
 package com.uyi.app.ui.common;
 
+import android.Manifest;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -9,10 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -515,6 +519,8 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                 for (int i = 0; i < array.length(); i++) {
                     try {
                         province.add(array.getJSONObject(i).getString("name"));
+                        city = array.getJSONObject(0).getInt("id");
+                        Log.e("id", city + "");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -708,7 +714,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         idCardNumber = register_card.getText().toString();
         occupation = register_zhiye.getText().toString();
 
-        if (ValidationUtils.isNull(birthday, realName, mobile, idCardNumber)) {
+        if (ValidationUtils.isNull(birthday, realName, idCardNumber)) {
             T.showLong(application, "必填项填写完毕!");
             return;
         }
@@ -724,10 +730,11 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
 //		}
 //		height  = Integer.parseInt(register_height.getText().toString());
 //		weight  =  Integer.parseInt(register_weight.getText().toString());;
-
-        if (!ValidationUtils.isMobile(mobile)) {
-            T.showLong(application, "手机号码格式不正确!");
-            return;
+        if (!ValidationUtils.isNull(mobile)) {
+            if (!ValidationUtils.isMobile(mobile)) {
+                T.showLong(application, "手机号码格式不正确!");
+                return;
+            }
         }
         if (!ValidationUtils.isNull(phone)) {
             if (!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)) {
@@ -841,6 +848,12 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         Loading.bulid(activity, null).show();
 
         JSONObject params = new JSONObject();
+//        JSONObject cityid = new JSONObject();
+//        if (city != null){
+//            cityid.put("id",city);
+//
+//        }
+        params.put("cityId", city);
         params.put("account", accunt);
         params.put("password", pwd);
         params.put("phoneNumber", mobile);
@@ -850,22 +863,21 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         params.put("idCardNumber", idCardNumber);
         params.put("backupPhoneNumber", phone);
         params.put("email", email);
-        params.put("cityId", city);
         params.put("address", address);
         params.put("icon", icon);
         params.put("safeQuestion", safeQuestion);
         params.put("safeAnswer", safeAnswer);
         params.put("occupation", occupation);
         params.put("groupId", groupId);
-
         L.d(TAG, params.toString());
         RequestManager.postObject(Constens.ACCOUNT_REGISTER, activity, params, new Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject data) {
+                Log.e("data=", data.toString());
                 if (data.has("id")) {
                     try {
                         UserInfo userInfo = new UserInfo();
-                        userInfo.userId = data.getInt("id");
+                        userInfo.userId = (data.getInt("id"));
                         userInfo.authToken = data.getString("authToken");
                         userInfo.type = data.getInt("type");
                         userInfo.account = data.getString("account");
@@ -900,7 +912,10 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                 mSetPhotoPop.dismiss();
                 // 拍照获取
 //                doTakePhoto();
-                requestTakePhoto();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
+                } else
+                    requestTakePhoto();
 
             }
 
@@ -969,6 +984,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                     }
                     TeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
+                    Loading.bulid(activity, null).dismiss();
                     if (pageNo <= totalPage) {
                         isLooding = true;
                         pageNo++;
@@ -1036,6 +1052,14 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
             registerLast();
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0x100) {
+            requestTakePhoto();
         }
     }
 }

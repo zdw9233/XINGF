@@ -9,6 +9,141 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center">
+
+        <FrameLayout
+            android:id="@+id/cgjc"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_white_to_press">
+
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:drawableLeft="@drawable/sel_detection"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/sel_detection"
+                android:gravity="center"
+                android:text="常规检测"
+                android:textColor="@color/sel_report_text_clr" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+
+        <FrameLayout
+            android:id="@+id/qst"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_white_to_press">
+
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/sel_trendchart"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/sel_trendchart"
+                android:gravity="center"
+                android:text="趋势图"
+                android:textColor="@color/sel_report_text_clr" />
+        </FrameLayout>
+    </TableRow>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightgray" />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center">
+
+        <FrameLayout
+            android:id="@+id/xdt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_white_to_press">
+
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:button="@null"
+                android:drawableLeft="@drawable/sel_electrocardiogram"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/sel_electrocardiogram"
+                android:gravity="center"
+                android:text="心电图"
+                android:textColor="@color/sel_report_text_clr" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+
+        <FrameLayout
+            android:id="@+id/zytzjb"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_white_to_press">
+
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/sel_chinesemedicine"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/sel_chinesemedicine"
+                android:gravity="center"
+                android:text="中医体质识别"
+                android:textColor="@color/sel_report_text_clr" />
+        </FrameLayout>
+    </TableRow>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightgray" />
+
+    <FrameLayout
+        android:id="@+id/jkbg"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/sel_white_to_press"
+        android:visibility="gone">
+
+        <CheckedTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/sel_electrocardiogram"
+            android:drawablePadding="4dp"
+            android:drawableStart="@drawable/sel_electrocardiogram"
+            android:gravity="center"
+            android:text="健康报告"
+            android:textColor="@color/sel_report_text_clr" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightgray" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,140 +152,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:id="@+id/cgjc"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/sel_white_to_press">
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:button="@null"
-                        android:drawableLeft="@drawable/add_icon"
-                        android:drawablePadding="4dp"
-                        android:drawableStart="@drawable/add_icon"
-                        android:gravity="center"
-                        android:text="常规检测"
-                        android:textColor="@color/text_clr" />
-                </FrameLayout>
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/lightgray" />
-
-                <FrameLayout
-                    android:id="@+id/qst"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/sel_white_to_press">
-
-                    <CheckedTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/add_icon"
-                        android:drawablePadding="4dp"
-                        android:drawableStart="@drawable/add_icon"
-                        android:gravity="center"
-                        android:text="趋势图"
-                        android:textColor="@color/text_clr" />
-                </FrameLayout>
-            </TableRow>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/lightgray" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center">
-
-                <FrameLayout
-                    android:id="@+id/xdt"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/sel_white_to_press">
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:button="@null"
-                        android:drawableLeft="@drawable/add_icon"
-                        android:drawablePadding="4dp"
-                        android:drawableStart="@drawable/add_icon"
-                        android:gravity="center"
-                        android:text="心电图"
-                        android:textColor="@color/text_clr" />
-                </FrameLayout>
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/lightgray" />
-
-                <FrameLayout
-                    android:id="@+id/zytzjb"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/sel_white_to_press">
-
-                    <CheckedTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/add_icon"
-                        android:drawablePadding="4dp"
-                        android:drawableStart="@drawable/add_icon"
-                        android:gravity="center"
-                        android:text="中医体质识别"
-                        android:textColor="@color/text_clr" />
-                </FrameLayout>
-            </TableRow>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/lightgray" />
-
-            <FrameLayout
-                android:id="@+id/jkbg"
-
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/sel_white_to_press">
-
-                <CheckedTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:drawableLeft="@drawable/add_icon"
-                    android:drawablePadding="4dp"
-                    android:drawableStart="@drawable/add_icon"
-                    android:gravity="center"
-                    android:text="健康报告"
-                    android:textColor="@color/text_clr" />
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/lightgray" />
 
             <FrameLayout
                 android:id="@+id/content"

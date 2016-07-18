@@ -98,20 +98,27 @@ public abstract class Constens {
 
     //获取协议
     public final static String REGISTER_AGREEMENT = SERVER_URL + "/app/api/common/protocol";
-
+    //获取欢迎图片
+    public final static String WELCOME_PICTRUE = SERVER_URL + "/app/api/common/mainpageurl/%s";
+    //风险评估已读接口
+    public final static String RISK_READ = SERVER_URL + "/app/api/doctor/setting/riskreport/update/%s";
+    //获取血糖血压图片
+    public final static String ELECTROCARDIOGRAN = SERVER_URL + "/app/api/account/health/info/dailyinfo/data/%s";
     //判断身份证
     public final static String JUDGE_ID_CARD = SERVER_URL + "/app/api/common/check/idcard/used?idCardNumber=%s";
 
     //登陆
     public final static String LOGIN_URL = SERVER_URL + "/app/api/account/login";
     //录入监护人资料
+    public final static String REGISTERGUADIANINFO = SERVER_URL + "/app/api/account/guardianinfo";
+    //修改监护人资料
     public final static String GUADIANINFO = SERVER_URL + "/app/api/account/update";
     //获取问题答案列表
     public final static String SAFE_QUESTIONS = SERVER_URL + "/app/api/common/safe/questions";
     //是否有新的未读
     public final static String MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/get/manage/customer";
     //更新是否有未读
-    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/updata/manage/customer?type=%s";
+    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/doctor/update/manage/customer/%d";
     /**
      * 客户充值健康豆 ${money} POST
      */
@@ -125,7 +132,13 @@ public abstract class Constens {
      * 查风险评估列表
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
-    public final static String CUSTOMER_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=false&page=%s&pageSize=%s";
+    public final static String CUSTOMER_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=true&page=%s&pageSize=%s";
+    /**
+     * /**
+     * gai风险评估列表
+     */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String CUSTOMER_HEALTH_RISK_UPDATA = SERVER_URL + "/app/api/doctor/setting/riskreport/update/%s";
     /**
      * 检查问题
      */
@@ -160,7 +173,7 @@ public abstract class Constens {
     /**
      * 服務查询
      */
-    public final static String SERVICE_NUMBER = SERVER_URL + "/app/api/servicePackage/getCustomerServiceDetail";
+    public final static String SERVICE_NUMBER = SERVER_URL + "/app/api/account/getCustomerServiceCount";
     /**
      * 患者注册
      */
@@ -415,5 +428,21 @@ public abstract class Constens {
     /**
      * 更新健康资料
      */
-    public static final String UPDATE_HEALTH_ZL = SERVER_URL + "/app/api/account/update/healthCondition";
+    public static final String UPDATE_HEALTH_ZL = SERVER_URL + "/app/api/account/update/healthdailyhealth";
+    /**
+     * 获取主诊报告列表
+     */
+    public static final String GET_REPORT_LIST = SERVER_URL + "/app/api/account/majordignosereport/infos?customerid=%d&page=%d&pageSize=20";
+    /**
+     * 获取报告详情
+     */
+    public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/13?cusid=%d&repId=%d";
+    /**
+     * 获取定制服务
+     */
+    public static final String GET_CUSTOM_SERVICE = SERVER_URL + "/app/api/servicePackage/query/custom";
+    /**
+     * 购买定制服务
+     */
+    public static final String BUY_CUSTOM_SERVICE = SERVER_URL + "/app/api/servicePackage/buy/custom";
 }

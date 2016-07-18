@@ -1,6 +1,10 @@
 package com.uyi.app.ui.personal;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,6 +42,7 @@ public class PersonalCenterFragment extends BaseFragment {
     private TextView mQuestionNum;
     @ViewInject(R.id.discussion_num)
     private TextView mDiscussionNum;
+    private MessageReceiver mMessageReceiver;
 
 
     @Override
@@ -47,7 +52,7 @@ public class PersonalCenterFragment extends BaseFragment {
 
     @Override
     protected void onInitLayoutAfter() {
-        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("个人中心").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
     }
 
     @Override
@@ -94,24 +99,49 @@ public class PersonalCenterFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mMessageReceiver == null) {
+            mMessageReceiver = new MessageReceiver();
+        }
+        IntentFilter intentFilter = new IntentFilter("com.uyi.message");
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver, intentFilter);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+    }
 
     @Override
     public void onResume() {
         super.onResume();
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        L.d(TAG, "onResume");
         MessageService.loadMessagesAll(context);
+        refreshMessage();
+    }
+
+    public class MessageReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refreshMessage();
+        }
+    }
+
+    private void refreshMessage() {
         // 日程
         int count = MessageService.getMessageCount(context, MessageService.RC);
-        L.d(TAG, count + "日程");
         if (count == 0) {
             mScheduleNum.setVisibility(View.INVISIBLE);
         } else {
             mScheduleNum.setVisibility(View.VISIBLE);
             mScheduleNum.setText(count + "");
         }
-
         // 通知
         count = MessageService.getMessageCount(context, MessageService.IM);
-        L.d(TAG, count + "通知");
         if (count == 0) {
             mNoticeNum.setVisibility(View.INVISIBLE);
         } else {
@@ -119,24 +149,22 @@ public class PersonalCenterFragment extends BaseFragment {
             mNoticeNum.setText(count + "");
         }
 
-        count = MessageService.getMessageCount(context, MessageService.TL);
-        L.d(TAG, count + "讨论组");
+        // 咨询数
+//		count = MessageService.getMessageCount(context, MessageService.ZX);
+        count = 0;
         if (count == 0) {
-            mDiscussionNum.setVisibility(View.INVISIBLE);
+            mConsultingNum.setVisibility(View.INVISIBLE);
         } else {
-            mDiscussionNum.setVisibility(View.VISIBLE);
-            mDiscussionNum.setText(count + "");
+            mConsultingNum.setVisibility(View.VISIBLE);
+            mConsultingNum.setText(count + "");
         }
-
         // 健康问答
         count = MessageService.getMessageCount(context, MessageService.WD);
-        L.d(TAG, count + "健康问答");
         if (count == 0) {
             mQuestionNum.setVisibility(View.INVISIBLE);
         } else {
             mQuestionNum.setVisibility(View.VISIBLE);
             mQuestionNum.setText(count + "");
         }
-
     }
 }

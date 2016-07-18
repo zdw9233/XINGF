@@ -1,5 +1,6 @@
 package com.uyi.app.ui.personal;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -15,6 +16,7 @@ import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
@@ -64,11 +66,31 @@ public class SugarServiceActivity extends BaseActivity {
         headerView.setKitkat(systemBarConfig);
     }
 
-    private void requestServicePackage(String type) {
+    private void requestServicePackage(final String type) {
         RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_SERVICE_PACKAGE, type), SugarServiceActivity.this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 L.e(jsonObject.toString());
+                try {
+                    if (jsonObject.has("id")) {
+                        int id = jsonObject.getInt("id");
+                        int beans = jsonObject.getInt("beans");
+                        Intent intent = new Intent();
+                        if (TYPE_TX_3_MONTH.equals(type)) {
+                            intent.setClass(SugarServiceActivity.this, SugarPeaceExperienceActivity.class);
+                        } else if (TYPE_TX_6_MONTH.equals(type)) {
+                            intent.setClass(SugarServiceActivity.this, SugarHalfYearActivity.class);
+                        } else {
+                            intent.setClass(SugarServiceActivity.this, SugarOneYearActivity.class);
+                        }
+                        intent.putExtra("id", id);
+                        intent.putExtra("beans", beans);
+                        intent.putExtra("name", jsonObject.getString("name"));
+                        startActivity(intent);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

@@ -58,7 +58,7 @@
         </service>
 
         <activity
-            android:name="com.uyi.app.ui.Main"
+            android:name="com.uyi.app.ui.common.WelcomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
@@ -71,189 +71,200 @@
 
         <activity
             android:name="com.uyi.app.ui.report.ReportActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan" />
+        <activity
+            android:name="com.uyi.app.ui.report.WriteReportActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan" />
 
         <activity
             android:name="com.uyi.app.ui.RecylerViewActiviry"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.health.HealthDatabaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.Main"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.common.LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.common.GetPasswordActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.common.UpdatePasswordActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.common.UpdateUserInfoActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.HealthManagerMain"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.HealthManagerFragment"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.RiskAssessmentActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.LifeStyleActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.DietPlanActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.consult.ConsultDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.consult.ConsultEvaluateActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.consult.ConsultSuccessActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.common.ViewPagerImageActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.common.ViewPagerImagebiaoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/translucent"></activity>
+            android:theme="@style/translucent" />
         <activity
             android:name="com.uyi.app.ui.health.HealthDatabaseDetails"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.AddHealthDatabase"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsAddActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.schedule.DatePickerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.schedule.ScheduleActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.schedule.AddScheduleActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Transparent"></activity>
+            android:theme="@style/Transparent" />
 
         <activity
             android:name="com.uyi.app.ui.personal.message.MessageActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.message.MessageDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.exclusive.ExclusiveActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.uyi.app.ui.personal.exclusive.NewExclusiveActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
 
         <activity
             android:name="com.uyi.app.ui.personal.exclusive.ExclusiveDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.recharge.RechargeActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.uyi.app.ui.personal.notice.NoticeActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.notice.NoticeDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.notice.NoticeAddActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.messagemanager.MessageManagerSendActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.messagemanager.QueryCustomerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.discuss.DiscussGroupActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.uyi.app.ui.personal.discuss.DiscussGroupDetailsActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name="com.uyi.app.ui.consult.CustomInfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Transparent"></activity>
+            android:theme="@style/Transparent" />
         <activity
             android:name="com.uyi.app.ui.consult.HistoryConsultActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.customer.CustomerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.consult.HistoryDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Transparent"></activity>
+            android:theme="@style/Transparent" />
 
         <activity
             android:name="com.uyi.app.ui.consult.NewConsultActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.uyi.app.ui.common.RegisterActivityctivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
         <activity
             android:name="com.uyi.app.ui.team.TeamDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.team.JiaRuChenGongActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.team.city.CityListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="com.uyi.app.ui.personal.standard.ChargeStandardActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name="com.uyi.app.ui.personal.standard.AlarmStandardActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
         <!-- alipay sdk begin -->
         <activity
             android:name="com.uyi.app.ui.recharge.AlipayActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Transparent"></activity>
+            android:theme="@style/Transparent" />
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <!-- alipay sdk end -->
 

@@ -3,7 +3,6 @@ package com.uyi.app.ui.common;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -14,7 +13,7 @@ import com.uyi.app.UYIApplication;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.dialog.MessageConform.MessageType;
 import com.uyi.app.ui.dialog.MessageConform.Result;
@@ -24,7 +23,6 @@ import com.uyi.doctor.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -85,10 +83,10 @@ public class UpdatePasswordActivity extends BaseActivity implements MessageConfo
 			JSONObject params = new JSONObject();
 			params.put("oldPassword", cpwd);
 			params.put("newPassword", pwd);
-			Looding.bulid(activity, null).show();
+			Loading.bulid(activity, null).show();
 			RequestManager.postObject(Constens.SETTING_PASSWORD, activity, params,null, new RequestErrorListener() {
 				public void requestError(VolleyError e) {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					if(e.networkResponse != null){
 						if(e.networkResponse.statusCode == 204){
 							MessageConform conform = new MessageConform(activity, MessageType.ALERT);

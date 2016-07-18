@@ -50,7 +50,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 
 				}
 			});
-			hodler.title.setText(data.get("content").toString());
+//			hodler.title.setText(data.get("content").toString());
 		hodler.time.setText(data.get("createTime").toString());
 		hodler.deils.setText(data.get("content").toString());
 			hodler.riskindix.setText(data.get("percentage").toString());

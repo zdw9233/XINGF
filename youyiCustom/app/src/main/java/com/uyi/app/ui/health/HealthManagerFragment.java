@@ -13,12 +13,14 @@ import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
-import com.uyi.app.ui.report.ReportMainActivity;
+import com.uyi.app.ui.report.ReportListActivity;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 /**
  * 健康管理 Created by ThinkPad on 2016/6/13.
@@ -51,10 +53,9 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.diagnosis:
-                startActivity(new Intent(context, ReportMainActivity.class));
-                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER,1), getContext(),new Response.Listener<JSONObject>() {
+                startActivity(new Intent(context, ReportListActivity.class));
+                RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 1), getContext(), new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
-
                     }
                 });
                 break; //主诊报告
@@ -67,34 +68,37 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                 break;
             case R.id.assessment: //风险评估
                 startActivity(new Intent(getContext(), RiskAssessmentActivity.class));
-                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER,2), getContext(),new Response.Listener<JSONObject>() {
+                RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 2), getContext(), new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
                     }
                 });
                 break;
             case R.id.life:      //生活方式
                 startActivity(new Intent(getContext(), LifeStyleActivity.class));
-                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER, 3), getContext(),new Response.Listener<JSONObject>() {
+                RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 3), getContext(), new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
-                        Log.e("yes","true=============================================");
+                        Log.e("yes", "true=============================================");
                     }
 
                 });
                 break;
             case R.id.diet:     //饮食计划
                 startActivity(new Intent(getContext(), DietPlanActivity.class));
-                RequestManager.getObject(String.format(Constens.UPDATA_MESSEGE_COMSTOMER, 4), getContext(),new Response.Listener<JSONObject>() {
+                RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 4), getContext(), new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
                     }
                 });
                 break;
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        requestIsNew();
     }
+
     @Override
     protected int getLayoutResouesId() {
         return R.layout.fragment_health_manager2_1;
@@ -105,37 +109,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon)
                 .showTab(false).showRight(true).showTitle(true)
                 .setTitle("健康管理").setTitleColor(getResources().getColor(R.color.blue));
-
-        RequestManager.getObject(Constens.MESSEGE_COMSTOMER, getContext(),new Response.Listener<JSONObject>() {
-            public void onResponse(JSONObject data) {
-                System.out.println(data.toString());
-                try {
-                     if(data.getString("isDiagnosis").equals("true")){
-                      schedule_num.setVisibility(View.VISIBLE);
-                     }
-                    if(data.getString("isAssessment").equals("true")){
-                        assessment_num.setVisibility(View.VISIBLE);
-                    }
-                    if(data.getString("isLife").equals("true")){
-                        life_num .setVisibility(View.VISIBLE);
-                    }
-                    if(data.getString("isDiet").equals("true")){
-                        diet_num .setVisibility(View.VISIBLE);
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
-
-
-
     }
-
 
 
     @Override
@@ -145,5 +119,31 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
 
     @Override
     public void onChanage(int postion) {
+    }
+
+    private void requestIsNew() {
+        RequestManager.getObject(Constens.MESSEGE_COMSTOMER, getContext(), new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                System.out.println(data.toString());
+                try {
+                    if (data.getBoolean("isDiagnosis")) {
+                        schedule_num.setVisibility(View.VISIBLE);
+                    } else schedule_num.setVisibility(View.GONE);
+                    if (data.getBoolean("isAssessment")) {
+                        assessment_num.setVisibility(View.VISIBLE);
+                    } else assessment_num.setVisibility(View.GONE);
+                    if (data.getBoolean("isLife")) {
+                        life_num.setVisibility(View.VISIBLE);
+                    } else life_num.setVisibility(View.GONE);
+                    if (data.getBoolean("isDiet")) {
+                        diet_num.setVisibility(View.VISIBLE);
+                    } else diet_num.setVisibility(View.GONE);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

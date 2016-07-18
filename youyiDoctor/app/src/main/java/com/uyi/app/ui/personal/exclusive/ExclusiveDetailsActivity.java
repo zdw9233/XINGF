@@ -13,9 +13,8 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.ScheduleActivity;
-import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
@@ -74,11 +73,11 @@ public class ExclusiveDetailsActivity extends BaseActivity {
 		type = getIntent().getIntExtra("type", 0);
 		exclusive_details_yiyuyue.setVisibility(View.GONE);
 		exclusive_details_submit.setVisibility(View.GONE);
-		Looding.bulid(activity, null).show();
+		Loading.bulid(activity, null).show();
 		RequestManager.getObject(String.format(Constens.ACCOUNT_EXCLUSIVE_CONSULT, id), activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					exclusive_details_layout.setVisibility(View.VISIBLE);
 //					exclusive_details_time.setText(  data.getString("start"));
 					//开始时间 
@@ -126,17 +125,17 @@ public class ExclusiveDetailsActivity extends BaseActivity {
 				exclusive_details_error_layout.setVisibility(View.VISIBLE);
 				return;
 			}
-			Looding.bulid(activity, null).show();
+			Loading.bulid(activity, null).show();
 			JSONObject params = new JSONObject();
 			RequestManager.postObject(String.format(Constens.ACCOUNT_RESERVE_EXCLUSIVE_CONSULT, id), activity,params, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					exclusive_details_layout.setVisibility(View.GONE);
 					exclusive_details_success_layout.setVisibility(View.VISIBLE);
 				}
 			},new  RequestErrorListener() {
 				public void requestError(VolleyError e) {
-					Looding.bulid(activity, null).dismiss();
+					Loading.bulid(activity, null).dismiss();
 					exclusive_details_layout.setVisibility(View.GONE);
 					exclusive_details_success_layout.setVisibility(View.VISIBLE);
 				}

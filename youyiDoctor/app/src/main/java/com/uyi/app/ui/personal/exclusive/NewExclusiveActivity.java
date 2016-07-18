@@ -21,9 +21,8 @@ import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter.IOnItemSelectListener;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
-import com.uyi.app.ui.dialog.Looding;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
-import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
@@ -93,11 +92,11 @@ public class NewExclusiveActivity extends BaseActivity implements IOnItemSelectL
 		
 		if(id != 0){
 			new_exclusive_beans.setEnabled(false);
-			Looding.bulid(activity, null).show();
+			Loading.bulid(activity, null).show();
 			RequestManager.getObject(String.format(Constens.ACCOUNT_EXCLUSIVE_CONSULT, id), activity, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					try {
-						Looding.bulid(activity, null).dismiss();
+						Loading.bulid(activity, null).dismiss();
 						new_exclusive_address.setText(data.getString("address"));
 						new_exclusive_beans.setText(data.getString("beans"));
 						new_exclusive_desc.setText(data.getString("desc"));
@@ -127,13 +126,13 @@ public class NewExclusiveActivity extends BaseActivity implements IOnItemSelectL
 	public void delete(View view){
 		RequestManager.deleteObject(Constens.ACCOUNT_EXCLUSIVE_CONSULT_ADD+"/"+id, activity,null, new Listener<JSONObject>() {
 			public void onResponse(JSONObject arg0) {
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 				setResult(RESULT_OK);
 				finish();
 			}
 		},new RequestErrorListener() {
 			public void requestError(VolleyError e) {
-				Looding.bulid(activity, null).dismiss();
+				Loading.bulid(activity, null).dismiss();
 				setResult(RESULT_OK);
 				finish();
 			}
@@ -176,7 +175,7 @@ public class NewExclusiveActivity extends BaseActivity implements IOnItemSelectL
 				params.put("endTime", date+" "+endTime);
 				params.put("people", people);
 
-				Looding.bulid(activity, null).show();
+				Loading.bulid(activity, null).show();
 				String url = Constens.ACCOUNT_EXCLUSIVE_CONSULT_ADD;
 				if(id != 0){
 					url = Constens.ACCOUNT_EXCLUSIVE_CONSULT_ADD+"/"+id;
@@ -184,13 +183,13 @@ public class NewExclusiveActivity extends BaseActivity implements IOnItemSelectL
 				RequestManager.postObject(url, activity, params,
 						new Listener<JSONObject>() {
 							public void onResponse(JSONObject data) {
-								Looding.bulid(activity, null).dismiss();
+								Loading.bulid(activity, null).dismiss();
 								setResult(RESULT_OK);
 								finish();
 							}
 						}, new RequestErrorListener() {
 							public void requestError(VolleyError e) {
-								Looding.bulid(activity, null).dismiss();
+								Loading.bulid(activity, null).dismiss();
 								if (e.networkResponse != null) {
 									T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
 								} else {
