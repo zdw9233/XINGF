@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -34,6 +35,8 @@ import com.uyi.app.ErrorCode;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.HealthInfo;
 import com.uyi.app.model.bean.UserInfo;
+import com.uyi.app.ui.common.adapter.MedicineAdapter;
+import com.uyi.app.ui.common.adapter.OutAdapter;
 import com.uyi.app.ui.common.model.AbnormalEvent;
 import com.uyi.app.ui.common.model.Health;
 import com.uyi.app.ui.common.model.Medicine;
@@ -54,6 +57,7 @@ import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.UYIUtils;
 import com.uyi.app.utils.ValidationUtils;
+import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
 import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
@@ -248,8 +252,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private LinearLayout add_view_layout;
     @ViewInject(R.id.add_system_out_layout)
     private LinearLayout add_system_out_layout;
+    @ViewInject(R.id.outRecyclerView)
+    private RecyclerView outRecyclerView;
 
-
+    @ViewInject(R.id.ywRecyclerView)
+    private RecyclerView ywRecyclerView;
     @ViewInject(R.id.yaowuName)
     private Spinner yaowuName;
     @ViewInject(R.id.yypd)
@@ -291,6 +298,9 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private boolean isMedicineFirst = true;
     private boolean isOutFirst = true;
 
+    private OutAdapter mOutAdapter;
+    private MedicineAdapter mMedicineAdapter;
+
     @Override
     protected void onInitLayoutAfter() {
         String[] tag = getResources().getStringArray(R.array.update_user_info);
@@ -300,6 +310,10 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         healthInfo = new HealthInfo();
         spinerPopWindow = new SpinerPopWindow(activity);
         spinerPopWindow.setItemListener(this);
+
+        ywRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        outRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         RequestManager.getArray(Constens.PROVINCDS, activity, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray array) {
@@ -361,6 +375,30 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                     medicationUsingSituationsList = mHealthInfo.medicationUsingSituations;
                                 }
                             }
+                            outRecyclerView.setAdapter(mOutAdapter = new OutAdapter(UpdateUserInfoActivity.this, externalSituationsList, new OutAdapter.OnDeleteListener() {
+                                @Override
+                                public void onDelete(int position) {
+                                    Health.HealthInfoBean.ExternalSituationsBean bean = externalSituationsList.get(position);
+                                    if (bean.id != 0) {
+                                        deleteOut(bean.id);
+                                    } else {
+                                        externalSituationsList.remove(position);
+                                        mOutAdapter.notifyItemRemoved(position);
+                                    }
+                                }
+                            }));
+                            ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(UpdateUserInfoActivity.this, medicationUsingSituationsList, new MedicineAdapter.OnDeleteListener() {
+                                @Override
+                                public void onDelete(int position) {
+                                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
+                                    if (bean.id != 0) {
+                                        deleteMedicine(bean.id);
+                                    } else {
+                                        medicationUsingSituationsList.remove(position);
+                                        mMedicineAdapter.notifyItemRemoved(position);
+                                    }
+                                }
+                            }));
 
                             if (ValidationUtils.equlse(UYIUtils.convertGender(data.getString("gender")), "男")) {
                                 register_info_yuejing_layout.setVisibility(View.GONE);
@@ -420,23 +458,32 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         requestDrowMenuData();
     }
 
+    private void deleteMedicine(int id) {
+
+    }
+
+    private void deleteOut(int id) {
+
+    }
+
     private void initMedicineViews() {
         if (medicationUsingSituationsList == null || medicationUsingSituationsList.size() == 0)
             return;
-        for (int i = 0; i < medicationUsingSituationsList.size(); i++) {
-            Health.HealthInfoBean.MedicationUsingSituationsBean bb = medicationUsingSituationsList.get(i);
-
-            Holder holder = (Holder) yyViews.get(i).getTag();
-            holder.endTime.setText(bb.endTime);
-            holder.timeUnit.setSelection(getTimeUnitSelection(bb.frequencyUnit));
-            holder.yaowuName.setSelection(getSelection(medicines.keySet(), bb.medicineName));
-            holder.valueUnit.setSelection(bb.medicineUnit.equals("g") ? 0 : 1);
-            holder.dcyyl.setText(bb.singleDose);
-            holder.startTime.setText(bb.startTime);
-            holder.yypd.setSelection(Integer.valueOf(bb.usingFrequency));
-            if (i != medicationUsingSituationsList.size() - 1)
-                addOneMedicineView();
-        }
+//        for (int i = 0; i < medicationUsingSituationsList.size(); i++) {
+//            Health.HealthInfoBean.MedicationUsingSituationsBean bb = medicationUsingSituationsList.get(i);
+//
+//            Holder holder = (Holder) yyViews.get(i).getTag();
+//            holder.endTime.setText(bb.endTime);
+//            holder.timeUnit.setSelection(getTimeUnitSelection(bb.frequencyUnit));
+//            holder.yaowuName.setSelection(getSelection(medicines.keySet(), bb.medicineName));
+//            holder.valueUnit.setSelection(bb.medicineUnit.equals("g") ? 0 : 1);
+//            holder.dcyyl.setText(bb.singleDose);
+//            holder.startTime.setText(bb.startTime);
+//            holder.yypd.setSelection(Integer.valueOf(bb.usingFrequency));
+//            if (i != medicationUsingSituationsList.size() - 1)
+//                addOneMedicineView();
+//        }
+        mMedicineAdapter.notifyDataSetChanged();
     }
 
     private int getSelection(Set<String> strings, String s) {
@@ -459,14 +506,15 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private void initOutViews() {
         if (externalSituationsList == null || externalSituationsList.size() == 0)
             return;
-        for (int i = 0; i < externalSituationsList.size(); i++) {
-            Health.HealthInfoBean.ExternalSituationsBean bb = externalSituationsList.get(i);
-            OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
-            outHolder.dateText.setText(bb.treatmentTime);
-            outHolder.msgText.setText(bb.content);
-            if (i != externalSituationsList.size() - 1)
-                addOneOutView();
-        }
+//        for (int i = 0; i < externalSituationsList.size(); i++) {
+//            Health.HealthInfoBean.ExternalSituationsBean bb = externalSituationsList.get(i);
+//            OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
+//            outHolder.dateText.setText(bb.treatmentTime);
+//            outHolder.msgText.setText(bb.content);
+//            if (i != externalSituationsList.size() - 1)
+//                addOneOutView();
+//        }
+        mOutAdapter.notifyDataSetChanged();
     }
 
     private void initViews() {
@@ -530,16 +578,16 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 String yfjzs = register_info_yufangjiezhonshi.getText().toString();
                 String xthg = register_info_xitonghuigu.getText().toString();
 
-                externalSituationsList.clear();
-                for (int i = 0; i < outViews.size(); i++) {
-                    OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
-                    Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
-                    bean.content = outHolder.msgText.getText().toString();
-                    bean.treatmentTime = outHolder.dateText.getText().toString();
-                    if (!bean.treatmentTime.equals("请选择就医时间")) {
-                        externalSituationsList.add(bean);
-                    }
-                }
+//                externalSituationsList.clear();
+//                for (int i = 0; i < outViews.size(); i++) {
+//                    OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
+//                    Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
+//                    bean.content = outHolder.msgText.getText().toString();
+//                    bean.treatmentTime = outHolder.dateText.getText().toString();
+//                    if (!bean.treatmentTime.equals("请选择就医时间")) {
+//                        externalSituationsList.add(bean);
+//                    }
+//                }
 
                 mHealthInfo.medical = jbs;
                 mHealthInfo.infection = crbs;
@@ -556,28 +604,28 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 break;
             case 3:
                 medicationUsingSituationsList.clear();
-                for (int i = 0; i < yyViews.size(); i++) {
-                    Holder holder = (Holder) yyViews.get(i).getTag();
-                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
-                    bean.endTime = holder.endTime.getText().toString();
-                    bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
-                    Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
-                    if (m != null) {
-                        bean.medicineId = m.id;
-                        bean.medicineName = m.name;
-                    }
-                    bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
-                    bean.singleDose = holder.dcyyl.getText().toString();
-                    bean.startTime = holder.startTime.getText().toString();
-                    bean.usingFrequency = (String) holder.yypd.getSelectedItem();
-                    if (!(TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
-                            TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
-                            holder.yaowuName.getSelectedItem().equals("药物名") ||
-                            holder.yypd.getSelectedItem().equals("用药频度") ||
-                            TextUtils.isEmpty(holder.dcyyl.getText().toString().trim()))) {
-                        medicationUsingSituationsList.add(bean);
-                    }
-                }
+                //                for (int i = 0; i < yyViews.size(); i++) {
+//                    Holder holder = (Holder) yyViews.get(i).getTag();
+//                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
+//                    bean.endTime = holder.endTime.getText().toString();
+//                    bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
+//                    Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
+//                    if (m != null) {
+//                        bean.medicineId = m.id;
+//                        bean.medicineName = m.name;
+//                    }
+//                    bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
+//                    bean.singleDose = holder.dcyyl.getText().toString();
+//                    bean.startTime = holder.startTime.getText().toString();
+//                    bean.usingFrequency = (String) holder.yypd.getSelectedItem();
+//                    if (!(TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
+//                            TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
+//                            holder.yaowuName.getSelectedItem().equals("药物名") ||
+//                            holder.yypd.getSelectedItem().equals("用药频度") ||
+//                            TextUtils.isEmpty(holder.dcyyl.getText().toString().trim()))) {
+//                        medicationUsingSituationsList.add(bean);
+//                    }
+//                }
                 String gms = register_info_guomingshi.getText().toString();  //过敏史
                 String cyy = register_info_chengyingdeyaowu.getText().toString(); //成瘾史
                 mHealthInfo.historyOfAllergy = gms;
@@ -740,7 +788,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             case R.id.register_info_one_submit:
                 if (isOutFirst) {
                     isOutFirst = false;
-                    initOutViews();
+//                    initOutViews();
                 }
                 replaceView(2);
                 setValue(1);
@@ -748,7 +796,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             case R.id.register_info_two_submit:
                 if (isMedicineFirst) {
                     isMedicineFirst = false;
-                    initMedicineViews();
+//                    initMedicineViews();
                 }
                 replaceView(3);
                 setValue(2);
@@ -805,7 +853,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     }
 
     private void addOneMedicineView() {
-        View view = mInflater.inflate(R.layout.item_medicationsituation, null);
+      /*  View view = mInflater.inflate(R.layout.item_medicationsituation, null);
 
         final Holder holder = new Holder();
         holder.startTime = (TextView) view.findViewById(R.id.tv_start_time);
@@ -833,24 +881,48 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         });
         view.setTag(holder);
         yyViews.add(view);
-        add_view_layout.addView(view);
+        add_view_layout.addView(view);*/
+
+
+        Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
+        Holder holder = (Holder) yyViews.get(0).getTag();
+        bean.endTime = holder.endTime.getText().toString();
+        bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
+        Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
+        if (m != null) {
+            bean.medicineId = m.id;
+            bean.medicineName = m.name;
+        }
+        bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
+        bean.singleDose = holder.dcyyl.getText().toString();
+        bean.startTime = holder.startTime.getText().toString();
+        bean.usingFrequency = (String) holder.yypd.getSelectedItem();
+        medicationUsingSituationsList.add(bean);
+        mMedicineAdapter.notifyItemInserted(medicationUsingSituationsList.size() - 1);
     }
 
     private void addOneOutView() {
-        View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
-        OutHolder outHolder = new OutHolder();
-        outHolder.dateText = (TextView) vs.findViewById(R.id.date);
-        outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
-        final int pos = outViews.size();
-        vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startDatePicker(100 + pos, null);
-            }
-        });
-        vs.setTag(outHolder);
-        outViews.add(vs);
-        add_system_out_layout.addView(vs);
+//        View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
+//        OutHolder outHolder = new OutHolder();
+//        outHolder.dateText = (TextView) vs.findViewById(R.id.date);
+//        outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
+//        final int pos = outViews.size();
+//        vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startDatePicker(100 + pos, null);
+//            }
+//        });
+//        vs.setTag(outHolder);
+//        outViews.add(vs);
+//        add_system_out_layout.addView(vs);
+
+        Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
+        OutHolder outHolder = (OutHolder) outViews.get(0).getTag();
+        bean.treatmentTime = outHolder.dateText.getText().toString();
+        bean.content = outHolder.msgText.getText().toString();
+        externalSituationsList.add(bean);
+        mOutAdapter.notifyItemInserted(externalSituationsList.size() - 1);
     }
 
     public void loadCity() {
