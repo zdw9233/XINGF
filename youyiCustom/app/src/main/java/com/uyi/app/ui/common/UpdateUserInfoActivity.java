@@ -1,5 +1,6 @@
 package com.uyi.app.ui.common;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -74,6 +76,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -380,7 +383,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                 public void onDelete(int position) {
                                     Health.HealthInfoBean.ExternalSituationsBean bean = externalSituationsList.get(position);
                                     if (bean.id != 0) {
-                                        deleteOut(bean.id);
+                                        deleteOut(bean.id, position);
                                     } else {
                                         externalSituationsList.remove(position);
                                         mOutAdapter.notifyItemRemoved(position);
@@ -392,7 +395,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                 public void onDelete(int position) {
                                     Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
                                     if (bean.id != 0) {
-                                        deleteMedicine(bean.id);
+                                        deleteMedicine(bean.id, position);
                                     } else {
                                         medicationUsingSituationsList.remove(position);
                                         mMedicineAdapter.notifyItemRemoved(position);
@@ -458,11 +461,33 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         requestDrowMenuData();
     }
 
-    private void deleteMedicine(int id) {
-
+    private void deleteMedicine(int id, int position) {
+        deleteInfo(id, 0, position);
     }
 
-    private void deleteOut(int id) {
+    private void deleteOut(int id, int position) {
+        deleteInfo(id, 1, position);
+    }
+
+    private void deleteInfo(final int id, final int type, final int position) {
+        new AlertDialog.Builder(UpdateUserInfoActivity.this).setTitle("购买提示").setMessage("确定删除该数据？").setPositiveButton("购买", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                RequestManager.getObject(String.format(Locale.CHINA, Constens.DELETE_INFO, id, type), this, new Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        T.showShort(UpdateUserInfoActivity.this, "删除成功！");
+                        if (type == 0) {
+                            medicationUsingSituationsList.remove(position);
+                            mMedicineAdapter.notifyItemRemoved(position);
+                        } else {
+                            externalSituationsList.remove(position);
+                            mOutAdapter.notifyItemRemoved(position);
+                        }
+                    }
+                });
+            }
+        }).setNegativeButton("取消", null).show();
 
     }
 
@@ -577,7 +602,6 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 String jzbs = register_info_jiazhubinshi.getText().toString();
                 String yfjzs = register_info_yufangjiezhonshi.getText().toString();
                 String xthg = register_info_xitonghuigu.getText().toString();
-
 //                externalSituationsList.clear();
 //                for (int i = 0; i < outViews.size(); i++) {
 //                    OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
@@ -588,6 +612,12 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 //                        externalSituationsList.add(bean);
 //                    }
 //                }
+
+                List<Health.HealthInfoBean.ExternalSituationsBean> situationsBeen = new ArrayList<>();
+                for (Health.HealthInfoBean.ExternalSituationsBean b : externalSituationsList) {
+                    if (b.id == 0) situationsBeen.add(b);
+                }
+                mHealthInfo.externalSituations = situationsBeen;
 
                 mHealthInfo.medical = jbs;
                 mHealthInfo.infection = crbs;
@@ -603,7 +633,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 mHealthInfo.retrospection = xthg;
                 break;
             case 3:
-                medicationUsingSituationsList.clear();
+//                medicationUsingSituationsList.clear();
                 //                for (int i = 0; i < yyViews.size(); i++) {
 //                    Holder holder = (Holder) yyViews.get(i).getTag();
 //                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
@@ -626,6 +656,12 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 //                        medicationUsingSituationsList.add(bean);
 //                    }
 //                }
+                List<Health.HealthInfoBean.MedicationUsingSituationsBean> situationsBeen1 = new ArrayList<>();
+                for (Health.HealthInfoBean.MedicationUsingSituationsBean bean : medicationUsingSituationsList) {
+                    if (bean.id == 0) situationsBeen1.add(bean);
+                }
+                mHealthInfo.medicationUsingSituations = situationsBeen1;
+
                 String gms = register_info_guomingshi.getText().toString();  //过敏史
                 String cyy = register_info_chengyingdeyaowu.getText().toString(); //成瘾史
                 mHealthInfo.historyOfAllergy = gms;
@@ -669,8 +705,8 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             Holder holder = (Holder) view.getTag();
             if (TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
                     TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
-                    holder.yaowuName.getSelectedItem().equals("药物名") ||
-                    holder.yypd.getSelectedItem().equals("用药频度") ||
+                    "药物名".equals(holder.yaowuName.getSelectedItem()) ||
+                    "用药频度".equals(holder.yypd.getSelectedItem()) ||
                     TextUtils.isEmpty(holder.dcyyl.getText().toString().trim())) {
                 return false;
             }
@@ -1381,5 +1417,20 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         mSetPhotoPop.setAnimationStyle(R.style.bottomStyle);
         mSetPhotoPop.showAtLocation(mMainView, Gravity.BOTTOM, 0, 0);
         mSetPhotoPop.update();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (type != 1) {
+            if (this.index == 2) {
+                replaceView(1);
+            } else if (this.index == 3) {
+                replaceView(2);
+            } else if (this.index == 4) {
+                replaceView(3);
+            } else {
+                super.onBackPressed();
+            }
+        }
     }
 }

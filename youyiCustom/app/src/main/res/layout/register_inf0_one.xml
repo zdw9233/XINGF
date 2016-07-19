@@ -701,6 +701,11 @@
                             android:padding="4dp"
                             android:text="系统外就医情况" />
 
+                        <com.uyi.app.widget.recycle.RecyclerView
+                            android:id="@+id/outRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
                         <TableRow
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
@@ -796,6 +801,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <com.uyi.app.widget.recycle.RecyclerView
+                    android:id="@+id/ywRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
