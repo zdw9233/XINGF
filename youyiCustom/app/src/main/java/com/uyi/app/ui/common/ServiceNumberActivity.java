@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
+import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.HeaderView;
@@ -92,20 +93,14 @@ public class ServiceNumberActivity extends BaseActivity {
                     ImageCacheManager.loadImage(data.getString("icon"), ImageCacheManager.getImageListener(header_image, null, null));
                     name.setText(data.getString("realName"));
                     beans.setText(data.getString("beans"));
-                    doctor.setText(data.getString("attendingDoctorName"));
-                    if(data.getString("serviceCount").toString().equals("null")){
-                        service.setText("免费服务包");
-                        service_time.setText("永久");
-                    }
-                    if(data.has("guardianInfo")){
-                        if(data.getJSONObject("guardianInfo").has("name")){
-                            guardian.setText(data.getJSONObject("guardianInfo").getString("name"));
-                        }else{
-                            guardian.setText("无");
-                        }
-
-                    }else{
+                    if(data.getString("attendingDoctorName").equals("null"))
+                    doctor.setText("无");
+                    else
+                        doctor.setText(data.getString("attendingDoctorName"));
+                    if(data.getString("guardianInfo").equals("null")){
                         guardian.setText("无");
+                    }else{
+                        guardian.setText(data.getJSONObject("guardianInfo").getString("name"));
                     }
 //                    if(data.getJSONObject("guardianInfo"))
 //                    name.setText(data.getJSONObject("guardianInfo").getString("name"));
@@ -113,6 +108,21 @@ public class ServiceNumberActivity extends BaseActivity {
 //                    name.setText(data.getJSONObject("guardianInfo").getJSONObject("province").getString("name"));
 //                    name.setText(data.getJSONObject("guardianInfo").getJSONObject("province").getString("name"));
 //                    name.setText(data.getJSONObject("guardianInfo").getJSONObject("province").getString("name"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        RequestManager.getObject(String.format(Constens.LIFE_DEIT, UserInfoManager.getLoginUserInfo(this).userId), activity, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    System.out.println(data.toString());
+
+                    System.out.println(data.getJSONObject("serviceCount"));
+                        service.setText(data.getJSONObject("serviceCount").getString("name"));
+                        service_time.setText(data.getJSONObject("serviceCount").getString("endTime").equals("-")?"永久":data.getJSONObject("serviceCount").getString("endTime"));
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -153,8 +163,16 @@ public class ServiceNumberActivity extends BaseActivity {
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = data.getJSONObject(i);
                         item.put("name", jsonObject.getString("name"));
-                        item.put("defaultCount", jsonObject.getString("defaultCount"));
-                        item.put("surplusCount", jsonObject.getString("surplusCount"));
+                        if(jsonObject.getString("defaultCount").equals("-1")){
+
+                            item.put("defaultCount", "不限");
+                            item.put("surplusCount",    "不限");
+                        }else{
+                            item.put("defaultCount", jsonObject.getString("defaultCount"));
+                            item.put("surplusCount", jsonObject.getString("surplusCount"));
+                        }
+
+
                         datas.add(item);
                     }
                     System.out.println(datas.toString()+"=============================");

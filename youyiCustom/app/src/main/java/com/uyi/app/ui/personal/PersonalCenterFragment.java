@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -24,6 +23,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.personal.adapter.PersonalPagerAdapter;
 import com.uyi.app.ui.personal.exclusive.ExclusiveActivity;
 import com.uyi.app.ui.personal.message.MessageActivity;
+import com.uyi.app.ui.personal.model.PagerData;
 import com.uyi.app.ui.personal.questions.HealthyQuestionsActivity;
 import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.app.utils.L;
@@ -61,7 +61,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     private MessageReceiver mMessageReceiver;
 
     PersonalPagerAdapter mPagerAdapter;
-
+    PagerData pagerData;
     @Override
     protected int getLayoutResouesId() {
         return R.layout.fragment_personal_center_new;
@@ -69,28 +69,40 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     @Override
     protected void onInitLayoutAfter() {
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
+        pagerData  = new PagerData();
+        mViewPager.addOnPageChangeListener(this);
         RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, null, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
-                    PersonalPagerAdapter.PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
-                    mPagerAdapter.setPagerData(pagerData);
-                    mPagerAdapter.notifyDataSetChanged();
-                } catch (Exception e) {
+                    L.e("data==",data.toString());
+//                    PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
 
+                    pagerData.setBloodPressure_pic( data.getString("bloodPressure_pic"));
+                    pagerData.setBloodSugar_pic(data.getString("bloodSugar_pic"))  ;
+                    pagerData.setComment1(data.getString("comment1"));
+                    L.e("pagerData==",pagerData.toString());
+//                    mPagerAdapter.setPagerData(pagerData);
+                    mPagerAdapter = new PersonalPagerAdapter(context, pagerData);
+                    mViewPager.setAdapter(mPagerAdapter);
+                    mPagerAdapter.notifyDataSetChanged();
+
+                } catch (Exception e) {
+                    L.e("e==",e.toString());
                 }
 
             }
         }, new RequestErrorListener() {
             @Override
             public void requestError(VolleyError e) {
-
+                L.e("e2==",e.toString());
             }
         });
+        L.e("pagerData2==",pagerData.toString());
 
-        mViewPager.setAdapter(mPagerAdapter = new PersonalPagerAdapter(context, list));
-        mViewPager.addOnPageChangeListener(this);
 
-        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
+
+
 
     }
 

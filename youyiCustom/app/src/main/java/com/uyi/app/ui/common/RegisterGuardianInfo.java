@@ -288,6 +288,9 @@ public class RegisterGuardianInfo extends BaseActivity implements AbstractSpiner
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+        }else{
+            T.showShort(application, "头像不能为空！");
+            return;
         }
         JSONObject params = new JSONObject();
         params.put("account", LoginActivity.userName);

@@ -123,9 +123,11 @@ public class HeaderMenuDialog extends AbstrctDialog implements android.view.View
 	@Override
 	public void onClick(Result result, Object object) {
 		if(result == Result.OK){
-			UserInfoManager.clearLoginUserInfo(getContext());
+
 			Log.e("====================","login");
 			getContext().startActivity(new Intent(getContext(), LoginActivity.class));
+			UserInfoManager.clearLoginUserInfo(getContext());
+			Log.e("====================","logi22n");
 		}
 	}
  

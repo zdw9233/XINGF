@@ -8,14 +8,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.adapter.BaseRecyclerAdapter.OnItemClickListener;
 import com.uyi.app.model.bean.Consult;
+import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.Main;
 import com.uyi.app.ui.consult.adapter.ConsultationAdapter;
 import com.uyi.app.ui.custom.BaseFragment;
@@ -27,10 +30,10 @@ import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.L;
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,7 +59,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
 
     @ViewInject(R.id.new_consult_layout_start)
     private LinearLayout new_consult_layout_start;
-
+    private UserInfo userInfo;
 
     public Main main;
 
@@ -204,8 +207,32 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(context, NewConsultActivity.class);
-        startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
+        userInfo = UserInfoManager.getLoginUserInfo(getContext());
+
+        RequestManager.getObject(Constens.HAVE_NUMBER, getContext(), new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    System.out.println(data.toString());
+                    if(data.getInt("doctorAdvisory") > 0){
+                        Intent intent = new Intent(context, NewConsultActivity.class);
+                         startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
+                    }else{
+                        if(userInfo.isFree == 2){
+                            T.showShort(getContext()," 本月医疗咨询次数使用完毕");
+
+                        }else{
+                            T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
+                        }
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+//        Intent intent = new Intent(context, NewConsultActivity.class);
+//        startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
     }
 
     @Override

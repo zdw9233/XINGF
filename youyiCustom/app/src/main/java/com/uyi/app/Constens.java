@@ -189,7 +189,10 @@ public abstract class Constens {
      */
     public final static String ACCOUNT_UPDATE = SERVER_URL + "/app/api/account/update";
 
-
+    /**
+     * 患者生活方式和饮食
+     */
+    public final static String LIFE_DEIT = SERVER_URL + "/app/api/doctor/customer/%s/info";
     /**
      * 创建咨询
      * consultId  null咨询    not null 就是随访
@@ -227,6 +230,10 @@ public abstract class Constens {
      */
     public final static String HEALTH_GROUPS_ALL_NOTOKEN = SERVER_URL + "/app/api/common/health/groups?name=%s&cityId=%s&page=%s&pageSize=%s";
 
+    /**
+     * 查询咨询次数
+     */
+    public final static String HAVE_NUMBER = SERVER_URL + "/app/api/servicePackage/getCustomerServiceDetail";
     /**
      * 查询加入的健康团队
      */

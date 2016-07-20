@@ -69,7 +69,7 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
     private void requestReportList() {
         int cusId = UserInfoManager.getLoginUserInfo(this).userId;
 
-        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_LIST, 13, pageIndex), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_LIST, cusId, pageIndex), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportListActivity.this, null).dismiss();

@@ -52,6 +52,8 @@ public class UserInfo {
     public String guardianIcon;
     @Column
     public boolean logasguardian;
+    @Column
+    public int isFree;
 
     @Column
     public boolean login;//当前登录的
@@ -62,7 +64,7 @@ public class UserInfo {
     }
 
     public UserInfo(String authToken, Integer type, int userId, String account, String realName, String password,
-                    String icon, String address, String city, Integer beans, Integer consumedBeans, String lastLoginTime, String guardian, String guardianIcon, String liefstyle, String eatinghabiit) {
+                    String icon, String address, String city, Integer beans, Integer consumedBeans, String lastLoginTime, String guardian, String guardianIcon, String liefstyle, String eatinghabiit,int isFree ) {
         super();
         this.authToken = authToken;
         this.type = type;
@@ -80,6 +82,7 @@ public class UserInfo {
         this.guardianIcon = guardianIcon;
         this.liefstyle = liefstyle;
         this.eatinghabiit = eatinghabiit;
+        this.isFree = isFree;
     }
 
     @Override
@@ -101,7 +104,7 @@ public class UserInfo {
                 ", guardian='" + guardian + '\'' +
                 ", guardianIcon='" + guardianIcon + '\'' +
                 ", logasguardian=" + logasguardian +
-                ", login=" + login +
-                '}';
+                ", login=" + login +", isFree=" + isFree+
+        '}';
     }
 }

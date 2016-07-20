@@ -779,6 +779,9 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+        }else{
+            T.showShort(application,"头像不能为空！");
+            return;
         }
         RequestManager.getObject(String.format(Constens.JUDGE_ID_CARD, idCardNumber), activity, new Response.Listener<JSONObject>() {
             @Override

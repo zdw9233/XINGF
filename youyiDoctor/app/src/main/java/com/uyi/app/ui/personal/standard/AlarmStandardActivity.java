@@ -90,13 +90,13 @@ public class AlarmStandardActivity extends BaseActivity {
 				kongfuxuetang_right.setText(JSONObjectUtils.getDouble(data, "fbsHigh")+"");
 				
 				chanying2xiaoshi_left.setText(JSONObjectUtils.getDouble(data, "pbsLow")+"");
-				chanying2xiaoshi_right.setText(JSONObjectUtils.getInt(data, "pbsHigh")+"");
+				chanying2xiaoshi_right.setText(JSONObjectUtils.getDouble(data, "pbsHigh")+"");
 				
 				jinxixinglv_left.setText(JSONObjectUtils.getInt(data, "hrLow")+"");
 				jinxixinglv_right.setText(JSONObjectUtils.getInt(data, "hrHigh")+"");
 
-				suijixuetang_left.setText(JSONObjectUtils.getInt(data, "rbsLow")+"");
-				suijixuetang_right.setText(JSONObjectUtils.getInt(data, "rbsHigh")+"");
+				suijixuetang_left.setText(JSONObjectUtils.getDouble(data, "rbsLow")+"");
+				suijixuetang_right.setText(JSONObjectUtils.getDouble(data, "rbsHigh")+"");
 				
 				
 				zongduanguchun.setText(JSONObjectUtils.getDouble(data, "bfChol")+"");
@@ -148,7 +148,7 @@ public class AlarmStandardActivity extends BaseActivity {
 			}
 			
 			//*
-			if(ValidationUtils.isNull(kongfuxuetang_left.getText().toString())){
+			if(!ValidationUtils.isNull(kongfuxuetang_left.getText().toString())){
 				params.put("fbsLow", kongfuxuetang_left.getText().toString());
 			}
 			
@@ -206,7 +206,7 @@ public class AlarmStandardActivity extends BaseActivity {
 			if(!ValidationUtils.isNull(suijixuetang_right.getText().toString())){
 				params.put("rbsHigh", suijixuetang_right.getText().toString());
 			}
-			
+			L.e("parse==",params.toString());
 			RequestManager.postObject(String.format(Constens.COSTOM_HEALTH_WARNING_DATA, FragmentHealthListManager.customer), activity, params, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					T.showShort(activity, "修改成功!");
