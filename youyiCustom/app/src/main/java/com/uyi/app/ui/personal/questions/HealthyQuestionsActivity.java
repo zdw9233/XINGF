@@ -13,7 +13,9 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.UserInfoManager;
 import com.uyi.app.adapter.BaseRecyclerAdapter.OnItemClickListener;
+import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
@@ -22,6 +24,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.questions.adapter.HealthyQuestionsAdapter;
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
@@ -51,11 +54,11 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 	private LinearLayoutManager linearLayoutManager;
 	private HealthyQuestionsAdapter healthyQuestionsAdapter;
 	private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
-	
+	UserInfo userInfo;
 	
 	@Override
 	protected void onInitLayoutAfter() {
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康问答").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康咨询").setTitleColor(getResources().getColor(R.color.blue));
 		
 		linearLayoutManager = new LinearLayoutManager(activity);
 		healthyQuestionsAdapter = new HealthyQuestionsAdapter(activity);
@@ -77,7 +80,30 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 	
 	@OnClick(R.id.new_healthy_questions_layout_start)
 	public void click(View v){
-		startActivityForResult(new Intent(activity, HealthyQuestionsAddActivity.class), Constens.START_ACTIVITY_FOR_RESULT);
+		userInfo = UserInfoManager.getLoginUserInfo(this);
+
+		RequestManager.getObject(Constens.HAVE_NUMBER, this, new Response.Listener<JSONObject>() {
+			public void onResponse(JSONObject data) {
+				try {
+					System.out.println(data.toString());
+					if(data.getInt("healthAdvisory") > 0){
+						startActivityForResult(new Intent(activity, HealthyQuestionsAddActivity.class), Constens.START_ACTIVITY_FOR_RESULT);
+					}else{
+						if(userInfo.isFree == 2){
+							T.showShort(HealthyQuestionsActivity.this," 本月健康咨询次数使用完毕");
+
+						}else{
+							T.showShort(HealthyQuestionsActivity.this," 该服务仅针对服务包用户，请购买相应服务包！");
+						}
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+
 	}
 	
 	@Override

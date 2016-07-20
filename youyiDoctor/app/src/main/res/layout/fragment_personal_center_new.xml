@@ -355,7 +355,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="end"
                                 android:maxLines="1"
-                                android:text="健康问答"
+                                android:text="健康咨询"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/font_style_18" />
 
