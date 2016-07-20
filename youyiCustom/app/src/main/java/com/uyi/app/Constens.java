@@ -149,6 +149,16 @@ public abstract class Constens {
      */
     public final static String FORGOT_PASSWORD = SERVER_URL + "/app/api/account/forgot/password";
     /**
+     * 客户重置密码
+     */
+    public final static String ANSWER = SERVER_URL + "/app/api/common/getCustomerSafeAnswer?id=%s&safeAnswer=%s";
+    /**
+     * 客户重置密码
+     */
+    public final static String PASSWORD = SERVER_URL + "/app/api/common/getCustomerPassword?id=%s&password=%s";
+    /**
+    /**
+    /**
      * 用户修改密码
      */
     public final static String SETTING_PASSWORD = SERVER_URL + "/app/api/account/setting/password";
@@ -156,7 +166,10 @@ public abstract class Constens {
      * 用户安全问题获取
      */
     public final static String SAFE_QUESTION = SERVER_URL + "/app/api/common/account/safe/question?account=%s&phoneNumber=%s";
-
+    /**
+     * 用户安全问题获取
+     */
+    public final static String GET_PASSWORD = SERVER_URL + "/app/api/common/getCustomerQuestion?username=%s&idCardNumber=%s";
     /**
      * type 1: 检查用户/医生账号名
      * type	2: 检查健康团队名字

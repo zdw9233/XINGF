@@ -14,6 +14,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.personal.standard.AlarmStandardActivity;
 import com.uyi.app.ui.report.ReportActivity;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -72,7 +73,8 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
                     public void onResponse(JSONObject data) {
                         try {
                             String inputStr = data.getString("phoneNumber");
-                            if (inputStr.trim().length() != 0) {
+                            L.e("phone",inputStr);
+                            if (inputStr.trim().length() != 0 &&!inputStr.equals("空")&&!inputStr.equals("null")) {
                                 Intent phoneIntent = new Intent(
                                         "android.intent.action.CALL", Uri.parse("tel:"
                                         + inputStr));

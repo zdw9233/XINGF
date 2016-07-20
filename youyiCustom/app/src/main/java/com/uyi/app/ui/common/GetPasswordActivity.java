@@ -1,7 +1,10 @@
 package com.uyi.app.ui.common;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
@@ -19,11 +22,8 @@ import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -59,10 +59,10 @@ public class GetPasswordActivity extends BaseActivity {
 	private int id;
 	
 	private String acount;
-	private String mobile;
+	private String idCardNumber;
 	private String question;
 	private String answer;
-	
+	private String userid;
 	
 	
 	
@@ -99,21 +99,23 @@ public class GetPasswordActivity extends BaseActivity {
 	public void onClick(View view) throws JSONException{
 		if(view.getId() == R.id.get_password_one_next){
 			acount = get_password_username.getText().toString();
-			mobile = get_password_mobile.getText().toString();
-			if(ValidationUtils.isNull(acount,mobile)){
+			idCardNumber = get_password_mobile.getText().toString();
+			if(ValidationUtils.isNull(acount,idCardNumber)){
 				T.showLong(activity, "资料未填写完整!");
 				return;
 			}
 			
-			if(!ValidationUtils.isMobile(mobile)){
-				T.showLong(activity, "手机号错误!");
-				return;
-			}
+//			if(!ValidationUtils.isMobile(mobile)){
+//				T.showLong(activity, "手机号错误!");
+//				return;
+//			}
 			
-			RequestManager.getObject(String.format(Constens.SAFE_QUESTION, acount,mobile), activity, new Listener<JSONObject>() {
+			RequestManager.getObject(String.format(Constens.GET_PASSWORD, acount,idCardNumber), activity, new Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
 					try {
-							wenti.setText(data.getString("question"));
+							wenti.setText(data.getString("customerQuestion"));
+							userid = data.getString("customerId");
+
 							get_password_view_one.setVisibility(View.GONE);
 							get_password_view_two.setVisibility(View.VISIBLE);
 							get_password_view_three.setVisibility(View.GONE);
@@ -127,18 +129,37 @@ public class GetPasswordActivity extends BaseActivity {
 			
 		}else if(view.getId() == R.id.get_password_two_next){
 			answer = get_password_daan.getText().toString();
-			
 			if(ValidationUtils.isNull(answer)){
 				T.showLong(activity, "资料未填写完整!");
 				return;
 			}
-			
-			get_password_view_one.setVisibility(View.GONE);
-			get_password_view_two.setVisibility(View.GONE);
-			get_password_view_three.setVisibility(View.VISIBLE);
-			headerView.setTitle("重置密码");
-			currentPage = 3;
-			
+			RequestManager.getObject(String.format(Constens.ANSWER, userid,answer), activity, new Listener<JSONObject>() {
+				public void onResponse(JSONObject data) {
+					try {
+						if(data.getBoolean("success")){
+							get_password_view_one.setVisibility(View.GONE);
+							get_password_view_two.setVisibility(View.GONE);
+							get_password_view_three.setVisibility(View.VISIBLE);
+							headerView.setTitle("重置密码");
+							currentPage = 3;
+						}else{
+							T.showLong(activity, "安全问题错误!");
+
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
+
+
+
+
+
+
+
 //			JSONObject params = new JSONObject();
 //			params.put("account", acount);
 //			params.put("phoneNumber", mobile);
@@ -166,44 +187,56 @@ public class GetPasswordActivity extends BaseActivity {
 		}else if(view.getId() == R.id.get_password_submit){
 			String pwd = get_password_new_password.getText().toString();
 			String pwds = get_password_new_passwords.getText().toString();
-			
+
 			if(ValidationUtils.isNull(pwd,pwds)){
 				return;
 			}
-			
+
 			if(!ValidationUtils.equlse(pwd, pwds)){
 				T.showLong(activity, "两次密码输入不同");
 				return;
 			}
-			
+
 			if(!ValidationUtils.pattern(Constens.PASSWORD_NEW_REGEX, pwd)){
 				T.showLong(activity, "密码必须至少包含一个英文字符,一个数字!");
 				return;
 			}
-			
+
 			if(ValidationUtils.length(pwd) < 6 || ValidationUtils.length(pwd) > 32){
 				T.showLong(activity, "密码长度必须大于6小于32位!");
 				return;
 			}
 
 			JSONObject params = new JSONObject();
-			params.put("account", acount);
-			params.put("phoneNumber", mobile);
-			params.put("question", id);
-			params.put("answer", answer);
-			params.put("newPassword", pwd);
+//			params.put("account", acount);
+						params.put("id", userid);
+						params.put("safeAnswer", answer);
+//			params.put("phoneNumber", mobile);
+////			params.put("question", id);
+//			params.put("answer", answer);
+//			params.put("newPassword", pwd);
 //			FORGOT_PASSWORD
-			RequestManager.postObject(Constens.FORGOT_PASSWORD, activity, params, new Response.Listener<JSONObject>() {
+			RequestManager.getObject(String.format(Constens.PASSWORD, userid,pwd), activity, params, new Response.Listener<JSONObject>() {
 				public void onResponse(JSONObject data) {
-					T.showLong(activity, "重置密码成功!");
-					finish();
+					try {
+						if(data.getBoolean("success")){
+							T.showLong(activity, "重置密码成功!");
+							finish();
+						}else{
+							T.showLong(activity, "重置密码失败!");
+
+						}
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
 			}, new RequestErrorListener() {
 				public void requestError(VolleyError e) {
 					if(e.networkResponse.statusCode == 200){
 						T.showLong(activity, "重置密码成功!");
 						finish();
-					} 
+					}
 					try {
 						String s = new String(e.networkResponse.data,"UTF-8");
 						if(!ValidationUtils.isNull(s)){
@@ -215,7 +248,7 @@ public class GetPasswordActivity extends BaseActivity {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-					
+
 				}
 			});
 		}

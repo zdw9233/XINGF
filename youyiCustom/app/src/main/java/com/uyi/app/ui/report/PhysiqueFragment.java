@@ -37,12 +37,12 @@ public class PhysiqueFragment extends BaseFragment {
     protected void onInitLayoutAfter() {
         ReportActivity mActivity = (ReportActivity) getActivity();
         Report report = mActivity.getReport();
-        zfl.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>脂肪率： </font><font color='#0ea6fa'>%s</font>", report.fatPercentage)));
-        jcdx.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>基础代谢： </font><font color='#0ea6fa'>%s</font>", report.basalMetabolism)));
-        sfhl.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>水分含量： </font><font color='#0ea6fa'>%s</font>", report.waterContent)));
-        yw.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>腰围： </font><font color='#0ea6fa'>%s</font>", report.waist)));
-        tw.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>臀围： </font><font color='#0ea6fa'>%s</font>", report.hipline)));
-        ytb.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>腰臀比： </font><font color='#0ea6fa'>%s</font>", report.whr)));
+        zfl.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>脂肪率： </font><font color='#0ea6fa'>%s</font>", report.fatPercentage).equals("null")?"":String.format(Locale.CHINA, "<font color='#252525'>脂肪率： </font><font color='#0ea6fa'>%s</font>", report.fatPercentage)));
+        jcdx.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>基础代谢： </font><font color='#0ea6fa'>%s</font>", report.basalMetabolism).equals("null")?"":String.format(Locale.CHINA, "<font color='#252525'>基础代谢： </font><font color='#0ea6fa'>%s</font>", report.basalMetabolism)));
+        sfhl.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>水分含量： </font><font color='#0ea6fa'>%s</font>", report.waterContent).equals("null")?"":String.format(Locale.CHINA, "<font color='#252525'>水分含量： </font><font color='#0ea6fa'>%s</font>", report.waterContent)));
+        yw.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>腰围： </font><font color='#0ea6fa'>%s</font>", report.waist).equals("null")?"":String.format(Locale.CHINA, "<font color='#252525'>腰围： </font><font color='#0ea6fa'>%s</font>", report.waist)));
+        tw.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>臀围： </font><font color='#0ea6fa'>%s</font>", report.hipline).equals("null")?"":String.format(Locale.CHINA, "<font color='#252525'>臀围： </font><font color='#0ea6fa'>%s</font>", report.hipline)));
+        ytb.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>腰臀比： </font><font color='#0ea6fa'>%s</font>", report.whr).equals("null")?"":String.format(Locale.CHINA, "<font color='#252525'>腰臀比： </font><font color='#0ea6fa'>%s</font>", report.whr)));
     }
 
     @Override
