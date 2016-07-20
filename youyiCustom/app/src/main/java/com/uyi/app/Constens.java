@@ -372,7 +372,7 @@ public abstract class Constens {
 
     /**
      * 客户消息/公告删除/标记已读 POST
-     * <p/>
+     * <p>
      * ${operate} 	1: 标记已读   	 2: 删除
      * ${type}		1: 消息		 2: 公告
      * ${ids}
@@ -452,4 +452,8 @@ public abstract class Constens {
      * 购买定制服务
      */
     public static final String BUY_CUSTOM_SERVICE = SERVER_URL + "/app/api/servicePackage/buy/custom";
+    /**
+     * 删除就医/用药情况
+     */
+    public static final String DELETE_INFO = SERVER_URL + "/app/api/common/delete/info?id=%d&type=%d";
 }

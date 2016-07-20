@@ -103,6 +103,7 @@ public class Health {
         }
 
         public static class MedicationUsingSituationsBean {
+            public int id;
             public String startTime;
             public String endTime;
             public int medicineId;
@@ -114,6 +115,7 @@ public class Health {
         }
 
         public static class ExternalSituationsBean {
+            public int id;
             public String treatmentTime;
             public String content;
         }

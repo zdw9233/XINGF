@@ -2,19 +2,16 @@ package com.uyi.app.widget;
 
 
 import android.content.Context;
-
 import android.util.AttributeSet;
-
 import android.view.MotionEvent;
-
 import android.view.View;
-
 import android.widget.ScrollView;
 
 /**
  * 内部滑动 Created by Leeii on 2016/7/2.
  */
 public class InnerScrollView extends ScrollView {
+
 
     /**
 
