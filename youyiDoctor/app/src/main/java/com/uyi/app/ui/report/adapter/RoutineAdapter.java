@@ -1,13 +1,10 @@
 package com.uyi.app.ui.report.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.uyi.app.recycle.BaseAdapter;
-import com.uyi.app.ui.report.ReportActivity;
-import com.uyi.app.ui.report.WriteReportActivity;
 import com.uyi.app.ui.report.model.Report;
 import com.uyi.doctor.app.R;
 
@@ -127,22 +124,19 @@ public class RoutineAdapter extends BaseAdapter {
             last_footer.setVisibility(View.GONE);
             tv_date.setText(timeValue.getUptime());
             value.setText(timeValue.getItemValue().concat(UNIT[type]));
-
         }
-        View write_report = holder.holder(R.id.write_report, View.class);
-        write_report.setVisibility((position == getCount() - 1) && !isWrited ? View.VISIBLE : View.GONE);
     }
 
     @Override
     public ViewHolder newHolder(View itemView) {
         ViewHolder holder = new ViewHolder(itemView);
-        View write_report = holder.holder(R.id.write_report, View.class);
-        write_report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((ReportActivity) mContext).startActivityForResult(new Intent(mContext, WriteReportActivity.class), 0x100);
-            }
-        });
+//        View write_report = holder.holder(R.id.write_report, View.class);
+//        write_report.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((ReportActivity) mContext).startActivityForResult(new Intent(mContext, WriteReportActivity.class), 0x100);
+//            }
+//        });
         return holder;
     }
 

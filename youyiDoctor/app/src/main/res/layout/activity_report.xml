@@ -156,8 +156,24 @@
             <FrameLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/write_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/sel_blue_btn_bg"
+                android:padding="16dp"
+                android:text="填写健康报告"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
+
 
 </LinearLayout>

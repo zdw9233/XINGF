@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
 
@@ -41,6 +42,8 @@ public class ReportActivity extends BaseFragmentActivity {
     private View jkbg;
     @ViewInject(R.id.header)
     private HeaderView headerView;
+    @ViewInject(R.id.write_report)
+    private Button write_report;
     private Report mReport;
 
     private View currentView;
@@ -53,9 +56,14 @@ public class ReportActivity extends BaseFragmentActivity {
             R.id.qst,       //趋势图
             R.id.xdt,       //心电图
             R.id.zytzjb,    //中医体质鉴别
-            R.id.jkbg       //健康报告
+            R.id.jkbg,   //健康报告
+            R.id.write_report       //健康报告
     })
     public void onClick(View view) {
+        if (view.getId() == R.id.write_report) {
+            startActivityForResult(new Intent(this, WriteReportActivity.class), 0x100);
+            return;
+        }
         if (currentView != null) {
             currentView.setBackgroundColor(getResources().getColor(R.color.white));
             ((CheckedTextView) ((FrameLayout) currentView).getChildAt(0)).setChecked(false);
@@ -101,12 +109,13 @@ public class ReportActivity extends BaseFragmentActivity {
 
     private void requestReportDetail() {
 //        int userId = UserInfoManager.getLoginUserInfo(this).userId;
-        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, FragmentHealthListManager.customer, 0), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, FragmentHealthListManager.customer, FragmentHealthListManager.customer, 0), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportActivity.this, null).dismiss();
                 mReport = JSON.parseObject(jsonObject.toString(), Report.class);
                 onClick(findViewById(R.id.cgjc));
+                write_report.setVisibility(View.VISIBLE);
             }
         });
 
@@ -160,6 +169,7 @@ public class ReportActivity extends BaseFragmentActivity {
             onClick(jkbg);
 
             ((RoutineFragment) fragments.get(0)).setIsWrite(true);
+            write_report.setVisibility(View.GONE);
         }
     }
 }

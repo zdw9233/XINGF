@@ -57,9 +57,10 @@ public class CustomServiceAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int num = Integer.valueOf(number.getText().toString());
                 int max = serviceItem.get(holder.getAdapterPosition()).count;
+                String unit = serviceItem.get(holder.getAdapterPosition()).unit;
                 if (max == -1) number.setText(String.valueOf(num + 1));
                 else if (num + 1 > max) {
-                    T.showShort(mContext, "该项目只能最多购买" + max + "次");
+                    T.showShort(mContext, "该项目只能最多购买" + max + unit);
                 } else number.setText(String.valueOf(num + 1));
             }
         });
@@ -68,9 +69,10 @@ public class CustomServiceAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 int count = Integer.valueOf(number.getText().toString());
+                String unit = serviceItem.get(holder.getAdapterPosition()).unit;
                 ServiceItem item = serviceItem.get(position);
                 if (mOnBuyServiceCallBack != null)
-                    mOnBuyServiceCallBack.buyIt(item.id, count, item.name, item.beans);
+                    mOnBuyServiceCallBack.buyIt(item.id, count, item.name, item.beans, unit);
             }
         });
         return holder;
@@ -81,6 +83,6 @@ public class CustomServiceAdapter extends BaseAdapter {
     }
 
     public interface OnBuyServiceCallBack {
-        void buyIt(int id, int count, String name, int beans);
+        void buyIt(int id, int count, String name, int beans, String unit);
     }
 }
