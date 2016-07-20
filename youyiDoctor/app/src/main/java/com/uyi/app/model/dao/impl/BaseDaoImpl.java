@@ -97,7 +97,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	@Override
 	public boolean update(T t) {
 		try {
-			dbUtils.update(t, null);
+			dbUtils.update(t);
 			return true;
 		} catch (DbException e) {
 			e.printStackTrace();

@@ -460,8 +460,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
             case R.id.register_info_four_submit:  //提交健康资料
                 setValue(4);
                 if (TextUtils.isEmpty(health.healthInfo.abnormalEventJsons.time)) {
-                    T.showShort(this, "请选择血管事件的时间");
-                    return;
+                    mHealthInfo.abnormalEventJsons = null;
                 }
                 L.e(JSON.toJSONString(health));
                 JSONObject object = null;

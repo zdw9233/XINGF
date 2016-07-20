@@ -6,16 +6,19 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.ErrorCode;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONException;
@@ -75,7 +78,20 @@ public class EaseOneYearActivity extends BaseActivity implements DialogInterface
                 T.showShort(EaseOneYearActivity.this, "购买成功！");
                 onBackPressed();
             }
-        }, null);
+        },  new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
+                if (e.networkResponse != null) {
+                    if (e.networkResponse.statusCode == 200) {
+                        T.showShort(activity, "购买成功！");
+                    } else {
+                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+                    }
+                } else {
+                    T.showShort(activity, "购买成功！");
+                }
+            }
+        });
 
     }
 

@@ -116,7 +116,6 @@ public class LoginActivity extends BaseActivity {
                         Log.e("data", data.toString());
 
                         if (data.getBoolean("logasguardian")) {
-
                             if (data.getString("guardian").equals("false")) {
                                 userInfo.authToken = data.getString("authToken");
                                 userInfo.type = data.getInt("type");
