@@ -54,8 +54,9 @@ public class FragmentLineInspection extends BaseFragment implements OnTabChanage
     private LineInspectionAdapter lineInspectionAdapter;
 
 
-    public FragmentLineInspection(Main main) {
+    public FragmentLineInspection setMain(Main main) {
         this.main = main;
+        return this;
     }
 
     @Override

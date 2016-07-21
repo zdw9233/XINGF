@@ -153,11 +153,11 @@ public class Main extends BaseFragmentActivity {
     public void initView() {
         fragments.add(new PersonalCenterFragment());//个人中心
         fragments.add(new HealthManagerFragment());//健康管理
-        fragments.add(new FragmentHealthTeam(this));//健康团队
-        fragments.add(new FragmentConsultation(this));//所有咨询
-        fragments.add(new FragmentFollow(this));//随访
-        fragments.add(new FragmentLineInspection(this));//线下检查
-        fragments.add(new FragmentWearableDevice(this));//可穿戴设备
+        fragments.add(new FragmentHealthTeam().setMain(this));//健康团队
+        fragments.add(new FragmentConsultation().setMain(this));//所有咨询
+        fragments.add(new FragmentFollow().setMain(this));//随访
+        fragments.add(new FragmentLineInspection().setMain(this));//线下检查
+        fragments.add(new FragmentWearableDevice().setMain(this));//可穿戴设备
 //        fragments.add(new HealthDatabaseActivity(this));//健康数据库
     }
 
