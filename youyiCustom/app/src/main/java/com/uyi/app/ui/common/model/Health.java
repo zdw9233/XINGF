@@ -17,6 +17,7 @@ public class Health {
 
     public String height;
     public String weight;
+public String phoneNumber;
     public String healthCondition;
     public int chronicDiseaseType;
     /**

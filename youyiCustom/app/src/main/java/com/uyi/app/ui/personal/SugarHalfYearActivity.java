@@ -54,7 +54,7 @@ public class SugarHalfYearActivity extends BaseActivity implements DialogInterfa
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.anxin_pay:
-                new AlertDialog.Builder(this).setTitle("购买提示").setMessage(String.format(Locale.CHINA, "您即将购买由优医为你提供的%s,需要消耗您%d健康豆", name, beans)).setPositiveButton("购买", this).setNegativeButton("取消", this).show();
+                new AlertDialog.Builder(this).setTitle("购买提示").setMessage(String.format(Locale.CHINA, "您即将购买由优医为你提供的%s,需要消耗您%d健康豆,并且下月生效！", name, beans)).setPositiveButton("购买", this).setNegativeButton("取消", this).show();
                 break;
         }
 
