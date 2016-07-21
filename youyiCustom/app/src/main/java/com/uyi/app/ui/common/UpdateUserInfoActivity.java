@@ -278,7 +278,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 
     private String gender;            //性别
     public int update = 0;            //1为更新信息
-    public int id = 0 ;
+    public int id = 0;
     private Health health;
     private Health.HealthInfoBean mHealthInfo;
     private List<Health.HealthInfoBean.ExternalSituationsBean> externalSituationsList;
@@ -385,7 +385,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                 @Override
                                 public void onDelete(int position) {
                                     Health.HealthInfoBean.ExternalSituationsBean bean = externalSituationsList.get(position);
-                                    if (bean.id != 0) {
+                                    if (bean.id != null) {
                                         deleteOut(bean.id, position);
                                     } else {
                                         externalSituationsList.remove(position);
@@ -397,7 +397,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                 @Override
                                 public void onDelete(int position) {
                                     Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
-                                    if (bean.id != 0) {
+                                    if (bean.id != null) {
                                         deleteMedicine(bean.id, position);
                                     } else {
                                         medicationUsingSituationsList.remove(position);
@@ -430,7 +430,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                 radioGroup.check(ints[health.chronicDiseaseType - 1]);
                             register_info_chengyingdeyaowu.setText(b.drugAddiction);
                             Health.HealthInfoBean.AbnormalEventJsonsBean j = b.abnormalEventJsons;
-                            L.e("J===",j.id +"");
+                            L.e("J===", j.id + "");
                             if (j != null) {
                                 id = j.id;
                                 regester_info_xueguanfashengshijian.setText(j.time);
@@ -466,12 +466,12 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         requestDrowMenuData();
     }
 
-    private void deleteMedicine(int id, int position) {
-        deleteInfo(id, 0, position);
+    private void deleteMedicine(String id, int position) {
+        deleteInfo(Integer.valueOf(id), 0, position);
     }
 
-    private void deleteOut(int id, int position) {
-        deleteInfo(id, 1, position);
+    private void deleteOut(String id, int position) {
+        deleteInfo(Integer.valueOf(id), 1, position);
     }
 
     private void deleteInfo(final int id, final int type, final int position) {
@@ -621,7 +621,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 
                 List<Health.HealthInfoBean.ExternalSituationsBean> situationsBeen = new ArrayList<>();
                 for (Health.HealthInfoBean.ExternalSituationsBean b : externalSituationsList) {
-                    if (b.id == 0) situationsBeen.add(b);
+                    if (b.id == null) situationsBeen.add(b);
                 }
                 mHealthInfo.externalSituations = situationsBeen;
 
@@ -664,7 +664,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 //                }
                 List<Health.HealthInfoBean.MedicationUsingSituationsBean> situationsBeen1 = new ArrayList<>();
                 for (Health.HealthInfoBean.MedicationUsingSituationsBean bean : medicationUsingSituationsList) {
-                    if (bean.id == 0) situationsBeen1.add(bean);
+                    if (bean.id == null) situationsBeen1.add(bean);
                 }
                 mHealthInfo.medicationUsingSituations = situationsBeen1;
 
@@ -681,7 +681,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 AbnormalEvent ae = abnormalEvents.get(fsType);
                 if (ae != null) {
                     abnormalEventJsonsBean.eventType = ae.eventType;
-                    abnormalEventJsonsBean.id = id ;
+                    abnormalEventJsonsBean.id = id;
                     abnormalEventJsonsBean.name = ae.name;
                     abnormalEventJsonsBean.eventId = ae.id;
                 }
@@ -861,7 +861,6 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 }
                 if (update == 0) {
                     L.e("PA====", object.toString());
-
 //                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
 //                        @Override
 //                        public void onResponse(JSONObject jsonObject) {
@@ -881,14 +880,18 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 //                            }
 //                        });
 //                }
+                    Loading.bulid(this, null).show();
                     RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
+                            Loading.bulid(UpdateUserInfoActivity.this, null).dismiss();
                             T.showShort(UpdateUserInfoActivity.this, "修改成功！");
+
                         }
                     }, new RequestErrorListener() {
                         @Override
                         public void requestError(VolleyError e) {
+                            Loading.bulid(UpdateUserInfoActivity.this, null).dismiss();
                             if (e.networkResponse != null) {
                                 if (e.networkResponse.statusCode == 200) {
                                     T.showShort(activity, "修改成功！");
@@ -900,6 +903,35 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                             }
                         }
                     });
+//                    OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+//                    okHttpClient.addInterceptor(new Interceptor() {
+//                        @Override
+//                        public okhttp3.Response intercept(Chain chain) throws IOException {
+//                            Request.Builder requestBuilder = chain.request()
+//                                    .newBuilder();
+//                            requestBuilder.addHeader("authToken", UserInfoManager.getLoginUserInfo(UpdateUserInfoActivity.this).authToken);
+//                            // 请求处理
+//                            return chain.proceed(requestBuilder.build());
+//                        }
+//                    })
+//                            .connectTimeout(10, TimeUnit.SECONDS)
+//                            .build();
+//                    Retrofit retrofit = new Retrofit.Builder().baseUrl("http://121.42.142.228:8080/").client(okHttpClient.build())
+//                            .addConverterFactory(FsonConverterFactory.create())
+//                            .build();
+//                    API api = retrofit.create(API.class);
+//                    Call<String> stringCall = api.accountUpdate(object);
+//                    stringCall.enqueue(new Callback<String>() {
+//                        @Override
+//                        public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+//                            L.e(call.toString(),JSON.toJSONString(response));
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<String> call, Throwable t) {
+//                            L.e(call.toString(), t.toString());
+//                        }
+//                    });
                 }
                 break;
             case R.id.layout_start_time:
@@ -1172,7 +1204,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 String email = register_email.getText().toString();
                 String idCardNumber = register_card.getText().toString();
                 String occupation = register_zhiye.getText().toString();
-                if (ValidationUtils.isNull( birthday, idCardNumber)) {
+                if (ValidationUtils.isNull(birthday, idCardNumber)) {
                     T.showLong(application, "信息输入不完整!");
                     return;
                 }
@@ -1461,18 +1493,18 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         mSetPhotoPop.update();
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (type != 1) {
-//            if (this.index == 2) {
-//                replaceView(1);
-//            } else if (this.index == 3) {
-//                replaceView(2);
-//            } else if (this.index == 4) {
-//                replaceView(3);
-//            } else {
-//                super.onBackPressed();
-//            }
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        if (type != 1) {
+            if (this.index == 2) {
+                replaceView(1);
+            } else if (this.index == 3) {
+                replaceView(2);
+            } else if (this.index == 4) {
+                replaceView(3);
+            } else {
+                super.onBackPressed();
+            }
+        } else super.onBackPressed();
+    }
 }

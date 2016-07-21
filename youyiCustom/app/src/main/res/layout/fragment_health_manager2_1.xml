@@ -89,10 +89,10 @@
                         android:background="@drawable/shape_new_bg"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:paddingBottom="2dp"
+                        android:paddingBottom="1dp"
                         android:paddingLeft="2dp"
                         android:paddingRight="2dp"
-                        android:paddingTop="2dp"
+                        android:paddingTop="1dp"
                         android:text="new"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_style_8"
@@ -251,72 +251,80 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/assessment"
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:background="#4dc7ee"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:layout_weight="1">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/assessment" />
+                    <LinearLayout
+                        android:id="@+id/assessment"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:background="#4dc7ee"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/assessment" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="end"
-                                android:maxLines="1"
-                                android:text="风险评估"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/font_style_18" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:gravity="center"
-                                android:maxLines="1"
-                                android:text="assessment"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/font_style_10" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/assessment_num"
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_margin="4dp"
-                            android:background="@drawable/shape_new_bg"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:paddingBottom="2dp"
-                            android:paddingLeft="2dp"
-                            android:paddingRight="2dp"
-                            android:paddingTop="2dp"
-                            android:text="new"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_style_8"
-                            android:visibility="gone"/>
-                    </FrameLayout>
-                </LinearLayout>
+                            android:layout_marginTop="12dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="风险评估"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="assessment"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+                            </LinearLayout>
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/assessment_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@drawable/shape_new_bg"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="1dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:paddingTop="1dp"
+                        android:text="new"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_style_8"
+                        android:visibility="gone" />
+                </FrameLayout>
+
             </TableRow>
 
             <TableRow
@@ -386,10 +394,10 @@
                             android:background="@drawable/shape_new_bg"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:paddingBottom="2dp"
+                            android:paddingBottom="1dp"
                             android:paddingLeft="2dp"
                             android:paddingRight="2dp"
-                            android:paddingTop="2dp"
+                            android:paddingTop="1dp"
                             android:text="new"
                             android:textColor="@color/white"
                             android:textSize="@dimen/font_style_8"
@@ -459,10 +467,10 @@
                             android:background="@drawable/shape_new_bg"
                             android:gravity="center"
                             android:maxLines="1"
-                            android:paddingBottom="2dp"
+                            android:paddingBottom="1dp"
                             android:paddingLeft="2dp"
                             android:paddingRight="2dp"
-                            android:paddingTop="2dp"
+                            android:paddingTop="1dp"
                             android:text="new"
                             android:textColor="@color/white"
                             android:textSize="@dimen/font_style_8"

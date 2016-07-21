@@ -17,7 +17,7 @@ public class Health {
 
     public String height;
     public String weight;
-public String phoneNumber;
+    public String phoneNumber;
     public String healthCondition;
     public int chronicDiseaseType;
     /**
@@ -104,7 +104,7 @@ public String phoneNumber;
         }
 
         public static class MedicationUsingSituationsBean {
-            public int id;
+            public String id;
             public String startTime;
             public String endTime;
             public int medicineId;
@@ -116,7 +116,7 @@ public String phoneNumber;
         }
 
         public static class ExternalSituationsBean {
-            public int id;
+            public String id;
             public String treatmentTime;
             public String content;
         }

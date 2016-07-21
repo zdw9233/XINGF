@@ -146,8 +146,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"
-            />
+                    android:layout_marginLeft="10dp" />
             </LinearLayout>
 
             <View
@@ -190,7 +189,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/required_"/>
+                    android:src="@drawable/required_" />
             </LinearLayout>
 
             <View
@@ -246,8 +245,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"
-                     />
+                    android:layout_marginLeft="10dp" />
             </LinearLayout>
 
             <View
@@ -275,8 +273,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"
-           />
+                    android:layout_marginLeft="10dp" />
             </LinearLayout>
 
             <View
@@ -333,8 +330,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"
-                 />
+                    android:layout_marginLeft="10dp" />
             </LinearLayout>
 
             <View
@@ -1130,10 +1126,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.uyi.app.widget.recycle.RecyclerView
-                    android:id="@+id/ywRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1150,6 +1142,11 @@
                         android:text="药物情况"
                         android:textColor="@color/red" />
                 </LinearLayout>
+
+                <com.uyi.app.widget.recycle.RecyclerView
+                    android:id="@+id/ywRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
