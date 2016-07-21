@@ -122,7 +122,7 @@ public class GetPasswordActivity extends BaseActivity {
 							headerView.setTitle("问题答案");
 							currentPage = 2;
 					} catch (JSONException e) {
-						e.printStackTrace();
+						T.showShort(GetPasswordActivity.this,"验证错误！");
 					}
 				}
 			});

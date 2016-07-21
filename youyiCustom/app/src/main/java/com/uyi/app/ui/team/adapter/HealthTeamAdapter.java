@@ -42,7 +42,7 @@ public class HealthTeamAdapter extends BaseRecyclerAdapter<Map<String, Object>> 
             hodler.item_team_name.setText(data.get("name").toString());
             if ((int) data.get("isMy") == 1) {
                 hodler.item_team_time.setVisibility(View.GONE);
-                hodler.item_team_my_group.setVisibility(View.GONE);
+                hodler.item_team_my_group.setVisibility(View.VISIBLE);
                 hodler.item_team_time.setText("有效期:" + data.get("start").toString() + "到" + data.get("end").toString());
             } else if ((int) data.get("isMy") == 2) {
                 hodler.item_team_time.setVisibility(View.GONE);
