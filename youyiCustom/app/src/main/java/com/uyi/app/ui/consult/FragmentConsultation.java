@@ -69,6 +69,9 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
 
     public boolean initLoad = true;//初始化加载
 
+    public FragmentConsultation() {
+    }
+
     public FragmentConsultation(Main main) {
         this.main = main;
     }
@@ -213,15 +216,15 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
             public void onResponse(JSONObject data) {
                 try {
                     System.out.println(data.toString());
-                    if(data.getInt("doctorAdvisory") > 0){
+                    if (data.getInt("doctorAdvisory") > 0) {
                         Intent intent = new Intent(context, NewConsultActivity.class);
-                         startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
-                    }else{
-                        if(userInfo.isFree == 2){
-                            T.showShort(getContext()," 本月医疗咨询次数使用完毕");
+                        startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
+                    } else {
+                        if (userInfo.isFree == 2) {
+                            T.showShort(getContext(), " 本月医疗咨询次数使用完毕");
 
-                        }else{
-                            T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
+                        } else {
+                            T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
                         }
                     }
 
