@@ -106,7 +106,6 @@ public class RequestManager {
      * @param url
      * @param tag
      * @param params
-     * @param listener
      */
     public static void postObject(String url, Object tag, final JSONObject params, Response.Listener<JSONObject> litenner , RequestErrorListener errorListener) {
     	JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){
@@ -119,7 +118,7 @@ public class RequestManager {
 					L.d("authToken",UserInfoManager.getLoginUserInfo(UYIApplication.getContext()).authToken );
 				}
 				headers.put("Content-Type", "application/json;charset=UTF-8");
-				headers.put("User-Agent", "Android");
+//				headers.put("User-Agent", "Android");
 				return headers;
 			}
 		};

@@ -880,14 +880,18 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 //                            }
 //                        });
 //                }
+                    Loading.bulid(this, null).show();
                     RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
+                            Loading.bulid(UpdateUserInfoActivity.this, null).dismiss();
                             T.showShort(UpdateUserInfoActivity.this, "修改成功！");
+
                         }
                     }, new RequestErrorListener() {
                         @Override
                         public void requestError(VolleyError e) {
+                            Loading.bulid(UpdateUserInfoActivity.this, null).dismiss();
                             if (e.networkResponse != null) {
                                 if (e.networkResponse.statusCode == 200) {
                                     T.showShort(activity, "修改成功！");
@@ -899,6 +903,35 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                             }
                         }
                     });
+//                    OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+//                    okHttpClient.addInterceptor(new Interceptor() {
+//                        @Override
+//                        public okhttp3.Response intercept(Chain chain) throws IOException {
+//                            Request.Builder requestBuilder = chain.request()
+//                                    .newBuilder();
+//                            requestBuilder.addHeader("authToken", UserInfoManager.getLoginUserInfo(UpdateUserInfoActivity.this).authToken);
+//                            // 请求处理
+//                            return chain.proceed(requestBuilder.build());
+//                        }
+//                    })
+//                            .connectTimeout(10, TimeUnit.SECONDS)
+//                            .build();
+//                    Retrofit retrofit = new Retrofit.Builder().baseUrl("http://121.42.142.228:8080/").client(okHttpClient.build())
+//                            .addConverterFactory(FsonConverterFactory.create())
+//                            .build();
+//                    API api = retrofit.create(API.class);
+//                    Call<String> stringCall = api.accountUpdate(object);
+//                    stringCall.enqueue(new Callback<String>() {
+//                        @Override
+//                        public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+//                            L.e(call.toString(),JSON.toJSONString(response));
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<String> call, Throwable t) {
+//                            L.e(call.toString(), t.toString());
+//                        }
+//                    });
                 }
                 break;
             case R.id.layout_start_time:
