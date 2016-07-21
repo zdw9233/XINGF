@@ -147,7 +147,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/required_" />
+            />
             </LinearLayout>
 
             <View
@@ -189,7 +189,8 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/required_"/>
             </LinearLayout>
 
             <View
@@ -246,7 +247,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/required_" />
+                     />
             </LinearLayout>
 
             <View
@@ -275,7 +276,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/required_" />
+           />
             </LinearLayout>
 
             <View
@@ -333,7 +334,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/required_" />
+                 />
             </LinearLayout>
 
             <View

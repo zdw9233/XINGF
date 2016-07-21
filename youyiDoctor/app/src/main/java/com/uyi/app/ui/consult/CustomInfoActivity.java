@@ -1,5 +1,7 @@
 package com.uyi.app.ui.consult;
 
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,9 +12,15 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.ui.consult.model.AbnormalEvent;
+import com.uyi.app.ui.consult.model.Medicine;
 import com.uyi.app.ui.custom.BaseActivity;
+import com.uyi.app.ui.custom.DividerItemDecoration;
+import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.ui.health.adapter.JiuyiAdapter;
+import com.uyi.app.ui.health.adapter.YaowuAdapter;
 import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.UYIUtils;
@@ -21,8 +29,13 @@ import com.uyi.doctor.app.R;
 import com.volley.ImageCacheManager;
 import com.volley.RequestManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -33,8 +46,11 @@ import org.json.JSONObject;
 @ContentView(R.layout.custom_info)
 public class CustomInfoActivity extends BaseActivity {
 	
-	@ViewInject(R.id.schedule_add_close) private ImageView schedule_add_close; 
-	
+	@ViewInject(R.id.schedule_add_close) private ImageView schedule_add_close;
+	@ViewInject(R.id.recyclerView_healthmanager_jiuyi)
+	private EndlessRecyclerView recyclerView_healthmanager_jiuyi;
+	@ViewInject(R.id.recyclerView_healthmanager_yaowu)
+	private EndlessRecyclerView recyclerView_healthmanager_yaowu;
 	
 	@ViewInject(R.id.constom_info_logo) private RoundedImageView constom_info_logo; 
 	@ViewInject(R.id.constom_info_name) private TextView constom_info_name;
@@ -45,8 +61,12 @@ public class CustomInfoActivity extends BaseActivity {
 	@ViewInject(R.id.constom_info_chushengriqi) private TextView constom_info_chushengriqi; 
 	
 	@ViewInject(R.id.custom_jiankang) private TextView custom_jiankang; 
-	@ViewInject(R.id.custom_gereng) private TextView custom_gereng; 
-	
+	@ViewInject(R.id.custom_gereng) private TextView custom_gereng;
+	@ViewInject(R.id.custom_jiuyi) private TextView custom_jiuyi;
+	@ViewInject(R.id.custom_yaowu) private TextView custom_yaowu;
+	@ViewInject(R.id.custom_xueguan) private TextView custom_xueguan;
+
+
 	@ViewInject(R.id.custom_jiankang_info) private LinearLayout custom_jiankang_info; //健康资料
 	@ViewInject(R.id.custom_jiwangbinshi) private TextView custom_jiwangbinshi; 
 	@ViewInject(R.id.custom_chuanranbinshi) private TextView custom_chuanranbinshi; 
@@ -71,30 +91,121 @@ public class CustomInfoActivity extends BaseActivity {
 	@ViewInject(R.id.custom_email) private TextView custom_email; 
 	@ViewInject(R.id.custom_zhiye) private TextView custom_zhiye; 
 	@ViewInject(R.id.custom_shengao) private TextView custom_shengao; 
-	@ViewInject(R.id.custom_tizhong) private TextView custom_tizhong; 
-	
+	@ViewInject(R.id.custom_tizhong) private TextView custom_tizhong;
+
+	@ViewInject(R.id.custom_xueguan_layout) private LinearLayout custom_xueguan_layout; //血管事件
+	@ViewInject(R.id.custom_xueguan_time) private TextView custom_xueguan_time;
+	@ViewInject(R.id.custom_xueguan_neixin) private TextView custom_xueguan_neixin;
+	@ViewInject(R.id.custom_xueguan_miaoshu) private TextView custom_xueguan_miaoshu;
+
+	@ViewInject(R.id.custom_yaowu_layout) private LinearLayout custom_yaowu_layout; //药物情况
+	@ViewInject(R.id.custom_yaowu_guomin) private TextView custom_yaowu_guomin;
+	@ViewInject(R.id.custom_yaowu_ying) private TextView custom_yaowu_ying;
+
+	@ViewInject(R.id.custom_jiuyi_layout) private LinearLayout custom_jiuyi_layout; //就医情况
+
+	private HashMap<String, Medicine> medicines = new HashMap<>();
+	private HashMap<String, AbnormalEvent> abnormalEvents = new HashMap<>();
+
 	private int customId;
-	
-	
-	@OnClick({R.id.custom_jiankang,R.id.custom_gereng,R.id.schedule_add_close})
+	private ArrayList<Map<String, Object>> datajiuyi = new ArrayList<Map<String, Object>>();
+	private ArrayList<Map<String, Object>> datayaowu = new ArrayList<Map<String, Object>>();
+
+	private YaowuAdapter healthyaowu;
+	private JiuyiAdapter healthjiuyi;
+	private LinearLayoutManager linearLayoutManager;
+	private LinearLayoutManager linearLayoutManager2;
+	@OnClick({R.id.custom_jiankang,R.id.custom_gereng,R.id.schedule_add_close,R.id.custom_jiuyi,R.id.custom_yaowu,R.id.custom_xueguan})
 	public void click(View v){
 		if(v.getId() == R.id.custom_jiankang){
 			custom_jiankang_info.setVisibility(View.VISIBLE);
 			custom_gerent_info.setVisibility(View.GONE);
+			custom_jiuyi_layout.setVisibility(View.GONE);
+			custom_yaowu_layout.setVisibility(View.GONE);
+			custom_xueguan_layout.setVisibility(View.GONE);
 			
 			custom_jiankang.setBackgroundColor(getResources().getColor(R.color.blue));
 			custom_jiankang.setTextColor(getResources().getColor(R.color.white));
 			custom_gereng.setBackgroundColor(getResources().getColor(R.color.content_background));
 			custom_gereng.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_jiuyi.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_jiuyi.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_yaowu.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_yaowu.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_xueguan.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_xueguan.setTextColor(getResources().getColor(R.color.list_item_content_color));
 			
 		}else if(v.getId() == R.id.custom_gereng){
 			custom_jiankang_info.setVisibility(View.GONE);
 			custom_gerent_info.setVisibility(View.VISIBLE);
-			
+			custom_jiuyi_layout.setVisibility(View.GONE);
+			custom_yaowu_layout.setVisibility(View.GONE);
+			custom_xueguan_layout.setVisibility(View.GONE);
+
 			custom_jiankang.setBackgroundColor(getResources().getColor(R.color.content_background));
 			custom_jiankang.setTextColor(getResources().getColor(R.color.list_item_content_color));
 			custom_gereng.setBackgroundColor(getResources().getColor(R.color.blue));
 			custom_gereng.setTextColor(getResources().getColor(R.color.white));
+			custom_jiuyi.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_jiuyi.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_yaowu.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_yaowu.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_xueguan.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_xueguan.setTextColor(getResources().getColor(R.color.list_item_content_color));
+
+		}else if(v.getId() == R.id.custom_jiuyi){
+			custom_jiankang_info.setVisibility(View.GONE);
+			custom_gerent_info.setVisibility(View.GONE);
+			custom_jiuyi_layout.setVisibility(View.VISIBLE);
+			custom_yaowu_layout.setVisibility(View.GONE);
+			custom_xueguan_layout.setVisibility(View.GONE);
+
+			custom_jiankang.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_jiankang.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_gereng.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_gereng.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_jiuyi.setBackgroundColor(getResources().getColor(R.color.blue));
+			custom_jiuyi.setTextColor(getResources().getColor(R.color.white));
+			custom_yaowu.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_yaowu.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_xueguan.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_xueguan.setTextColor(getResources().getColor(R.color.list_item_content_color));
+
+		}else if(v.getId() == R.id.custom_yaowu){
+			custom_jiankang_info.setVisibility(View.GONE);
+			custom_gerent_info.setVisibility(View.GONE);
+			custom_jiuyi_layout.setVisibility(View.GONE);
+			custom_yaowu_layout.setVisibility(View.VISIBLE);
+			custom_xueguan_layout.setVisibility(View.GONE);
+
+			custom_jiankang.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_jiankang.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_gereng.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_gereng.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_jiuyi.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_jiuyi.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_yaowu.setBackgroundColor(getResources().getColor(R.color.blue));
+			custom_yaowu.setTextColor(getResources().getColor(R.color.white));
+			custom_xueguan.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_xueguan.setTextColor(getResources().getColor(R.color.list_item_content_color));
+
+		}else if(v.getId() == R.id.custom_xueguan){
+			custom_jiankang_info.setVisibility(View.GONE);
+			custom_gerent_info.setVisibility(View.GONE);
+			custom_jiuyi_layout.setVisibility(View.GONE);
+			custom_yaowu_layout.setVisibility(View.GONE);
+			custom_xueguan_layout.setVisibility(View.VISIBLE);
+
+			custom_jiankang.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_jiankang.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_gereng.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_gereng.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_jiuyi.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_jiuyi.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_yaowu.setBackgroundColor(getResources().getColor(R.color.content_background));
+			custom_yaowu.setTextColor(getResources().getColor(R.color.list_item_content_color));
+			custom_xueguan.setBackgroundColor(getResources().getColor(R.color.blue));
+			custom_xueguan.setTextColor(getResources().getColor(R.color.white));
 		}else if(v.getId() == R.id.schedule_add_close){
 			onBackPressed();
 		}
@@ -103,6 +214,26 @@ public class CustomInfoActivity extends BaseActivity {
 
 	@Override
 	protected void onInitLayoutAfter() {
+		linearLayoutManager = new LinearLayoutManager(this);
+		healthyaowu = new YaowuAdapter(this);
+		healthyaowu.setDatas(datayaowu);
+		healthjiuyi = new JiuyiAdapter(this);
+		healthjiuyi.setDatas(datajiuyi);
+		linearLayoutManager = new LinearLayoutManager(this);
+		linearLayoutManager2 = new LinearLayoutManager(this);
+		recyclerView_healthmanager_jiuyi.setLayoutManager(linearLayoutManager);
+		recyclerView_healthmanager_jiuyi.addItemDecoration(
+				new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+		recyclerView_healthmanager_jiuyi.setItemAnimator(new DefaultItemAnimator());
+		recyclerView_healthmanager_jiuyi.setProgressView(R.layout.item_progress);
+		recyclerView_healthmanager_jiuyi.setAdapter(healthjiuyi);
+		recyclerView_healthmanager_yaowu.setLayoutManager(linearLayoutManager2);
+		recyclerView_healthmanager_yaowu.addItemDecoration(
+				new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+		recyclerView_healthmanager_yaowu.setItemAnimator(new DefaultItemAnimator());
+		recyclerView_healthmanager_yaowu.setProgressView(R.layout.item_progress);
+		recyclerView_healthmanager_yaowu.setAdapter(healthyaowu);
+
 		customId = getIntent().getIntExtra("customerId", 0);
 		//个人资料
 		RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMER_INFO, customId), activity, new Listener<JSONObject>() {
@@ -117,6 +248,13 @@ public class CustomInfoActivity extends BaseActivity {
 					custom_phone.setText(JSONObjectUtils.getString(data, "backupPhoneNumber").equals("null")?"无":JSONObjectUtils.getString(data, "backupPhoneNumber"));
 					custom_email.setText(JSONObjectUtils.getString(data, "email").equals("null")?"无":JSONObjectUtils.getString(data, "email"));
 					custom_zhiye.setText(JSONObjectUtils.getString(data, "occupation").equals("null")?"无":JSONObjectUtils.getString(data, "occupation"));
+//					if(data.getString("abnormalEventJsons").equals("null")){
+//						custom_xueguan_time.setText("");	custom_xueguan_neixin.setText("");	custom_xueguan_miaoshu.setText("");
+//					}else{
+
+
+
+//					}
 					if(!data.getString("height").equals("null")){
 						custom_shengao.setText(JSONObjectUtils.getInt(data, "height")+"CM");
 					}else{
@@ -149,6 +287,48 @@ public class CustomInfoActivity extends BaseActivity {
 					constom_info_gender.setText("性别："+UYIUtils.convertGender(data.getString("gender")));
 					constom_info_chushengriqi.setText("出生日期："+data.getString("birthday"));
 					constom_info_name.setText( data.getString("realName"));
+					if(data.has("healthInfo")){
+						custom_yaowu_guomin.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "historyOfAllergy").equals("null")?"":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "historyOfAllergy"));
+						custom_yaowu_ying.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "drugAddiction").equals("null")?"":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "drugAddiction"));
+						JSONArray jiuyi = data.getJSONObject("healthInfo").getJSONArray("externalSituations");
+						for (int i = 0; i < jiuyi.length(); i++) {
+							Map<String, Object> item = new HashMap<String, Object>();
+							JSONObject jsonObject = jiuyi.getJSONObject(i);
+
+							item.put("content", jsonObject.getString("content"));
+							item.put("treatmentTime", jsonObject.getString("treatmentTime"));
+
+							datajiuyi.add(item);
+						}
+						healthjiuyi.notifyDataSetChanged();
+						JSONArray yaowu = data.getJSONObject("healthInfo").getJSONArray("medicationUsingSituations");
+						for (int i = 0; i < yaowu.length(); i++) {
+							Map<String, Object> item = new HashMap<String, Object>();
+							JSONObject jsonObject = yaowu.getJSONObject(i);
+
+							item.put("medicineName", jsonObject.getString("medicineName"));
+							item.put("startTime", jsonObject.getString("startTime"));
+							item.put("endTime", jsonObject.getString("endTime"));
+							item.put("usingFrequency", jsonObject.getString("usingFrequency"));
+							item.put("frequencyUnit", jsonObject.getString("frequencyUnit"));
+							item.put("singleDose", jsonObject.getString("singleDose"));
+							item.put("medicineUnit", jsonObject.getString("medicineUnit"));
+
+							datayaowu.add(item);
+						}
+						healthyaowu.notifyDataSetChanged();
+
+						if(data.getJSONObject("healthInfo").has("abnormalEventJsons")) {
+							if(data.getJSONObject("healthInfo").getJSONObject("abnormalEventJsons").has("time"))
+								custom_xueguan_time.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo").getJSONObject("abnormalEventJsons"), "time"));
+							if(data.getJSONObject("healthInfo").getJSONObject("abnormalEventJsons").has("name"))
+								custom_xueguan_neixin.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo").getJSONObject("abnormalEventJsons"), "name"));
+							if(data.getJSONObject("healthInfo").getJSONObject("abnormalEventJsons").has("description"))
+								custom_xueguan_miaoshu.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo").getJSONObject("abnormalEventJsons"), "description"));
+						}
+
+					}
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

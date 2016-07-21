@@ -77,7 +77,7 @@ public class CustomServiceActivity extends BaseActivity implements CustomService
 
     @Override
     public void buyIt(final int id, final int count, String name, int beans, String unit) {
-        new AlertDialog.Builder(this).setTitle("购买提示").setMessage(String.format(Locale.CHINA, "您即将购买由优医为你提供的%s * %d%s,需要消耗您%d健康豆", name, count, unit, beans * count)).setPositiveButton("购买", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(this).setTitle("购买提示").setMessage(String.format(Locale.CHINA, "您即将购买由优医为你提供的%s * %d%s,需要消耗您%d健康豆,并且下月生效！", name, count, unit, beans * count)).setPositiveButton("购买", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 requestBuyCustomService(id, count);

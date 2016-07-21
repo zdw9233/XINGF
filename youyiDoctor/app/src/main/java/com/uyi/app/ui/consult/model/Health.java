@@ -1,4 +1,4 @@
-package com.uyi.app.ui.common.model;
+package com.uyi.app.ui.consult.model;
 
 import java.util.List;
 
@@ -17,7 +17,6 @@ public class Health {
 
     public String height;
     public String weight;
-public String phoneNumber;
     public String healthCondition;
     public int chronicDiseaseType;
     /**

@@ -88,6 +88,7 @@ import java.util.Set;
 @ContentView(R.layout.update_user_info)
 public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage, IOnItemSelectListener {
     private PopupWindow mSetPhotoPop;
+    private String phone;
     private String dizhi, lianxidianhua, youxiangdizhi, zhiye, shenggao, tizhong;
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
@@ -277,7 +278,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 
     private String gender;            //性别
     public int update = 0;            //1为更新信息
-
+    public int id = 0 ;
     private Health health;
     private Health.HealthInfoBean mHealthInfo;
     private List<Health.HealthInfoBean.ExternalSituationsBean> externalSituationsList;
@@ -341,6 +342,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 public void onResponse(JSONObject data) {
                     try {
                         Loading.bulid(activity, null).dismiss();
+
                         ImageCacheManager.loadImage(JSONObjectUtils.getString(data, "icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
                         register_shen.setText(data.getJSONObject("province").getString("name"));
                         register_city.setText(data.getJSONObject("city").getString("name"));
@@ -350,6 +352,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                         register_phone.setText(JSONObjectUtils.getString(data, "backupPhoneNumber"));
                         lianxidianhua = JSONObjectUtils.getString(data, "backupPhoneNumber");
                         register_mobile.setText(JSONObjectUtils.getString(data, "phoneNumber"));
+                        phone = JSONObjectUtils.getString(data, "phoneNumber");
                         register_email.setText(JSONObjectUtils.getString(data, "email"));
                         youxiangdizhi = JSONObjectUtils.getString(data, "email");
                         register_card.setText(JSONObjectUtils.getString(data, "idCardNumber"));
@@ -427,7 +430,9 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                 radioGroup.check(ints[health.chronicDiseaseType - 1]);
                             register_info_chengyingdeyaowu.setText(b.drugAddiction);
                             Health.HealthInfoBean.AbnormalEventJsonsBean j = b.abnormalEventJsons;
+                            L.e("J===",j.id +"");
                             if (j != null) {
+                                id = j.id;
                                 regester_info_xueguanfashengshijian.setText(j.time);
                                 int i = 0;
                                 for (String s : abnormalEvents.keySet()) {
@@ -470,7 +475,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     }
 
     private void deleteInfo(final int id, final int type, final int position) {
-        new AlertDialog.Builder(UpdateUserInfoActivity.this).setTitle("购买提示").setMessage("确定删除该数据？").setPositiveButton("购买", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(UpdateUserInfoActivity.this).setTitle("删除提示").setMessage("确定删除该数据？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 RequestManager.getObject(String.format(Locale.CHINA, Constens.DELETE_INFO, id, type), this, new Listener<JSONObject>() {
@@ -588,6 +593,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                     health.chronicDiseaseType = 3;
                 }
                 health.healthCondition = jkzk;
+                health.phoneNumber = phone;
                 break;
             case 2:
                 String jbs = register_info_gerenjiwangbinshi.getText().toString();
@@ -675,7 +681,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 AbnormalEvent ae = abnormalEvents.get(fsType);
                 if (ae != null) {
                     abnormalEventJsonsBean.eventType = ae.eventType;
-                    abnormalEventJsonsBean.id = ae.id;
+                    abnormalEventJsonsBean.id = id ;
                     abnormalEventJsonsBean.name = ae.name;
                     abnormalEventJsonsBean.eventId = ae.id;
                 }
@@ -846,24 +852,55 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 if (TextUtils.isEmpty(health.healthInfo.abnormalEventJsons.time)) {
                     mHealthInfo.abnormalEventJsons = null;
                 }
-                L.e(JSON.toJSONString(health));
                 JSONObject object = null;
+                health.phoneNumber = phone;
                 try {
                     object = new JSONObject(JSON.toJSONString(health));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 if (update == 0) {
-                    RequestManager.postObject(Constens.UPDATE_HEALTH_ZL, this, object, new Response.Listener<JSONObject>() {
+                    L.e("PA====", object.toString());
+
+//                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject jsonObject) {
+//                                T.showShort(UpdateUserInfoActivity.this, "修改成功！");
+//                        }
+//                    },  new RequestErrorListener() {
+//                        @Override
+//                        public void requestError(VolleyError e) {
+//                            if (e.networkResponse != null) {
+//                                if (e.networkResponse.statusCode == 200) {
+//                                    T.showShort(activity, "修改成功！");
+//                                } else {
+//                                    T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+//                                }
+//                            } else {
+//                                T.showShort(activity, "修改成功！");
+//                            }
+//                        });
+//                }
+                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
-                            if (jsonObject.has("success")) {
-                                T.showShort(UpdateUserInfoActivity.this, "修改成功");
+                            T.showShort(UpdateUserInfoActivity.this, "修改成功！");
+                        }
+                    }, new RequestErrorListener() {
+                        @Override
+                        public void requestError(VolleyError e) {
+                            if (e.networkResponse != null) {
+                                if (e.networkResponse.statusCode == 200) {
+                                    T.showShort(activity, "修改成功！");
+                                } else {
+                                    T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+                                }
+                            } else {
+                                T.showShort(activity, "修改成功！");
                             }
                         }
-                    }, null);
+                    });
                 }
-
                 break;
             case R.id.layout_start_time:
                 startDatePicker(200, null);
@@ -1090,10 +1127,10 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             type = postion;
             if (type == 1) {
                 register_three_layout.setVisibility(View.VISIBLE);
-                replaceView(index);
+//                replaceView(1);
             } else {
                 register_three_layout.setVisibility(View.GONE);
-                replaceView(index);
+                replaceView(1);
             }
         }
     }
@@ -1135,7 +1172,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 String email = register_email.getText().toString();
                 String idCardNumber = register_card.getText().toString();
                 String occupation = register_zhiye.getText().toString();
-                if (ValidationUtils.isNull(address, birthday, phone, mobile, email, idCardNumber, occupation)) {
+                if (ValidationUtils.isNull( birthday, idCardNumber)) {
                     T.showLong(application, "信息输入不完整!");
                     return;
                 }
@@ -1148,19 +1185,25 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 int height = Integer.parseInt(register_height.getText().toString());
                 int weight = Integer.parseInt(register_weight.getText().toString());
 
+                if (!ValidationUtils.isNull(mobile)) {
+                    if (!ValidationUtils.isMobile(mobile)) {
+                        T.showLong(application, "手机号格式不正确!");
+                        return;
+                    }
+                }
+                if (!ValidationUtils.isNull(phone)) {
+                    if (!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)) {
+                        T.showLong(application, "联系电话格式不正确!");
+                        return;
+                    }
+                }
+                if (!ValidationUtils.isNull(email)) {
+                    if (!ValidationUtils.pattern(Constens.EMAIL_REGEX, email)) {
+                        T.showLong(application, "邮箱格式不正确!");
+                        return;
+                    }
+                }
 
-                if (!ValidationUtils.isMobile(mobile)) {
-                    T.showLong(application, "手机号格式不正确!");
-                    return;
-                }
-                if (!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)) {
-                    T.showLong(application, "联系电话格式不正确!");
-                    return;
-                }
-                if (!ValidationUtils.pattern(Constens.EMAIL_REGEX, email)) {
-                    T.showLong(application, "邮箱格式不正确!");
-                    return;
-                }
                 if (!ValidationUtils.pattern(Constens.ID_CARD_REGEX, idCardNumber)) {
                     T.showLong(application, "身份证号码格式不正确!");
                     return;
@@ -1418,18 +1461,18 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         mSetPhotoPop.update();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (type != 1) {
-            if (this.index == 2) {
-                replaceView(1);
-            } else if (this.index == 3) {
-                replaceView(2);
-            } else if (this.index == 4) {
-                replaceView(3);
-            } else {
-                super.onBackPressed();
-            }
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (type != 1) {
+//            if (this.index == 2) {
+//                replaceView(1);
+//            } else if (this.index == 3) {
+//                replaceView(2);
+//            } else if (this.index == 4) {
+//                replaceView(3);
+//            } else {
+//                super.onBackPressed();
+//            }
+//        }
+//    }
 }

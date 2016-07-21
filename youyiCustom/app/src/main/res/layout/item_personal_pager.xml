@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="118dp"
         app:placeholderImage="@drawable/health_management_banner"
+
         app:placeholderImageScaleType="centerCrop" />
 
     <com.uyi.app.widget.InnerScrollView
