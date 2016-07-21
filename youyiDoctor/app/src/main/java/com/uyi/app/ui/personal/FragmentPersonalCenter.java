@@ -1,5 +1,10 @@
 package com.uyi.app.ui.personal;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.UserInfoManager;
@@ -18,11 +23,6 @@ import com.uyi.app.ui.personal.questions.HealthyQuestionsActivity;
 import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
-
-import android.content.Intent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 /**
  * 个人中心
@@ -64,8 +64,9 @@ public class FragmentPersonalCenter extends BaseFragment {
 
 	public Main main;
 
-	public FragmentPersonalCenter(Main main) {
+	public FragmentPersonalCenter setMain(Main main) {
 		this.main = main;
+		return this;
 	}
 
 	@Override

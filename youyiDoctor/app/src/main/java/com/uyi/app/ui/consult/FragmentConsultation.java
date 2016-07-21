@@ -73,8 +73,9 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
     public FragmentConsultation() {
     }
 
-    public FragmentConsultation(Main main) {
+    public FragmentConsultation setMain(Main main) {
         this.main = main;
+        return this;
     }
 
     @Override
