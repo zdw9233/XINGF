@@ -1,11 +1,11 @@
 package com.uyi.app.ui.health;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
@@ -16,6 +16,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.report.ReportListActivity;
 import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONException;
@@ -43,6 +44,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
     private TextView diet_num;
     JSONObject params;
     int isfree;
+
     @OnClick({
             R.id.diagnosis, //主诊报告
             R.id.report,       //健康报告
@@ -57,14 +59,11 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         switch (v.getId()) {
 
             case R.id.diagnosis:
-                if(isfree == 1){
-                    T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
-                }else{
+                if (isfree == 1) {
+                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+                } else {
                     startActivity(new Intent(context, ReportListActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 1), getContext(), new Response.Listener<JSONObject>() {
-                        public void onResponse(JSONObject data) {
-                        }
-                    });
+                    requsetOnItemClick(1);
                 }
 
                 break; //主诊报告
@@ -76,48 +75,49 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                 startActivity(new Intent(context, HealthDatabaseActivity.class));
                 break;
             case R.id.assessment: //风险评估
-                if(isfree == 1){
-                    T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
-                }else {
+                if (isfree == 1) {
+                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+                } else {
                     startActivity(new Intent(getContext(), RiskAssessmentActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 2), getContext(), new Response.Listener<JSONObject>() {
-                        public void onResponse(JSONObject data) {
-                        }
-                    });
+                    requsetOnItemClick(2);
                 }
                 break;
             case R.id.life:      //生活方式
-                if(isfree == 1){
-                    T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
-                }else {
+                if (isfree == 1) {
+                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+                } else {
                     startActivity(new Intent(getContext(), LifeStyleActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 3), getContext(), new Response.Listener<JSONObject>() {
-                        public void onResponse(JSONObject data) {
-                            Log.e("yes", "true=============================================");
-                        }
-
-                    });
+                    requsetOnItemClick(3);
                 }
                 break;
             case R.id.diet:     //饮食计划
-                if(isfree == 1){
-                    T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
-                }else {
+                if (isfree == 1) {
+                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+                } else {
                     startActivity(new Intent(getContext(), DietPlanActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 4), getContext(), new Response.Listener<JSONObject>() {
-                        public void onResponse(JSONObject data) {
-                        }
-                    });
+                    requsetOnItemClick(4);
                 }
                 break;
         }
+    }
+
+    public void requsetOnItemClick(int type) {
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, type), getContext(), null, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+            }
+        }, new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
+
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
-         isfree = UserInfoManager.getLoginUserInfo(getContext()).isFree;
+        isfree = UserInfoManager.getLoginUserInfo(getContext()).isFree;
         requestIsNew();
     }
 
