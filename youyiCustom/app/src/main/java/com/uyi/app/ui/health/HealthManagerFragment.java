@@ -61,7 +61,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                     T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
                 }else{
                     startActivity(new Intent(context, ReportListActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 1), getContext(), new Response.Listener<JSONObject>() {
+                    RequestManager.getObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, "1"), getContext(), new Response.Listener<JSONObject>() {
                         public void onResponse(JSONObject data) {
                         }
                     });
@@ -80,7 +80,8 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                     T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
                 }else {
                     startActivity(new Intent(getContext(), RiskAssessmentActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 2), getContext(), new Response.Listener<JSONObject>() {
+
+                    RequestManager.getObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, "2"), getContext(), new Response.Listener<JSONObject>() {
                         public void onResponse(JSONObject data) {
                         }
                     });
@@ -91,7 +92,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                     T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
                 }else {
                     startActivity(new Intent(getContext(), LifeStyleActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 3), getContext(), new Response.Listener<JSONObject>() {
+                    RequestManager.getObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, "3"), getContext(), new Response.Listener<JSONObject>() {
                         public void onResponse(JSONObject data) {
                             Log.e("yes", "true=============================================");
                         }
@@ -104,7 +105,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                     T.showShort(getContext()," 该服务仅针对服务包用户，请购买相应服务包！");
                 }else {
                     startActivity(new Intent(getContext(), DietPlanActivity.class));
-                    RequestManager.postObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER, 4), getContext(), new Response.Listener<JSONObject>() {
+                    RequestManager.getObject(String.format(Locale.CHINA, Constens.UPDATA_MESSEGE_COMSTOMER,"4"), getContext(), new Response.Listener<JSONObject>() {
                         public void onResponse(JSONObject data) {
                         }
                     });
