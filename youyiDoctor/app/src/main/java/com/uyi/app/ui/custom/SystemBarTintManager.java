@@ -1,7 +1,5 @@
 package com.uyi.app.ui.custom;
 
-import java.lang.reflect.Method;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -21,10 +19,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout.LayoutParams;
 
+import java.lang.reflect.Method;
+
 /**
- * Class to manage status and navigation bar tint effects when using KitKat 
+ * Class to manage status and navigation bar tint effects when using KitKat
  * translucent system UI modes.
- *
  */
 public class SystemBarTintManager {
 
@@ -60,6 +59,8 @@ public class SystemBarTintManager {
     private View mStatusBarTintView;
     private View mNavBarTintView;
 
+    private int type = 1;  //这句没有什么卵用
+
     /**
      * Constructor. Call this in the host activity onCreate method after its
      * content view has been set. You should always create new instances when
@@ -80,7 +81,7 @@ public class SystemBarTintManager {
             TypedArray a = activity.obtainStyledAttributes(attrs);
             try {
                 mStatusBarAvailable = a.getBoolean(0, false);
-                mNavBarAvailable = a.getBoolean(1, false);
+                mNavBarAvailable = a.getBoolean(type, false);
             } finally {
                 a.recycle();
             }
@@ -114,7 +115,7 @@ public class SystemBarTintManager {
 
     /**
      * Enable tinting of the system status bar.
-     *
+     * <p/>
      * If the platform is running Jelly Bean or earlier, or translucent system
      * UI modes have not been enabled in either the theme or via window flags,
      * then this method does nothing.
@@ -130,7 +131,7 @@ public class SystemBarTintManager {
 
     /**
      * Enable tinting of the system navigation bar.
-     *
+     * <p/>
      * If the platform does not have soft navigation keys, is running Jelly Bean
      * or earlier, or translucent system UI modes have not been enabled in either
      * the theme or via window flags, then this method does nothing.
@@ -335,7 +336,6 @@ public class SystemBarTintManager {
     /**
      * Class which describes system bar sizing and other characteristics for the current
      * device configuration.
-     *
      */
     public static class SystemBarConfig {
 
