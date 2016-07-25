@@ -95,15 +95,12 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
         }, new RequestErrorListener() {
             @Override
             public void requestError(VolleyError e) {
-                L.e("e2==",e.toString());
+                pagerData.setComment1("数据获取失败！");
+                mPagerAdapter = new PersonalPagerAdapter(context, pagerData);
+                mViewPager.setAdapter(mPagerAdapter);
+                mPagerAdapter.notifyDataSetChanged();
             }
         });
-        L.e("pagerData2==",pagerData.toString());
-
-
-
-
-
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckedTextView;
@@ -109,13 +110,18 @@ public class ReportActivity extends BaseFragmentActivity {
 
     private void requestReportDetail() {
 //        int userId = UserInfoManager.getLoginUserInfo(this).userId;
-        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, FragmentHealthListManager.customer, FragmentHealthListManager.customer, 0), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, FragmentHealthListManager.customer, FragmentHealthListManager.customer, reportId), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportActivity.this, null).dismiss();
                 mReport = JSON.parseObject(jsonObject.toString(), Report.class);
                 onClick(findViewById(R.id.cgjc));
-                write_report.setVisibility(View.VISIBLE);
+                if (TextUtils.isEmpty(mReport.getComment1())) {
+                    write_report.setVisibility(View.VISIBLE);
+                } else {
+                    write_report.setVisibility(View.GONE);
+                    jkbg.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -168,7 +174,6 @@ public class ReportActivity extends BaseFragmentActivity {
 
             onClick(jkbg);
 
-            ((RoutineFragment) fragments.get(0)).setIsWrite(true);
             write_report.setVisibility(View.GONE);
         }
     }

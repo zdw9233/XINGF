@@ -36,9 +36,4 @@ public class RoutineFragment extends BaseFragment {
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
 
     }
-
-    public void setIsWrite(boolean b) {
-        mAdapter.setWrited(b);
-        mAdapter.notifyItemChanged(mAdapter.getItemCount() - 1);
-    }
 }
