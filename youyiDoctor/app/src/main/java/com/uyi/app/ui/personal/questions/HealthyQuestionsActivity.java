@@ -1,12 +1,10 @@
 package com.uyi.app.ui.personal.questions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -24,11 +22,13 @@ import com.uyi.app.ui.personal.questions.adapter.HealthyQuestionsAdapter;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -51,7 +51,7 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 	
 	@Override
 	protected void onInitLayoutAfter() {
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康问答").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康咨询").setTitleColor(getResources().getColor(R.color.blue));
 		
 		linearLayoutManager = new LinearLayoutManager(activity);
 		healthyQuestionsAdapter = new HealthyQuestionsAdapter(activity);

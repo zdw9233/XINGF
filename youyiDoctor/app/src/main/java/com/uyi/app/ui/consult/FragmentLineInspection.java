@@ -170,7 +170,7 @@ public class FragmentLineInspection extends BaseFragment implements OnTabChanage
     @Override
     public void onChanage(int postion) {
         if (postion == 1) {
-            main.replaceView(0);
+            main.replaceView(3);
         } else if (postion == 2) {
             main.replaceView(4);
         }
