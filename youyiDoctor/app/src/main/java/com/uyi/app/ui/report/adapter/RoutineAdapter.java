@@ -56,16 +56,11 @@ public class RoutineAdapter extends BaseAdapter {
             "umol/L"
     };
     private int[] index = new int[7];
-    private boolean isWrited;
 
     public RoutineAdapter(Context context, Report report) {
         super(context, R.layout.item_routine);
         this.report = report;
         initIndex();
-    }
-
-    public void setWrited(boolean writed) {
-        isWrited = writed;
     }
 
     private void initIndex() {

@@ -13,7 +13,7 @@ import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.personal.standard.AlarmStandardActivity;
-import com.uyi.app.ui.report.ReportActivity;
+import com.uyi.app.ui.report.ReportListActivity;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
@@ -47,7 +47,7 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.diagnosis:
-                startActivity(new Intent(this, ReportActivity.class));
+                startActivity(new Intent(this, ReportListActivity.class));
                 break; //主诊报告
             case R.id.report:     //健康报告
                 startActivity(new Intent(this, HealthManagerMain.class));
