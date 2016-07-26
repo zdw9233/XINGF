@@ -1,12 +1,12 @@
 package com.uyi.app;
 
-import java.util.List;
+import android.content.Context;
 
 import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.model.dao.UserInfoDao;
 import com.uyi.app.model.dao.impl.UserInfoDaoImpl;
 
-import android.content.Context;
+import java.util.List;
 
 
 /**
@@ -53,6 +53,7 @@ public abstract class UserInfoManager{
 			info.consumedBeans = userInfo.consumedBeans;
 			info.lastLoginTime = userInfo.lastLoginTime;
 			info.login = true;
+
 			userInfoDao.update(info);
 		}else{
 			userInfo.login = true;

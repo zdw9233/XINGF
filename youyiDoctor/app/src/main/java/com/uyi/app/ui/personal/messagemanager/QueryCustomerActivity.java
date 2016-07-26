@@ -23,6 +23,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.messagemanager.adapter.QueryCustomerAdapter;
+import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
@@ -30,6 +31,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -125,6 +128,13 @@ public class QueryCustomerActivity extends BaseActivity implements OnItemClickLi
 
     @Override
     public void loadNextPage() {
+        if(!ValidationUtils.isNull(name)){
+            try {
+                name = URLEncoder.encode(name,"UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
         isLooding = false;
         Loading.bulid(activity, null).show();
         RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMERS, name, pageNo, pageSize), activity, new Response.Listener<JSONObject>() {

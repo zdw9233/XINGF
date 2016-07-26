@@ -3,8 +3,8 @@
     android:id="@+id/new_healthy_questions_layout_start"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
     android:gravity="center"
     android:background="@color/content_background"
     android:orientation="horizontal" >

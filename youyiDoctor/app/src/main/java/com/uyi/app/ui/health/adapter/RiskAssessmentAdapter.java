@@ -53,7 +53,8 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 //			hodler.title.setText(data.get("content").toString());
 		hodler.time.setText(data.get("createTime").toString());
 		hodler.deils.setText(data.get("content").toString());
-			hodler.riskindix.setText(data.get("percentage").toString());
+			hodler.riskindix.setText("风险系数:  "+data.get("percentage").toString());
+			hodler.doc_name.setText("填写医生:  "+data.get("doc_name").toString());
 
 		}
 	}
@@ -70,7 +71,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 			time = (TextView) v.findViewById(R.id.time);
 			deils = (TextView) v.findViewById(R.id.deils);
 			riskindix = (TextView) v.findViewById(R.id.risk_index);
-
+			doc_name = (TextView) v.findViewById(R.id.doc_name);
 		}
         private TextView title;
         private TextView time;
@@ -78,6 +79,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 		private TextView riskindix;
 		private RelativeLayout item;
 		private LinearLayout riskitem;
+		private TextView doc_name;
     }
 
 }

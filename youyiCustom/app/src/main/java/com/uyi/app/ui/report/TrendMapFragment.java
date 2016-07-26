@@ -6,7 +6,6 @@ import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.report.model.Report;
 import com.uyi.app.utils.ImageUtil;
-import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 
 /**
@@ -29,8 +28,8 @@ public class TrendMapFragment extends BaseFragment {
         ReportActivity mActivity = (ReportActivity) getActivity();
         Report report = mActivity.getReport();
 
-        L.e(report.bloodPressure_pic);
-        L.e(report.bloodSugar_pic);
+//        L.e(report.bloodPressure_pic);
+//        L.e(report.bloodSugar_pic);
         ImageUtil.load(report.bloodPressure_pic, kfxt);
         ImageUtil.load(report.bloodSugar_pic, chxt);
     }

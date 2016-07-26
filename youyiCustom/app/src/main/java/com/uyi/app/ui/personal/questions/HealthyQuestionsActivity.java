@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -44,7 +45,7 @@ import java.util.Map;
  */
 @ContentView(R.layout.healthy_questions)
 public class HealthyQuestionsActivity extends BaseActivity implements OnItemClickListener<Map<String, Object>>, OnRefreshListener, Pager {
-
+	@ViewInject(R.id.healthy_qusetion_number) private TextView healthy_qusetion_number;
 	@ViewInject(R.id.headerView) private HeaderView headerView;
 	@ViewInject(R.id.new_healthy_questions_layout_start) private LinearLayout new_healthy_questions_layout_start;
 	
@@ -73,7 +74,18 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 		
 		 //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
-		swipeRefreshLayout.setOnRefreshListener(this); 
+		swipeRefreshLayout.setOnRefreshListener(this);
+		RequestManager.getObject(Constens.HAVE_NUMBER, this, new Response.Listener<JSONObject>() {
+			public void onResponse(JSONObject data) {
+				try {
+					System.out.println(data.toString());
+					healthy_qusetion_number.setText(data.getInt("healthAdvisory")+"");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		onRefresh();
 	}
 	
@@ -82,7 +94,7 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 	public void click(View v){
 		userInfo = UserInfoManager.getLoginUserInfo(this);
 
-		RequestManager.getObject(Constens.HAVE_NUMBER, this, new Response.Listener<JSONObject>() {
+		RequestManager.getObject(Constens.HAVE_NUMBER, this, 	new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
 					System.out.println(data.toString());
