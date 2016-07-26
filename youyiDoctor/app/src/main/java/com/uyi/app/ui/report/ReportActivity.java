@@ -51,6 +51,7 @@ public class ReportActivity extends BaseFragmentActivity {
 
 
     private int reportId;
+    private boolean old;
 
     @OnClick({
             R.id.cgjc,      //常规监测
@@ -94,6 +95,7 @@ public class ReportActivity extends BaseFragmentActivity {
     @Override
     protected void onInitLayoutAfter() {
         reportId = getIntent().getIntExtra("reportId", 0);
+        old = reportId != 0;
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("详细报告").setTitleColor(getResources().getColor(R.color.blue));
         fragments = new ArrayList<>();
         fragments.add(new RoutineFragment());
@@ -176,5 +178,9 @@ public class ReportActivity extends BaseFragmentActivity {
 
             write_report.setVisibility(View.GONE);
         }
+    }
+
+    public boolean isOld() {
+        return old;
     }
 }

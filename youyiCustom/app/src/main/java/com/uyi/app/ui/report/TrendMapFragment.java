@@ -28,8 +28,6 @@ public class TrendMapFragment extends BaseFragment {
         ReportActivity mActivity = (ReportActivity) getActivity();
         Report report = mActivity.getReport();
 
-//        L.e(report.bloodPressure_pic);
-//        L.e(report.bloodSugar_pic);
         ImageUtil.load(report.bloodPressure_pic, kfxt);
         ImageUtil.load(report.bloodSugar_pic, chxt);
     }

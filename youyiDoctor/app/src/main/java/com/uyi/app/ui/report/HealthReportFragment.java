@@ -31,6 +31,18 @@ public class HealthReportFragment extends BaseFragment {
     private TextView et_zhfx;  //综合分析
     @ViewInject(R.id.et_jkjy)
     private TextView et_jkjy;  //健康建议
+    @ViewInject(R.id.et_xybd1)
+    private TextView et_xybd1;  //血压波动趋势
+    @ViewInject(R.id.et_xyyc1)
+    private TextView et_xyyc1;  //血压异常分析
+    @ViewInject(R.id.et_zhfx1)
+    private TextView et_zhfx1;  //综合分析
+    @ViewInject(R.id.et_jkjy1)
+    private TextView et_jkjy1;  //健康建议
+    @ViewInject(R.id.old_layout)
+    private View old_layout;  //不能改
+    @ViewInject(R.id.new_layout)
+    private View new_layout;  //可以改
 
 
     @OnClick(R.id.commit_report)
@@ -74,7 +86,18 @@ public class HealthReportFragment extends BaseFragment {
         et_xyyc.setText(report.getComment2());
         et_zhfx.setText(report.getComment3());
         et_jkjy.setText(report.getComment4());
+        et_xybd1.setText(report.getComment1());
+        et_xyyc1.setText(report.getComment2());
+        et_zhfx1.setText(report.getComment3());
+        et_jkjy1.setText(report.getComment4());
 
+        if (mActivity.isOld()) {
+            old_layout.setVisibility(View.VISIBLE);
+            new_layout.setVisibility(View.GONE);
+        } else {
+            old_layout.setVisibility(View.GONE);
+            new_layout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
