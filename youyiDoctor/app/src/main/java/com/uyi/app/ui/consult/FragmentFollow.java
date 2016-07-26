@@ -170,7 +170,7 @@ public class FragmentFollow extends BaseFragment implements OnRefreshListener, P
     @Override
     public void onChanage(int postion) {
         if (postion == 1) {
-            main.replaceView(0);
+            main.replaceView(3);
         } else if (postion == 3) {
             main.replaceView(6);
         }
