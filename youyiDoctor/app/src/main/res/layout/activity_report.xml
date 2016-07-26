@@ -171,6 +171,7 @@
                 android:text="填写健康报告"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                android:layout_marginBottom="16dp"
                 android:visibility="gone" />
         </LinearLayout>
     </ScrollView>

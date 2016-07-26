@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.recycle.RecyclerListener;
 import com.uyi.app.recycle.RecyclerView;
@@ -115,6 +116,13 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
         int id = mReportItems.get(position).id;
         Intent intent = new Intent(this, ReportActivity.class);
         intent.putExtra("reportId", id);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.new_report)
+    public void onClick(View view) {
+        Intent intent = new Intent(this, ReportActivity.class);
+        intent.putExtra("reportId", 0);
         startActivity(intent);
     }
 }
