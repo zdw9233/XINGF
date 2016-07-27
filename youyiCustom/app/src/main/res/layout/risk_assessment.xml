@@ -60,7 +60,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="5dp">
-
+        <TextView
+            android:id="@+id/doc_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="填写医生:"
+            android:textSize="@dimen/font_style_16" />
         <TextView
             android:id="@+id/risk_index"
             android:layout_width="match_parent"

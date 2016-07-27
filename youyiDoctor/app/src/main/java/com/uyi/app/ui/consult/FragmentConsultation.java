@@ -96,7 +96,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
             ;
             headerView.selectTabItem(1);
         } else if (userInfo.type == 2) {
-            headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showRight(true).showTitle(true).setTitle("所有咨询").setTitleColor(getResources().getColor(R.color.blue));
+            headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showRight(true).showTitle(true).setTitle("所有互动").setTitleColor(getResources().getColor(R.color.blue));
         }
         linearLayoutManager = new LinearLayoutManager(getView().getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

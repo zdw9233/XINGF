@@ -132,7 +132,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	@Override
 	protected void onInitLayoutAfter() {
 		consult_details_layout.setVisibility(View.INVISIBLE);
-		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("咨询详情").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("互动详情").setTitleColor(getResources().getColor(R.color.blue));
 		id = getIntent().getIntExtra("id", 0);
 		if(id == 0){
 			onBackPressed();

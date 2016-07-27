@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="consultation">
-        <item>所有咨询</item>
+        <item>所有互动</item>
         <item>线上随访</item>
         <item>线下预约</item>
     </string-array>

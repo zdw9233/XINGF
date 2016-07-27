@@ -200,7 +200,8 @@
             android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan" ></activity>
         <activity
             android:name="com.uyi.app.ui.personal.schedule.DatePickerActivity"
             android:screenOrientation="portrait"></activity>

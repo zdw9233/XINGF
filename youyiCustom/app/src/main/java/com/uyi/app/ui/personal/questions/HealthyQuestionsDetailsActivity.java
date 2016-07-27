@@ -1,12 +1,10 @@
 package com.uyi.app.ui.personal.questions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,11 +27,13 @@ import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -46,7 +46,6 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 
 	@ViewInject(R.id.headerView) private HeaderView headerView;
 	@ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
-	
 	@ViewInject(R.id.healthy_questions_details_content) private EditText healthy_questions_details_content;
 	@ViewInject(R.id.healthy_questions_details_submit) private Button healthy_questions_details_submit;
 	
@@ -59,7 +58,7 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 	@Override
 	protected void onInitLayoutAfter() {
 		id = getIntent().getStringExtra("id");
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康问答").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康咨询").setTitleColor(getResources().getColor(R.color.blue));
 		linearLayoutManager = new LinearLayoutManager(activity);
 		healthyQuestionsAdapter = new HealthyQuestionsDetailsAdapter(activity);
 		healthyQuestionsAdapter.setDatas(datas);

@@ -16,7 +16,9 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
+import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.service.MessageService;
+import com.uyi.app.ui.consult.NewConsultActivity;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
@@ -57,7 +59,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     private TextView mQuestionNum;
     List<T> list = new ArrayList<>();
     private int[] radioIds = {R.id.radioButton1, R.id.radioButton2};
-
+    UserInfo userInfo ;
     private MessageReceiver mMessageReceiver;
 
     PersonalPagerAdapter mPagerAdapter;
@@ -114,6 +116,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
             R.id.dzfw,  //定制服务
             R.id.schedule,  //日程
             R.id.notice,  //通知
+            R.id.doctor_help,//醫師互動
             R.id.consulting,  //专属咨询
             R.id.question,  //健康问答
     })
@@ -140,6 +143,33 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
             case R.id.question:
                 startActivity(new Intent(context, HealthyQuestionsActivity.class));
                 break;   //健康问答
+            case R.id.doctor_help:
+                userInfo = UserInfoManager.getLoginUserInfo(getContext());
+
+                RequestManager.getObject(Constens.HAVE_NUMBER, getContext(), new Response.Listener<JSONObject>() {
+                    public void onResponse(JSONObject data) {
+                        try {
+                            System.out.println(data.toString());
+                            if (data.getInt("doctorAdvisory") > 0) {
+                                startActivity(new Intent(context, NewConsultActivity.class));
+//                                Intent intent = new Intent(context, NewConsultActivity.class);
+//                                startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
+                            } else {
+                                if (userInfo.isFree == 2) {
+                                    T.showShort(getContext(), " 本月医疗咨询次数使用完毕");
+
+                                } else {
+                                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                break;   //醫師互動
         }
     }
 

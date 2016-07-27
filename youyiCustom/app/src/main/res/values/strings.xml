@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">优医2.1用户测试版</string>
-    <string name="footer_consultation">医疗咨询</string>
+    <string name="footer_consultation">互动记录</string>
     <string name="footer_manager">健康管理</string>
     <string name="footer_team">健康团队</string>
     <string name="footer_individual">首页</string>

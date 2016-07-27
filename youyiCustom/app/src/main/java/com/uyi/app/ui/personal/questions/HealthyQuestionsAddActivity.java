@@ -1,7 +1,8 @@
 package com.uyi.app.ui.personal.questions;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -16,9 +17,8 @@ import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -38,7 +38,7 @@ public class HealthyQuestionsAddActivity extends BaseActivity {
 	
 	@Override
 	protected void onInitLayoutAfter() {
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康问答").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康咨询").setTitleColor(getResources().getColor(R.color.blue));
 		
 		
 		

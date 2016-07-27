@@ -38,6 +38,9 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
     private HeaderView headerView;
     @ViewInject(R.id.new_assessment_time)
     private TextView new_assessment_time;
+
+    @ViewInject(R.id.doc_name)
+    private TextView doc_name;
     @ViewInject(R.id.risk_index)
     private TextView risk_index;
     @ViewInject(R.id.deils)
@@ -118,11 +121,13 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                                 item.put("createTime", jsonObject.getString("createTime"));
                                 item.put("percentage", jsonObject.getString("percentage"));
                                 item.put("checked", jsonObject.getString("checked"));
+                                item.put("doc_name", jsonObject.getString("doc_name"));
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));
 
                                 datas.add(item);
                             }
                             if(datas.size() > 0){
+                                doc_name.setText("填写医生:"+datas.get(0).get("doc_name").toString());
                                 new_assessment_time.setText(datas.get(0).get("createTime").toString());
                                 risk_index.setText("风险指数："+datas.get(0).get("percentage").toString());
                                 deils.setText(datas.get(0).get("content").toString());

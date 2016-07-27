@@ -23,9 +23,9 @@ import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.health.FragmentHealthListManager;
 import com.uyi.app.ui.team.adapter.HealthTeamAdapter;
 import com.uyi.app.ui.team.city.CityListActivity;
+import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
@@ -33,6 +33,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +67,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
     public boolean initLoad = true;//初始化加载
     public Main main;
     public static int cityid = -1;
-
+String name;
     public FragmentHealthTeam setMain(Main main) {
         this.main = main;
         return this;
@@ -132,10 +134,18 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 
     @Override
     public void loadNextPage() {//所有团队
+       name =  team_edit_text.getText().toString();
+        if(!ValidationUtils.isNull(name)){
+            try {
+                name = URLEncoder.encode(name,"UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
         isLooding = false;
         Loading.bulid(getActivity(), null).show();
         if (team_selected_caty.getText().equals("全部城市")) {
-            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL, team_edit_text.getText().toString(), "", pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
+            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,name, "", pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject data) {
                     try {
@@ -177,7 +187,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
                 }
             });
         } else {
-            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL, team_edit_text.getText().toString(), cityid, pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
+            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,name, cityid, pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject data) {
                     try {
