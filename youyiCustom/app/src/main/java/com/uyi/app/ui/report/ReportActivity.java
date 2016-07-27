@@ -13,6 +13,7 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
@@ -95,8 +96,8 @@ public class ReportActivity extends BaseFragmentActivity {
     }
 
     private void requestReportDetail() {
-//        int userId = UserInfoManager.getLoginUserInfo(this).userId;
-        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, 13, reportId), this, new Response.Listener<JSONObject>() {
+        int userId = UserInfoManager.getLoginUserInfo(this).userId;
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, userId, userId, reportId), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportActivity.this, null).dismiss();
