@@ -97,7 +97,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
         }, new RequestErrorListener() {
             @Override
             public void requestError(VolleyError e) {
-                pagerData.setComment1("数据获取失败！");
+                pagerData.setComment1("最近没有任何测试！");
                 mPagerAdapter = new PersonalPagerAdapter(context, pagerData);
                 mViewPager.setAdapter(mPagerAdapter);
                 mPagerAdapter.notifyDataSetChanged();

@@ -35,12 +35,12 @@ public class Report {
      * ⑥增加运动，运动有利于减轻体重和改善胰岛素抵抗，提高心血管适应调节能力，稳定血压水平，较好的运动方式是低或中等强度的慢跑、步行或游泳，一般每周3~5次，每次20~60分钟。鉴于您所提供的体检报告针对高血压并发症的筛查还有所欠缺，我们建议您择期再复查sdfsdfdf，这些检查项目有助于发现心脑血管相关的危险因素和靶器官损害，在您完成体检后，请及时将报告上传至APP，我们的医生团队也会根据您自身情况做出对比和解读。
      */
 
-    public String fatPercentage;
-    public String basalMetabolism;
-    public String waterContent;
-    public String waist;
-    public String hipline;
-    public String whr;
+    public String fatPercentage="";
+    public String basalMetabolism="";
+    public String waterContent="";
+    public String waist="";
+    public String hipline="";
+    public String whr="";
     public String fatPercentage_tred;
     public String basalMetabolism_tred;
     public String waterContent_tred;
