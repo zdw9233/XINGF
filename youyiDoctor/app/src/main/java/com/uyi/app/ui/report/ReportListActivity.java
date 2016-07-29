@@ -113,16 +113,30 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
 
     @Override
     public void onRecyclerItemClick(View v, int position) {
-        int id = mReportItems.get(position).id;
+        ReportItem reportItem = mReportItems.get(position);
+        int id = reportItem.id;
+        if (!reportItem.checked) {
+            mReportItems.get(position).checked = true;
+            mAdapter.notifyItemChanged(position);
+        }
         Intent intent = new Intent(this, ReportActivity.class);
         intent.putExtra("reportId", id);
-        startActivity(intent);
+        startActivityForResult(intent, 0x100);
     }
 
     @OnClick(R.id.new_report)
     public void onClick(View view) {
         Intent intent = new Intent(this, ReportActivity.class);
         intent.putExtra("reportId", 0);
-        startActivity(intent);
+        startActivityForResult(intent, 0x100);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0x100 && resultCode == 0x200) {
+            pageIndex = 1;
+            requestReportList();
+        }
     }
 }

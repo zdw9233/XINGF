@@ -66,7 +66,9 @@ public class HealthReportFragment extends BaseFragment {
         RequestManager.postObject(Constens.COMMIT_REPORT, context, object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
+                Loading.bulid(context, null).dismiss();
                 T.showLong(context, "提交成功！");
+                getActivity().setResult(0x200);
                 getActivity().finish();
             }
         }, null);

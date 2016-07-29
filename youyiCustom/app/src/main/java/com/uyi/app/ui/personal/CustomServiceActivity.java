@@ -1,6 +1,7 @@
 package com.uyi.app.ui.personal;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -97,6 +98,7 @@ public class CustomServiceActivity extends BaseActivity implements CustomService
             @Override
             public void onResponse(JSONObject jsonObject) {
                 T.showShort(CustomServiceActivity.this, "购买成功！");
+                sendBroadcast(new Intent("com.uyi.beans"));
             }
         }, new RequestErrorListener() {
             @Override
@@ -104,11 +106,13 @@ public class CustomServiceActivity extends BaseActivity implements CustomService
                 if (e.networkResponse != null) {
                     if (e.networkResponse.statusCode == 200) {
                         T.showShort(activity, "购买成功！");
+                        sendBroadcast(new Intent("com.uyi.beans"));
                     } else {
                         T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
                     }
                 } else {
                     T.showShort(activity, "购买成功！");
+                    sendBroadcast(new Intent("com.uyi.beans"));
                 }
             }
         });

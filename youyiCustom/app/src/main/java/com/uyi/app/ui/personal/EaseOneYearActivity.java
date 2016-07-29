@@ -1,6 +1,7 @@
 package com.uyi.app.ui.personal;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.TextView;
@@ -76,19 +77,24 @@ public class EaseOneYearActivity extends BaseActivity implements DialogInterface
             @Override
             public void onResponse(JSONObject jsonObject) {
                 T.showShort(EaseOneYearActivity.this, "购买成功！");
+                sendBroadcast(new Intent("com.uyi.beans"));
                 onBackPressed();
             }
-        },  new RequestErrorListener() {
+        }, new RequestErrorListener() {
             @Override
             public void requestError(VolleyError e) {
                 if (e.networkResponse != null) {
                     if (e.networkResponse.statusCode == 200) {
                         T.showShort(activity, "购买成功！");
+                        sendBroadcast(new Intent("com.uyi.beans"));
+                        onBackPressed();
                     } else {
                         T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
                     }
                 } else {
                     T.showShort(activity, "购买成功！");
+                    sendBroadcast(new Intent("com.uyi.beans"));
+                    onBackPressed();
                 }
             }
         });

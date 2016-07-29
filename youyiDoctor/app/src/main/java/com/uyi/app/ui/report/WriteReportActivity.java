@@ -41,7 +41,7 @@ public class WriteReportActivity extends BaseActivity {
     private Spinner xy;
 
     private String text1 = "您的血压整体情况符合勺型曲线规律，即：晨起血压水平较高，夜晚睡眠时血压水平较低，在清晨开始上升， 点左右出现高峰，然后逐渐平稳，晚餐前再次出现高峰（次高峰），然后缓慢下降，凌晨睡梦中达低谷并维持到次日清晨，全天出现双峰一谷的长柄勺型曲线。这种节律变化对适应机体活动、保护心血管结构和功能有重要意义。";
-    private String text2 = "在本月内的监测记录中，您多次在出现%s偏高，最高时（请您根据该患者情况给出时间段，比如：晨起、午后、晚餐后、睡前）%s曾达到 %smmHg，而理想的舒张压应控制在%smmHg以下。根据您目前所服用的降压药物%s，考虑出现这种情况后需调整降压药物的方案，请联系您所在医疗团队的慢病管理师为您预约专家面诊。\n";
+    private String text2 = "在本月内的监测记录中，您多次在出现%s偏高，最高时（请您根据该患者情况给出时间段，比如：晨起、午后、晚餐后、睡前）%s曾达到 %smmHg，而理想的%s应控制在%smmHg以下。根据您目前所服用的降压药物%s，考虑出现这种情况后需调整降压药物的方案，请联系您所在医疗团队的慢病管理师为您预约专家面诊。\n";
     private String text3 = "您在本月上传了体检报告，您目前主要存在的问题有：%s，提示了您多种代谢指标的紊乱，而这在一定程度上反应出您欠佳规范的饮食和良好的运动习惯。针对体检发现的异常情况，需要心血管内科、内分泌科医生共同为您制定进一步的生活、饮食、药物干预方案。\n";
     private String text4 = "%s目前尚无根治方法，但长期以来的临床实践证实，%s的良好控制可以有效减少心脑血管病发病率和死亡率，您进行这些指标监测和治疗的最终目的也是维护自身健康，减少发病可能在改善生活方式上，我们建议您\n" +
             "①减轻体重。BMI控制在25以内。\n" +
@@ -62,7 +62,7 @@ public class WriteReportActivity extends BaseActivity {
         String xueya = (String) xy.getSelectedItem();
 
         String comment1 = text1;
-        String comment2 = String.format(Locale.CHINA, text2, xueya, xueya, maxXy, lxxy, mqyw);
+        String comment2 = String.format(Locale.CHINA, text2, xueya, xueya, maxXy,xueya, lxxy, mqyw);
         String comment3 = String.format(Locale.CHINA, text3, zywt);
         String comment4 = String.format(Locale.CHINA, text4, jibing, zdxm, jyfc);
         Intent intent = new Intent();

@@ -1,6 +1,9 @@
 package com.uyi.app.ui;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
@@ -9,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
+import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.service.MessageService;
 import com.uyi.app.service.UpdateManager;
 import com.uyi.app.service.UpdateManager.CheckUpdateCallbackListenner;
@@ -32,6 +37,9 @@ import com.uyi.app.ui.team.FragmentHealthTeam;
 import com.uyi.app.utils.NetUtils;
 import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestManager;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,8 +192,12 @@ public class Main extends BaseFragmentActivity {
             UserService.loadUserInfo(application);
             MessageService.loadMessagesAll(activity);
             replaceView(0);
+            mBeansReceiver = new BeansReceiver();
+            registerReceiver(mBeansReceiver, new IntentFilter("com.uyi.beans"));
         }
+
     }
+
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
@@ -238,4 +250,35 @@ public class Main extends BaseFragmentActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mBeansReceiver);
+        super.onDestroy();
+    }
+
+    private BeansReceiver mBeansReceiver;
+
+    private class BeansReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            requestUpdateInfo();
+        }
+    }
+
+    public void requestUpdateInfo() {
+        RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    data.getString("beans");
+                    UserInfo loginUserInfo = UserInfoManager.getLoginUserInfo(Main.this);
+
+                    loginUserInfo.beans = Integer.parseInt(data.getString("beans"));
+                    UserInfoManager.setLoginUserInfo(Main.this, loginUserInfo);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }
