@@ -25,6 +25,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.adapter.HealthTeamAdapter;
 import com.uyi.app.ui.team.city.CityListActivity;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -229,7 +230,13 @@ String name;
             });
         }
     }
-
+    @Override
+    public void onResume() {
+        L.e("       super.onResume();;");
+        super.onResume();
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        onRefresh();
+    }
 
     @Override
     public void onRefresh() {

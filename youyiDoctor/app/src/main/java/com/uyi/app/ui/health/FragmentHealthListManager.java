@@ -24,6 +24,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.HealthManagerAdapter;
+import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
@@ -93,7 +94,7 @@ public class FragmentHealthListManager extends BaseFragment
         swipeRefreshLayout_healthmanager.setColorSchemeResources(android.R.color.holo_blue_light,
                 android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipeRefreshLayout_healthmanager.setOnRefreshListener(this);
-        onRefresh();
+//        onRefresh();
 
     }
 
@@ -101,7 +102,13 @@ public class FragmentHealthListManager extends BaseFragment
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
         headerView_health.setKitkat(systemBarConfig);
     }
-
+    @Override
+    public void onResume() {
+        L.e("       super.onResume();;");
+        super.onResume();
+        headerView_health.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        onRefresh();
+    }
     @Override
     public boolean shouldLoad() {
         return isLooding;

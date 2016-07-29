@@ -104,6 +104,7 @@ public class CustomServiceActivity extends BaseActivity implements CustomService
                 if (e.networkResponse != null) {
                     if (e.networkResponse.statusCode == 200) {
                         T.showShort(activity, "购买成功！");
+
                     } else {
                         T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
                     }

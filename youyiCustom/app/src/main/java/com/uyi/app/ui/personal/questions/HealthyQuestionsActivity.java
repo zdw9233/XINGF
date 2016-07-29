@@ -75,17 +75,6 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 		 //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
 		swipeRefreshLayout.setOnRefreshListener(this);
-		RequestManager.getObject(Constens.HAVE_NUMBER, this, new Response.Listener<JSONObject>() {
-			public void onResponse(JSONObject data) {
-				try {
-					System.out.println(data.toString());
-					healthy_qusetion_number.setText(data.getInt("healthAdvisory")+"");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
 		onRefresh();
 	}
 	
@@ -137,6 +126,16 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 
 	@Override
 	public void onRefresh() {
+		RequestManager.getObject(Constens.HAVE_NUMBER, this, new Response.Listener<JSONObject>() {
+			public void onResponse(JSONObject data) {
+				try {
+					System.out.println(data.toString());
+					healthy_qusetion_number.setText(data.getInt("healthAdvisory")+"");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		pageNo = 1;
 		isLooding = true;
 		recyclerView.setRefreshing(false);

@@ -127,6 +127,7 @@ String name;
     public void onResume() {
         super.onResume();
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        onRefresh();
     }
 
     @Override

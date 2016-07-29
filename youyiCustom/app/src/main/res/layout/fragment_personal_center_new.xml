@@ -8,7 +8,14 @@
         android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -197,10 +204,7 @@
         android:layout_height="1px"
         android:background="@color/help_button_view" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -366,7 +370,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="72dp"
                         android:layout_marginTop="4dp"
-                        android:background="#509ffd"
+                        android:background="#fa9e0e"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -508,7 +512,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginTop="4dp"
-                android:background="#0fb8f4"
+                android:background="#52b716"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -571,6 +575,7 @@
                         android:visibility="gone" />
                 </FrameLayout>
             </LinearLayout>
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

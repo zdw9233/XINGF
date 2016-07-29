@@ -56,6 +56,7 @@ private SimpleDraweeView welcomePictrue;
                     e.printStackTrace();
                     startActivity(it); //执行
                     WelcomeActivity.this.finish();
+
                 }
             }
         });
