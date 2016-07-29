@@ -965,7 +965,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
         isLooding = false;
         Loading.bulid(activity, null).show();
         if (register_four_chose.getText().equals("全部城市")) {
-            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL_NOTOKEN, "", "", pageNo, pageSize), RegisterActivity.this, new Response.Listener<JSONObject>() {
+            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALLS, "", "", pageNo, pageSize), RegisterActivity.this, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject data) {
                     try {
@@ -998,7 +998,7 @@ public class RegisterActivity extends BaseActivity implements IOnItemSelectListe
                 }
             });
         } else {
-            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL_NOTOKEN, "", fourcity, pageNo, pageSize), RegisterActivity.this, new Response.Listener<JSONObject>() {
+            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALLS, "", fourcity, pageNo, pageSize), RegisterActivity.this, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject data) {
                     try {

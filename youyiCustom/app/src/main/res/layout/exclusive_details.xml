@@ -83,7 +83,7 @@
                           <TextView 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="健康豆/年"
+                    android:text="健康豆/次"
                     android:textColor="@color/list_item_content_color"
                     android:textSize="@dimen/font_style_13" />
                             <TextView 
@@ -201,7 +201,7 @@
             android:id="@+id/exclusive_details_success_ric"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="查看我的日程"
+            android:text="返回咨询列表"
             android:textColor="@color/white"
             android:background="@drawable/blue_bg" />
     </LinearLayout>

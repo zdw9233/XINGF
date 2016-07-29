@@ -110,7 +110,7 @@
                 android:drawablePadding="4dp"
                 android:drawableStart="@drawable/sel_chinesemedicine"
                 android:gravity="center"
-                android:text="中医体质识别"
+                android:text="体质识别"
                 android:textColor="@color/sel_report_text_clr" />
         </FrameLayout>
     </TableRow>

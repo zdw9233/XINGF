@@ -161,9 +161,9 @@ public void onClick(View v){
                                 item.put("content", jsonObject.getString("content"));
                                 item.put("createTime", jsonObject.getString("createTime"));
                                 item.put("percentage", jsonObject.getString("percentage"));
+                                item.put("doc_name", jsonObject.getString("doc_name"));
 //                                item.put("createTime", jsonObject.getString("createTime"));
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));
-
                                 datas.add(item);
                             }
                         } catch (JSONException e) {

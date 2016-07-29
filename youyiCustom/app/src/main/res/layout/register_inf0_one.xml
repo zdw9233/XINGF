@@ -213,7 +213,7 @@
                 android:ems="10"
                 android:gravity="top"
                 android:hint="健康状况"
-                android:inputType="textPostalAddress"
+
                 android:minHeight="80dp"
                 android:minLines="1"
                 android:padding="3dp"
@@ -303,7 +303,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="疾病史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -332,7 +332,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="传染病史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -362,7 +362,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="外伤史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -391,7 +391,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="手术史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -421,7 +421,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="女性患者怀孕、分娩、流产史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -443,7 +443,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="女性患者月经情况"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -465,7 +465,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="食物及药物过敏史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -495,7 +495,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="中毒史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -517,7 +517,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="输血史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -546,7 +546,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="其他病史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -567,7 +567,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="家族病史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -596,7 +596,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="预防接种史"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -625,7 +625,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="系统回顾"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -655,7 +655,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="目前服药情况"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -687,7 +687,7 @@
                                 android:ems="10"
                                 android:gravity="top"
                                 android:hint="其他需要补充的情况"
-                                android:inputType="textPostalAddress"
+
                                 android:minHeight="80dp"
                                 android:minLines="1"
                                 android:textSize="@dimen/font_style_14" />
@@ -758,7 +758,7 @@
                             android:ems="10"
                             android:gravity="top"
                             android:hint="系统外就医情况"
-                            android:inputType="textPostalAddress"
+
                             android:minHeight="80dp"
                             android:minLines="1"
                             android:padding="3dp"
@@ -1061,7 +1061,7 @@
                         android:ems="10"
                         android:gravity="top"
                         android:hint="食物以及药物过敏史"
-                        android:inputType="textPostalAddress"
+
                         android:minHeight="80dp"
                         android:minLines="1"
                         android:padding="5dp"
@@ -1095,7 +1095,7 @@
                         android:ems="10"
                         android:gravity="top"
                         android:hint="成瘾的药物"
-                        android:inputType="textPostalAddress"
+
                         android:minHeight="80dp"
                         android:minLines="1"
                         android:padding="5dp"
@@ -1252,7 +1252,7 @@
                 android:ems="10"
                 android:gravity="top"
                 android:hint="详细描述"
-                android:inputType="textPostalAddress"
+
                 android:minHeight="80dp"
                 android:minLines="1"
                 android:padding="5dp"

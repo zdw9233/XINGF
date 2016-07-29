@@ -242,6 +242,10 @@ public abstract class Constens {
      * 查询所有健康团队
      */
     public final static String HEALTH_GROUPS_ALL_NOTOKEN = SERVER_URL + "/app/api/common/health/groups?name=%s&cityId=%s&page=%s&pageSize=%s";
+    /**
+     * 查询所有健康团队
+     */
+    public final static String HEALTH_GROUPS_ALLS = SERVER_URL + "/app/api/common/health/findgroups?name=%s&cityId=%s&page=%s&pageSize=%s";
 
     /**
      * 查询咨询次数

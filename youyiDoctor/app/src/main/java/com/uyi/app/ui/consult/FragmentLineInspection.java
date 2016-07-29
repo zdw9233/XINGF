@@ -26,6 +26,7 @@ import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -98,7 +99,7 @@ public class FragmentLineInspection extends BaseFragment implements OnTabChanage
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipeRefreshLayout.setOnRefreshListener(this);
-        onRefresh();
+//        onRefresh();
     }
 
 
@@ -192,5 +193,12 @@ public class FragmentLineInspection extends BaseFragment implements OnTabChanage
                 onRefresh();
             }
         }
+    }
+    @Override
+    public void onResume() {
+        L.e("       super.onResume();;");
+        super.onResume();
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        onRefresh();
     }
 }

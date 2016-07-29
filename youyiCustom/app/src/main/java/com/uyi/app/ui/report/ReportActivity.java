@@ -102,6 +102,25 @@ public class ReportActivity extends BaseFragmentActivity {
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportActivity.this, null).dismiss();
                 mReport = JSON.parseObject(jsonObject.toString(), Report.class);
+
+                if(mReport.basalMetabolism == null){
+                mReport.basalMetabolism = "";
+            }
+            if(mReport.waterContent == null){
+                mReport.waterContent = "";
+            }
+            if(mReport.waist == null){
+                mReport.waist = "";
+            }
+            if(mReport.fatPercentage == null){
+                mReport.fatPercentage = "";
+            }
+            if(mReport.hipline == null){
+                mReport.hipline = "";
+            }
+            if(mReport.whr == null){
+                mReport.whr = "";
+            }
                 onClick(findViewById(R.id.jkbg));
             }
         });

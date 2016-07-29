@@ -107,6 +107,7 @@ public class CustomServiceActivity extends BaseActivity implements CustomService
                     if (e.networkResponse.statusCode == 200) {
                         T.showShort(activity, "购买成功！");
                         sendBroadcast(new Intent("com.uyi.beans"));
+
                     } else {
                         T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
                     }

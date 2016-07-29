@@ -1,12 +1,17 @@
 package com.uyi.app.ui.consult;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -27,18 +32,13 @@ import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 新建咨询
@@ -98,7 +98,7 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
 	@Override
 	protected void onInitLayoutAfter() {
 		headerView.showLeftReturn(true)
-		.setTitle("新建咨询").showTitle(true)
+		.setTitle("新建互动").showTitle(true)
 		.setTitleColor(getResources()
 		.getColor(R.color.blue))
 		.showRight(true);

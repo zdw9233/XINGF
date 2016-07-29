@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
+import com.uyi.app.UserInfoManager;
 import com.uyi.app.adapter.BaseRecyclerAdapter.OnItemClickListener;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
@@ -86,7 +87,13 @@ public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnI
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
 		headerView.setKitkat(systemBarConfig);
 	}
-
+	@Override
+	public void onResume() {
+		L.e("       super.onResume();;");
+		super.onResume();
+		headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(this).icon);
+		onRefresh();
+	}
 	@Override
 	public void onRefresh() {
 		pageNo = 1;
