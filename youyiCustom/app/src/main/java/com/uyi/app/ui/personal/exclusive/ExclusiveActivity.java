@@ -80,7 +80,7 @@ public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnI
 		 //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
 		swipeRefreshLayout.setOnRefreshListener(this); 
-		onRefresh();
+//		onRefresh();
 	}
 
 	@Override

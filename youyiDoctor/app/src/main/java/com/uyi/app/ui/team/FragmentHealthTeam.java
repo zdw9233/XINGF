@@ -68,6 +68,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
     public boolean initLoad = true;//初始化加载
     public Main main;
     public static int cityid = -1;
+    private Loading mLoading;
 String name;
     public FragmentHealthTeam setMain(Main main) {
         this.main = main;
@@ -144,7 +145,11 @@ String name;
             }
         }
         isLooding = false;
-        Loading.bulid(getActivity(), null).show();
+        if (mLoading == null) {
+            mLoading = Loading.bulid(getActivity(), null);
+            mLoading.show();
+        }
+        mLoading.show();
         if (team_selected_caty.getText().equals("全部城市")) {
             RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,name, "", pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
                 @Override
@@ -177,7 +182,8 @@ String name;
                     }
                     healthTeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
-                    Loading.bulid(getActivity(), null).dismiss();
+                    if (mLoading != null && mLoading.isShowing())
+                        mLoading.dismiss();
                     if (pageNo <= totalPage) {
                         isLooding = true;
                         pageNo++;
@@ -218,7 +224,8 @@ String name;
                     }
                     healthTeamAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
-                    Loading.bulid(getActivity(), null).dismiss();
+                    if (mLoading != null && mLoading.isShowing())
+                        mLoading.dismiss();
                     if (pageNo < totalPage) {
                         isLooding = true;
                         pageNo++;

@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.uyi.app.Constens;
 import com.uyi.app.ui.Main;
 import com.uyi.app.utils.ImageUtil;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONException;
@@ -35,7 +37,7 @@ private SimpleDraweeView welcomePictrue;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_welcome);
         final Intent it = new Intent(this, Main.class); //你要转向的Activit
-        RequestManager.getObject(String.format(Constens.WELCOME_PICTRUE,"Android"), this,new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.WELCOME_PICTRUE,"Android"), this,null,new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
 
                 try {
@@ -57,6 +59,13 @@ private SimpleDraweeView welcomePictrue;
                     startActivity(it); //执行
                     WelcomeActivity.this.finish();
 
+                }
+            }
+        },new RequestErrorListener() {
+            public void requestError(VolleyError e) {
+                if (e.networkResponse != null) {
+                    startActivity(it); //执行
+                    WelcomeActivity.this.finish();
                 }
             }
         });

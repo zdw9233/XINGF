@@ -24,7 +24,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/health_management_banner" />
+            android:background="@drawable/logopicture" />
 
 
             <LinearLayout
