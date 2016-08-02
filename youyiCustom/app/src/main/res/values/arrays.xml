@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="consultation">
-        <item>所有咨询</item>
+        <item>所有互动</item>
         <item>线上随访</item>
         <item>线下预约</item>
     </string-array>
@@ -16,8 +16,8 @@
         <item>系统公告</item>
     </string-array>
     <string-array name="exclusive">
-        <item>我的预约</item>
-        <item>所有预约</item>
+        <item>已预约</item>
+        <item>可预约</item>
     </string-array>
     <string-array name="update_user_info">
         <item>个人资料</item>

@@ -27,6 +27,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.HeaderView.OnTabChanage;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
@@ -73,8 +74,9 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
     public FragmentConsultation() {
     }
 
-    public FragmentConsultation(Main main) {
+    public FragmentConsultation setMain(Main main) {
         this.main = main;
+        return this;
     }
 
     @Override
@@ -95,7 +97,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
             ;
             headerView.selectTabItem(1);
         } else if (userInfo.type == 2) {
-            headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showRight(true).showTitle(true).setTitle("所有咨询").setTitleColor(getResources().getColor(R.color.blue));
+            headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showRight(true).showTitle(true).setTitle("所有互动").setTitleColor(getResources().getColor(R.color.blue));
         }
         linearLayoutManager = new LinearLayoutManager(getView().getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -112,7 +114,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipeRefreshLayout.setOnRefreshListener(this);
-        onRefresh();
+//        onRefresh();
     }
 
     @Override
@@ -127,7 +129,13 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
         headerView.setKitkat(systemBarConfig);
     }
-
+    @Override
+    public void onResume() {
+        L.e("       super.onResume();;");
+        super.onResume();
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        onRefresh();
+    }
     @Override
     public boolean shouldLoad() {
         return isLooding;

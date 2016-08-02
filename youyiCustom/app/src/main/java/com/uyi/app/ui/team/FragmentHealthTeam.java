@@ -25,6 +25,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.adapter.HealthTeamAdapter;
 import com.uyi.app.ui.team.city.CityListActivity;
+import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
@@ -32,6 +33,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +55,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
     private EditText team_edit_text;
     @ViewInject(R.id.sousuo)
     private TextView sousuo;
-
+String name;
     private ArrayList<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
     @ViewInject(R.id.recyclerView)
     private EndlessRecyclerView recyclerView;
@@ -67,8 +70,9 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 
     private Loading mLoading;
 
-    public FragmentHealthTeam(Main main) {
+    public FragmentHealthTeam setMain(Main main) {
         this.main = main;
+        return this;
     }
 
     @Override
@@ -123,6 +127,7 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
     public void onResume() {
         super.onResume();
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
+        onRefresh();
     }
 
     @Override
@@ -137,14 +142,22 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
 
     @Override
     public void loadNextPage() {//所有团队
+        name =  team_edit_text.getText().toString();
+        if(!ValidationUtils.isNull(name)){
+            try {
+                name = URLEncoder.encode(name,"UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
         isLooding = false;
         if (mLoading == null) {
             mLoading = Loading.bulid(getActivity(), null);
-            mLoading .show();
+            mLoading.show();
         }
         mLoading.show();
         if (team_selected_caty.getText().equals("全部城市")) {
-            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL, team_edit_text.getText().toString(), "", pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
+            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL, name, "", pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject data) {
                     try {
@@ -177,14 +190,14 @@ public class FragmentHealthTeam extends BaseFragment implements Pager, OnRefresh
                     if (pageNo <= totalPage) {
                         isLooding = true;
                         pageNo++;
-                    } else {
-                        recyclerView.setRefreshing(false);
+                } else {
+                    recyclerView.setRefreshing(false);
 
-                    }
+                }
                 }
             });
         } else {
-            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL, team_edit_text.getText().toString(), cityid, pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
+            RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL, name, cityid, pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject data) {
                     try {

@@ -322,7 +322,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/blue_stroke"
-                    android:text="评价本次咨询"
+                    android:text="评价本次互动"
                     android:textColor="@color/blue"
                     android:visibility="gone" />
             </LinearLayout>

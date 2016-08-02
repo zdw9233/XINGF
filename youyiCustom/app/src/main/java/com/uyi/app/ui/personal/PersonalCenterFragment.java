@@ -10,20 +10,22 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
+import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.service.MessageService;
+import com.uyi.app.ui.consult.NewConsultActivity;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.personal.adapter.PersonalPagerAdapter;
 import com.uyi.app.ui.personal.exclusive.ExclusiveActivity;
 import com.uyi.app.ui.personal.message.MessageActivity;
+import com.uyi.app.ui.personal.model.PagerData;
 import com.uyi.app.ui.personal.questions.HealthyQuestionsActivity;
 import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.app.utils.L;
@@ -57,11 +59,11 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     private TextView mQuestionNum;
     List<T> list = new ArrayList<>();
     private int[] radioIds = {R.id.radioButton1, R.id.radioButton2};
-
+    UserInfo userInfo ;
     private MessageReceiver mMessageReceiver;
 
     PersonalPagerAdapter mPagerAdapter;
-
+    PagerData pagerData;
     @Override
     protected int getLayoutResouesId() {
         return R.layout.fragment_personal_center_new;
@@ -69,29 +71,43 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 
     @Override
     protected void onInitLayoutAfter() {
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
+        pagerData  = new PagerData();
+        mViewPager.addOnPageChangeListener(this);
         RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, null, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
-                    PersonalPagerAdapter.PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
-                    mPagerAdapter.setPagerData(pagerData);
-                    mPagerAdapter.notifyDataSetChanged();
-                } catch (Exception e) {
+                    L.e("data==",data.toString());
+//                    PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
 
+                    pagerData.setBloodPressure_pic( data.getString("bloodPressure_pic"));
+                    pagerData.setBloodSugar_pic(data.getString("bloodSugar_pic"))  ;
+                    pagerData.setComment1(data.getString("comment1"));
+                    if(data.has("comment2")){
+                        pagerData.setComment2(data.getString("comment2"));
+                    }else{
+                        pagerData.setComment2("暂无数据！");
+                    }
+                    L.e("pagerData==",pagerData.toString());
+//                    mPagerAdapter.setPagerData(pagerData);
+                    mPagerAdapter = new PersonalPagerAdapter(context, pagerData);
+                    mViewPager.setAdapter(mPagerAdapter);
+                    mPagerAdapter.notifyDataSetChanged();
+
+                } catch (Exception e) {
+                    L.e("e==",e.toString());
                 }
 
             }
         }, new RequestErrorListener() {
             @Override
             public void requestError(VolleyError e) {
-
+                pagerData.setComment1("最近没有任何测试！");
+                mPagerAdapter = new PersonalPagerAdapter(context, pagerData);
+                mViewPager.setAdapter(mPagerAdapter);
+                mPagerAdapter.notifyDataSetChanged();
             }
         });
-
-        mViewPager.setAdapter(mPagerAdapter = new PersonalPagerAdapter(context, list));
-        mViewPager.addOnPageChangeListener(this);
-
-        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
-
     }
 
     @Override
@@ -105,6 +121,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
             R.id.dzfw,  //定制服务
             R.id.schedule,  //日程
             R.id.notice,  //通知
+            R.id.doctor_help,//醫師互動
             R.id.consulting,  //专属咨询
             R.id.question,  //健康问答
     })
@@ -131,6 +148,33 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
             case R.id.question:
                 startActivity(new Intent(context, HealthyQuestionsActivity.class));
                 break;   //健康问答
+            case R.id.doctor_help:
+                userInfo = UserInfoManager.getLoginUserInfo(getContext());
+
+                RequestManager.getObject(Constens.HAVE_NUMBER, getContext(), new Response.Listener<JSONObject>() {
+                    public void onResponse(JSONObject data) {
+                        try {
+                            System.out.println(data.toString());
+                            if (data.getInt("doctorAdvisory") > 0) {
+                                startActivity(new Intent(context, NewConsultActivity.class));
+//                                Intent intent = new Intent(context, NewConsultActivity.class);
+//                                startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
+                            } else {
+                                if (userInfo.isFree == 2) {
+                                    T.showShort(getContext(), " 本月医疗咨询次数使用完毕");
+
+                                } else {
+                                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                break;   //醫師互動
         }
     }
 

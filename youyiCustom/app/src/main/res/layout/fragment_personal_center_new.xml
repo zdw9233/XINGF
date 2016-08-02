@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:layout_marginRight="20dp"
 
             android:checkedButton="@+id/radioButton1"
@@ -51,9 +51,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
         android:background="@color/help_button_view" />
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="56dp">
@@ -197,10 +204,7 @@
         android:layout_height="1px"
         android:background="@color/help_button_view" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -362,11 +366,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/consulting"
+                        android:id="@+id/doctor_help"
                         android:layout_width="match_parent"
                         android:layout_height="72dp"
                         android:layout_marginTop="4dp"
-                        android:background="#509ffd"
+                        android:background="#fa9e0e"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -375,7 +379,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="16dp"
                             android:layout_marginStart="16dp"
-                            android:src="@drawable/consulting" />
+                            android:src="@drawable/diagnosis" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -396,7 +400,7 @@
 
                                     android:gravity="end"
                                     android:maxLines="1"
-                                    android:text="专属咨询"
+                                    android:text="医师互动"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/font_style_18" />
 
@@ -406,14 +410,14 @@
                                     android:layout_marginTop="4dp"
                                     android:gravity="end"
                                     android:maxLines="1"
-                                    android:text="consulting"
+                                    android:text="interaction"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/font_style_10" />
 
                             </LinearLayout>
 
                             <TextView
-                                android:id="@+id/consulting_num"
+                                android:id="@+id/doctor_help_num"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="end"
@@ -500,6 +504,78 @@
 
                 </LinearLayout>
             </TableRow>
+            <LinearLayout
+                android:id="@+id/consulting"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:background="#52b716"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/consulting" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="专属预约"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_18" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="consulting"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/consulting_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_margin="4dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/notice_background"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="12"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_style_10"
+                        android:visibility="gone" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

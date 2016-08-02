@@ -9,6 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <FrameLayout
+        android:id="@+id/new_report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sel_white_to_press"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/add_icon"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/add_icon"
+            android:gravity="center"
+            android:text="新建报告"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/font_style_16" />
+    </FrameLayout>
+
     <com.uyi.app.recycle.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

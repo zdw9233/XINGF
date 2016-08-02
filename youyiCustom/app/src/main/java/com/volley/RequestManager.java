@@ -106,7 +106,6 @@ public class RequestManager {
      * @param url
      * @param tag
      * @param params
-     * @param listener
      */
     public static void postObject(String url, Object tag, final JSONObject params, Response.Listener<JSONObject> litenner , RequestErrorListener errorListener) {
     	JsonObjectRequest  request = new JsonObjectRequest(Method.POST, url, params, litenner, responseError(errorListener)){

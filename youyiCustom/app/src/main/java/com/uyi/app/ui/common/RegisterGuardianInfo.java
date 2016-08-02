@@ -31,6 +31,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.UserInfo;
+import com.uyi.app.ui.Main;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
@@ -89,7 +90,7 @@ public class RegisterGuardianInfo extends BaseActivity implements AbstractSpiner
     private Integer weight;
     private List<String> xinbie = new ArrayList<String>();
     private List<String> xinbieCode = new ArrayList<String>();
-
+    Main main;
     /**
      * 省
      */
@@ -288,6 +289,9 @@ public class RegisterGuardianInfo extends BaseActivity implements AbstractSpiner
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+        }else{
+            T.showShort(application, "头像不能为空！");
+            return;
         }
         JSONObject params = new JSONObject();
         params.put("account", LoginActivity.userName);
@@ -337,7 +341,7 @@ public class RegisterGuardianInfo extends BaseActivity implements AbstractSpiner
                     UserInfoManager.setLoginUserInfo(RegisterGuardianInfo.this, userInfo);
                     setResult(RESULT_OK);
                     finish();
-
+                    main.replaceView(0);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">优医用户</string>
-    <string name="footer_consultation">医疗咨询</string>
+    <string name="app_name">优医2.1用户版</string>
+    <string name="footer_consultation">互动记录</string>
     <string name="footer_manager">健康管理</string>
     <string name="footer_team">健康团队</string>
     <string name="footer_individual">首页</string>
@@ -11,14 +11,14 @@
     <string name="follow">线上随访</string>
     <string name="line_check">线下预约</string>
     <string name="new_consultation">新建咨询</string>
-      <string name="hello">Hello World, ZxingCreate!</string>
-   
-       <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
-   <string name="love">爱情疗伤</string>
-<string name="qianming">个性签名</string>
-<string name="beautiful">唯美语句</string>
-<string name="old">婉约古风</string>
-<string name="mysad">关于</string>
+    <string name="hello">Hello World, ZxingCreate!</string>
+
+    <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
+    <string name="love">爱情疗伤</string>
+    <string name="qianming">个性签名</string>
+    <string name="beautiful">唯美语句</string>
+    <string name="old">婉约古风</string>
+    <string name="mysad">关于</string>
     <string name="hint_username">请输入您的账号</string>
     <string name="hint_password">请输入您的密码</string>
     
@@ -96,7 +96,7 @@
 
     <string name="login_register">注册账号</string>
     <string name="login_get_password">忘记密码</string>
-    
+
     <string name="req_name">您的姓名</string>
     <string name="req_address">目前居住地址</string>
     <string name="reg_phone">联系电话</string>
@@ -106,11 +106,11 @@
     <string name="reg_zhiye">职业</string>
     <string name="reg_height">身高</string>
     <string name="reg_weight">体重</string>
-    
+
     <string name="reg_setting_info">立即填写</string>
     <string name="reg_close">以后再说</string>
     <string name="looding_all">已加载完全部信息</string>
-    
+
     <string name="e_date_chushengriqi">出生日期不能大于当前日期</string>
     <string name="e_date_message">结束时间不能小于开始时间</string>
     <string name="s_date_message">开始时间不能小于当前日期</string>

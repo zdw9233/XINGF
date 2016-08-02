@@ -1,6 +1,9 @@
 package com.uyi.app.ui.common;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -8,6 +11,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -34,6 +40,8 @@ import com.uyi.app.ErrorCode;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.HealthInfo;
 import com.uyi.app.model.bean.UserInfo;
+import com.uyi.app.ui.common.adapter.MedicineAdapter;
+import com.uyi.app.ui.common.adapter.OutAdapter;
 import com.uyi.app.ui.common.model.AbnormalEvent;
 import com.uyi.app.ui.common.model.Health;
 import com.uyi.app.ui.common.model.Medicine;
@@ -54,6 +62,7 @@ import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.UYIUtils;
 import com.uyi.app.utils.ValidationUtils;
+import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
 import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
@@ -70,6 +79,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -81,7 +91,10 @@ import java.util.Set;
 @ContentView(R.layout.update_user_info)
 public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage, IOnItemSelectListener {
     private PopupWindow mSetPhotoPop;
+    private String phone;
     private String dizhi, lianxidianhua, youxiangdizhi, zhiye, shenggao, tizhong;
+    private String  jiankzk = "";
+    private String jibingg = "-1";
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
     private LayoutInflater mInflater;
@@ -248,8 +261,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private LinearLayout add_view_layout;
     @ViewInject(R.id.add_system_out_layout)
     private LinearLayout add_system_out_layout;
+    @ViewInject(R.id.outRecyclerView)
+    private RecyclerView outRecyclerView;
 
-
+    @ViewInject(R.id.ywRecyclerView)
+    private RecyclerView ywRecyclerView;
     @ViewInject(R.id.yaowuName)
     private Spinner yaowuName;
     @ViewInject(R.id.yypd)
@@ -267,7 +283,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 
     private String gender;            //性别
     public int update = 0;            //1为更新信息
-
+    public int id = 0;
     private Health health;
     private Health.HealthInfoBean mHealthInfo;
     private List<Health.HealthInfoBean.ExternalSituationsBean> externalSituationsList;
@@ -291,6 +307,9 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private boolean isMedicineFirst = true;
     private boolean isOutFirst = true;
 
+    private OutAdapter mOutAdapter;
+    private MedicineAdapter mMedicineAdapter;
+
     @Override
     protected void onInitLayoutAfter() {
         String[] tag = getResources().getStringArray(R.array.update_user_info);
@@ -300,6 +319,10 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         healthInfo = new HealthInfo();
         spinerPopWindow = new SpinerPopWindow(activity);
         spinerPopWindow.setItemListener(this);
+
+        ywRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        outRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         RequestManager.getArray(Constens.PROVINCDS, activity, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray array) {
@@ -324,6 +347,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 public void onResponse(JSONObject data) {
                     try {
                         Loading.bulid(activity, null).dismiss();
+                        L.e("ONE",data.toString());
+//                        if(data.has("healthCondition"))
+//                        jiankzk = JSONObjectUtils.getString(data, "healthCondition");
+//                        if(data.has("chronicDiseaseType"))
+//                        jibingg =  JSONObjectUtils.getString(data, "chronicDiseaseType");
                         ImageCacheManager.loadImage(JSONObjectUtils.getString(data, "icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
                         register_shen.setText(data.getJSONObject("province").getString("name"));
                         register_city.setText(data.getJSONObject("city").getString("name"));
@@ -333,6 +361,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                         register_phone.setText(JSONObjectUtils.getString(data, "backupPhoneNumber"));
                         lianxidianhua = JSONObjectUtils.getString(data, "backupPhoneNumber");
                         register_mobile.setText(JSONObjectUtils.getString(data, "phoneNumber"));
+                        phone = JSONObjectUtils.getString(data, "phoneNumber");
                         register_email.setText(JSONObjectUtils.getString(data, "email"));
                         youxiangdizhi = JSONObjectUtils.getString(data, "email");
                         register_card.setText(JSONObjectUtils.getString(data, "idCardNumber"));
@@ -361,6 +390,30 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                     medicationUsingSituationsList = mHealthInfo.medicationUsingSituations;
                                 }
                             }
+                            outRecyclerView.setAdapter(mOutAdapter = new OutAdapter(UpdateUserInfoActivity.this, externalSituationsList, new OutAdapter.OnDeleteListener() {
+                                @Override
+                                public void onDelete(int position) {
+                                    Health.HealthInfoBean.ExternalSituationsBean bean = externalSituationsList.get(position);
+                                    if (bean.id != null) {
+                                        deleteOut(bean.id, position);
+                                    } else {
+                                        externalSituationsList.remove(position);
+                                        mOutAdapter.notifyItemRemoved(position);
+                                    }
+                                }
+                            }));
+                            ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(UpdateUserInfoActivity.this, medicationUsingSituationsList, new MedicineAdapter.OnDeleteListener() {
+                                @Override
+                                public void onDelete(int position) {
+                                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
+                                    if (bean.id != null) {
+                                        deleteMedicine(bean.id, position);
+                                    } else {
+                                        medicationUsingSituationsList.remove(position);
+                                        mMedicineAdapter.notifyItemRemoved(position);
+                                    }
+                                }
+                            }));
 
                             if (ValidationUtils.equlse(UYIUtils.convertGender(data.getString("gender")), "男")) {
                                 register_info_yuejing_layout.setVisibility(View.GONE);
@@ -378,15 +431,25 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                             register_info_jiazhubinshi.setText(b.familyMedical);
                             register_info_muqianfuyaoqingkuang.setText(b.current);
                             register_info_qitabuchongqingkuang.setText(b.others);
+                            register_info_zhongdushi.setText(b.allergic);
+                            register_info_qitabinshi.setText(b.others);
+                            register_info_yufangjiezhonshi.setText(b.vaccinationHistory);
+                            register_info_xitonghuigu.setText(b.retrospection);
                             register_height.setText(health.height);
+                            shenggao = health.height;
                             register_weight.setText(health.weight);
+                            tizhong = health.weight;
                             register_info_one_jiankangzhuangkuang.setText(health.healthCondition);
+                            jiankzk =health.healthCondition;
+//                            jibingg = data.getInt("chronicDiseaseType");
                             int[] ints = {R.id.rb_gxy, R.id.rb_tnb, R.id.rb_gxy_tnb};
                             if (health.chronicDiseaseType != 0)
                                 radioGroup.check(ints[health.chronicDiseaseType - 1]);
                             register_info_chengyingdeyaowu.setText(b.drugAddiction);
                             Health.HealthInfoBean.AbnormalEventJsonsBean j = b.abnormalEventJsons;
+//                            L.e("J===", j.id + "");
                             if (j != null) {
+                                id = j.id;
                                 regester_info_xueguanfashengshijian.setText(j.time);
                                 int i = 0;
                                 for (String s : abnormalEvents.keySet()) {
@@ -420,23 +483,54 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         requestDrowMenuData();
     }
 
+    private void deleteMedicine(String id, int position) {
+        deleteInfo(Integer.valueOf(id), 0, position);
+    }
+
+    private void deleteOut(String id, int position) {
+        deleteInfo(Integer.valueOf(id), 1, position);
+    }
+
+    private void deleteInfo(final int id, final int type, final int position) {
+        new AlertDialog.Builder(UpdateUserInfoActivity.this).setTitle("删除提示").setMessage("确定删除该数据？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                RequestManager.getObject(String.format(Locale.CHINA, Constens.DELETE_INFO, id, type), this, new Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        T.showShort(UpdateUserInfoActivity.this, "删除成功！");
+                        if (type == 0) {
+                            medicationUsingSituationsList.remove(position);
+                            mMedicineAdapter.notifyItemRemoved(position);
+                        } else {
+                            externalSituationsList.remove(position);
+                            mOutAdapter.notifyItemRemoved(position);
+                        }
+                    }
+                });
+            }
+        }).setNegativeButton("取消", null).show();
+
+    }
+
     private void initMedicineViews() {
         if (medicationUsingSituationsList == null || medicationUsingSituationsList.size() == 0)
             return;
-        for (int i = 0; i < medicationUsingSituationsList.size(); i++) {
-            Health.HealthInfoBean.MedicationUsingSituationsBean bb = medicationUsingSituationsList.get(i);
-
-            Holder holder = (Holder) yyViews.get(i).getTag();
-            holder.endTime.setText(bb.endTime);
-            holder.timeUnit.setSelection(getTimeUnitSelection(bb.frequencyUnit));
-            holder.yaowuName.setSelection(getSelection(medicines.keySet(), bb.medicineName));
-            holder.valueUnit.setSelection(bb.medicineUnit.equals("g") ? 0 : 1);
-            holder.dcyyl.setText(bb.singleDose);
-            holder.startTime.setText(bb.startTime);
-            holder.yypd.setSelection(Integer.valueOf(bb.usingFrequency));
-            if (i != medicationUsingSituationsList.size() - 1)
-                addOneMedicineView();
-        }
+//        for (int i = 0; i < medicationUsingSituationsList.size(); i++) {
+//            Health.HealthInfoBean.MedicationUsingSituationsBean bb = medicationUsingSituationsList.get(i);
+//
+//            Holder holder = (Holder) yyViews.get(i).getTag();
+//            holder.endTime.setText(bb.endTime);
+//            holder.timeUnit.setSelection(getTimeUnitSelection(bb.frequencyUnit));
+//            holder.yaowuName.setSelection(getSelection(medicines.keySet(), bb.medicineName));
+//            holder.valueUnit.setSelection(bb.medicineUnit.equals("g") ? 0 : 1);
+//            holder.dcyyl.setText(bb.singleDose);
+//            holder.startTime.setText(bb.startTime);
+//            holder.yypd.setSelection(Integer.valueOf(bb.usingFrequency));
+//            if (i != medicationUsingSituationsList.size() - 1)
+//                addOneMedicineView();
+//        }
+        mMedicineAdapter.notifyDataSetChanged();
     }
 
     private int getSelection(Set<String> strings, String s) {
@@ -459,14 +553,15 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private void initOutViews() {
         if (externalSituationsList == null || externalSituationsList.size() == 0)
             return;
-        for (int i = 0; i < externalSituationsList.size(); i++) {
-            Health.HealthInfoBean.ExternalSituationsBean bb = externalSituationsList.get(i);
-            OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
-            outHolder.dateText.setText(bb.treatmentTime);
-            outHolder.msgText.setText(bb.content);
-            if (i != externalSituationsList.size() - 1)
-                addOneOutView();
-        }
+//        for (int i = 0; i < externalSituationsList.size(); i++) {
+//            Health.HealthInfoBean.ExternalSituationsBean bb = externalSituationsList.get(i);
+//            OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
+//            outHolder.dateText.setText(bb.treatmentTime);
+//            outHolder.msgText.setText(bb.content);
+//            if (i != externalSituationsList.size() - 1)
+//                addOneOutView();
+//        }
+        mOutAdapter.notifyDataSetChanged();
     }
 
     private void initViews() {
@@ -515,6 +610,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                     health.chronicDiseaseType = 3;
                 }
                 health.healthCondition = jkzk;
+                health.phoneNumber = phone;
                 break;
             case 2:
                 String jbs = register_info_gerenjiwangbinshi.getText().toString();
@@ -529,17 +625,22 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 String jzbs = register_info_jiazhubinshi.getText().toString();
                 String yfjzs = register_info_yufangjiezhonshi.getText().toString();
                 String xthg = register_info_xitonghuigu.getText().toString();
+//                externalSituationsList.clear();
+//                for (int i = 0; i < outViews.size(); i++) {
+//                    OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
+//                    Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
+//                    bean.content = outHolder.msgText.getText().toString();
+//                    bean.treatmentTime = outHolder.dateText.getText().toString();
+//                    if (!bean.treatmentTime.equals("请选择就医时间")) {
+//                        externalSituationsList.add(bean);
+//                    }
+//                }
 
-                externalSituationsList.clear();
-                for (int i = 0; i < outViews.size(); i++) {
-                    OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
-                    Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
-                    bean.content = outHolder.msgText.getText().toString();
-                    bean.treatmentTime = outHolder.dateText.getText().toString();
-                    if (!bean.treatmentTime.equals("请选择就医时间")) {
-                        externalSituationsList.add(bean);
-                    }
+                List<Health.HealthInfoBean.ExternalSituationsBean> situationsBeen = new ArrayList<>();
+                for (Health.HealthInfoBean.ExternalSituationsBean b : externalSituationsList) {
+                    if (b.id == null) situationsBeen.add(b);
                 }
+                mHealthInfo.externalSituations = situationsBeen;
 
                 mHealthInfo.medical = jbs;
                 mHealthInfo.infection = crbs;
@@ -555,29 +656,35 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 mHealthInfo.retrospection = xthg;
                 break;
             case 3:
-                medicationUsingSituationsList.clear();
-                for (int i = 0; i < yyViews.size(); i++) {
-                    Holder holder = (Holder) yyViews.get(i).getTag();
-                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
-                    bean.endTime = holder.endTime.getText().toString();
-                    bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
-                    Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
-                    if (m != null) {
-                        bean.medicineId = m.id;
-                        bean.medicineName = m.name;
-                    }
-                    bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
-                    bean.singleDose = holder.dcyyl.getText().toString();
-                    bean.startTime = holder.startTime.getText().toString();
-                    bean.usingFrequency = (String) holder.yypd.getSelectedItem();
-                    if (!(TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
-                            TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
-                            holder.yaowuName.getSelectedItem().equals("药物名") ||
-                            holder.yypd.getSelectedItem().equals("用药频度") ||
-                            TextUtils.isEmpty(holder.dcyyl.getText().toString().trim()))) {
-                        medicationUsingSituationsList.add(bean);
-                    }
+//                medicationUsingSituationsList.clear();
+                //                for (int i = 0; i < yyViews.size(); i++) {
+//                    Holder holder = (Holder) yyViews.get(i).getTag();
+//                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
+//                    bean.endTime = holder.endTime.getText().toString();
+//                    bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
+//                    Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
+//                    if (m != null) {
+//                        bean.medicineId = m.id;
+//                        bean.medicineName = m.name;
+//                    }
+//                    bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
+//                    bean.singleDose = holder.dcyyl.getText().toString();
+//                    bean.startTime = holder.startTime.getText().toString();
+//                    bean.usingFrequency = (String) holder.yypd.getSelectedItem();
+//                    if (!(TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
+//                            TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
+//                            holder.yaowuName.getSelectedItem().equals("药物名") ||
+//                            holder.yypd.getSelectedItem().equals("用药频度") ||
+//                            TextUtils.isEmpty(holder.dcyyl.getText().toString().trim()))) {
+//                        medicationUsingSituationsList.add(bean);
+//                    }
+//                }
+                List<Health.HealthInfoBean.MedicationUsingSituationsBean> situationsBeen1 = new ArrayList<>();
+                for (Health.HealthInfoBean.MedicationUsingSituationsBean bean : medicationUsingSituationsList) {
+                    if (bean.id == null) situationsBeen1.add(bean);
                 }
+                mHealthInfo.medicationUsingSituations = situationsBeen1;
+
                 String gms = register_info_guomingshi.getText().toString();  //过敏史
                 String cyy = register_info_chengyingdeyaowu.getText().toString(); //成瘾史
                 mHealthInfo.historyOfAllergy = gms;
@@ -591,7 +698,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 AbnormalEvent ae = abnormalEvents.get(fsType);
                 if (ae != null) {
                     abnormalEventJsonsBean.eventType = ae.eventType;
-                    abnormalEventJsonsBean.id = ae.id;
+                    abnormalEventJsonsBean.id = id;
                     abnormalEventJsonsBean.name = ae.name;
                     abnormalEventJsonsBean.eventId = ae.id;
                 }
@@ -621,8 +728,8 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             Holder holder = (Holder) view.getTag();
             if (TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
                     TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
-                    holder.yaowuName.getSelectedItem().equals("药物名") ||
-                    holder.yypd.getSelectedItem().equals("用药频度") ||
+                    "药物名".equals(holder.yaowuName.getSelectedItem()) ||
+                    "用药频度".equals(holder.yypd.getSelectedItem()) ||
                     TextUtils.isEmpty(holder.dcyyl.getText().toString().trim())) {
                 return false;
             }
@@ -740,7 +847,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             case R.id.register_info_one_submit:
                 if (isOutFirst) {
                     isOutFirst = false;
-                    initOutViews();
+//                    initOutViews();
                 }
                 replaceView(2);
                 setValue(1);
@@ -748,7 +855,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             case R.id.register_info_two_submit:
                 if (isMedicineFirst) {
                     isMedicineFirst = false;
-                    initMedicineViews();
+//                    initMedicineViews();
                 }
                 replaceView(3);
                 setValue(2);
@@ -760,27 +867,103 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             case R.id.register_info_four_submit:  //提交健康资料
                 setValue(4);
                 if (TextUtils.isEmpty(health.healthInfo.abnormalEventJsons.time)) {
-                    T.showShort(this, "请选择血管事件的时间");
-                    return;
+                    mHealthInfo.abnormalEventJsons = null;
                 }
-                L.e(JSON.toJSONString(health));
                 JSONObject object = null;
+                JSONObject params1 = null;
+                health.phoneNumber = phone;
                 try {
                     object = new JSONObject(JSON.toJSONString(health));
+//                    params1 = new JSONObject();
+//                    int height = Integer.parseInt(shenggao);
+//                    int weight = Integer.parseInt(tizhong);
+//                    params1.put("backupPhoneNumber", lianxidianhua);
+//                    params1.put("phoneNumber", phone);
+//                    params1.put("email", youxiangdizhi);
+//                    params1.put("address", dizhi);
+//                    params1.put("occupation", zhiye);
+//                    params1.put("height", height);
+//                    params1.put("weight", weight);
+//                    params1.put("healthInfo", object);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 if (update == 0) {
-                    RequestManager.postObject(Constens.UPDATE_HEALTH_ZL, this, object, new Response.Listener<JSONObject>() {
+                    L.e("PA====", object.toString());
+//                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject jsonObject) {
+//                                T.showShort(UpdateUserInfoActivity.this, "修改成功！");
+//                        }
+//                    },  new RequestErrorListener() {
+//                        @Override
+//                        public void requestError(VolleyError e) {
+//                            if (e.networkResponse != null) {
+//                                if (e.networkResponse.statusCode == 200) {
+//                                    T.showShort(activity, "修改成功！");
+//                                } else {
+//                                    T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+//                                }
+//                            } else {
+//                                T.showShort(activity, "修改成功！");
+//                            }
+//                        });
+//                }
+
+                    Loading.bulid(this, null).show();
+                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
-                            if (jsonObject.has("success")) {
-                                T.showShort(UpdateUserInfoActivity.this, "修改成功");
+                            Loading.bulid(UpdateUserInfoActivity.this, null).dismiss();
+                            T.showShort(UpdateUserInfoActivity.this, "修改成功！");
+
+                        }
+                    }, new RequestErrorListener() {
+                        @Override
+                        public void requestError(VolleyError e) {
+                            Loading.bulid(UpdateUserInfoActivity.this, null).dismiss();
+                            if (e.networkResponse != null) {
+                                if (e.networkResponse.statusCode == 200) {
+                                    T.showShort(activity, "修改成功！");
+                                } else {
+                                    T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+                                }
+                            } else {
+                                T.showShort(activity, "修改成功！");
                             }
                         }
-                    }, null);
+                    });
+//                    OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+//                    okHttpClient.addInterceptor(new Interceptor() {
+//                        @Override
+//                        public okhttp3.Response intercept(Chain chain) throws IOException {
+//                            Request.Builder requestBuilder = chain.request()
+//                                    .newBuilder();
+//                            requestBuilder.addHeader("authToken", UserInfoManager.getLoginUserInfo(UpdateUserInfoActivity.this).authToken);
+//                            // 请求处理
+//                            return chain.proceed(requestBuilder.build());
+//                        }
+//                    })
+//                            .connectTimeout(10, TimeUnit.SECONDS)
+//                            .build();
+//                    Retrofit retrofit = new Retrofit.Builder().baseUrl("http://121.42.142.228:8080/").client(okHttpClient.build())
+//                            .addConverterFactory(FsonConverterFactory.create())
+//                            .build();
+//                    API api = retrofit.create(API.class);
+//                    Call<String> stringCall = api.accountUpdate(object);
+//                    stringCall.enqueue(new Callback<String>() {
+//                        @Override
+//                        public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+//                            L.e(call.toString(),JSON.toJSONString(response));
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<String> call, Throwable t) {
+//                            L.e(call.toString(), t.toString());
+//                        }
+//                    });
                 }
-
                 break;
             case R.id.layout_start_time:
                 startDatePicker(200, null);
@@ -805,7 +988,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     }
 
     private void addOneMedicineView() {
-        View view = mInflater.inflate(R.layout.item_medicationsituation, null);
+      /*  View view = mInflater.inflate(R.layout.item_medicationsituation, null);
 
         final Holder holder = new Holder();
         holder.startTime = (TextView) view.findViewById(R.id.tv_start_time);
@@ -833,24 +1016,48 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         });
         view.setTag(holder);
         yyViews.add(view);
-        add_view_layout.addView(view);
+        add_view_layout.addView(view);*/
+
+
+        Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
+        Holder holder = (Holder) yyViews.get(0).getTag();
+        bean.endTime = holder.endTime.getText().toString();
+        bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
+        Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
+        if (m != null) {
+            bean.medicineId = m.id;
+            bean.medicineName = m.name;
+        }
+        bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
+        bean.singleDose = holder.dcyyl.getText().toString();
+        bean.startTime = holder.startTime.getText().toString();
+        bean.usingFrequency = (String) holder.yypd.getSelectedItem();
+        medicationUsingSituationsList.add(bean);
+        mMedicineAdapter.notifyItemInserted(medicationUsingSituationsList.size() - 1);
     }
 
     private void addOneOutView() {
-        View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
-        OutHolder outHolder = new OutHolder();
-        outHolder.dateText = (TextView) vs.findViewById(R.id.date);
-        outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
-        final int pos = outViews.size();
-        vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startDatePicker(100 + pos, null);
-            }
-        });
-        vs.setTag(outHolder);
-        outViews.add(vs);
-        add_system_out_layout.addView(vs);
+//        View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
+//        OutHolder outHolder = new OutHolder();
+//        outHolder.dateText = (TextView) vs.findViewById(R.id.date);
+//        outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
+//        final int pos = outViews.size();
+//        vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startDatePicker(100 + pos, null);
+//            }
+//        });
+//        vs.setTag(outHolder);
+//        outViews.add(vs);
+//        add_system_out_layout.addView(vs);
+
+        Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
+        OutHolder outHolder = (OutHolder) outViews.get(0).getTag();
+        bean.treatmentTime = outHolder.dateText.getText().toString();
+        bean.content = outHolder.msgText.getText().toString();
+        externalSituationsList.add(bean);
+        mOutAdapter.notifyItemInserted(externalSituationsList.size() - 1);
     }
 
     public void loadCity() {
@@ -983,10 +1190,10 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             type = postion;
             if (type == 1) {
                 register_three_layout.setVisibility(View.VISIBLE);
-                replaceView(index);
+//                replaceView(1);
             } else {
                 register_three_layout.setVisibility(View.GONE);
-                replaceView(index);
+                replaceView(1);
             }
         }
     }
@@ -1028,7 +1235,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 String email = register_email.getText().toString();
                 String idCardNumber = register_card.getText().toString();
                 String occupation = register_zhiye.getText().toString();
-                if (ValidationUtils.isNull(address, birthday, phone, mobile, email, idCardNumber, occupation)) {
+                if (ValidationUtils.isNull(birthday, idCardNumber)) {
                     T.showLong(application, "信息输入不完整!");
                     return;
                 }
@@ -1041,19 +1248,25 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 int height = Integer.parseInt(register_height.getText().toString());
                 int weight = Integer.parseInt(register_weight.getText().toString());
 
+                if (!ValidationUtils.isNull(mobile)) {
+                    if (!ValidationUtils.isMobile(mobile)) {
+                        T.showLong(application, "手机号格式不正确!");
+                        return;
+                    }
+                }
+                if (!ValidationUtils.isNull(phone)) {
+                    if (!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)) {
+                        T.showLong(application, "联系电话格式不正确!");
+                        return;
+                    }
+                }
+                if (!ValidationUtils.isNull(email)) {
+                    if (!ValidationUtils.pattern(Constens.EMAIL_REGEX, email)) {
+                        T.showLong(application, "邮箱格式不正确!");
+                        return;
+                    }
+                }
 
-                if (!ValidationUtils.isMobile(mobile)) {
-                    T.showLong(application, "手机号格式不正确!");
-                    return;
-                }
-                if (!ValidationUtils.pattern(Constens.PHONE_REGEX, phone)) {
-                    T.showLong(application, "联系电话格式不正确!");
-                    return;
-                }
-                if (!ValidationUtils.pattern(Constens.EMAIL_REGEX, email)) {
-                    T.showLong(application, "邮箱格式不正确!");
-                    return;
-                }
                 if (!ValidationUtils.pattern(Constens.ID_CARD_REGEX, idCardNumber)) {
                     T.showLong(application, "身份证号码格式不正确!");
                     return;
@@ -1078,12 +1291,17 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 params.put("occupation", occupation);
                 params.put("height", height);
                 params.put("weight", weight);
+//                    if(!jiankzk.equals(""))
+//                        params.put("healthCondition", jiankzk);
+//                    if(!jibingg .equals("-1") )
+//                        params.put("chronicDiseaseType", jibingg);
                 dizhi = address;
                 lianxidianhua = phone;
                 youxiangdizhi = email;
                 zhiye = occupation;
                 shenggao = register_height.getText().toString();
                 tizhong = register_weight.getText().toString();
+
                 Loading.bulid(activity, null).show();
                 RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
                     @Override
@@ -1235,6 +1453,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 params.put("height", height);
                 params.put("weight", weight);
                 params.put("healthInfo", healthInfoObject);
+                L.e("zhiye==============",params.toString());
                 Loading.bulid(activity, null).show();
                 RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
                     @Override
@@ -1277,6 +1496,10 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             public void onClick(View v) {
                 mSetPhotoPop.dismiss();
                 // 拍照获取
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
+                } else
+                    requestTakePhoto();
                 requestTakePhoto();
 
             }
@@ -1309,5 +1532,27 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         mSetPhotoPop.setAnimationStyle(R.style.bottomStyle);
         mSetPhotoPop.showAtLocation(mMainView, Gravity.BOTTOM, 0, 0);
         mSetPhotoPop.update();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (type != 1) {
+            if (this.index == 2) {
+                replaceView(1);
+            } else if (this.index == 3) {
+                replaceView(2);
+            } else if (this.index == 4) {
+                replaceView(3);
+            } else {
+                super.onBackPressed();
+            }
+        } else super.onBackPressed();
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 0x100) {
+            requestTakePhoto();
+        }
     }
 }

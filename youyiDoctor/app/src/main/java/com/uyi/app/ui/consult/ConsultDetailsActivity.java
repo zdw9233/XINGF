@@ -1,11 +1,17 @@
 package com.uyi.app.ui.consult;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
@@ -25,6 +31,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.discuss.DiscussGroupDetailsActivity;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.UYIUtils;
 import com.uyi.app.utils.ValidationUtils;
@@ -33,18 +40,12 @@ import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -73,7 +74,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	@ViewInject(R.id.consult_details_yaowuttext) private TextView  consult_details_yaowuttext; 
 	@ViewInject(R.id.consult_ditails_yaowutup_medical_txt) private TextView consult_ditails_yaowutup_medical_txt; 
 	@ViewInject(R.id.consult_details_yijian) private LinearLayout  consult_details_yijian; 
-	
+
 	
 	@ViewInject(R.id.consult_details_addinfos) private LinearLayout consult_details_addinfos; //补充资料的视图
 	
@@ -131,7 +132,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	@Override
 	protected void onInitLayoutAfter() {
 		consult_details_layout.setVisibility(View.INVISIBLE);
-		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("咨询详情").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("互动详情").setTitleColor(getResources().getColor(R.color.blue));
 		id = getIntent().getIntExtra("id", 0);
 		if(id == 0){
 			onBackPressed();
@@ -148,6 +149,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 		RequestManager.getObject(String.format(Constens.HEALTH_CONSULT, id), activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
+					L.e("CONSULT",data.toString());
 					Loading.bulid(activity, null).dismiss();
 					consult_details_layout.setVisibility(View.VISIBLE);
 					JSONObject customer = data.getJSONObject("customer");
@@ -368,7 +370,6 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	
 	/**
 	 * 补充的资料
-	 * @param consult_ditails_yaowutup_layout
 	 * @param jsonObject
 	 */
 	private void addBuChongYijian(LinearLayout rootLayout, JSONObject jsonObject) {
@@ -390,7 +391,6 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	
 	/**
 	 * 添加助理意见
-	 * @param rootLayout
 	 * @param object
 	 */
 	private void addYijian(JSONObject object,String title,String info,String advice){

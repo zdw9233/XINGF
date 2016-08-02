@@ -116,11 +116,11 @@ public class LoginActivity extends BaseActivity {
                         Log.e("data", data.toString());
 
                         if (data.getBoolean("logasguardian")) {
-
                             if (data.getString("guardian").equals("false")) {
                                 userInfo.authToken = data.getString("authToken");
                                 userInfo.type = data.getInt("type");
                                 userInfo.userId = data.getInt("id");
+                                userInfo.isFree = data.getInt("isFree");
                                 userInfo.account = data.getString("account");
 //                                userInfo.realName = data.getString("guardian");
                                 userInfo.password = password;
@@ -153,6 +153,7 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.authToken = data.getString("authToken");
                                 userInfo.type = data.getInt("type");
                                 userInfo.userId = data.getInt("id");
+                                userInfo.isFree = data.getInt("isFree");
                                 userInfo.account = data.getString("account");
                                 userInfo.realName = data.getString("guardian");
                                 userInfo.guardian = data.getString("guardian");
@@ -187,6 +188,7 @@ public class LoginActivity extends BaseActivity {
                             userInfo.authToken = data.getString("authToken");
                             userInfo.type = data.getInt("type");
                             userInfo.userId = data.getInt("id");
+                            userInfo.isFree = data.getInt("isFree");
                             userInfo.account = data.getString("account");
                             userInfo.realName = data.getString("realName");
                             userInfo.password = password;

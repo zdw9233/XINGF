@@ -54,7 +54,7 @@ public class ConsultEvaluateActivity extends BaseActivity implements OnClickList
 		headerView.showLeftReturn(true)
 		.showTitle(true)
 		.setTitleColor(getResources().getColor(R.color.blue))
-		.setTitle("评价咨询")
+		.setTitle("评价互动")
 		.showRight(true);
 		
 		if(!getIntent().hasExtra("consultId")){

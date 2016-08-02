@@ -16,6 +16,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.report.adapter.ReportListAdapter;
 import com.uyi.app.ui.report.model.ReportItem;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.widget.recycle.RecyclerListener;
 import com.uyi.app.widget.recycle.RecyclerView;
@@ -62,14 +63,15 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
                 .showTitle(true).showRight(true).setTitle("主诊报告列表")
                 .setTitleColor(getResources().getColor(R.color.blue));
         mRecyclerView.addOnScrollListener(new RecyclerListener(this));
-        Loading.bulid(this, null).show();
-        requestReportList();
+
+
     }
 
     private void requestReportList() {
+        Loading.bulid(this, null).show();
         int cusId = UserInfoManager.getLoginUserInfo(this).userId;
 
-        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_LIST, 13, pageIndex), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_LIST, cusId, pageIndex), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportListActivity.this, null).dismiss();
@@ -109,7 +111,12 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
             mAdapter.setLoad(false);
         }
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        L.d(TAG, "onResume");
+        requestReportList();
+    }
     @Override
     public void onRecyclerItemClick(View v, int position) {
         int id = mReportItems.get(position).id;

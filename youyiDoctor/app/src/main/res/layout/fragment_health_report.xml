@@ -3,148 +3,261 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@color/lightgray"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="血压波动趋势"
-            android:textColor="@color/orangered" />
-
-        <EditText
-            android:id="@+id/et_xybd"
+        <LinearLayout
+            android:id="@+id/new_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/hui_stroke"
-            android:gravity="top"
-            android:minLines="5"
-            android:padding="4dp"
-            android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="血压波动趋势"
+                android:textColor="@color/orangered" />
+
+            <EditText
+                android:id="@+id/et_xybd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/hui_stroke"
+                android:gravity="top"
+                android:minLines="5"
+                android:padding="4dp"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="提示：请您根据该患者的血压情况给出个体化建议，是否要求患者继续按现有服药方案按时服药，对于患者监测血压的频次或时间的要求也请你一并写出"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/font_style_10" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="血压异常分析"
+                android:textColor="@color/orangered" />
+
+            <EditText
+                android:id="@+id/et_xyyc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/hui_stroke"
+                android:gravity="top"
+                android:minLines="5"
+                android:padding="4dp"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="提示：请您根据该患者的血压情况制定进一步处理方案，并要求患者来您所诊室做进一步治疗，您的建议为患者采纳后，我们将根据患者的反馈情况为您的建议积累评价，并作为您工作量和绩效的主要依据之一"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/font_style_10" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="综合分析"
+                android:textColor="@color/orangered" />
+
+            <EditText
+                android:id="@+id/et_zhfx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/hui_stroke"
+                android:gravity="top"
+                android:minLines="5"
+                android:padding="4dp"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="提示：请您根据该患者的血压情况给出个体化建议，是否要求患者继续按现有服药方案按时服药，对于患者监测血压的频次或时间的要求也请你一并写出"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/font_style_10"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="健康建议"
+                android:textColor="@color/orangered" />
+
+            <EditText
+                android:id="@+id/et_jkjy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/hui_stroke"
+                android:gravity="top"
+                android:minLines="5"
+                android:padding="4dp"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="8dp"
+                android:text="作为慢性病管理专家，患者更期望您能够根据他的具体情况给出更有效、更贴近实际的建议，请您根据该患者的实际情况修改模板中的数字或文字，或直接给出您的意见，我们会根据患者的反馈情况为您的建议积累评价，并作为您工作量和绩效的主要依据之一"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/font_style_10" />
+
+            <Button
+                android:id="@+id/commit_report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/sel_blue_btn_bg"
+                android:padding="16dp"
+                android:text="提交报告"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/old_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="提示：请您根据该患者的血压情况给出个体化建议，是否要求患者继续按现有服药方案按时服药，对于患者监测血压的频次或时间的要求也请你一并写出"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/font_style_10" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/lightgray"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="血压异常分析"
-            android:textColor="@color/orangered" />
-
-        <EditText
-            android:id="@+id/et_xyyc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/hui_stroke"
-            android:gravity="top"
-            android:minLines="5"
-            android:padding="4dp"
-            android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="提示：请您根据该患者的血压情况制定进一步处理方案，并要求患者来您所诊室做进一步治疗，您的建议为患者采纳后，我们将根据患者的反馈情况为您的建议积累评价，并作为您工作量和绩效的主要依据之一"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/font_style_10" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/lightgray"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="综合分析"
-            android:textColor="@color/orangered" />
-
-        <EditText
-            android:id="@+id/et_zhfx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/hui_stroke"
-            android:gravity="top"
-            android:minLines="5"
-            android:padding="4dp"
-            android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="提示：请您根据该患者的血压情况给出个体化建议，是否要求患者继续按现有服药方案按时服药，对于患者监测血压的频次或时间的要求也请你一并写出"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/font_style_10"
-            android:visibility="gone" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/lightgray"
-            android:gravity="center_vertical"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="健康建议"
-            android:textColor="@color/orangered" />
-
-        <EditText
-            android:id="@+id/et_jkjy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/hui_stroke"
-            android:gravity="top"
-            android:minLines="5"
-            android:padding="4dp"
-            android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="8dp"
-            android:text="作为慢性病管理专家，患者更期望您能够根据他的具体情况给出更有效、更贴近实际的建议，请您根据该患者的实际情况修改模板中的数字或文字，或直接给出您的意见，我们会根据患者的反馈情况为您的建议积累评价，并作为您工作量和绩效的主要依据之一"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/font_style_10" />
-
-        <Button
-            android:id="@+id/commit_report"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/sel_blue_btn_bg"
+            android:orientation="vertical"
             android:padding="16dp"
-            android:text="提交报告"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:visibility="gone">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="血压波动趋势"
+                android:textColor="@color/orangered" />
+
+            <TextView
+                android:id="@+id/et_xybd1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="top"
+                android:minLines="5"
+                android:text="dsadsa"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="血压异常分析"
+                android:textColor="@color/orangered" />
+
+            <TextView
+                android:id="@+id/et_xyyc1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="top"
+                android:minLines="5"
+                android:text="dsadsa"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="综合分析"
+                android:textColor="@color/orangered" />
+
+            <TextView
+                android:id="@+id/et_zhfx1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="top"
+                android:minLines="5"
+                android:text="dsadsa"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="提示：请您根据该患者的血压情况给出个体化建议，是否要求患者继续按现有服药方案按时服药，对于患者监测血压的频次或时间的要求也请你一并写出"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/font_style_10"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/lightgray"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="健康建议"
+                android:textColor="@color/orangered" />
+
+            <TextView
+                android:id="@+id/et_jkjy1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="top"
+                android:minLines="5"
+                android:text="dsadsa"
+                android:textColor="@color/text_clr"
+                android:textSize="@dimen/font_style_12" />
+
+        </LinearLayout>
+    </FrameLayout>
 </ScrollView>
 

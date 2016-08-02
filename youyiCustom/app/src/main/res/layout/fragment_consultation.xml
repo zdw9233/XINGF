@@ -8,7 +8,13 @@
 	    android:layout_width="match_parent" 
 	    android:layout_height="wrap_content">
 	</com.uyi.app.ui.custom.HeaderView>
-	<include layout="@layout/new_consultation_start"/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="gone"
+		android:orientation="vertical">
+	<include layout="@layout/new_consultation_start"
+		/></LinearLayout>
 	<!--  
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"

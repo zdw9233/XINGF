@@ -1,10 +1,13 @@
 package com.uyi.app.ui.consult;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
 
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
@@ -19,11 +22,8 @@ import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RatingBar;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -54,7 +54,7 @@ public class ConsultEvaluateActivity extends BaseActivity implements OnClickList
 		headerView.showLeftReturn(true)
 		.showTitle(true)
 		.setTitleColor(getResources().getColor(R.color.blue))
-		.setTitle("评价咨询")
+		.setTitle("评价互动")
 		.showRight(true);
 		
 		if(!getIntent().hasExtra("consultId")){

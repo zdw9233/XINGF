@@ -1,6 +1,7 @@
 package com.uyi.app.ui.common;
 
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.HealthInfo;
 import com.uyi.app.model.bean.UserInfo;
+import com.uyi.app.ui.common.adapter.MedicineAdapter;
+import com.uyi.app.ui.common.adapter.OutAdapter;
 import com.uyi.app.ui.common.model.AbnormalEvent;
 import com.uyi.app.ui.common.model.Health;
 import com.uyi.app.ui.common.model.Medicine;
@@ -33,6 +36,7 @@ import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.UYIUtils;
 import com.uyi.app.utils.ValidationUtils;
+import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
@@ -185,11 +189,24 @@ public class RegisterInfoAcitivity extends BaseActivity {
     private HashMap<String, Medicine> medicines = new HashMap<>();
     private HashMap<String, AbnormalEvent> abnormalEvents = new HashMap<>();
 
+
+    private OutAdapter mOutAdapter;
+    private MedicineAdapter mMedicineAdapter;
+
+    @ViewInject(R.id.outRecyclerView)
+    private RecyclerView outRecyclerView;
+
+    @ViewInject(R.id.ywRecyclerView)
+    private RecyclerView ywRecyclerView;
+
     @Override
     protected void onInitLayoutAfter() {
         update = getIntent().getIntExtra("update", 0);
         gender = getIntent().getStringExtra("gender");
 
+
+        ywRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        outRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         if (gender != null && ValidationUtils.equlse(UYIUtils.convertGender(gender), "男")) {
             register_info_liucanshi_layout.setVisibility(View.GONE);
             register_info_yuejing_layout.setVisibility(View.GONE);
@@ -241,6 +258,25 @@ public class RegisterInfoAcitivity extends BaseActivity {
         initViews();
 
         requestDrowMenuData();
+
+
+        outRecyclerView.setAdapter(mOutAdapter = new OutAdapter(RegisterInfoAcitivity.this, externalSituationsList, new OutAdapter.OnDeleteListener() {
+            @Override
+            public void onDelete(int position) {
+                Health.HealthInfoBean.ExternalSituationsBean bean = externalSituationsList.get(position);
+                externalSituationsList.remove(position);
+                mOutAdapter.notifyItemRemoved(position);
+            }
+        }));
+        ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(RegisterInfoAcitivity.this, medicationUsingSituationsList, new MedicineAdapter.OnDeleteListener() {
+            @Override
+            public void onDelete(int position) {
+                Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
+                medicationUsingSituationsList.remove(position);
+                mMedicineAdapter.notifyItemRemoved(position);
+            }
+        }));
+
     }
 
     private void requestDrowMenuData() {
@@ -325,16 +361,6 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 String yfjzs = register_info_yufangjiezhonshi.getText().toString();
                 String xthg = register_info_xitonghuigu.getText().toString();
 
-                externalSituationsList.clear();
-                for (int i = 0; i < outViews.size(); i++) {
-                    OutHolder outHolder = (OutHolder) outViews.get(i).getTag();
-                    Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
-                    bean.content = outHolder.msgText.getText().toString();
-                    bean.treatmentTime = outHolder.dateText.getText().toString();
-                    if (!bean.treatmentTime.equals("请选择就医时间")) {
-                        externalSituationsList.add(bean);
-                    }
-                }
 
                 mHealthInfo.medical = jbs;
                 mHealthInfo.infection = crbs;
@@ -350,29 +376,8 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 mHealthInfo.retrospection = xthg;
                 break;
             case 3:
-                medicationUsingSituationsList.clear();
-                for (int i = 0; i < yyViews.size(); i++) {
-                    Holder holder = (Holder) yyViews.get(i).getTag();
-                    Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
-                    bean.endTime = holder.endTime.getText().toString();
-                    bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
-                    Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
-                    if (m != null) {
-                        bean.medicineId = m.id;
-                        bean.medicineName = m.name;
-                    }
-                    bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
-                    bean.singleDose = holder.dcyyl.getText().toString();
-                    bean.startTime = holder.startTime.getText().toString();
-                    bean.usingFrequency = (String) holder.yypd.getSelectedItem();
-                    if (!(TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
-                            TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
-                            holder.yaowuName.getSelectedItem().equals("药物名") ||
-                            holder.yypd.getSelectedItem().equals("用药频度") ||
-                            TextUtils.isEmpty(holder.dcyyl.getText().toString().trim()))) {
-                        medicationUsingSituationsList.add(bean);
-                    }
-                }
+
+
                 String gms = register_info_guomingshi.getText().toString();  //过敏史
                 String cyy = register_info_chengyingdeyaowu.getText().toString(); //成瘾史
                 mHealthInfo.historyOfAllergy = gms;
@@ -437,35 +442,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 break;
             case R.id.addmedicationsituation:
                 if (checkYYBeforeIsFull()) {
-                    View view = mInflater.inflate(R.layout.item_medicationsituation, null);
-
-                    final Holder holder = new Holder();
-                    holder.startTime = (TextView) view.findViewById(R.id.tv_start_time);
-                    holder.endTime = (TextView) view.findViewById(R.id.tv_end_time);
-                    holder.dcyyl = (EditText) view.findViewById(R.id.regester_three_danciyonyaoliang);
-                    holder.timeUnit = (Spinner) view.findViewById(R.id.timeUnit);
-                    holder.valueUnit = (Spinner) view.findViewById(R.id.valueUnit);
-                    holder.yaowuName = (Spinner) view.findViewById(R.id.yaowuName);
-                    holder.yaowuName.setAdapter(new ArrayAdapter<>(this, R.layout.layout_spinner_item, R.id.textView2, ywmString));
-                    holder.yypd = (Spinner) view.findViewById(R.id.yypd);
-                    final int num = yyViews.size();
-                    holder.startTime.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startDatePicker(200 + num, null);
-                        }
-                    });
-                    holder.endTime.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String sDate = holder.startTime.getText().toString().trim();
-                            if (sDate.equals("开始服药日期")) sDate = null;
-                            startDatePicker(300 + num, sDate);
-                        }
-                    });
-                    view.setTag(holder);
-                    yyViews.add(view);
-                    add_view_layout.addView(view);
+                    addOneMedicineView();
                 } else T.showShort(this, "请完善用药信息再试");
                 break;
             case R.id.register_info_one_submit:
@@ -483,8 +460,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
             case R.id.register_info_four_submit:  //提交健康资料
                 setValue(4);
                 if (TextUtils.isEmpty(health.healthInfo.abnormalEventJsons.time)) {
-                    T.showShort(this, "请选择血管事件的时间");
-                    return;
+                    mHealthInfo.abnormalEventJsons = null;
                 }
                 L.e(JSON.toJSONString(health));
                 JSONObject object = null;
@@ -702,20 +678,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 break;
             case R.id.tv_add_system_out:
                 if (checkOutBeforeIsFull()) {
-                    View vs = mInflater.inflate(R.layout.layout_system_out_item, null);
-                    OutHolder outHolder = new OutHolder();
-                    outHolder.dateText = (TextView) vs.findViewById(R.id.date);
-                    outHolder.msgText = (EditText) vs.findViewById(R.id.et_system_out);
-                    final int pos = outViews.size();
-                    vs.findViewById(R.id.choice_date).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            startDatePicker(100 + pos, null);
-                        }
-                    });
-                    vs.setTag(outHolder);
-                    outViews.add(vs);
-                    add_system_out_layout.addView(vs);
+                    addOneOutView();
                 } else T.showShort(this, "请完善就医情况");
                 break;
             case R.id.regester_info_xueguanfashengshijian:
@@ -725,6 +688,34 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 startDatePicker(100, null);
                 break;
         }
+    }
+
+    private void addOneMedicineView() {
+        Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
+        Holder holder = (Holder) yyViews.get(0).getTag();
+        bean.endTime = holder.endTime.getText().toString();
+        bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
+        Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
+        if (m != null) {
+            bean.medicineId = m.id;
+            bean.medicineName = m.name;
+        }
+        bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
+        bean.singleDose = holder.dcyyl.getText().toString();
+        bean.startTime = holder.startTime.getText().toString();
+        bean.usingFrequency = (String) holder.yypd.getSelectedItem();
+        medicationUsingSituationsList.add(bean);
+        mMedicineAdapter.notifyItemInserted(medicationUsingSituationsList.size() - 1);
+    }
+
+    private void addOneOutView() {
+
+        Health.HealthInfoBean.ExternalSituationsBean bean = new Health.HealthInfoBean.ExternalSituationsBean();
+        OutHolder outHolder = (OutHolder) outViews.get(0).getTag();
+        bean.treatmentTime = outHolder.dateText.getText().toString();
+        bean.content = outHolder.msgText.getText().toString();
+        externalSituationsList.add(bean);
+        mOutAdapter.notifyItemInserted(externalSituationsList.size() - 1);
     }
 
     @Override

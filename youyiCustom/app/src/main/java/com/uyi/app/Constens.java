@@ -118,7 +118,7 @@ public abstract class Constens {
     //是否有新的未读
     public final static String MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/get/manage/customer";
     //更新是否有未读
-    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/doctor/update/manage/customer/%d";
+    public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/update/manage/customer?type=%d";
     /**
      * 客户充值健康豆 ${money} POST
      */
@@ -132,7 +132,7 @@ public abstract class Constens {
      * 查风险评估列表
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
-    public final static String CUSTOMER_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=true&page=%s&pageSize=%s";
+    public final static String CUSTOMER_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?customerid=%s&iscustomer=false&page=%s&pageSize=%s";
     /**
      * /**
      * gai风险评估列表
@@ -149,6 +149,16 @@ public abstract class Constens {
      */
     public final static String FORGOT_PASSWORD = SERVER_URL + "/app/api/account/forgot/password";
     /**
+     * 客户重置密码
+     */
+    public final static String ANSWER = SERVER_URL + "/app/api/common/getCustomerSafeAnswer?id=%s&safeAnswer=%s";
+    /**
+     * 客户重置密码
+     */
+    public final static String PASSWORD = SERVER_URL + "/app/api/common/getCustomerPassword?id=%s&password=%s";
+    /**
+    /**
+    /**
      * 用户修改密码
      */
     public final static String SETTING_PASSWORD = SERVER_URL + "/app/api/account/setting/password";
@@ -156,7 +166,10 @@ public abstract class Constens {
      * 用户安全问题获取
      */
     public final static String SAFE_QUESTION = SERVER_URL + "/app/api/common/account/safe/question?account=%s&phoneNumber=%s";
-
+    /**
+     * 用户安全问题获取
+     */
+    public final static String GET_PASSWORD = SERVER_URL + "/app/api/common/getCustomerQuestion?username=%s&idCardNumber=%s";
     /**
      * type 1: 检查用户/医生账号名
      * type	2: 检查健康团队名字
@@ -189,7 +202,10 @@ public abstract class Constens {
      */
     public final static String ACCOUNT_UPDATE = SERVER_URL + "/app/api/account/update";
 
-
+    /**
+     * 患者生活方式和饮食
+     */
+    public final static String LIFE_DEIT = SERVER_URL + "/app/api/doctor/customer/%s/info";
     /**
      * 创建咨询
      * consultId  null咨询    not null 就是随访
@@ -226,7 +242,15 @@ public abstract class Constens {
      * 查询所有健康团队
      */
     public final static String HEALTH_GROUPS_ALL_NOTOKEN = SERVER_URL + "/app/api/common/health/groups?name=%s&cityId=%s&page=%s&pageSize=%s";
+    /**
+     * 查询所有健康团队
+     */
+    public final static String HEALTH_GROUPS_ALLS = SERVER_URL + "/app/api/common/health/findgroups?name=%s&cityId=%s&page=%s&pageSize=%s";
 
+    /**
+     * 查询咨询次数
+     */
+    public final static String HAVE_NUMBER = SERVER_URL + "/app/api/servicePackage/getCustomerServiceDetail";
     /**
      * 查询加入的健康团队
      */
@@ -365,7 +389,7 @@ public abstract class Constens {
 
     /**
      * 客户消息/公告删除/标记已读 POST
-     * <p/>
+     * <p>
      * ${operate} 	1: 标记已读   	 2: 删除
      * ${type}		1: 消息		 2: 公告
      * ${ids}
@@ -436,7 +460,7 @@ public abstract class Constens {
     /**
      * 获取报告详情
      */
-    public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/13?cusid=%d&repId=%d";
+    public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/%d?cusid=%d&repId=%d";
     /**
      * 获取定制服务
      */
@@ -445,4 +469,8 @@ public abstract class Constens {
      * 购买定制服务
      */
     public static final String BUY_CUSTOM_SERVICE = SERVER_URL + "/app/api/servicePackage/buy/custom";
+    /**
+     * 删除就医/用药情况
+     */
+    public static final String DELETE_INFO = SERVER_URL + "/app/api/common/delete/info?id=%d&type=%d";
 }

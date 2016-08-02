@@ -1,11 +1,20 @@
 package com.uyi.app.ui.consult;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
+import android.provider.MediaStore;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
@@ -29,21 +38,12 @@ import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Handler;
-import android.os.Message;
-import android.provider.MediaStore;
-import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -98,7 +98,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	@Override
 	protected void onInitLayoutAfter() {
 		consult_details_layout.setVisibility(View.INVISIBLE);
-		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("咨询详情").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("互动详情").setTitleColor(getResources().getColor(R.color.blue));
 		id = getIntent().getIntExtra("id", 0);
 		if(id == 0){
 			onBackPressed();
@@ -126,6 +126,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 		RequestManager.getObject(String.format(Constens.HEALTH_CONSULT, id), activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
+					L.e("HEALTH_CONSULT==",data.toString());
 					consult_details_layout.setVisibility(View.VISIBLE);
 					Loading.bulid(activity, null).dismiss();
 					JSONObject group = data.getJSONObject("group");
@@ -208,10 +209,14 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 							processType = "处理结果：线下预约";
 						}else if(pro == 3){
 							processType = "处理结果：线上随访";
-							if(data.has("isFollowuped") && !data.getBoolean("isFollowuped")){
+
+							if(data.has("isFollowuped")){
+								consult_detail_suifang.setText("立即线上随访");
+								consult_detail_suifang.setVisibility(View.GONE);
+							} else{
 								consult_detail_suifang.setText("立即线上随访");
 								consult_detail_suifang.setVisibility(View.VISIBLE);
-							} 
+							}
 						}
 					}
 					//助理意见

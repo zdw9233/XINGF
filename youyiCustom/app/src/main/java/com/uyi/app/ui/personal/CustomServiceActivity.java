@@ -1,14 +1,17 @@
 package com.uyi.app.ui.personal;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
+import com.uyi.app.ErrorCode;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
@@ -19,6 +22,7 @@ import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONArray;
@@ -73,8 +77,8 @@ public class CustomServiceActivity extends BaseActivity implements CustomService
     }
 
     @Override
-    public void buyIt(final int id, final int count, String name, int beans) {
-        new AlertDialog.Builder(this).setTitle("购买提示").setMessage(String.format(Locale.CHINA, "您即将购买由优医为你提供的%s * %d,需要消耗您%d健康豆", name, count, beans * count)).setPositiveButton("购买", new DialogInterface.OnClickListener() {
+    public void buyIt(final int id, final int count, String name, int beans, String unit) {
+        new AlertDialog.Builder(this).setTitle("购买提示").setMessage(String.format(Locale.CHINA, "您即将购买由优医为你提供的%s * %d%s,需要消耗您%d健康豆,并且下月生效！", name, count, unit, beans * count)).setPositiveButton("购买", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 requestBuyCustomService(id, count);
@@ -94,8 +98,24 @@ public class CustomServiceActivity extends BaseActivity implements CustomService
             @Override
             public void onResponse(JSONObject jsonObject) {
                 T.showShort(CustomServiceActivity.this, "购买成功！");
+                sendBroadcast(new Intent("com.uyi.beans"));
             }
-        }, null);
+        }, new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
+                if (e.networkResponse != null) {
+                    if (e.networkResponse.statusCode == 200) {
+                        T.showShort(activity, "购买成功！");
+                        sendBroadcast(new Intent("com.uyi.beans"));
 
+                    } else {
+                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+                    }
+                } else {
+                    T.showShort(activity, "购买成功！");
+                    sendBroadcast(new Intent("com.uyi.beans"));
+                }
+            }
+        });
     }
 }

@@ -1,17 +1,8 @@
 package com.uyi.app.ui.team;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -28,10 +19,8 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -44,10 +33,18 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.team.adapter.DocterDtailsAdapter;
 import com.uyi.app.ui.team.adapter.HealthTeamDoctorAdapter;
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
 import com.volley.ImageCacheManager;
-import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @ContentView(R.layout.team_details)
 public class TeamDetailsActivity extends BaseActivity implements android.widget.AdapterView.OnItemClickListener {
@@ -81,37 +78,40 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 		id = getIntent().getIntExtra("id", 0);
 		System.out.println(id+"_____________");
 		isMy = getIntent().getIntExtra("isMy",0);
+		team_goup_jiaru.setVisibility(View.GONE);
 		team_goup_jiaru.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Loading.bulid(activity, "加入团队...").show();
-				JSONObject params = new JSONObject();
-				
-					try {
-						params.put("groupId", id);
-					} catch (JSONException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+//				Loading.bulid(activity, "加入团队...").show();
+//				JSONObject params = new JSONObject();
+//
+//					try {
+//						params.put("groupId", id);
+//					} catch (JSONException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//
+//
+//				RequestManager.postObject(String.format(Constens.HEALTH_GROUPS_JIARU,id), activity, params , new Response.Listener<JSONObject>() {
+//					public void onResponse(JSONObject data) {
+//						Loading.bulid(activity,null).dismiss();
+//						System.out.println("成功");
+////						team_goup_jiaru.setVisibility(View.GONE);
+//						startActivity(new Intent(activity, JiaRuChenGongActivity.class));
+//						TeamDetailsActivity.this.finish();
+//					}
+//				}, new RequestErrorListener() {
+//					public void requestError(VolleyError e) {
+//						Loading.bulid(activity,null).dismiss();
+//						System.out.println(e.toString());
+//						Toast.makeText(activity, "必须结束所有咨询才能转入其它团队！", 0).show();
+//					}
+//				});
+//
+				T.showShort( TeamDetailsActivity.this," 此功能暂未开放！");
 
-			
-				RequestManager.postObject(String.format(Constens.HEALTH_GROUPS_JIARU,id), activity, params , new Response.Listener<JSONObject>() {
-					public void onResponse(JSONObject data) {
-						Loading.bulid(activity,null).dismiss();
-						System.out.println("成功");
-//						team_goup_jiaru.setVisibility(View.GONE);
-						startActivity(new Intent(activity, JiaRuChenGongActivity.class));
-						TeamDetailsActivity.this.finish();
-					}
-				}, new RequestErrorListener() {
-					public void requestError(VolleyError e) {
-						Loading.bulid(activity,null).dismiss();
-						System.out.println(e.toString());
-						Toast.makeText(activity, "必须结束所有咨询才能转入其它团队！", 0).show();
-					}
-				});
-				
 			}
 		});
 		if(isMy == 1){

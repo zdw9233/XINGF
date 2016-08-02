@@ -367,7 +367,8 @@ public abstract class Constens {
      * 查风险评估列表
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
-    public final static String DOCTOR_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=false&page=%s&pageSize=%s";
+    public final static String DOCTOR_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?customerid=%s&iscustomer=false&page=%s&pageSize=%s";
+//    CUSTOMER_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?checked=true&customerid=%s&iscustomer=true&page=%s&pageSize=%s";
     /**
      * /**
      * 查生活方式和饮食
@@ -452,7 +453,7 @@ public abstract class Constens {
     /**
      * 获取报告详情
      */
-    public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/13?cusid=%d&repId=%d";
+    public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/%d?cusid=%d&repId=%d";
     /**
      * 提交健康报告
      */

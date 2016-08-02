@@ -84,7 +84,8 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 //			hodler.title.setText(data.get("content").toString());
 			hodler.time.setText(data.get("createTime").toString());
 			hodler.deils.setText(data.get("content").toString());
-			hodler.riskindix.setText(data.get("percentage").toString());
+			hodler.riskindix.setText("风险系数:  "+data.get("percentage").toString());
+			hodler.doc_name.setText("填写医生:  "+data.get("doc_name").toString());
 			if(data.get("checked").toString().equals("false") ){
 				hodler.checked.setVisibility(View.VISIBLE);
 			}else hodler.checked.setVisibility(View.GONE);
@@ -105,12 +106,14 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 			deils = (TextView) v.findViewById(R.id.deils);
 			checked = (TextView) v.findViewById(R.id.checked);
 			riskindix = (TextView) v.findViewById(R.id.risk_index);
+			doc_name = (TextView) v.findViewById(R.id.doc_name);
 
 		}
 		private TextView title;
 		private TextView time;
 		private TextView deils;
 		private TextView riskindix;
+		private TextView doc_name;
 		private TextView checked;
 		private RelativeLayout item;
 		private LinearLayout riskitem;

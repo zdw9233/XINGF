@@ -151,12 +151,12 @@ public class Main extends BaseFragmentActivity {
     public void initView() {
         fragments.add(new PersonalCenterFragment());//个人中心
 //		fragments.add(new HealthManagerFragment());//健康管理
-        fragments.add(new FragmentHealthListManager(this));//健康管理
-        fragments.add(new FragmentHealthTeam(this));//健康团队
-        fragments.add(new FragmentConsultation(this));//所有咨询
-        fragments.add(new FragmentFollow(this));//随访
-        fragments.add(new FragmentFollow(this));//随访
-        fragments.add(new FragmentLineInspection(this));//线下检查
+        fragments.add(new FragmentHealthListManager().setMain(this));//健康管理
+        fragments.add(new FragmentHealthTeam().setMain(this));//健康团队
+        fragments.add(new FragmentConsultation().setMain(this));//所有咨询
+        fragments.add(new FragmentFollow().setMain(this));//随访
+        fragments.add(new FragmentFollow().setMain(this));//随访
+        fragments.add(new FragmentLineInspection().setMain(this));//线下检查
 
 
     }
@@ -165,24 +165,27 @@ public class Main extends BaseFragmentActivity {
     protected void onInitLayoutAfter() {
         if (UserInfoManager.getLoginUserInfo(activity) == null) {
             startActivityForResult(new Intent(activity, LoginActivity.class), Constens.BACK_LOGIN);
-        }
-        ViewUtils.inject(this);
-        initView();
-        if (NetUtils.isConnected(activity)) {
-            manager.isUpdate(activity, new CheckUpdateCallbackListenner() {
-                @Override
-                public void success(boolean isUpdate) {
-                    if (isUpdate) {
-                        manager.update(activity);
+        } else {
+
+
+            ViewUtils.inject(this);
+            initView();
+            if (NetUtils.isConnected(activity)) {
+                manager.isUpdate(activity, new CheckUpdateCallbackListenner() {
+                    @Override
+                    public void success(boolean isUpdate) {
+                        if (isUpdate) {
+                            manager.update(activity);
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
 
 //		UserService.loadUserInfo(application);
-        MessageService.loadMessagesAll(activity);
-        fm = getSupportFragmentManager();
-        replaceView(0);
+            MessageService.loadMessagesAll(activity);
+            fm = getSupportFragmentManager();
+            replaceView(0);
+        }
     }
 
     @Override

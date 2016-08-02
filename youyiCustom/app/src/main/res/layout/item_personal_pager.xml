@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="36dp"
         android:gravity="center"
         android:text="血压趋势图" />
 
@@ -18,7 +18,8 @@
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="118dp"
-        app:placeholderImage="@drawable/health_management_banner"
+        app:actualImageScaleType="fitXY"
+        app:placeholderImage="@drawable/logopicture"
         app:placeholderImageScaleType="centerCrop" />
 
     <com.uyi.app.widget.InnerScrollView

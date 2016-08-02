@@ -14,33 +14,39 @@ import android.view.View.OnClickListener;
 
 /**
  * 健康团队
- * @author user
  *
+ * @author user
  */
 public class FragmentHealthTeam extends BaseFragment implements OnClickListener {
-	@ViewInject(R.id.headerView) private HeaderView headerView;
-	public Main main;
-	public FragmentHealthTeam(Main main) {
-		this.main = main;
-	}
-	@Override
-	protected int getLayoutResouesId() {
-		return R.layout.fragment_three;
-	}
+    @ViewInject(R.id.headerView)
+    private HeaderView headerView;
+    public Main main;
 
-	@Override
-	protected void onInitLayoutAfter() {
-		headerView.showLeftHeader(true,UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setLeftOnClick(this).setRightOnClick(this);
-		
-	}
 
-	@Override
-	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
-	}
-	@Override
-	public void onClick(View v) {
-		
-	}
+    public FragmentHealthTeam setMain(Main main) {
+        this.main = main;
+        return this;
+    }
+
+    @Override
+    protected int getLayoutResouesId() {
+        return R.layout.fragment_three;
+    }
+
+    @Override
+    protected void onInitLayoutAfter() {
+        headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setLeftOnClick(this).setRightOnClick(this);
+
+    }
+
+    @Override
+    protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
+        headerView.setKitkat(systemBarConfig);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">优医医生2.1</string>
-    <string name="footer_consultation">健康咨询</string>
+    <string name="app_name">优医2.1医生版</string>
+    <string name="footer_consultation">医疗互动</string>
     <string name="footer_manager">健康管理</string>
     <string name="footer_team">健康团队</string>
     <string name="footer_individual">首页</string>

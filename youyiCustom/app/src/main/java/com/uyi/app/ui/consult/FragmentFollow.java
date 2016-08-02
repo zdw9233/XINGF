@@ -51,8 +51,10 @@ public class FragmentFollow extends BaseFragment implements OnRefreshListener, P
     private LinearLayoutManager linearLayoutManager;
     private FollowAdapter followAdapter;
 
-    public FragmentFollow(Main main) {
+
+    public FragmentFollow setMain(Main main) {
         this.main = main;
+        return this;
     }
 
     @Override
