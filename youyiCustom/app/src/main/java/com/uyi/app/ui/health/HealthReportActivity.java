@@ -197,9 +197,11 @@ public class HealthReportActivity extends BaseActivity implements IOnItemSelectL
 
         if (selectedDate == 1) {
             Intent intent = new Intent(this, DatePickerActivity.class);
+            intent.putExtra("currentDate", health_manager_starttime.getText().toString().trim());
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         } else if (selectedDate == 2) {
             Intent intent = new Intent(this, DatePickerActivity.class);
+            intent.putExtra("currentDate", health_manager_endtime.getText().toString().trim());
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         }
     }
@@ -208,7 +210,6 @@ public class HealthReportActivity extends BaseActivity implements IOnItemSelectL
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println(data.toString() + "-----" + resultCode + "-----" + requestCode);
         if (requestCode == Constens.START_ACTIVITY_FOR_RESULT && resultCode == -1) {
             if (data.hasExtra("date")) {
                 if (selectedDate == 1) {

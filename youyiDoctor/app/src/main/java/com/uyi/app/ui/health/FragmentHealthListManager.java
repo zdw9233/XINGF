@@ -102,6 +102,7 @@ public class FragmentHealthListManager extends BaseFragment
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
         headerView_health.setKitkat(systemBarConfig);
     }
+
     @Override
     public void onResume() {
         L.e("       super.onResume();;");
@@ -109,6 +110,7 @@ public class FragmentHealthListManager extends BaseFragment
         headerView_health.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
         onRefresh();
     }
+
     @Override
     public boolean shouldLoad() {
         return isLooding;
@@ -117,15 +119,15 @@ public class FragmentHealthListManager extends BaseFragment
     @Override
     public void loadNextPage() {// 所有条目
         isLooding = false;
-        Loading.bulid(getActivity(), null).show();
-        System.out.println(UserInfoManager.getLoginUserInfo(getActivity()).toString());
+        final Loading loading = Loading.bulid(main, null);
+        loading.show();
         RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_MANAGER, health_edit_text.getText().toString(), pageNo, pageSize),
                 getActivity(), new Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {
                         System.out.print(data.toString());
                         try {
-                            Loading.bulid(getActivity(), null).dismiss();
+                            loading.dismiss();
                             totalPage = data.getInt("pages");
                             JSONArray array = data.getJSONArray("results");
                             for (int i = 0; i < array.length(); i++) {

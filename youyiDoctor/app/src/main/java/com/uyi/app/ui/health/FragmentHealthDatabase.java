@@ -143,9 +143,11 @@ public class FragmentHealthDatabase extends BaseFragment implements OnTabChanage
     public void selectedDate(final TextView text, final boolean isStartDate) {
         if (selectedDate == 1) {
             Intent intent = new Intent(context, DatePickerActivity.class);
+            intent.putExtra("currentDate", health_database_starttime.getText().toString().trim());
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         } else if (selectedDate == 2) {
             Intent intent = new Intent(context, DatePickerActivity.class);
+            intent.putExtra("currentDate", health_database_endtime.getText().toString().trim());
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         }
     }

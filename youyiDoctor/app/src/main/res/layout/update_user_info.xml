@@ -1,96 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/updata_user_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:id="@+id/updata_user_main"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <com.uyi.app.ui.custom.HeaderView
         android:id="@+id/headerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </com.uyi.app.ui.custom.HeaderView>
- 
-        <LinearLayout
-            android:id="@+id/update_user_info_layout_one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="30dp" >
-            <com.uyi.app.ui.custom.RoundedImageView
-                android:id="@+id/header_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/upload_head_hint" />
-            <EditText
-                android:id="@+id/update_info"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="50dp"
-                android:background="@drawable/hui_stroke"
-                android:minLines="5"
-                android:ems="10"
-                android:gravity="top"
-                android:hint="@string/reg_weight"
-                android:inputType="text"
-                android:padding="3dp"
-                android:textSize="@dimen/font_style_14" >
-            </EditText>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-            <Button
-                android:id="@+id/update_submit"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/blue_bg"
-                android:text="修改"
-                android:textColor="@color/white" />
-        </LinearLayout> 
-    
-          <LinearLayout
-            android:id="@+id/update_user_info_layout_two"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:gravity="center"
-            android:padding="30dp" >
-              
-              <LinearLayout 
-                  android:layout_width="wrap_content" 
-                  android:layout_height="wrap_content" 
-                  android:gravity="center"
-                  android:orientation="horizontal">
-                  
-                    <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:src="@drawable/success_icon" />
+        android:layout_height="wrap_content"></com.uyi.app.ui.custom.HeaderView>
 
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_margin="10dp"
-                  android:textColor="@color/green"
-                  android:textSize="@dimen/font_style_25"
-                  android:text="修改资料成功" />
-              </LinearLayout>
-              
-              
-                   <View
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-            <Button
-                android:id="@+id/update_colse"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/blue_bg"
-                android:text="返回"
-                android:textColor="@color/white" />
-              
-          </LinearLayout>
+    <LinearLayout
+        android:id="@+id/update_user_info_layout_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <com.uyi.app.ui.custom.RoundedImageView
+            android:id="@+id/header_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/upload_head_hint" />
+
+        <EditText
+            android:id="@+id/update_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/hui_stroke"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="@string/reg_weight"
+            android:minHeight="50dp"
+            android:minLines="5"
+            android:padding="3dp"
+            android:textSize="@dimen/font_style_14"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/update_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/blue_bg"
+            android:text="修改"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/update_user_info_layout_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/success_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="修改资料成功"
+                android:textColor="@color/green"
+                android:textSize="@dimen/font_style_25" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/update_colse"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/blue_bg"
+            android:text="返回"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 </LinearLayout>

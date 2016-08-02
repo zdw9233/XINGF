@@ -93,7 +93,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private PopupWindow mSetPhotoPop;
     private String phone;
     private String dizhi, lianxidianhua, youxiangdizhi, zhiye, shenggao, tizhong;
-    private String  jiankzk = "";
+    private String jiankzk = "";
     private String jibingg = "-1";
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
@@ -347,7 +347,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 public void onResponse(JSONObject data) {
                     try {
                         Loading.bulid(activity, null).dismiss();
-                        L.e("ONE",data.toString());
+                        L.e("ONE", data.toString());
 //                        if(data.has("healthCondition"))
 //                        jiankzk = JSONObjectUtils.getString(data, "healthCondition");
 //                        if(data.has("chronicDiseaseType"))
@@ -440,7 +440,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                             register_weight.setText(health.weight);
                             tizhong = health.weight;
                             register_info_one_jiankangzhuangkuang.setText(health.healthCondition);
-                            jiankzk =health.healthCondition;
+                            jiankzk = health.healthCondition;
 //                            jibingg = data.getInt("chronicDiseaseType");
                             int[] ints = {R.id.rb_gxy, R.id.rb_tnb, R.id.rb_gxy_tnb};
                             if (health.chronicDiseaseType != 0)
@@ -830,6 +830,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         } else if (v.getId() == R.id.register_chushennianyue) {
             Intent intent = new Intent(activity, DatePickerActivity.class);
             intent.putExtra("eDate", DateUtils.toDate(new Date(), Constens.DATE_FORMAT_YYYY_MM_DD));
+            intent.putExtra("currentDate", register_chushennianyue.getText().toString().trim());
             intent.putExtra("eDateMessage", getString(R.string.e_date_chushengriqi));
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         } else if (v.getId() == R.id.register_header_image) {
@@ -1453,7 +1454,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 params.put("height", height);
                 params.put("weight", weight);
                 params.put("healthInfo", healthInfoObject);
-                L.e("zhiye==============",params.toString());
+                L.e("zhiye==============", params.toString());
                 Loading.bulid(activity, null).show();
                 RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
                     @Override
@@ -1500,7 +1501,6 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
                 } else
                     requestTakePhoto();
-                requestTakePhoto();
 
             }
 
@@ -1548,10 +1548,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             }
         } else super.onBackPressed();
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 0x100) {
+        if (requestCode == 0x100 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             requestTakePhoto();
         }
     }
