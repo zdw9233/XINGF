@@ -37,7 +37,7 @@ public class EaseHalfYearActivity extends BaseActivity implements DialogInterfac
     @ViewInject(R.id.anxin_pay)
     private TextView anxin_pay;
     private MessageConform conform;
-
+    private boolean b;
     private int id;
     private String name;
     private int beans;
@@ -47,7 +47,14 @@ public class EaseHalfYearActivity extends BaseActivity implements DialogInterfac
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("安心服务").setTitleColor(getResources().getColor(R.color.blue));
         id = getIntent().getIntExtra("id", 0);
         name = getIntent().getStringExtra("name");
+        b = getIntent().getBooleanExtra("isActive", false);
         beans = getIntent().getIntExtra("beans", 0);
+        if(b == true){
+            anxin_pay.setEnabled(true);
+        }else{
+            anxin_pay.setEnabled(false);
+            anxin_pay.setText("暂未开放，敬请期待！");
+        }
     }
 
     @OnClick(R.id.anxin_pay)

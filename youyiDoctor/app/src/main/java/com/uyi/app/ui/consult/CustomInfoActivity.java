@@ -68,6 +68,9 @@ public class CustomInfoActivity extends BaseActivity {
 
 
 	@ViewInject(R.id.custom_jiankang_info) private LinearLayout custom_jiankang_info; //健康资料
+	@ViewInject(R.id.custom_zhongdu) private TextView custom_zhongdu;
+	@ViewInject(R.id.custom_xitonghuigu) private TextView custom_xitonghuigu;
+	@ViewInject(R.id.custom_yufangjiezhonshi) private TextView custom_yufangjiezhonshi;
 	@ViewInject(R.id.custom_jiwangbinshi) private TextView custom_jiwangbinshi; 
 	@ViewInject(R.id.custom_chuanranbinshi) private TextView custom_chuanranbinshi; 
 	@ViewInject(R.id.custom_waishangshi) private TextView custom_waishangshi; 
@@ -78,8 +81,8 @@ public class CustomInfoActivity extends BaseActivity {
 	@ViewInject(R.id.custom_shuxueshi) private TextView custom_shuxueshi; 
 	@ViewInject(R.id.custom_jiazhubingshi) private TextView custom_jiazhubingshi; 
 	@ViewInject(R.id.custom_muqianfuyao) private TextView custom_muqianfuyao; 
-	@ViewInject(R.id.custom_qitabuchong) private TextView custom_qitabuchong; 
-	
+	@ViewInject(R.id.custom_qitabuchong) private TextView custom_qitabuchong;
+	@ViewInject(R.id.custom_qitabubingshi) private TextView custom_qitabubingshi;
 	@ViewInject(R.id.custom_yuejing_layout) private LinearLayout custom_yuejing_layout; //月经史
 	@ViewInject(R.id.custom_huaiyun_liuchan_layout) private LinearLayout custom_huaiyun_liuchan_layout; //怀孕史
 	
@@ -90,8 +93,7 @@ public class CustomInfoActivity extends BaseActivity {
 	@ViewInject(R.id.custom_mobile) private TextView custom_mobile; 
 	@ViewInject(R.id.custom_email) private TextView custom_email; 
 	@ViewInject(R.id.custom_zhiye) private TextView custom_zhiye; 
-	@ViewInject(R.id.custom_shengao) private TextView custom_shengao; 
-	@ViewInject(R.id.custom_tizhong) private TextView custom_tizhong;
+
 
 	@ViewInject(R.id.custom_xueguan_layout) private LinearLayout custom_xueguan_layout; //血管事件
 	@ViewInject(R.id.custom_xueguan_time) private TextView custom_xueguan_time;
@@ -102,7 +104,11 @@ public class CustomInfoActivity extends BaseActivity {
 	@ViewInject(R.id.custom_yaowu_guomin) private TextView custom_yaowu_guomin;
 	@ViewInject(R.id.custom_yaowu_ying) private TextView custom_yaowu_ying;
 
-	@ViewInject(R.id.custom_jiuyi_layout) private LinearLayout custom_jiuyi_layout; //就医情况
+	@ViewInject(R.id.custom_jiuyi_layout) private LinearLayout custom_jiuyi_layout; //基本情况
+	@ViewInject(R.id.custom_shengao) private TextView custom_shengao;
+	@ViewInject(R.id.custom_tizhong) private TextView custom_tizhong;
+	@ViewInject(R.id.custom_jibing) private TextView jibing;
+	@ViewInject(R.id.custom_jiankanzhuangkuang) private TextView jiankanzhuangk;
 
 	private HashMap<String, Medicine> medicines = new HashMap<>();
 	private HashMap<String, AbnormalEvent> abnormalEvents = new HashMap<>();
@@ -239,9 +245,10 @@ public class CustomInfoActivity extends BaseActivity {
 		RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMER_INFO, customId), activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
-					L.d(TAG, data.toString());
+					L.d(TAG, data.getJSONObject("healthInfo").toString());
 					JSONObject city = data.getJSONObject("city");
-					custom_city.setText(JSONObjectUtils.getString(city, "name"));
+					JSONObject province = data.getJSONObject("province");
+					custom_city.setText(JSONObjectUtils.getString(province, "name")+JSONObjectUtils.getString(city, "name"));
 
 					custom_address.setText(JSONObjectUtils.getString(data, "address").equals("null")?"无":JSONObjectUtils.getString(data, "address"));
 					custom_mobile.setText(JSONObjectUtils.getString(data, "phoneNumber").equals("null")?"无":JSONObjectUtils.getString(data, "phoneNumber"));
@@ -258,12 +265,12 @@ public class CustomInfoActivity extends BaseActivity {
 					if(!data.getString("height").equals("null")){
 						custom_shengao.setText(JSONObjectUtils.getInt(data, "height")+"CM");
 					}else{
-						custom_shengao.setText("0");
+						custom_shengao.setText("未填写");
 					}
 					if(!data.getString("weight").equals("null")){
-						custom_tizhong.setText(JSONObjectUtils.getInt(data, "height")+"CM");
+						custom_tizhong.setText(JSONObjectUtils.getInt(data, "weight")+"KG");
 					}else{
-						custom_tizhong.setText("0");
+						custom_tizhong.setText("未填写");
 					}
 					if (data.getJSONObject("serviceCount").equals("免费服务包")) {
 						service_pakege.setText("免费服务包(永久)");
@@ -287,7 +294,46 @@ public class CustomInfoActivity extends BaseActivity {
 					constom_info_gender.setText("性别："+UYIUtils.convertGender(data.getString("gender")));
 					constom_info_chushengriqi.setText("出生日期："+data.getString("birthday"));
 					constom_info_name.setText( data.getString("realName"));
+
+					if(JSONObjectUtils.getInt(data, "chronicDiseaseType") == 1){
+						jibing.setText("高血压");
+					}else if(JSONObjectUtils.getInt(data, "chronicDiseaseType") == 2){
+						jibing.setText("糖尿病");
+					}else if(JSONObjectUtils.getInt(data, "chronicDiseaseType") == 3){
+						jibing.setText("高血压兼糖尿病");
+					}else{
+						jibing.setText("无");
+					}
+
+
+
+					jiankanzhuangk.setText(JSONObjectUtils.getString(data, "healthCondition").equals("null")?"无":JSONObjectUtils.getString(data, "healthCondition"));
+//					//						@ViewInject(R.id.custom_zhongdu) private TextView custom_zhongdu;
+////						@ViewInject(R.id.custom_xitonghuigu) private TextView custom_xitonghuigu;
+////						@ViewInject(R.id.custom_yufangjiezhonshi) private TextView custom_yufangjiezhonshi;
+////						@ViewInject(R.id.custom_jibing) private TextView jibing;
+////						@ViewInject(R.id.custom_jiankanzhuangkuang) private TextView jiankanzhuangk;
+//
 					if(data.has("healthInfo")){
+						custom_qitabuchong.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others"));
+						custom_yufangjiezhonshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "vaccinationHistory").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "vaccinationHistory"));
+						custom_shuxueshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "blood").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "blood"));
+						custom_waishangshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "trauma").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "trauma"));
+						custom_jiwangbinshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "medical").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "medical"));
+						custom_chuanranbinshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "infection").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "infection"));
+
+						custom_shoushushi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "operation").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "operation"));
+						custom_huaiyun_liuchan.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "pregnancy").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "pregnancy"));
+						custom_yuejing.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "menstruation").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "menstruation"));
+						custom_shiwuguoming.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "allergic").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "allergic"));
+
+						custom_jiazhubingshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "familyMedical").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "familyMedical"));
+						custom_muqianfuyao.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "current").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "current"));
+						custom_qitabubingshi.setText(JSONObjectUtils.getString(data, "others").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others"));
+						custom_zhongdu.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "allergic").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "allergic"));
+						custom_xitonghuigu.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "retrospection").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "retrospection"));
+
+
 						custom_yaowu_guomin.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "historyOfAllergy").equals("null")?"":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "historyOfAllergy"));
 						custom_yaowu_ying.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "drugAddiction").equals("null")?"":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "drugAddiction"));
 						JSONArray jiuyi = data.getJSONObject("healthInfo").getJSONArray("externalSituations");
@@ -335,26 +381,37 @@ public class CustomInfoActivity extends BaseActivity {
 			}
 		});
 		//健康资料
-		RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMER_HEALTH_INFO, customId), activity, new Listener<JSONObject>() {
-			public void onResponse(JSONObject data) {
-				try {
-					custom_jiwangbinshi.setText(JSONObjectUtils.getString(data, "medical").equals("null")?"无":JSONObjectUtils.getString(data, "medical"));
-					custom_chuanranbinshi.setText(JSONObjectUtils.getString(data, "infection").equals("null")?"无":JSONObjectUtils.getString(data, "infection"));
-					custom_waishangshi.setText(JSONObjectUtils.getString(data, "trauma").equals("null")?"无":JSONObjectUtils.getString(data, "trauma"));
-					custom_shoushushi.setText(JSONObjectUtils.getString(data, "operation").equals("null")?"无":JSONObjectUtils.getString(data, "operation"));
-					custom_huaiyun_liuchan.setText(JSONObjectUtils.getString(data, "pregnancy").equals("null")?"无":JSONObjectUtils.getString(data, "pregnancy"));
-					custom_yuejing.setText(JSONObjectUtils.getString(data, "menstruation").equals("null")?"无":JSONObjectUtils.getString(data, "menstruation"));
-					custom_shiwuguoming.setText(JSONObjectUtils.getString(data, "allergic").equals("null")?"无":JSONObjectUtils.getString(data, "allergic"));
-					custom_shuxueshi.setText(JSONObjectUtils.getString(data, "blood").equals("null")?"无":JSONObjectUtils.getString(data, "blood"));
-					custom_jiazhubingshi.setText(JSONObjectUtils.getString(data, "familyMedical").equals("null")?"无":JSONObjectUtils.getString(data, "familyMedical"));
-					custom_muqianfuyao.setText(JSONObjectUtils.getString(data, "current").equals("null")?"无":JSONObjectUtils.getString(data, "current"));
-					custom_qitabuchong.setText(JSONObjectUtils.getString(data, "others").equals("null")?"无":JSONObjectUtils.getString(data, "others"));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		custom_jiankang.performClick();
+//		RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMER_HEALTH_INFO, customId), activity, new Listener<JSONObject>() {
+//			public void onResponse(JSONObject data) {
+//				try {
+//					custom_jiwangbinshi.setText(JSONObjectUtils.getString(data, "medical").equals("null")?"无":JSONObjectUtils.getString(data, "medical"));
+//					custom_chuanranbinshi.setText(JSONObjectUtils.getString(data, "infection").equals("null")?"无":JSONObjectUtils.getString(data, "infection"));
+//					custom_waishangshi.setText(JSONObjectUtils.getString(data, "trauma").equals("null")?"无":JSONObjectUtils.getString(data, "trauma"));
+//					custom_shoushushi.setText(JSONObjectUtils.getString(data, "operation").equals("null")?"无":JSONObjectUtils.getString(data, "operation"));
+//					custom_huaiyun_liuchan.setText(JSONObjectUtils.getString(data, "pregnancy").equals("null")?"无":JSONObjectUtils.getString(data, "pregnancy"));
+//					custom_yuejing.setText(JSONObjectUtils.getString(data, "menstruation").equals("null")?"无":JSONObjectUtils.getString(data, "menstruation"));
+//					custom_shiwuguoming.setText(JSONObjectUtils.getString(data, "allergic").equals("null")?"无":JSONObjectUtils.getString(data, "allergic"));
+//					custom_shuxueshi.setText(JSONObjectUtils.getString(data, "blood").equals("null")?"无":JSONObjectUtils.getString(data, "blood"));
+//					custom_jiazhubingshi.setText(JSONObjectUtils.getString(data, "familyMedical").equals("null")?"无":JSONObjectUtils.getString(data, "familyMedical"));
+//					custom_muqianfuyao.setText(JSONObjectUtils.getString(data, "current").equals("null")?"无":JSONObjectUtils.getString(data, "current"));
+//					custom_qitabuchong.setText(JSONObjectUtils.getString(data, "others").equals("null")?"无":JSONObjectUtils.getString(data, "others"));
+//					custom_zhongdu.setText(JSONObjectUtils.getString(data, "allergic").equals("null")?"无":JSONObjectUtils.getString(data, "allergic"));
+//					custom_xitonghuigu.setText(JSONObjectUtils.getString(data, "retrospection").equals("null")?"无":JSONObjectUtils.getString(data, "retrospection"));
+//					custom_yufangjiezhonshi.setText(JSONObjectUtils.getString(data, "vaccinationHistory").equals("null")?"无":JSONObjectUtils.getString(data, "vaccinationHistory"));
+//					jibing.setText(JSONObjectUtils.getString(data, "others").equals("null")?"无":JSONObjectUtils.getString(data, "others"));
+//					custom_qitabuchong.setText(JSONObjectUtils.getString(data, "others").equals("null")?"无":JSONObjectUtils.getString(data, "others"));
+//					//						@ViewInject(R.id.custom_zhongdu) private TextView custom_zhongdu;
+////						@ViewInject(R.id.custom_xitonghuigu) private TextView custom_xitonghuigu;
+////						@ViewInject(R.id.custom_yufangjiezhonshi) private TextView custom_yufangjiezhonshi;
+////						@ViewInject(R.id.custom_jibing) private TextView jibing;
+////						@ViewInject(R.id.custom_jiankanzhuangkuang) private TextView jiankanzhuangk;
+//
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+		custom_gereng.performClick();
 	}
 
 	@Override

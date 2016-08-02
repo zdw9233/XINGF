@@ -75,6 +75,7 @@ public class SugarServiceActivity extends BaseActivity {
                     if (jsonObject.has("id")) {
                         int id = jsonObject.getInt("id");
                         int beans = jsonObject.getInt("beans");
+                        boolean b =  jsonObject.getBoolean("isActive");
                         Intent intent = new Intent();
                         if (TYPE_TX_3_MONTH.equals(type)) {
                             intent.setClass(SugarServiceActivity.this, SugarPeaceExperienceActivity.class);
@@ -85,6 +86,7 @@ public class SugarServiceActivity extends BaseActivity {
                         }
                         intent.putExtra("id", id);
                         intent.putExtra("beans", beans);
+                        intent.putExtra("isActive", b);
                         intent.putExtra("name", jsonObject.getString("name"));
                         startActivity(intent);
                     }

@@ -42,13 +42,20 @@ public class SugarPeaceExperienceActivity extends BaseActivity implements Dialog
     private int id;
     private String name;
     private int beans;
-
+    private boolean b;
     @Override
     protected void onInitLayoutAfter() {
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("糖心服务").setTitleColor(getResources().getColor(R.color.blue));
         id = getIntent().getIntExtra("id", 0);
+        b = getIntent().getBooleanExtra("isActive", false);
         name = getIntent().getStringExtra("name");
         beans = getIntent().getIntExtra("beans", 0);
+        if(b == true){
+            anxin_pay.setEnabled(true);
+        }else{
+            anxin_pay.setEnabled(false);
+            anxin_pay.setText("暂未开放，敬请期待！");
+        }
     }
 
     @OnClick(R.id.anxin_pay)

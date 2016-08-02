@@ -93,6 +93,8 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private PopupWindow mSetPhotoPop;
     private String phone;
     private String dizhi, lianxidianhua, youxiangdizhi, zhiye, shenggao, tizhong;
+    private String  jiankzk = "";
+    private String jibingg = "-1";
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
     private LayoutInflater mInflater;
@@ -345,7 +347,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 public void onResponse(JSONObject data) {
                     try {
                         Loading.bulid(activity, null).dismiss();
-
+                        L.e("ONE",data.toString());
+//                        if(data.has("healthCondition"))
+//                        jiankzk = JSONObjectUtils.getString(data, "healthCondition");
+//                        if(data.has("chronicDiseaseType"))
+//                        jibingg =  JSONObjectUtils.getString(data, "chronicDiseaseType");
                         ImageCacheManager.loadImage(JSONObjectUtils.getString(data, "icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
                         register_shen.setText(data.getJSONObject("province").getString("name"));
                         register_city.setText(data.getJSONObject("city").getString("name"));
@@ -425,15 +431,23 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                             register_info_jiazhubinshi.setText(b.familyMedical);
                             register_info_muqianfuyaoqingkuang.setText(b.current);
                             register_info_qitabuchongqingkuang.setText(b.others);
+                            register_info_zhongdushi.setText(b.allergic);
+                            register_info_qitabinshi.setText(b.others);
+                            register_info_yufangjiezhonshi.setText(b.vaccinationHistory);
+                            register_info_xitonghuigu.setText(b.retrospection);
                             register_height.setText(health.height);
+                            shenggao = health.height;
                             register_weight.setText(health.weight);
+                            tizhong = health.weight;
                             register_info_one_jiankangzhuangkuang.setText(health.healthCondition);
+                            jiankzk =health.healthCondition;
+//                            jibingg = data.getInt("chronicDiseaseType");
                             int[] ints = {R.id.rb_gxy, R.id.rb_tnb, R.id.rb_gxy_tnb};
                             if (health.chronicDiseaseType != 0)
                                 radioGroup.check(ints[health.chronicDiseaseType - 1]);
                             register_info_chengyingdeyaowu.setText(b.drugAddiction);
                             Health.HealthInfoBean.AbnormalEventJsonsBean j = b.abnormalEventJsons;
-                            L.e("J===", j.id + "");
+//                            L.e("J===", j.id + "");
                             if (j != null) {
                                 id = j.id;
                                 regester_info_xueguanfashengshijian.setText(j.time);
@@ -856,9 +870,22 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                     mHealthInfo.abnormalEventJsons = null;
                 }
                 JSONObject object = null;
+                JSONObject params1 = null;
                 health.phoneNumber = phone;
                 try {
                     object = new JSONObject(JSON.toJSONString(health));
+//                    params1 = new JSONObject();
+//                    int height = Integer.parseInt(shenggao);
+//                    int weight = Integer.parseInt(tizhong);
+//                    params1.put("backupPhoneNumber", lianxidianhua);
+//                    params1.put("phoneNumber", phone);
+//                    params1.put("email", youxiangdizhi);
+//                    params1.put("address", dizhi);
+//                    params1.put("occupation", zhiye);
+//                    params1.put("height", height);
+//                    params1.put("weight", weight);
+//                    params1.put("healthInfo", object);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -883,6 +910,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
 //                            }
 //                        });
 //                }
+
                     Loading.bulid(this, null).show();
                     RequestManager.postObject(Constens.ACCOUNT_UPDATE, this, object, new Response.Listener<JSONObject>() {
                         @Override
@@ -1263,12 +1291,17 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 params.put("occupation", occupation);
                 params.put("height", height);
                 params.put("weight", weight);
+//                    if(!jiankzk.equals(""))
+//                        params.put("healthCondition", jiankzk);
+//                    if(!jibingg .equals("-1") )
+//                        params.put("chronicDiseaseType", jibingg);
                 dizhi = address;
                 lianxidianhua = phone;
                 youxiangdizhi = email;
                 zhiye = occupation;
                 shenggao = register_height.getText().toString();
                 tizhong = register_weight.getText().toString();
+
                 Loading.bulid(activity, null).show();
                 RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
                     @Override
@@ -1420,6 +1453,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 params.put("height", height);
                 params.put("weight", weight);
                 params.put("healthInfo", healthInfoObject);
+                L.e("zhiye==============",params.toString());
                 Loading.bulid(activity, null).show();
                 RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, null, new RequestErrorListener() {
                     @Override

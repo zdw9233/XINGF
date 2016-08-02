@@ -78,6 +78,7 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 		id = getIntent().getIntExtra("id", 0);
 		System.out.println(id+"_____________");
 		isMy = getIntent().getIntExtra("isMy",0);
+		team_goup_jiaru.setVisibility(View.GONE);
 		team_goup_jiaru.setOnClickListener(new OnClickListener() {
 			
 			@Override

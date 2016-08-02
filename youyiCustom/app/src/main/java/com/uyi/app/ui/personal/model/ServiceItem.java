@@ -18,4 +18,5 @@ public class ServiceItem {
     public String unit;
     public int count;
     public int beans;
+    public boolean isActive;
 }

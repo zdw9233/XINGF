@@ -37,7 +37,7 @@ public class SugarHalfYearActivity extends BaseActivity implements DialogInterfa
     @ViewInject(R.id.anxin_pay)
     private TextView anxin_pay;
     private MessageConform conform;
-
+    private boolean b;
 
     private int id;
     private String name;
@@ -49,6 +49,13 @@ public class SugarHalfYearActivity extends BaseActivity implements DialogInterfa
         id = getIntent().getIntExtra("id", 0);
         name = getIntent().getStringExtra("name");
         beans = getIntent().getIntExtra("beans", 0);
+        b = getIntent().getBooleanExtra("isActive", false);
+        if(b == true){
+            anxin_pay.setEnabled(true);
+        }else{
+            anxin_pay.setEnabled(false);
+            anxin_pay.setText("暂未开放，敬请期待！");
+        }
     }
 
     @OnClick(R.id.anxin_pay)

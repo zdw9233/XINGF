@@ -29,7 +29,7 @@ public class DatePicker extends LinearLayout {
     private DPLManager mLManager;// 语言管理器
 
     private MonthView monthView;// 月视图
-    private TextView tvYear, tvMonth;// 年份 月份显示
+    private TextView tvYear,tvye, tvMonth,tvmo;// 年份 月份显示
     private TextView tvEnsure;// 确定按钮显示
 
 
@@ -96,7 +96,10 @@ public class DatePicker extends LinearLayout {
         tvYear.setText("2015");
         tvYear.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         tvYear.setTextColor(mTManager.colorTitle());
-     
+        tvye = new TextView(context);
+        tvye.setText("↓");
+        tvye.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
+        tvye.setTextColor(mTManager.colorTitle());
         // 月份显示
         tvMonth = new TextView(context);
         tvMonth.setText("六月");
@@ -118,6 +121,7 @@ public class DatePicker extends LinearLayout {
         });
 
         rlTitle.addView(tvYear, lpYear);
+        rlTitle.addView(tvye, lpYear);
         rlTitle.addView(tvMonth, lpMonth);
         rlTitle.addView(tvEnsure, lpEnsure);
 
