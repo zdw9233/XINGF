@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uyi.custom.app"
-    android:versionCode="8"
-    android:versionName="2.10">
+    android:versionCode="11"
+    android:versionName="2.1.0">
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -50,7 +50,7 @@
     <application
         android:name="com.uyi.app.UYIApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_logo_custom"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <service
@@ -201,7 +201,7 @@
         <activity
             android:name="com.uyi.app.ui.personal.questions.HealthyQuestionsDetailsActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan" ></activity>
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"></activity>
         <activity
             android:name="com.uyi.app.ui.personal.schedule.DatePickerActivity"
             android:screenOrientation="portrait"></activity>

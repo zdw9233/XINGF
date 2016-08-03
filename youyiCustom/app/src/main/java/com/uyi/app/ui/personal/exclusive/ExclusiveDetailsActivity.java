@@ -1,5 +1,6 @@
 package com.uyi.app.ui.personal.exclusive;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -143,13 +144,14 @@ public class ExclusiveDetailsActivity extends BaseActivity {
 					Loading.bulid(activity, null).dismiss();
 					exclusive_details_layout.setVisibility(View.GONE);
 					exclusive_details_success_layout.setVisibility(View.VISIBLE);
+					sendBroadcast(new Intent("com.uyi.beans"));
 				}
 			},new  RequestErrorListener() {
 				public void requestError(VolleyError e) {
 					Loading.bulid(activity, null).dismiss();
 					exclusive_details_layout.setVisibility(View.GONE);
 					exclusive_details_success_layout.setVisibility(View.VISIBLE);
-
+					sendBroadcast(new Intent("com.uyi.beans"));
 				}
 			});
 		}else if(v.getId() == R.id.exclusive_details_success_ric){

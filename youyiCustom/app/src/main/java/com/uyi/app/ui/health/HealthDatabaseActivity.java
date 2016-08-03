@@ -163,9 +163,11 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
 
         if (selectedDate == 1) {
             Intent intent = new Intent(this, DatePickerActivity.class);
+            intent.putExtra("currentDate", health_database_starttime.getText().toString().trim());
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         } else if (selectedDate == 2) {
             Intent intent = new Intent(this, DatePickerActivity.class);
+            intent.putExtra("currentDate", health_database_endtime.getText().toString().trim());
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         }
     }

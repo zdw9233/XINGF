@@ -84,7 +84,12 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
                     pagerData.setBloodPressure_pic(data.getString("bloodPressure_pic"));
                     pagerData.setBloodSugar_pic(data.getString("bloodSugar_pic"));
                     pagerData.setComment1(data.getString("comment1"));
-                    L.e("pagerData==", pagerData.toString());
+                    if(data.has("comment2")){
+                        pagerData.setComment2(data.getString("comment2"));
+                    }else{
+                        pagerData.setComment2("暂无数据！");
+                    }
+                    L.e("pagerData==",pagerData.toString());
 //                    mPagerAdapter.setPagerData(pagerData);
                     mPagerAdapter = new PersonalPagerAdapter(context, pagerData);
                     mViewPager.setAdapter(mPagerAdapter);

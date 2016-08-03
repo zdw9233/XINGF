@@ -253,6 +253,7 @@ public class Main extends BaseFragmentActivity {
 
     @Override
     protected void onDestroy() {
+        if(mBeansReceiver!=null)
         unregisterReceiver(mBeansReceiver);
         super.onDestroy();
     }

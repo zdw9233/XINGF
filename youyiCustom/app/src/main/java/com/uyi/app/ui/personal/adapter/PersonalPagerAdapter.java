@@ -55,7 +55,7 @@ public class PersonalPagerAdapter extends PagerAdapter {
             if (pagerData == null) {
                 content.setText("您最近还没有测试！");
             } else {
-                content.setText(pagerData.getComment1());
+                content.setText(pagerData.getComment2());
                 ImageUtil.load(pagerData.getBloodSugar_pic(), img);
             }
         }

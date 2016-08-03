@@ -54,7 +54,7 @@
 	                android:layout_weight="1"
 	                android:layout_gravity="center_vertical"
 	                android:background="@null"
-	                android:hint="请输入团队名或专家名"
+	                android:hint="请输入团队名搜索"
 	                android:textSize="14sp"
 	                android:ems="10" >
 	

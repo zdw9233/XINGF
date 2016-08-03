@@ -190,10 +190,10 @@ String name;
                     if (pageNo <= totalPage) {
                         isLooding = true;
                         pageNo++;
-                    } else {
-                        recyclerView.setRefreshing(false);
+                } else {
+                    recyclerView.setRefreshing(false);
 
-                    }
+                }
                 }
             });
         } else {

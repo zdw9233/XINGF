@@ -99,7 +99,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
         } else if (userInfo.type == 2) {
             headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showRight(true).showTitle(true).setTitle("所有互动").setTitleColor(getResources().getColor(R.color.blue));
         }
-        linearLayoutManager = new LinearLayoutManager(getView().getContext());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         consultationAdapter = new ConsultationAdapter(getView().getContext());
         consultationAdapter.setOnItemClickListener(this);
@@ -129,6 +129,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
         headerView.setKitkat(systemBarConfig);
     }
+
     @Override
     public void onResume() {
         L.e("       super.onResume();;");
@@ -136,6 +137,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
         onRefresh();
     }
+
     @Override
     public boolean shouldLoad() {
         return isLooding;
@@ -144,12 +146,13 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
     @Override
     public void loadNextPage() {
         isLooding = false;
-        Loading.bulid(getView().getContext(), null).show();
-        RequestManager.getObject(String.format(Constens.HEALTH_CONSULTS + "&name=" + name, "1", "1", pageNo, pageSize), getView().getContext(), new Listener<JSONObject>() {
+        final Loading loading = Loading.bulid(main, null);
+        loading.show();
+        RequestManager.getObject(String.format(Constens.HEALTH_CONSULTS + "&name=" + name, "1", "1", pageNo, pageSize), getActivity(), new Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject data) {
                 try {
-                    Loading.bulid(getView().getContext(), null).dismiss();
+                    loading.dismiss();
                     initLoad = false;
                     totalPage = data.getInt("pages");
                     if (pageNo == 1)

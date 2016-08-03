@@ -5,6 +5,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -43,7 +45,7 @@ import java.util.Map;
 public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnItemClickListener<Map<String, Object>>, Pager, OnRefreshListener {
 
 	@ViewInject(R.id.headerView) private HeaderView headerView;
-	
+	@ViewInject(R.id.no_exclusive) private TextView no_exclusive;
 	@ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
 	@ViewInject(R.id.swipeRefreshLayout) private SwipeRefreshLayout swipeRefreshLayout;
 	
@@ -80,7 +82,7 @@ public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnI
 		 //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
 		swipeRefreshLayout.setOnRefreshListener(this); 
-		onRefresh();
+//		onRefresh();
 	}
 
 	@Override
@@ -146,6 +148,19 @@ public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnI
 						item.put("icon", doctor.getString("icon"));
 						datas.add(item);
 					}
+					if(datas.size() == 0){
+						swipeRefreshLayout.setVisibility(View.GONE);
+						if(type == 1){
+							no_exclusive.setVisibility(View.VISIBLE);
+							no_exclusive.setText("暂无已预约！");
+						}else{
+							no_exclusive.setVisibility(View.VISIBLE);
+							no_exclusive.setText("暂无预约，敬请期待！");
+						}
+					}else{
+						swipeRefreshLayout.setVisibility(View.VISIBLE);
+						no_exclusive.setVisibility(View.GONE);
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -173,6 +188,12 @@ public class ExclusiveActivity extends BaseActivity implements OnTabChanage, OnI
 	public void onChanage(int postion) {
 		if(postion != type){
 			type = postion;
+			if(postion == 1){
+				no_exclusive.setVisibility(View.GONE);
+				swipeRefreshLayout.setVisibility(View.VISIBLE);
+			}else{
+				no_exclusive.setVisibility(View.VISIBLE);
+			}
 			onRefresh() ;
 		}		
 	}

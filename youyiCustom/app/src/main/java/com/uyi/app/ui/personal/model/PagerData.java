@@ -44,5 +44,14 @@ public class PagerData {
         this.comment1 = comment1;
     }
 
+    public String getComment2() {
+        return comment2;
+    }
+
+    public void setComment2(String comment2) {
+        this.comment2 = comment2;
+    }
+
     private String comment1;
+    private String comment2;
     }

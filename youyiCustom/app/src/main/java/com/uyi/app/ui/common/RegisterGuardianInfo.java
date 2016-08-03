@@ -201,6 +201,7 @@ public class RegisterGuardianInfo extends BaseActivity implements AbstractSpiner
             loadCity();
         } else if (view.getId() == R.id.register_chushennianyue) {
             Intent intent = new Intent(activity, DatePickerActivity.class);
+            intent.putExtra("currentDate", register_chushennianyue.getText().toString().trim());
             intent.putExtra("eDate", DateUtils.toDate(new Date(), Constens.DATE_FORMAT_YYYY_MM_DD));
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
         } else if (view.getId() == R.id.register_submit) {

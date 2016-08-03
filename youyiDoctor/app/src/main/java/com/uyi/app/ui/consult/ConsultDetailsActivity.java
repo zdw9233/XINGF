@@ -502,6 +502,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 			startActivityForResult(intent,Constens.START_ACTIVITY_FOR_RESULT);
 		}else if(v.getId() == R.id.consult_ditails_jianchashijian){
 			Intent intent = new Intent(activity, DatePickerActivity.class);
+			intent.putExtra("currentDate", consult_ditails_jianchashijian.getText().toString().trim());
 			startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT_TWO);
 		}else if(v.getId() == R.id.consult_ditails_fanhuihuanzhe){
 //			submit(1);

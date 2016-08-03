@@ -1,11 +1,14 @@
 package com.uyi.app.ui.personal.schedule;
 
-import java.util.Date;
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import org.json.JSONObject;
-
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -22,12 +25,9 @@ import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import org.json.JSONObject;
+
+import java.util.Date;
 
 
 /**
@@ -60,6 +60,7 @@ public class AddScheduleActivity extends BaseActivity {
 		}else if(v.getId() == R.id.schedule_add_time){
 			Intent intent = new Intent(activity, DatePickerActivity.class);
 			intent.putExtra("sDate", DateUtils.toDate(new Date(), Constens.DATE_FORMAT_YYYY_MM_DD));
+			intent.putExtra("currentDate", schedule_add_time.getText().toString().trim());
 			intent.putExtra("sDateMessage", getString(R.string.s_date_message));
 			startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
 		}

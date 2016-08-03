@@ -73,6 +73,7 @@ public class EaseServiceActivity extends BaseActivity {
                     if (jsonObject.has("id")) {
                         int id = jsonObject.getInt("id");
                         int beans = jsonObject.getInt("beans");
+                        boolean b =  jsonObject.getBoolean("isActive");
                         Intent intent = new Intent();
                         if (TYPE_AX_3_MONTH.equals(type)) {
                             intent.setClass(EaseServiceActivity.this, EasePeaceExperienceActivity.class);
@@ -83,6 +84,7 @@ public class EaseServiceActivity extends BaseActivity {
                         }
                         intent.putExtra("id", id);
                         intent.putExtra("beans", beans);
+                        intent.putExtra("isActive", b);
                         intent.putExtra("name", jsonObject.getString("name"));
                         startActivity(intent);
                     }
