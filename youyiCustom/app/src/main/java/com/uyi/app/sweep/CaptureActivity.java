@@ -2,6 +2,7 @@ package com.uyi.app.sweep;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
@@ -9,11 +10,14 @@ import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -28,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
@@ -141,6 +146,23 @@ public class CaptureActivity extends Activity implements Callback {
         mAnimation.setRepeatMode(Animation.REVERSE);
         mAnimation.setInterpolator(new LinearInterpolator());
         mQrLineView.setAnimation(mAnimation);
+
+
+        surfaceView = (SurfaceView) findViewById(R.id.capture_preview);
+        SurfaceHolder surfaceHolder = surfaceView.getHolder();
+        if (hasSurface) {
+            initCamera(surfaceHolder);
+        } else {
+            surfaceHolder.addCallback(this);
+            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
+        playBeep = true;
+        AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
+        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+            playBeep = false;
+        }
+        initBeepSound();
+        vibrate = true;
     }
 
     boolean flag = true;
@@ -162,21 +184,6 @@ public class CaptureActivity extends Activity implements Callback {
     @Override
     protected void onResume() {
         super.onResume();
-        surfaceView = (SurfaceView) findViewById(R.id.capture_preview);
-        SurfaceHolder surfaceHolder = surfaceView.getHolder();
-        if (hasSurface) {
-            initCamera(surfaceHolder);
-        } else {
-            surfaceHolder.addCallback(this);
-            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        }
-        playBeep = true;
-        AudioManager audioService = (AudioManager) getSystemService(AUDIO_SERVICE);
-        if (audioService.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
-            playBeep = false;
-        }
-        initBeepSound();
-        vibrate = true;
     }
 
     @Override
@@ -260,8 +267,11 @@ public class CaptureActivity extends Activity implements Callback {
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
+            if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
+            } else requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
         } else
             try {
                 CameraManager.get().openDriver(surfaceHolder);
@@ -357,8 +367,8 @@ public class CaptureActivity extends Activity implements Callback {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 0x100) {
-
+        if (requestCode == 0x100 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            L.e("PackageManager.PERMISSION_GRANTED");
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
             if (hasSurface) {
                 initCamera(surfaceHolder);
@@ -366,6 +376,21 @@ public class CaptureActivity extends Activity implements Callback {
                 surfaceHolder.addCallback(this);
                 surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
             }
+        } else {
+            new AlertDialog.Builder(this).setTitle("提示").setMessage("无法获取相机权限，请手动在权限管理里面打开应用相机权限,是否前往打开？").setPositiveButton("购买",  new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    intent.setData(Uri.fromParts("package", getPackageName(), null));
+                    startActivity(intent);
+                }
+            }).setNegativeButton("取消",  new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            }).show();
         }
     }
 }

@@ -59,11 +59,12 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     private TextView mQuestionNum;
     List<T> list = new ArrayList<>();
     private int[] radioIds = {R.id.radioButton1, R.id.radioButton2};
-    UserInfo userInfo ;
+    UserInfo userInfo;
     private MessageReceiver mMessageReceiver;
 
     PersonalPagerAdapter mPagerAdapter;
     PagerData pagerData;
+
     @Override
     protected int getLayoutResouesId() {
         return R.layout.fragment_personal_center_new;
@@ -72,25 +73,25 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
     @Override
     protected void onInitLayoutAfter() {
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon).showTitle(true).showRight(true).setTitle("首页").setTitleColor(getResources().getColor(R.color.blue));
-        pagerData  = new PagerData();
+        pagerData = new PagerData();
         mViewPager.addOnPageChangeListener(this);
         RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, null, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
-                    L.e("data==",data.toString());
+                    L.e("data==", data.toString());
 //                    PagerData pagerData = JSON.parseObject(data.toString(), PersonalPagerAdapter.PagerData.class);
 
-                    pagerData.setBloodPressure_pic( data.getString("bloodPressure_pic"));
-                    pagerData.setBloodSugar_pic(data.getString("bloodSugar_pic"))  ;
+                    pagerData.setBloodPressure_pic(data.getString("bloodPressure_pic"));
+                    pagerData.setBloodSugar_pic(data.getString("bloodSugar_pic"));
                     pagerData.setComment1(data.getString("comment1"));
-                    L.e("pagerData==",pagerData.toString());
+                    L.e("pagerData==", pagerData.toString());
 //                    mPagerAdapter.setPagerData(pagerData);
                     mPagerAdapter = new PersonalPagerAdapter(context, pagerData);
                     mViewPager.setAdapter(mPagerAdapter);
                     mPagerAdapter.notifyDataSetChanged();
 
                 } catch (Exception e) {
-                    L.e("e==",e.toString());
+                    L.e("e==", e.toString());
                 }
 
             }
@@ -172,6 +173,7 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
                 break;   //醫師互動
         }
     }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
