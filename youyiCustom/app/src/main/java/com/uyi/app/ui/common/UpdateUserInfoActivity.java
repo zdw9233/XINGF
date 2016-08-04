@@ -596,6 +596,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
     private void setValue(int index) {
         switch (index) {
             case 1:
+
                 String height = register_height.getText().toString();              //身高
                 String weight = register_weight.getText().toString();           //体重
                 int radioButtonId = radioGroup.getCheckedRadioButtonId();           //有啥子病
@@ -871,8 +872,14 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                     mHealthInfo.abnormalEventJsons = null;
                 }
                 JSONObject object = null;
+                String address = register_address.getText().toString();
+                String lianxidianh = register_phone.getText().toString();
+                String zy = register_zhiye.getText().toString();
                 JSONObject params1 = null;
                 health.phoneNumber = phone;
+                health.address = address;
+                health.backupPhoneNumber = lianxidianh;
+                health.occupation = zy;
                 try {
                     object = new JSONObject(JSON.toJSONString(health));
 //                    params1 = new JSONObject();
@@ -1224,7 +1231,29 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         }
     }
 
-
+    private void updateInfo(String account, String password) {
+        JSONObject params = new JSONObject();
+        try {
+            params.put("account", account);
+            params.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestManager.postObject(Constens.LOGIN_URL, activity, params, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    userInfo.authToken = data.getString("authToken");
+                    if(userInfo.logasguardian == true){
+                        userInfo.icon = data.getString("guardianIcon");
+                    }else
+                    userInfo.icon = data.getString("icon");
+                    UserInfoManager.setLoginUserInfo(activity, userInfo);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, null);
+    }
     @OnClick({R.id.register_three_submit, R.id.register_info_submit})
     public void clickInfo(View view) {
         if (view.getId() == R.id.register_three_submit) {//个人资料
@@ -1288,6 +1317,16 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                 if (city != null) {
                     params.put("cityId", city);
                 }
+                int radioButtonId = radioGroup.getCheckedRadioButtonId();           //有啥子病
+                String jkzk = register_info_one_jiankangzhuangkuang.getText().toString();  //健康状况
+                if (radioButtonId == R.id.rb_gxy) {
+                    params.put("chronicDiseaseType", 1);
+                } else if (radioButtonId == R.id.rb_tnb) {
+                    params.put("chronicDiseaseType", 2);
+                } else if (radioButtonId == R.id.rb_gxy_tnb) {
+                    params.put("chronicDiseaseType", 3);
+                }
+                params.put("healthCondition", jkzk);
                 params.put("address", address);
                 params.put("occupation", occupation);
                 params.put("height", height);
@@ -1311,12 +1350,13 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                         if (e.networkResponse != null) {
                             if (e.networkResponse.statusCode == 204) {
                                 T.showShort(activity, "修改成功!");
-
+                                updateInfo(userInfo.account, userInfo.password);
                             } else {
                                 T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
                             }
                         } else {
                             T.showShort(activity, "修改成功!");
+                            updateInfo(userInfo.account, userInfo.password);
                         }
                     }
                 });

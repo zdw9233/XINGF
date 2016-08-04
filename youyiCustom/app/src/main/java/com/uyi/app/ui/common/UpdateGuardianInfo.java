@@ -360,21 +360,44 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
                 Loading.bulid(activity, null).dismiss();
                 if (e.networkResponse != null) {
                     if (e.networkResponse.statusCode == 204) {
+
                         T.showShort(activity, "修改成功!");
-                        UpdateGuardianInfo.this.finish();
+                        updateInfo(userInfo.account, userInfo.password);
+//                        UpdateGuardianInfo.this.finish();
                     } else {
                         T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
                     }
                 } else {
+                    updateInfo(userInfo.account, userInfo.password);
                     T.showShort(activity, "修改成功!");
-                    UpdateGuardianInfo.this.finish();
+                    updateInfo(userInfo.account, userInfo.password);
+//                    UpdateGuardianInfo.this.finish();
                 }
             }
         });
 
 
     }
-
+    private void updateInfo(String account, String password) {
+        JSONObject params = new JSONObject();
+        try {
+            params.put("account", account);
+            params.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestManager.postObject(Constens.LOGIN_URL, activity, params, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    userInfo.authToken = data.getString("authToken");
+                    userInfo.icon = data.getString("guardianIcon");
+                    UserInfoManager.setLoginUserInfo(activity, userInfo);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, null);
+    }
     @Override
     public void onItemClick(int pos) {
         if (spinerIndex == 2) {

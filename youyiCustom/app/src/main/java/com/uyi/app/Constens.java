@@ -89,12 +89,12 @@ public abstract class Constens {
     /**
      * 测试服地址
      */
-//    public final static String SERVER_URL = "http://121.42.142.228:8080";
+    public final static String SERVER_URL = "http://121.42.142.228:8080";
 
     /**
      * 生产服地址
      */
-	public final static String SERVER_URL = "http://www.uyidoctor.com";
+//	public final static String SERVER_URL = "http://www.uyidoctor.com";
 
     //获取协议
     public final static String REGISTER_AGREEMENT = SERVER_URL + "/app/api/common/protocol";

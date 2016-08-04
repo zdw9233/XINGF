@@ -35,12 +35,12 @@ public abstract class Constens {
     /**
      * 测试服地址
      */
-//    public final static String SERVER_URL = "http://121.42.142.228:8080";
+    public final static String SERVER_URL = "http://121.42.142.228:8080";
 
     /**
      * 生产服地址
      */
-	public final static String SERVER_URL = "http://www.uyidoctor.com";
+//	public final static String SERVER_URL = "http://www.uyidoctor.com";
     //登陆
     public final static String LOGIN_URL = SERVER_URL + "/app/api/account/login";
     //获取欢迎图片

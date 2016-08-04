@@ -230,7 +230,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
                     		
                     		 <LinearLayout
@@ -251,7 +251,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
                     		
                     		 <LinearLayout
@@ -272,7 +272,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
                 			
                     		 
@@ -294,7 +294,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
                     		
                     		   <LinearLayout
@@ -316,7 +316,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
                     		  
                     		     <LinearLayout
@@ -338,7 +338,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
                 			
                     		     
@@ -361,7 +361,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
 						  <LinearLayout
 							  android:layout_width="match_parent"
@@ -381,7 +381,7 @@ android:visibility="gone"
 								  android:layout_height="wrap_content"
 								  android:textSize="@dimen/font_style_10"
 								  android:textColor="@color/blue"
-								  android:text="个人既往病史" />
+								  android:text=" " />
 						  </LinearLayout>
 						  <LinearLayout
 	                    		android:layout_width="match_parent"
@@ -401,7 +401,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>    
                 			
                     		       
@@ -423,7 +423,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>    
                     		       
                     		       
@@ -446,7 +446,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
 
 
@@ -468,7 +468,7 @@ android:visibility="gone"
 								  android:layout_height="wrap_content"
 								  android:textSize="@dimen/font_style_10"
 								  android:textColor="@color/blue"
-								  android:text="个人既往病史" />
+								  android:text=" " />
 						  </LinearLayout>
 						  <LinearLayout
 							  android:layout_width="match_parent"
@@ -488,7 +488,7 @@ android:visibility="gone"
 								  android:layout_height="wrap_content"
 								  android:textSize="@dimen/font_style_10"
 								  android:textColor="@color/blue"
-								  android:text="个人既往病史" />
+								  android:text=" " />
 						  </LinearLayout>
 						  <LinearLayout
 							  android:layout_width="match_parent"
@@ -508,7 +508,7 @@ android:visibility="gone"
 								  android:layout_height="wrap_content"
 								  android:textSize="@dimen/font_style_10"
 								  android:textColor="@color/blue"
-								  android:text="个人既往病史" />
+								  android:text=" " />
 						  </LinearLayout>
 						  <LinearLayout
 	                    		android:layout_width="match_parent"
@@ -529,7 +529,7 @@ android:visibility="gone"
                     		          android:layout_height="wrap_content"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
-                    		          android:text="个人既往病史" />
+                    		          android:text=" " />
                 			</LinearLayout>
 						  <LinearLayout
 							  android:layout_width="match_parent"
@@ -748,7 +748,7 @@ android:visibility="gone"
 							android:layout_height="wrap_content"
 							android:textSize="@dimen/font_style_10"
 							android:textColor="@color/blue"
-							android:text="个人既往病史" />
+							android:text=" " />
 					</LinearLayout>
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -768,7 +768,7 @@ android:visibility="gone"
 							android:layout_height="wrap_content"
 							android:textSize="@dimen/font_style_10"
 							android:textColor="@color/blue"
-							android:text="个人既往病史" />
+							android:text=" " />
 					</LinearLayout>
 				</LinearLayout>
 
