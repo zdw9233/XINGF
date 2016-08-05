@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class ECGAdapter extends BaseAdapter {
     private List<Report.TimeValue> mdata;
+    private String[] imageUrls;
 
     public ECGAdapter(Context context, List<Report.TimeValue> mdata) {
         super(context, R.layout.item_ecg);
@@ -30,16 +31,26 @@ public class ECGAdapter extends BaseAdapter {
 
     @Override
     protected void onBindHolder(ViewHolder holder, int position) {
-        TextView date = holder.holder(R.id.date,TextView.class);
-        SimpleDraweeView simpleDraweeView = holder.holder(R.id.img,SimpleDraweeView.class);
-        Report.TimeValue value = mdata .get(position);
+        TextView date = holder.holder(R.id.date, TextView.class);
+        SimpleDraweeView simpleDraweeView = holder.holder(R.id.img, SimpleDraweeView.class);
+        Report.TimeValue value = mdata.get(position);
         date.setText(value.getUptime());
-        ImageUtil.load(value.getItemValue(),simpleDraweeView);
+        ImageUtil.load(value.getItemValue(), simpleDraweeView);
 
     }
 
     @Override
     public ViewHolder newHolder(View itemView) {
         return new ViewHolder(itemView);
+    }
+
+    public String[] getImageUrls() {
+        if (imageUrls == null) {
+            imageUrls = new String[getCount()];
+            for (int i = 0; i < imageUrls.length; i++) {
+                imageUrls[i] = mdata.get(i).getItemValue();
+            }
+        }
+        return imageUrls;
     }
 }
