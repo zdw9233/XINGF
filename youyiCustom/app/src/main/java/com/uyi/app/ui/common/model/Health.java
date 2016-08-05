@@ -20,6 +20,13 @@ public class Health {
     public String phoneNumber;
     public String healthCondition;
     public int chronicDiseaseType;
+    public String address;
+    public String backupPhoneNumber;
+    public String occupation;
+    public String email;
+    public String birthday;
+    public String cityId;
+
     /**
      * medical : 疾病史：(重要的疾病史、传染病史、外伤史、手术史、中毒史、过敏史、输血史 及其他病史)
      * infection : 传染病史：(主要的传染病史，如无传染病史，亦须将与目前疾病有关而确未发生 的传染病名称记入并说明)

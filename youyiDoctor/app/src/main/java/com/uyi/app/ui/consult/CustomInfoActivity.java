@@ -22,7 +22,6 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.health.adapter.JiuyiAdapter;
 import com.uyi.app.ui.health.adapter.YaowuAdapter;
 import com.uyi.app.utils.JSONObjectUtils;
-import com.uyi.app.utils.L;
 import com.uyi.app.utils.UYIUtils;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
@@ -245,7 +244,7 @@ public class CustomInfoActivity extends BaseActivity {
 		RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMER_INFO, customId), activity, new Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				try {
-					L.d(TAG, data.getJSONObject("healthInfo").toString());
+//					L.d(TAG, data.getJSONObject("healthInfo").toString());
 					JSONObject city = data.getJSONObject("city");
 					JSONObject province = data.getJSONObject("province");
 					custom_city.setText(JSONObjectUtils.getString(province, "name")+JSONObjectUtils.getString(city, "name"));
@@ -294,19 +293,21 @@ public class CustomInfoActivity extends BaseActivity {
 					constom_info_gender.setText("性别："+UYIUtils.convertGender(data.getString("gender")));
 					constom_info_chushengriqi.setText("出生日期："+data.getString("birthday"));
 					constom_info_name.setText( data.getString("realName"));
+if(data.has("chronicDiseaseType")){
+	if(JSONObjectUtils.getString(data, "chronicDiseaseType").equals("1")){
+		jibing.setText("高血压");
+	}else if(JSONObjectUtils.getString(data, "chronicDiseaseType").equals("2")){
+		jibing.setText("糖尿病");
+	}else if(JSONObjectUtils.getString(data, "chronicDiseaseType").equals("3")){
+		jibing.setText("高血压兼糖尿病");
+	}else{
+		jibing.setText("无");
+	}
+}
 
-					if(JSONObjectUtils.getInt(data, "chronicDiseaseType") == 1){
-						jibing.setText("高血压");
-					}else if(JSONObjectUtils.getInt(data, "chronicDiseaseType") == 2){
-						jibing.setText("糖尿病");
-					}else if(JSONObjectUtils.getInt(data, "chronicDiseaseType") == 3){
-						jibing.setText("高血压兼糖尿病");
-					}else{
-						jibing.setText("无");
-					}
 
 
-
+					if(data.has("healthCondition"))
 					jiankanzhuangk.setText(JSONObjectUtils.getString(data, "healthCondition").equals("null")?"无":JSONObjectUtils.getString(data, "healthCondition"));
 //					//						@ViewInject(R.id.custom_zhongdu) private TextView custom_zhongdu;
 ////						@ViewInject(R.id.custom_xitonghuigu) private TextView custom_xitonghuigu;
@@ -314,19 +315,28 @@ public class CustomInfoActivity extends BaseActivity {
 ////						@ViewInject(R.id.custom_jibing) private TextView jibing;
 ////						@ViewInject(R.id.custom_jiankanzhuangkuang) private TextView jiankanzhuangk;
 //
-					if(data.has("healthInfo")){
-						custom_qitabuchong.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others"));
+					if(data.has("healthInfo") && !data.getString("healthInfo").equals("null")){
+//						if(data.getJSONObject("healthInfo").has("others"))
+//						custom_qitabuchong.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others"));
+						if(data.getJSONObject("healthInfo").has("vaccinationHistory"))
 						custom_yufangjiezhonshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "vaccinationHistory").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "vaccinationHistory"));
+						if(data.getJSONObject("healthInfo").has("blood"))
 						custom_shuxueshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "blood").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "blood"));
+						if(data.getJSONObject("healthInfo").has("trauma"))
 						custom_waishangshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "trauma").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "trauma"));
+						if(data.getJSONObject("healthInfo").has("medical"))
 						custom_jiwangbinshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "medical").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "medical"));
+						if(data.getJSONObject("healthInfo").has("infection"))
 						custom_chuanranbinshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "infection").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "infection"));
-
+						if(data.getJSONObject("healthInfo").has("operation"))
 						custom_shoushushi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "operation").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "operation"));
+						if(data.getJSONObject("healthInfo").has("pregnancy"))
 						custom_huaiyun_liuchan.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "pregnancy").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "pregnancy"));
+						if(data.getJSONObject("healthInfo").has("menstruation"))
 						custom_yuejing.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "menstruation").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "menstruation"));
+						if(data.getJSONObject("healthInfo").has("allergic"))
 						custom_shiwuguoming.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "allergic").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "allergic"));
-
+						if(data.getJSONObject("healthInfo").has("familyMedical"))
 						custom_jiazhubingshi.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "familyMedical").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "familyMedical"));
 						custom_muqianfuyao.setText(JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "current").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "current"));
 						custom_qitabubingshi.setText(JSONObjectUtils.getString(data, "others").equals("null")?"无":JSONObjectUtils.getString(data.getJSONObject("healthInfo"), "others"));

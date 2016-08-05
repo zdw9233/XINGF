@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.uyi.app.utils.DensityUtils;
+import com.uyi.doctor.app.R;
+
 import java.util.List;
 
 import cn.aigestudio.datepicker.bizs.decors.DPDecor;
@@ -96,7 +99,8 @@ public class DatePicker extends LinearLayout {
         tvYear.setText("2015");
         tvYear.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         tvYear.setTextColor(mTManager.colorTitle());
-     
+        tvYear.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.drop_icon_white, 0);
+        tvYear.setCompoundDrawablePadding(DensityUtils.dp2px(context, 4));
         // 月份显示
         tvMonth = new TextView(context);
         tvMonth.setText("六月");
