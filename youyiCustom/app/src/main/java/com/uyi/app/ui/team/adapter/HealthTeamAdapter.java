@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
-import com.uyi.app.utils.ImageUtil;
+import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.custom.app.R;
+import com.volley.ImageCacheManager;
 
 import java.util.Map;
 
@@ -54,8 +54,8 @@ public class HealthTeamAdapter extends BaseRecyclerAdapter<Map<String, Object>> 
             }
 
             hodler.item_team_content.setText(data.get("info").toString());
-//            ImageCacheManager.loadImage(data.get("logo").toString(), ImageCacheManager.getImageListener(hodler.item_team_logo, null, null));
-            ImageUtil.load(data.get("logo").toString(),hodler.item_team_logo);
+            ImageCacheManager.loadImage(data.get("logo").toString(), ImageCacheManager.getImageListener(hodler.item_team_logo, null, null));
+//            ImageUtil.load(data.get("logo").toString(),hodler.item_team_logo);
         }
     }
 
@@ -65,14 +65,15 @@ public class HealthTeamAdapter extends BaseRecyclerAdapter<Map<String, Object>> 
     public static class Holder extends BaseRecyclerAdapter<Map<String, Object>>.Holder {
         public Holder(HealthTeamAdapter base, View v) {
             base.super(v);
-            item_team_logo = (SimpleDraweeView) v.findViewById(R.id.item_team_logo);
+//            item_team_logo = (SimpleDraweeView) v.findViewById(R.id.item_team_logo);
+            item_team_logo = (RoundedImageView) v.findViewById(R.id.item_team_logo);
             item_team_name = (TextView) v.findViewById(R.id.item_team_name);
             item_team_my_group = (TextView) v.findViewById(R.id.item_team_my_group);
             item_team_time = (TextView) v.findViewById(R.id.item_team_time);
             item_team_content = (TextView) v.findViewById(R.id.item_team_content);
         }
 
-        private SimpleDraweeView item_team_logo;
+        private RoundedImageView item_team_logo;
         private TextView item_team_name;
         private TextView item_team_my_group;
         private TextView item_team_time;

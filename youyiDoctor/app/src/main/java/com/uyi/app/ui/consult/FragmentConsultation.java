@@ -120,9 +120,9 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
     @Override
     public void onStart() {
         super.onStart();
-        if (initLoad) {
-            onInitLayoutAfter();
-        }
+//        if (initLoad) {
+//            onInitLayoutAfter();
+//        }
     }
 
     @Override

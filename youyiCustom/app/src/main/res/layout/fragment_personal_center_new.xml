@@ -76,15 +76,15 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:src="@drawable/suixin" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="2dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -102,7 +102,7 @@
                     android:layout_marginTop="4dp"
                     android:gravity="start"
                     android:text="平稳控压 防治心安"
-                    android:textSize="@dimen/font_style_8" />
+                    android:textSize="@dimen/font_style_7" />
             </LinearLayout>
         </TableRow>
 
@@ -122,15 +122,15 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:src="@drawable/tangxin" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="2dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -148,7 +148,7 @@
                     android:layout_marginTop="4dp"
                     android:gravity="start"
                     android:text="糖心关爱 健康护航"
-                    android:textSize="@dimen/font_style_8" />
+                    android:textSize="@dimen/font_style_7" />
             </LinearLayout>
         </TableRow>
 
@@ -168,15 +168,15 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
                 android:src="@drawable/dingzhi" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="2dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -194,7 +194,7 @@
                     android:layout_marginTop="4dp"
                     android:gravity="start"
                     android:text="个性服务 随心定制"
-                    android:textSize="@dimen/font_style_8" />
+                    android:textSize="@dimen/font_style_7" />
             </LinearLayout>
         </TableRow>
     </TableRow>

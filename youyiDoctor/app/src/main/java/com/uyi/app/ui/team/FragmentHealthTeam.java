@@ -118,10 +118,10 @@ String name;
     @Override
     public void onStart() {
         super.onStart();
-        if (initLoad) {
-            onRefresh();
-
-        }
+//        if (initLoad) {
+//            onInitLayoutAfter();
+//
+//        }  onRefresh();
     }
 
     @Override
