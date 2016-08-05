@@ -1,13 +1,16 @@
 package com.uyi.app.ui.personal.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.uyi.app.ui.common.ViewPagerImageActivity;
 import com.uyi.app.ui.personal.model.PagerData;
 import com.uyi.app.utils.ImageUtil;
 import com.uyi.app.utils.T;
@@ -24,7 +27,7 @@ public class PersonalPagerAdapter extends PagerAdapter {
     private List<T> list;
     private PagerData pagerData;
 
-    public PersonalPagerAdapter(Context mContext,PagerData pagerData) {
+    public PersonalPagerAdapter(Context mContext, PagerData pagerData) {
         this.mContext = mContext;
         this.pagerData = pagerData;
     }
@@ -41,14 +44,14 @@ public class PersonalPagerAdapter extends PagerAdapter {
         TextView title = (TextView) view.findViewById(R.id.title);
         SimpleDraweeView img = (SimpleDraweeView) view.findViewById(R.id.img);
         TextView content = (TextView) view.findViewById(R.id.content);
-
+        String url = null;
         if (position == 0) {
             title.setText("血压趋势图");
             if (pagerData == null) {
                 content.setText("您最近还没有测试！");
             } else {
                 content.setText(pagerData.getComment1());
-                ImageUtil.load(pagerData.getBloodPressure_pic(), img);
+                ImageUtil.load(url = pagerData.getBloodPressure_pic(), img);
             }
         } else {
             title.setText("血糖趋势图");
@@ -56,9 +59,16 @@ public class PersonalPagerAdapter extends PagerAdapter {
                 content.setText("您最近还没有测试！");
             } else {
                 content.setText(pagerData.getComment2());
-                ImageUtil.load(pagerData.getBloodSugar_pic(), img);
+                ImageUtil.load(url = pagerData.getBloodSugar_pic(), img);
             }
         }
+        final String finalUrl = url;
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onImageClick(finalUrl);
+            }
+        });
         container.addView(view);
         return view;
     }
@@ -77,5 +87,12 @@ public class PersonalPagerAdapter extends PagerAdapter {
         this.pagerData = pagerData;
     }
 
+    private void onImageClick(String url) {
+        if (!TextUtils.isEmpty(url)) {
+            Intent intent = new Intent(mContext, ViewPagerImageActivity.class);
+            intent.putExtra("imageUrl", new String[]{url});
+            mContext.startActivity(intent);
+        }
+    }
 
 }
