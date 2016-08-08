@@ -2,15 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffffff"
    >
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#0000"
-   >
-   <LinearLayout 
-       android:layout_marginTop="25dp"
+   <LinearLayout
+       android:layout_marginTop="15dp"
        android:background="@color/white"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -163,20 +159,17 @@
          </LinearLayout>
    </LinearLayout>
     <Button
-        android:layout_marginTop="15dp"
-  
+
        android:layout_width="25dp"
        android:layout_height="25dp"
        android:layout_alignParentRight="true"
        android:layout_alignParentTop="true"
        android:background="@drawable/layer_close" />
       <Button
-        android:layout_marginTop="15dp"
        android:id="@+id/doctor_exit"
        android:layout_width="40dp"
        android:layout_height="40dp"
        android:layout_alignParentRight="true"
        android:layout_alignParentTop="true"
        android:background="#00000000" />
-</RelativeLayout> 
 </RelativeLayout> 
