@@ -89,12 +89,12 @@ public abstract class Constens {
     /**
      * 测试服地址
      */
-//    public final static String SERVER_URL = "http://121.42.142.228:8080";
+    public final static String SERVER_URL = "http://121.42.142.228:8080";
 
     /**
      * 生产服地址
      */
-	public final static String SERVER_URL = "http://www.uyidoctor.com";
+//	public final static String SERVER_URL = "http://www.uyidoctor.com";
 
     //获取协议
     public final static String REGISTER_AGREEMENT = SERVER_URL + "/app/api/common/protocol";
@@ -196,6 +196,58 @@ public abstract class Constens {
      * 获取患者基本信息
      */
     public final static String ACCOUNT_DETAIL = SERVER_URL + "/app/api/account/detail";
+    /**
+     * 获取患者个人资料
+     */
+    public final static String ACCOUNT_INFO = SERVER_URL + "/app/api/account/get/customer/data";
+    /**
+     * 修改患者个人资料
+     */
+    public final static String ACCOUNT_INFO_UPDATE = SERVER_URL + "/app/api/account/update/customer/data";
+    /**
+     * 获取患者基本资料
+     */
+    public final static String ACCOUNT_BASIC_INFO = SERVER_URL + "/app/api/account/get/customer/basic";
+    /**
+     * 修改患者基本资料
+     */
+    public final static String ACCOUNT_BASIC_INFO_UPDATE = SERVER_URL + "/app/api/account/update/customer/basic";
+    /**
+     * 获取患者既往
+     */
+    public final static String ACCOUNT_PAST_INFO = SERVER_URL + "/app/api/account/get/customer/history";
+    /**
+     * 修改患者既往
+     */
+    public final static String ACCOUNT_PAST_INFO_UPDATE = SERVER_URL + "/app/api/account/update/customer/history";
+    /**
+     * 获取患者药物
+     */
+    public final static String ACCOUNT_MEDISINE_INFO = SERVER_URL + "/app/api/account/get/customer/drug";
+    /**
+     * 修改患者药物
+     */
+    public final static String ACCOUNT_MEDISINE_INFO_UPDATE = SERVER_URL + "/app/api/account/update/customer/drug";
+    /**
+     * 获取患者血管
+     */
+    public final static String ACCOUNT_BLOOD_INFO = SERVER_URL + "/app/api/account/get/customer/event";
+    /**
+     * 修改患者血管
+     */
+    public final static String ACCOUNT_BLOOD_INFO_UPDATE = SERVER_URL + "/app/api/account/update/customer/event";
+    /**
+     * 获取beans
+     */
+    public final static String ACCOUNT_BEANS = SERVER_URL + "/app/api/account/getbeans";
+    /**
+     * 获取ACCOUNT_LIFESTYLE
+     */
+    public final static String ACCOUNT_LIFESTYLE = SERVER_URL + "/app/api/account/get/customer/lifestyle\n";
+    /**
+     * 获取ACCOUNT_EATHEALTH
+     */
+    public final static String ACCOUNT_EATHEALTH = SERVER_URL + "/app/api/account/get/customer/eatinghabits";
 
     /**
      * 患者更新基本信息
@@ -332,7 +384,12 @@ public abstract class Constens {
      * ${id}
      */
     public final static String HEALTH_CHECK_INFO = SERVER_URL + "/app/api/account/health/check/info/%s";
-
+    /**
+     * 客户日常健康检查资料查询预览
+     * post
+     * ${id}
+     */
+    public final static String HEALTH_CHECK_PREVIEW = SERVER_URL + "/app/api/account/conversion/health/check/infos";
 
     /**
      * 查询健康问答

@@ -3,6 +3,7 @@ package com.uyi.app.ui.personal.questions;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -24,8 +25,8 @@ import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.personal.questions.adapter.HealthyQuestionsAdapter;
-import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
@@ -56,6 +57,7 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 	private HealthyQuestionsAdapter healthyQuestionsAdapter;
 	private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
 	UserInfo userInfo;
+	private MessageConform conform;
 	
 	@Override
 	protected void onInitLayoutAfter() {
@@ -90,12 +92,19 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 					if(data.getInt("healthAdvisory") > 0){
 						startActivityForResult(new Intent(activity, HealthyQuestionsAddActivity.class), Constens.START_ACTIVITY_FOR_RESULT);
 					}else{
-						if(userInfo.isFree == 2){
-							T.showShort(HealthyQuestionsActivity.this," 本月健康咨询次数使用完毕");
+//						if(userInfo.isFree == 2){
+//							T.showShort(HealthyQuestionsActivity.this," 本月健康咨询次数使用完毕");
+							new AlertDialog.Builder(HealthyQuestionsActivity.this).setTitle("提示").setMessage("您的本月健康咨询次数已使用完毕，如有疑问请咨询您的慢病管理师！").setPositiveButton("确定", null).show();
 
-						}else{
-							T.showShort(HealthyQuestionsActivity.this," 该服务仅针对服务包用户，请购买相应服务包！");
-						}
+//						}else{
+//							new AlertDialog.Builder(HealthyQuestionsActivity.this).setTitle("提示").setMessage("该服务仅针对服务包用户，请购买相应服务包！").setNegativeButton("确定", new DialogInterface.OnClickListener() {
+//								@Override
+//								public void onClick(DialogInterface dialog, int which) {
+//
+//								}
+//							}).show();
+////							T.showShort(HealthyQuestionsActivity.this," 该服务仅针对服务包用户，请购买相应服务包！");
+//						}
 					}
 
 				} catch (Exception e) {

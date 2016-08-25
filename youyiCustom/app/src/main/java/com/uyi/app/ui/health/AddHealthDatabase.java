@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Response.Listener;
+import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -24,17 +24,19 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.BitmapUtils;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -95,7 +97,7 @@ public class AddHealthDatabase extends BaseActivity {
 
     List<Bitmap> images = new ArrayList<Bitmap>();
     List<Bitmap> ecgs = new ArrayList<Bitmap>();
-
+    Map<String,String> datas = new HashMap<>();
     private int addImageIndex;
 
 
@@ -110,22 +112,13 @@ public class AddHealthDatabase extends BaseActivity {
         public void handleMessage(android.os.Message msg) {
             if (msg.what == 1) {
                 JSONObject params = (JSONObject) msg.obj;
-                RequestManager.postObject(Constens.HEALTH_CHECK_INFOS_SAVE, activity, params, new Listener<JSONObject>() {
+                Loading.bulid(activity, null).show();
+                RequestManager.postObject(Constens.HEALTH_CHECK_PREVIEW, activity,params, new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
+                        L.d(TAG, data.toString());
                         Loading.bulid(activity, "").dismiss();
-                        try {
-                            Integer id = data.getInt("id");
-                            if (id == 0 || id == null) {
-                                T.showLong(activity, "上传失败!");
-                            } else {
-                                Intent intent = new Intent(activity, HealthDatabaseDetails.class);
-                                intent.putExtra("id", id.toString());
-                                startActivity(intent);
-                                finish();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        startActivity(new Intent(AddHealthDatabase.this,HealthDatabasePreviewActivity.class));
+                        finish();
                     }
                 }, null);
             } else if (msg.what == 2) {
@@ -221,6 +214,7 @@ public class AddHealthDatabase extends BaseActivity {
                         handler.sendMessage(handler.obtainMessage(2, "至少填写一项!"));
                     } else {
                         handler.sendMessage(handler.obtainMessage(1, params));
+
                     }
                 } catch (Exception e1) {
                     e1.printStackTrace();

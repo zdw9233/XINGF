@@ -31,7 +31,11 @@
     </string-array>
     <string-array name="medicine_unit">
         <item>g</item>
+        <item>mg</item>
+        <item>ug</item>
         <item>ml</item>
+        <item>u</item>
+        <item>iu</item>
     </string-array>
     <string-array name="medicine_pd">
         <item>用药频度</item>

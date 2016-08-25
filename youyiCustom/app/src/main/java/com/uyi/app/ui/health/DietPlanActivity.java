@@ -31,12 +31,11 @@ public class DietPlanActivity extends BaseActivity {
         RequestManager.getObject(String.format(Constens.LIFE_DEIT, UserInfoManager.getLoginUserInfo(this).userId), activity, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
-                    System.out.println(data.toString());
 
                     if (!data.getString("eatinghabiit").equals("null")) {
-                        diet_plan_details.setText(data.getString("eatinghabiit"));
+                        diet_plan_details.setText("    "+data.getString("eatinghabiit"));
                     } else {
-                        diet_plan_details.setText("你没有任何资料！");
+                        diet_plan_details.setText("您的主管医生尚未为您提交饮食计划建议！");
                     }
 
 

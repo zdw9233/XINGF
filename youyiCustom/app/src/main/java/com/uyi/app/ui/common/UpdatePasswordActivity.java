@@ -1,7 +1,8 @@
 package com.uyi.app.ui.common;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -23,9 +24,8 @@ import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 
@@ -84,6 +84,10 @@ public class UpdatePasswordActivity extends BaseActivity implements MessageConfo
 			JSONObject params = new JSONObject();
 			params.put("oldPassword", cpwd);
 			params.put("newPassword", pwd);
+//			UserInfo userInfo = UserInfoManager.getLoginUserInfo(this);
+//			userInfo.password = pwd;
+//			UserInfoManager.setLoginUserInfo(this,userInfo);
+//			L.e("userinfo == ",userInfo.toString());
 			Loading.bulid(activity, null).show();
 			RequestManager.postObject(Constens.SETTING_PASSWORD, activity, params,null, new RequestErrorListener() {
 				public void requestError(VolleyError e) {

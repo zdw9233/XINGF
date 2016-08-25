@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/light_gray"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="既往史"
+                        android:textColor="@color/red" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_gerenjiwangbinshi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="疾病史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(重要的疾病史、传染病史、外伤史、手术史、中毒史、过敏史、输血史及其他病史)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_chuanrangbingshi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="传染病史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(主要的传染病史，如无传染病史，亦需将与目前疾病有关而确未发生的传染病名称记入病说明)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_waishang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="外伤史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(受伤情况、受伤等级、受伤部位等)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_shoushushi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="手术史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="手术项目、手术时间、恢复情况等"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:id="@+id/register_info_liucanshi_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_liucanshi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="女性患者怀孕、分娩、流产史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/register_info_yuejing_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_yuejing"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="女性患者月经情况"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <EditText
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="食物及药物过敏史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(如有过敏,是对什么事物或药物过敏,过敏后的表现是什么)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_zhongdushi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="中毒史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_shuxueshi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="输血史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(输血时间,输血频率等)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_qitabinshi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="其他病史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_jiazhubinshi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="家族病史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(家族中有无慢性疾病、肿瘤、精神疾病、罕少见病患者)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_yufangjiezhonshi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="预防接种史"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(应记录种类和最近一次接种日期)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp">
+
+                            <EditText
+                                android:id="@+id/register_info_xitonghuigu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="系统回顾"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(应记录既往系统中重要的阳性症状或有鉴别意义的阴性表现)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <EditText
+                                android:id="@+id/register_info_muqianfuyaoqingkuang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="目前服药情况"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="(药物名称、服用周期、服用频率等)"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp"
+                            android:visibility="gone" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/hui_stroke"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <EditText
+                                android:id="@+id/register_info_qitabuchongqingkuang"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:ems="10"
+                                android:gravity="top"
+                                android:hint="其他需要补充的情况"
+
+                                android:minHeight="80dp"
+                                android:minLines="1"
+                                android:textSize="@dimen/font_style_14" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/qianhui"
+                            android:padding="4dp"
+                            android:text="系统外就医情况" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp">
+
+                            <TextView
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="系统外就医日期"
+                                android:textSize="@dimen/font_style_10"
+                                android:textStyle="bold" />
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:text="系统外就医描述"
+                                android:textSize="@dimen/font_style_10"
+                                android:textStyle="bold" />
+                        </TableRow>
+
+                        <com.uyi.app.widget.recycle.RecyclerView
+                            android:id="@+id/outRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/tv_two_date"
+                                android:layout_width="128dp"
+                                android:layout_height="35dp"
+                                android:background="@drawable/hui_stroke"
+                                android:padding="8dp"
+                                android:text="请选择就医时间" />
+
+                            <TextView
+                                android:id="@+id/tv_two_choice_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/sel_white_to_press"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="8dp"
+                                android:text="选择日期"
+                                android:textColor="@color/blue" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                android:id="@+id/tv_add_system_out"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:background="@drawable/sel_blue_to_press"
+                                android:gravity="center"
+                                android:text="+"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_24" />
+                        </TableRow>
+
+                        <EditText
+                            android:id="@+id/register_info_xitongwaijiuyi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/hui_stroke"
+                            android:ems="10"
+                            android:gravity="top"
+                            android:hint="系统外就医情况"
+
+                            android:minHeight="80dp"
+                            android:minLines="1"
+                            android:padding="3dp"
+                            android:textSize="@dimen/font_style_14" />
+
+                        <LinearLayout
+                            android:id="@+id/add_system_out_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+
+                        <Button
+                            android:id="@+id/register_info_two_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="30dp"
+                            android:background="@drawable/blue_bg"
+                            android:text="修改"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>

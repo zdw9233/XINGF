@@ -14,7 +14,6 @@ import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.report.ReportListActivity;
-import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
@@ -59,12 +58,14 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         switch (v.getId()) {
 
             case R.id.diagnosis:
-                if (isfree == 1) {
-                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
-                } else {
+//                if (isfree == 1) {
+////                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+//                    startActivity(new Intent(context, ReportListActivity.class));
+//                    requsetOnItemClick(1);
+//                } else {
                     startActivity(new Intent(context, ReportListActivity.class));
                     requsetOnItemClick(1);
-                }
+//                }
 
                 break; //主诊报告
             case R.id.report:     //健康报告
@@ -75,28 +76,34 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                 startActivity(new Intent(context, HealthDatabaseActivity.class));
                 break;
             case R.id.assessment: //风险评估
-                if (isfree == 1) {
-                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
-                } else {
+//                if (isfree == 1) {
+//                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+//                    startActivity(new Intent(getContext(), RiskAssessmentActivity.class));
+//                    requsetOnItemClick(2);
+//                } else {
                     startActivity(new Intent(getContext(), RiskAssessmentActivity.class));
                     requsetOnItemClick(2);
-                }
+//                }
                 break;
             case R.id.life:      //生活方式
-                if (isfree == 1) {
-                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
-                } else {
+//                if (isfree == 1) {
+//                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+//                    startActivity(new Intent(getContext(), LifeStyleActivity.class));
+//                    requsetOnItemClick(3);
+//                } else {
                     startActivity(new Intent(getContext(), LifeStyleActivity.class));
                     requsetOnItemClick(3);
-                }
+//                }
                 break;
             case R.id.diet:     //饮食计划
-                if (isfree == 1) {
-                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
-                } else {
+//                if (isfree == 1) {
+//                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+//                    startActivity(new Intent(getContext(), DietPlanActivity.class));
+//                    requsetOnItemClick(4);
+//                } else {
                     startActivity(new Intent(getContext(), DietPlanActivity.class));
                     requsetOnItemClick(4);
-                }
+//                }
                 break;
         }
     }

@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+   >
 
     <com.uyi.app.ui.custom.HeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    <TextView
+        android:id="@+id/no_assessment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="您的主管医生尚未为您提交主诊报告，如有疑问请咨询您的慢病管理师！"
+        android:layout_below="@id/header"
+        android:padding="@dimen/font_style_14"
+        android:visibility="gone"/>
     <com.uyi.app.widget.recycle.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
+        android:layout_below="@id/header"
         android:layout_height="match_parent" />
-</LinearLayout>
+</RelativeLayout>

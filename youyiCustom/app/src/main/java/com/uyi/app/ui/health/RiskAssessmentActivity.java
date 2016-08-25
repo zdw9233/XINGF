@@ -3,6 +3,7 @@ package com.uyi.app.ui.health;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -36,15 +37,17 @@ import java.util.Map;
 public class RiskAssessmentActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String, Object>>, EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener {
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
-    @ViewInject(R.id.new_assessment_time)
-    private TextView new_assessment_time;
-
-    @ViewInject(R.id.doc_name)
-    private TextView doc_name;
-    @ViewInject(R.id.risk_index)
-    private TextView risk_index;
-    @ViewInject(R.id.deils)
-    private TextView deils;
+//    @ViewInject(R.id.new_assessment_time)
+//    private TextView new_assessment_time;
+//
+//    @ViewInject(R.id.doc_name)
+//    private TextView doc_name;
+//    @ViewInject(R.id.risk_index)
+//    private TextView risk_index;
+//    @ViewInject(R.id.deils)
+//    private TextView deils;
+    @ViewInject(R.id.no_assessment)
+    private TextView no_assessment;
     int isgone = 0;
     @ViewInject(R.id.recyclerView)
     private EndlessRecyclerView recyclerView;
@@ -53,6 +56,7 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
     private LinearLayoutManager linearLayoutManager;
     private RiskAssessmentAdapter healthDatabaseAdapter;
     private ArrayList<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
+    int scorllW;
 
     @Override
     protected void onInitLayoutAfter() {
@@ -67,6 +71,7 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         recyclerView.setProgressView(R.layout.item_progress);
         recyclerView.setAdapter(healthDatabaseAdapter);
         recyclerView.setPager(this);
+
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -117,9 +122,18 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
                                 item.put("id", jsonObject.getString("id"));
-                                item.put("content", jsonObject.getString("content"));
+                                if(jsonObject.has("content")){
+                                    item.put("content", jsonObject.getString("content"));
+                                }else{
+                                    item.put("content", "");
+                                }
                                 item.put("createTime", jsonObject.getString("createTime"));
-                                item.put("percentage", jsonObject.getString("percentage"));
+                                if(jsonObject.has("percentage")){
+                                    item.put("percentage", jsonObject.getString("percentage"));
+                                }else{
+                                    item.put("percentage", "");
+                                }
+
                                 item.put("checked", jsonObject.getString("checked"));
                                 item.put("doc_name", jsonObject.getString("doc_name"));
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));
@@ -127,13 +141,19 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                                 datas.add(item);
                             }
                             if(datas.size() > 0){
-                                doc_name.setText("填写医生:"+datas.get(0).get("doc_name").toString());
-                                new_assessment_time.setText(datas.get(0).get("createTime").toString());
-                                risk_index.setText("风险指数："+datas.get(0).get("percentage").toString());
-                                deils.setText(datas.get(0).get("content").toString());
+//                                doc_name.setText("填写医生:"+datas.get(0).get("doc_name").toString());
+//                                new_assessment_time.setText(datas.get(0).get("createTime").toString());
+//                                risk_index.setText("风险指数："+datas.get(0).get("percentage").toString());
+//                                deils.setText(datas.get(0).get("content").toString());
+//                            }else{
+//                                risk_index.setText("无");
+
+                                no_assessment.setVisibility(View.GONE);
+                                swipeRefreshLayout.setVisibility(View.VISIBLE);
                             }else{
-                                risk_index.setText("无");
-                            }
+                                no_assessment.setVisibility(View.VISIBLE);
+                                swipeRefreshLayout.setVisibility(View.GONE);
+                        }
 
                         } catch (JSONException e) {
                             e.printStackTrace();

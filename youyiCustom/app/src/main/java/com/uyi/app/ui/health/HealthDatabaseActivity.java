@@ -105,7 +105,11 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
         headerView.setKitkat(systemBarConfig);
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
+    }
     @OnClick({R.id.health_database_starttime, R.id.health_database_endtime, R.id.health_database_submit, R.id.new_health_database_layout_start})
     public void onClick(View v) {
         if (v.getId() == R.id.health_database_starttime) {
@@ -115,6 +119,8 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
             selectedDate = 2;
             selectedDate();
         } else if (v.getId() == R.id.health_database_submit) {
+            startDate =health_database_starttime.getText().toString();
+            endDate = health_database_endtime.getText().toString();
             if (!ValidationUtils.isNull(startDate) && !ValidationUtils.isNull(endDate)) {
                 try {
                     long start = DateUtils.toDateByString(startDate, Constens.DATE_FORMAT_YYYY_MM_DD).getTime();

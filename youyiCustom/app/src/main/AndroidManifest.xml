@@ -76,6 +76,7 @@
         <activity
             android:name="com.uyi.app.ui.report.ReportListActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.uyi.app.ui.personal.CustomServiceActivity"
             android:screenOrientation="portrait" />
@@ -93,6 +94,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.HealthDatabaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.health.HealthDatabasePreviewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.Main"
@@ -166,7 +170,10 @@
             android:name="com.uyi.app.ui.common.UpdateGuardianInfo"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"></activity>
-
+        <activity
+            android:name="com.uyi.app.ui.healthinfo.HealthInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"></activity>
 
         <activity
             android:name="com.uyi.app.ui.consult.ConsultDetailsActivity"
@@ -217,9 +224,11 @@
             android:theme="@style/Transparent"></activity>
 
         <activity
+
             android:name="com.uyi.app.ui.personal.message.MessageActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:launchMode="singleTop"
             android:name="com.uyi.app.ui.personal.message.MessageDetailsActivity"
             android:screenOrientation="portrait"></activity>
         <activity

@@ -319,7 +319,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         healthInfo = new HealthInfo();
         spinerPopWindow = new SpinerPopWindow(activity);
         spinerPopWindow.setItemListener(this);
-
+        register_card.setEnabled(false);
         ywRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         outRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 

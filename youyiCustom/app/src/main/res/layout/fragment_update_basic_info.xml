@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+    <LinearLayout
+        android:id="@+id/register_info_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tips_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="想得到医生准确指导,请认真填写健康资料,健康资料将作为医生的重要参考依据!"
+                android:textColor="#ff7200" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/light_gray"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="基本信息"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/register_height"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_height"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="cm"
+                    android:textColor="@color/list_item_content_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/register_weight"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/hui_stroke"
+                    android:ems="10"
+                    android:hint="@string/reg_weight"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="5dp"
+                    android:textSize="@dimen/font_style_14" />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="kg"
+                    android:textColor="@color/list_item_content_color" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_gxy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="高血压"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_15" />
+
+            <RadioButton
+                android:id="@+id/rb_tnb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="糖尿病"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_15" />
+
+            <RadioButton
+                android:id="@+id/rb_gxy_tnb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="高血压兼糖尿病"
+                android:textColor="@color/list_item_content_color"
+                android:textSize="@dimen/font_style_15" />
+        </RadioGroup>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/hui_stroke">
+
+            <EditText
+                android:id="@+id/register_info_one_jiankangzhuangkuang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="健康状况"
+
+                android:minHeight="80dp"
+                android:minLines="1"
+                android:padding="3dp"
+                android:paddingTop="10dp"
+                android:textSize="@dimen/font_style_14" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="(过去健康状况，如体质、抵抗力、劳动力等)"
+            android:textColor="@color/blue"
+            android:textSize="12dp" />
+
+
+        <Button
+            android:id="@+id/register_info_one_submit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/blue_bg"
+            android:text="修改"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</ScrollView>

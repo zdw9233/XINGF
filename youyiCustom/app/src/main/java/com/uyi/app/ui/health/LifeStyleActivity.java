@@ -33,12 +33,11 @@ public class LifeStyleActivity extends BaseActivity {
         RequestManager.getObject(String.format(Constens.LIFE_DEIT, UserInfoManager.getLoginUserInfo(this).userId), activity, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
-                    System.out.println(data.toString());
 
                     if(!data.getString("liefstyle").equals("null")){
-                        life_style_details.setText(data.getString("liefstyle"));
+                        life_style_details.setText("    "+data.getString("liefstyle"));
                     }else{
-                        life_style_details.setText("你没有任何资料！");
+                        life_style_details.setText("您的主管医生尚未为您提交生活方式建议！");
                     }
 
 

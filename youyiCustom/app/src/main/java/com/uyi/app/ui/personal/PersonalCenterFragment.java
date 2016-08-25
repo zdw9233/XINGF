@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -161,12 +162,13 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
 //                                Intent intent = new Intent(context, NewConsultActivity.class);
 //                                startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
                             } else {
-                                if (userInfo.isFree == 2) {
-                                    T.showShort(getContext(), " 本月医疗咨询次数使用完毕");
-
-                                } else {
-                                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
-                                }
+//                                if (userInfo.isFree == 2) {
+//                                    T.showShort(getContext(), " 本月医疗咨询次数使用完毕");
+//
+//                                } else {
+//                                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
+//                                }
+                                new AlertDialog.Builder(getActivity()).setTitle("提示").setMessage("您的本月医师互动次数已使用完毕，如有疑问请咨询您的慢病管理师！").setPositiveButton("确定", null).show();
                             }
 
                         } catch (Exception e) {

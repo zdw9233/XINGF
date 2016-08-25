@@ -1,8 +1,11 @@
 package com.uyi.app.ui.personal.message;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
@@ -21,16 +24,14 @@ import com.uyi.app.ui.dialog.MessageConform.OnMessageClick;
 import com.uyi.app.ui.dialog.MessageConform.Result;
 import com.uyi.app.ui.health.HealthDatabaseDetails;
 import com.uyi.app.ui.personal.exclusive.ExclusiveDetailsActivity;
+import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.webkit.WebView;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -75,6 +76,7 @@ public class MessageDetailsActivity extends BaseActivity implements OnClickListe
 	@Override
 	protected void onInitLayoutAfter() {
 		id = getIntent().getIntExtra("id", 0);
+		L.e("ID ==",""+id);
 		type = getIntent().getIntExtra("type",0);
 		isRead = getIntent().getBooleanExtra("isRead", true);
 		headerView.getRightLayout().removeAllViews();
@@ -206,6 +208,61 @@ public class MessageDetailsActivity extends BaseActivity implements OnClickListe
 	public void onClick(Result result, Object object) {
 		if(result == Result.OK){
 			deleteOrRead(2);
+		}
+	}
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		id = intent.getIntExtra("id", 0);
+		type = intent.getIntExtra("type", 0);
+		isRead = intent.getBooleanExtra("isRead", true);
+		headerView.getRightLayout().removeAllViews();
+		if (type != 3) {
+			TextView child = new TextView(activity);
+			child.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			child.setTextColor(getResources().getColor(R.color.red));
+			child.setTextSize(12);
+			child.setText("删除");
+			headerView.getRightLayout().addView(child);
+		}
+		headerView.getRightLayout().setOnClickListener(this);
+		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("详情内容").setTitleColor(getResources().getColor(R.color.blue)).showRight(true);
+		Loading.bulid(activity, null).show();
+		String url = String.format(Constens.ACCOUNT_MESSAGE, id, type);
+		if (type == 3) {
+			url = String.format(Constens.COMMON_BULLETINS_DETAILS, id);
+		}
+
+
+		RequestManager.getObject(url, activity, new Listener<JSONObject>() {
+			public void onResponse(JSONObject data) {
+				try {
+					Loading.bulid(activity, null).dismiss();
+					if (type == 3) {
+						message_details_title.setText(data.getString("title"));
+						message_details_time.setText(data.getString("publishTime"));
+						message_details_name.setText("");
+						message_details_content.loadDataWithBaseURL(null, "<html><head><style>body{width:100%};img{width:95%}</style></head></body>" + data.getString("content") + "</body></html>", "text/html", "UTF-8", null);
+					} else {
+						message_details_title.setText(data.getString("title"));
+						message_details_time.setText(data.getString("updateTime"));
+						message_details_name.setText("发布者：" + data.getString("publisher"));
+						message_details_content.loadDataWithBaseURL(null, data.getString("content"), "text/html", "UTF-8", null);
+						if (type == 1) {
+							messageType = data.getInt("messageType");
+							if (messageType == 2 || messageType == 4) {
+								entityId = data.getInt("entityId");
+								message_details_click.setVisibility(View.VISIBLE);
+							}
+						}
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		if (!isRead) {//如果次消息未读 就标记为已读
+			deleteOrRead(1);
 		}
 	}
 

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:background="@color/light_gray"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="药物情况"
+                        android:textColor="@color/red" />
+                </LinearLayout>
+
+                <com.uyi.app.widget.recycle.RecyclerView
+                    android:id="@+id/ywRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/layout_start_time"
+                        android:layout_width="0dip"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/hui_stroke"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_start_time"
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:hint="开始服药日期"
+                                android:paddingLeft="5dp"
+                                android:textColor="@color/list_item_content_color"
+                                android:textSize="@dimen/font_style_14" />
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/drop_icon" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dip"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/layout_end_time"
+                            android:layout_width="0dip"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/hui_stroke"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_end_time"
+                                android:layout_width="0dip"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:hint="结束服药日期"
+                                android:paddingLeft="5dp"
+                                android:textColor="@color/list_item_content_color"
+                                android:textSize="@dimen/font_style_14" />
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/drop_icon" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/hui_stroke">
+
+                    <Spinner
+                        android:id="@+id/yaowuName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </FrameLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="6"
+                        android:background="@drawable/hui_stroke"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/yypd"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:entries="@array/medicine_pd"
+                            android:gravity="center_vertical" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:src="@drawable/small_down_arrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="4"
+                        android:background="@drawable/hui_stroke"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/timeUnit"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:entries="@array/time_unit"
+                            android:gravity="center_vertical" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:src="@drawable/small_down_arrow" />
+                    </LinearLayout>
+
+
+                    <EditText
+                        android:id="@+id/regester_three_danciyonyaoliang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/hui_stroke"
+                        android:hint="单次用药量"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textSize="@dimen/font_style_13" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/hui_stroke"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/valueUnit"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:dropDownWidth="match_parent"
+                            android:entries="@array/medicine_unit"
+                            android:gravity="center_vertical" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_marginEnd="2dp"
+                            android:layout_marginRight="2dp"
+                            android:src="@drawable/small_down_arrow" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/addmedicationsituation"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/sel_blue_to_press"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/blue" />
+
+                <LinearLayout
+                    android:id="@+id/add_view_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/hui_stroke"
+                    android:padding="3dp">
+
+                    <EditText
+                        android:id="@+id/register_info_guomingshi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:hint="食物以及药物过敏史"
+
+                        android:minHeight="80dp"
+                        android:minLines="1"
+                        android:padding="5dp"
+                        android:textSize="@dimen/font_style_14" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="(应记录致敏药物、发生时间、症状及就诊情况，如无药物致敏史亦需说明)"
+                    android:textColor="@color/blue"
+                    android:textSize="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/hui_stroke"
+                    android:padding="3dp">
+
+                    <EditText
+                        android:id="@+id/register_info_chengyingdeyaowu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:hint="成瘾的药物"
+
+                        android:minHeight="80dp"
+                        android:minLines="1"
+                        android:padding="5dp"
+                        android:textSize="@dimen/font_style_14" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="(应记录成瘾的药物名称及使用情况)"
+                    android:textColor="@color/blue"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/register_info_three_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/blue_bg"
+                    android:text="修改"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
+        </ScrollView>

@@ -44,6 +44,10 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	public void onBind(final ViewHolder viewHolder, int RealPosition,final Map<String, Object> data) {
 		if(viewHolder instanceof Holder){
 			final Holder hodler = (Holder)viewHolder;
+			if(RealPosition == 0){
+				hodler.deils.setVisibility(View.VISIBLE);
+				hodler.riskitem.setVisibility(View.VISIBLE);
+			}
 			hodler.item.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -52,7 +56,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 
 						RequestManager.postObject(String.format(Constens.CUSTOMER_HEALTH_RISK_UPDATA,data.get("id").toString()), context,params, new Response.Listener<JSONObject>() {
 							public void onResponse(JSONObject data) {
-								System.out.print("+++++++++++++++++++++"+data.toString());
+//								System.out.print("+++++++++++++++++++++"+data.toString());
 								hodler.checked.setVisibility(View.GONE);
 							}
 						}, new RequestErrorListener() {

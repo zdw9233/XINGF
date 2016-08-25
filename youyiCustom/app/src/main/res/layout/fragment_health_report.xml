@@ -28,7 +28,7 @@
             android:minLines="5"
             android:text="dsadsa"
             android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
+            android:textSize="@dimen/font_style_14" />
 
 
         <TextView
@@ -51,7 +51,7 @@
             android:minLines="5"
             android:text="dsadsa"
             android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
+            android:textSize="@dimen/font_style_14" />
 
 
         <TextView
@@ -74,7 +74,7 @@
             android:minLines="5"
             android:text="dsadsa"
             android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
+            android:textSize="@dimen/font_style_14" />
 
         <TextView
             android:layout_width="match_parent"
@@ -105,7 +105,7 @@
             android:minLines="5"
             android:text="dsadsa"
             android:textColor="@color/text_clr"
-            android:textSize="@dimen/font_style_12" />
+            android:textSize="@dimen/font_style_14" />
 
     </LinearLayout>
 

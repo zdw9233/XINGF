@@ -3,6 +3,7 @@ package com.uyi.app.ui.report;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
@@ -17,7 +18,6 @@ import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.report.adapter.ReportListAdapter;
 import com.uyi.app.ui.report.model.ReportItem;
 import com.uyi.app.utils.L;
-import com.uyi.app.utils.T;
 import com.uyi.app.widget.recycle.RecyclerListener;
 import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
@@ -41,7 +41,8 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
     @ViewInject(R.id.recyclerView)
     private RecyclerView mRecyclerView;
     private ReportListAdapter mAdapter;
-
+    @ViewInject(R.id.no_assessment)
+    private TextView no_assessment;
     private int pageIndex = 1;
 
     List<ReportItem> mReportItems;
@@ -91,7 +92,10 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
                 } else {
                     if (pageIndex == 1) {
                         mReportItems.clear();
-                        T.showShort(ReportListActivity.this, "您还没有报告");
+                        no_assessment.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.GONE);
+//                        T.showShort(ReportListActivity.this, "您还没有报告");
+//                        new AlertDialog.Builder(ReportListActivity.this).setTitle("提示").setMessage("您的主管医生尚未为您提交主诊报告，如有疑问请咨询您的慢病管理师！").setPositiveButton("确定", null).show();
                     }
                 }
             }

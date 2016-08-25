@@ -15,7 +15,7 @@ import com.uyi.app.sweep.CaptureActivity;
 import com.uyi.app.ui.common.ServiceNumberActivity;
 import com.uyi.app.ui.common.UpdateGuardianInfo;
 import com.uyi.app.ui.common.UpdatePasswordActivity;
-import com.uyi.app.ui.common.UpdateUserInfoActivity;
+import com.uyi.app.ui.healthinfo.HealthInfoActivity;
 import com.uyi.app.ui.recharge.RechargeActivity;
 import com.uyi.custom.app.R;
 
@@ -84,8 +84,8 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 			Intent intent = new Intent(getContext(), UpdatePasswordActivity.class);
 			getContext().startActivity(intent);
 		}else if(v.getId() == R.id.right_menu_update_info){
-			Intent intent = new Intent(getContext(), UpdateUserInfoActivity.class);
-			intent.putExtra("update", 1);
+			Intent intent = new Intent(getContext(), HealthInfoActivity.class);
+//			intent.putExtra("update", 1);
 			getContext().startActivity(intent);
 		}else if(v.getId() == R.id.right_menu_update_guardian_info){
 			Intent intent = new Intent(getContext(), UpdateGuardianInfo.class);
