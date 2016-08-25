@@ -19,6 +19,7 @@ import com.volley.RequestManager;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -30,8 +31,13 @@ import java.util.Map;
 public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object>> {
 
 	public Context context;
+	private ArrayList<Integer> showDetailPositions;
+
 	public RiskAssessmentAdapter(Context context) {
 		this.context = context;
+		showDetailPositions = new ArrayList<>();
+		showDetailPositions.add(0);
+
 	}
 
 	@Override
@@ -41,48 +47,41 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	}
 
 	@Override
-	public void onBind(final ViewHolder viewHolder, int RealPosition,final Map<String, Object> data) {
+	public void onBind(final ViewHolder viewHolder, final int RealPosition, final Map<String, Object> data) {
 		if(viewHolder instanceof Holder){
 			final Holder hodler = (Holder)viewHolder;
-			if(RealPosition == 0){
+			if (showDetailPositions.contains(RealPosition)){
 				hodler.deils.setVisibility(View.VISIBLE);
 				hodler.riskitem.setVisibility(View.VISIBLE);
+			}else {
+				hodler.deils.setVisibility(View.GONE);
+				hodler.riskitem.setVisibility(View.GONE);
 			}
 			hodler.item.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					try {
-						JSONObject params = new JSONObject();
+					if (data.get("checked").toString().equals("false")){
+						try {
+							JSONObject params = new JSONObject();
 
-						RequestManager.postObject(String.format(Constens.CUSTOMER_HEALTH_RISK_UPDATA,data.get("id").toString()), context,params, new Response.Listener<JSONObject>() {
-							public void onResponse(JSONObject data) {
-//								System.out.print("+++++++++++++++++++++"+data.toString());
-								hodler.checked.setVisibility(View.GONE);
-							}
-						}, new RequestErrorListener() {
-							public void requestError(VolleyError e) {
-//                    if(e.networkResponse != null){
-//                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
-//                    }else{
-//                        T.showShort(activity, "提交成功!");
-//                        onRefresh();
-//                    }
-//								T.showShort(context, "失败!");
-							}
-						});
-					} catch (Exception e) {
-						e.printStackTrace();
+							RequestManager.postObject(String.format(Constens.CUSTOMER_HEALTH_RISK_UPDATA,data.get("id").toString()), context,params, new Response.Listener<JSONObject>() {
+								public void onResponse(JSONObject jsonData) {
+	//								hodler.checked.setVisibility(View.GONE);
+									data.put("checked","true");
+									notifyItemChanged(RealPosition);
+								}
+							}, new RequestErrorListener() {
+								public void requestError(VolleyError e) {
+								}
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
-
-					if(hodler.deils.getVisibility() == View.GONE){
-						hodler.deils.setVisibility(View.VISIBLE);
-						hodler.riskitem.setVisibility(View.VISIBLE);
-
-					}else{
-						hodler.deils.setVisibility(View.GONE);
-						hodler.riskitem.setVisibility(View.GONE);
-					}
-
+					if (showDetailPositions.contains(RealPosition)){
+						showDetailPositions.remove(showDetailPositions.indexOf(RealPosition));
+					}else showDetailPositions.add(RealPosition);
+					notifyItemChanged(RealPosition);
 				}
 			});
 //			hodler.title.setText(data.get("content").toString());
@@ -93,7 +92,6 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 			if(data.get("checked").toString().equals("false") ){
 				hodler.checked.setVisibility(View.VISIBLE);
 			}else hodler.checked.setVisibility(View.GONE);
-
 		}
 	}
 

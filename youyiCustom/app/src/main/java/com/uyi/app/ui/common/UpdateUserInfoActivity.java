@@ -402,7 +402,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                     }
                                 }
                             }));
-                            ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(UpdateUserInfoActivity.this, medicationUsingSituationsList, new MedicineAdapter.OnDeleteListener() {
+                            ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(UpdateUserInfoActivity.this, medicationUsingSituationsList, new MedicineAdapter.OnItemViewListener() {
                                 @Override
                                 public void onDelete(int position) {
                                     Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
@@ -412,6 +412,11 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
                                         medicationUsingSituationsList.remove(position);
                                         mMedicineAdapter.notifyItemRemoved(position);
                                     }
+                                }
+
+                                @Override
+                                public void onChoiceEndTime(int position, String sDate) {
+
                                 }
                             }));
 

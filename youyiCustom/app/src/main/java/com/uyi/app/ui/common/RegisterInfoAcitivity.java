@@ -1,14 +1,20 @@
 package com.uyi.app.ui.common;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,10 +34,13 @@ import com.uyi.app.ui.common.adapter.OutAdapter;
 import com.uyi.app.ui.common.model.AbnormalEvent;
 import com.uyi.app.ui.common.model.Health;
 import com.uyi.app.ui.common.model.Medicine;
+import com.uyi.app.ui.common.model.MedicineUnit;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.ui.healthinfo.model.Mecicine;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
+import com.uyi.app.utils.DensityUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.UYIUtils;
@@ -48,6 +57,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -57,7 +67,16 @@ import java.util.Set;
  * @author user
  */
 @ContentView(R.layout.register_inf0_one)
-public class RegisterInfoAcitivity extends BaseActivity {
+public class RegisterInfoAcitivity extends BaseActivity implements PopupWindow.OnDismissListener ,TextWatcher,RecyclerView.ItemClickListener{
+    @ViewInject(R.id.spm) private TextView spm;
+    @ViewInject(R.id.hxm) private TextView hxm;
+    private PopupWindow mPopupWindow;
+    private RecyclerView mPopupWindowRecyclerView;
+    private EditText mPopupWindowSearch;
+    private String spName;
+    private String hxName;
+    private com.uyi.app.ui.healthinfo.adapter.MedicineAdapter mNameAdapter;
+    List<MedicineUnit> medicineUnits;
     private LayoutInflater mInflater;
     int index = 1;//fragment页码
 
@@ -156,8 +175,6 @@ public class RegisterInfoAcitivity extends BaseActivity {
     private LinearLayout add_system_out_layout;
 
 
-    @ViewInject(R.id.yaowuName)
-    private Spinner yaowuName;
     @ViewInject(R.id.yypd)
     private Spinner yypd;
     @ViewInject(R.id.timeUnit)
@@ -198,9 +215,35 @@ public class RegisterInfoAcitivity extends BaseActivity {
 
     @ViewInject(R.id.ywRecyclerView)
     private RecyclerView ywRecyclerView;
+    private int type = 1;
 
     @Override
     protected void onInitLayoutAfter() {
+        medicationUsingSituationsList = new ArrayList<>();
+        View contentView = this.getLayoutInflater().inflate(R.layout.layout_medicine_name_popup,null);
+        mPopupWindow = new PopupWindow(contentView, DensityUtils.dp2px(this,165),-2);
+        mPopupWindowRecyclerView = (RecyclerView) contentView.findViewById(R.id.recyclerView);
+        mPopupWindowSearch = (EditText) contentView.findViewById(R.id.search_ywm);
+        mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+        mPopupWindow.setOutsideTouchable(true);
+        mPopupWindow.setFocusable(true);
+        mPopupWindow.setOnDismissListener(this);
+        mPopupWindowSearch.addTextChangedListener(this);
+        mPopupWindowRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mPopupWindowRecyclerView.setAdapter((mNameAdapter= new com.uyi.app.ui.healthinfo.adapter.MedicineAdapter(this)));
+        mNameAdapter.setItemClickListener(this);
+
+        ywRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RequestManager.getArray(Constens.GET_MEDICINE_UNIT, this, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                L.e(jsonArray.toString());
+                medicineUnits = JSON.parseArray(jsonArray.toString(), MedicineUnit.class);
+                valueUnit.setAdapter(new ArrayAdapter<>(RegisterInfoAcitivity.this, R.layout.layout_spinner_item, R.id.textView2, toStringArray(medicineUnits)));
+            }
+        });
+        
+        
         update = getIntent().getIntExtra("update", 0);
         gender = getIntent().getStringExtra("gender");
 
@@ -268,17 +311,30 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 mOutAdapter.notifyItemRemoved(position);
             }
         }));
-        ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(RegisterInfoAcitivity.this, medicationUsingSituationsList, new MedicineAdapter.OnDeleteListener() {
+        ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(RegisterInfoAcitivity.this, medicationUsingSituationsList, new MedicineAdapter.OnItemViewListener() {
             @Override
             public void onDelete(int position) {
                 Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
                 medicationUsingSituationsList.remove(position);
                 mMedicineAdapter.notifyItemRemoved(position);
             }
+
+            @Override
+            public void onChoiceEndTime(int position, String sDate) {
+
+            }
         }));
 
     }
-
+    private String[] toStringArray(List<MedicineUnit> strings) {
+        String[] strings1 = new String[strings.size()];
+        int i = 0;
+        for (MedicineUnit s : strings) {
+            strings1[i] = s.text;
+            i++;
+        }
+        return strings1;
+    }
     private void requestDrowMenuData() {
         RequestManager.getArray(Constens.ABNORMAL_EVENT, this, new Response.Listener<JSONArray>() {
             @Override
@@ -288,17 +344,6 @@ public class RegisterInfoAcitivity extends BaseActivity {
                     AbnormalEvent event = JSON.parseObject(objects.getString(i), AbnormalEvent.class);
                     abnormalEvents.put(event.name, event);
                     regester_info_xueguanfashengleixing.setAdapter(new ArrayAdapter<>(RegisterInfoAcitivity.this, R.layout.layout_spinner_item, R.id.textView2, toStringArray(abnormalEvents.keySet())));
-                }
-            }
-        });
-        RequestManager.getArray(Constens.GET_MEDICINE, this, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray jsonArray) {
-                com.alibaba.fastjson.JSONArray objects = JSON.parseArray(jsonArray.toString());
-                for (int i = 0; i < objects.size(); i++) {
-                    Medicine event = JSON.parseObject(objects.getString(i), Medicine.class);
-                    medicines.put(event.name, event);
-                    yaowuName.setAdapter(new ArrayAdapter<>(RegisterInfoAcitivity.this, R.layout.layout_spinner_item, R.id.textView2, ywmString = toStringArray(medicines.keySet())));
                 }
             }
         });
@@ -408,7 +453,6 @@ public class RegisterInfoAcitivity extends BaseActivity {
         holder.dcyyl = regester_three_danciyonyaoliang;
         holder.timeUnit = timeUnit;
         holder.valueUnit = valueUnit;
-        holder.yaowuName = yaowuName;
         holder.yypd = yypd;
         register_info_three.setTag(holder);
         yyViews.add(register_info_three);
@@ -432,17 +476,32 @@ public class RegisterInfoAcitivity extends BaseActivity {
             R.id.layout_end_time,
             R.id.regester_info_xueguanfashengshijian,
             R.id.tv_two_choice_date,
-            R.id.tv_add_system_out
+            R.id.tv_add_system_out,
+            R.id.spm,
+            R.id.reset,
+            R.id.hxm
 
     })
     public void onUpdate(View v) {
         switch (v.getId()) {
+
             case R.id.register_info_return:
                 finish();
                 break;
             case R.id.addmedicationsituation:
                 if (checkYYBeforeIsFull()) {
-                    addOneMedicineView();
+                    RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_MEDICINE_INFO, spm.getText().toString(), hxm.getText().toString()), this, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject jsonObject) {
+                            try {
+                                int id  = jsonObject.getInt("id");
+                                String name  = jsonObject.getString("name");
+                                addOneMedicineView(id,name);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 } else T.showShort(this, "请完善用药信息再试");
                 break;
             case R.id.register_info_one_submit:
@@ -674,7 +733,7 @@ public class RegisterInfoAcitivity extends BaseActivity {
             case R.id.layout_end_time:
                 String sDate = tv_start_time.getText().toString().trim();
                 if (sDate.equals("开始服药日期")) sDate = null;
-                startDatePicker(300, sDate);
+                startDatePicker(299, sDate);
                 break;
             case R.id.tv_add_system_out:
                 if (checkOutBeforeIsFull()) {
@@ -687,23 +746,40 @@ public class RegisterInfoAcitivity extends BaseActivity {
             case R.id.tv_two_choice_date://系统外就医时间选择
                 startDatePicker(100, null);
                 break;
+
+            case R.id.reset:
+                spm.setText("");
+                hxm.setText("");
+                spName = "";
+                hxName = "";
+                tv_start_time.setText("");
+                tv_end_time.setText("");
+                break;
+            case R.id.spm:
+                type =1;
+                mPopupWindow.showAsDropDown(spm);
+                onTextChanged("",0,0,0);
+                mNameAdapter.reset();
+                break;
+            case R.id.hxm:
+                type =2;
+                mPopupWindow.showAsDropDown(hxm);
+                onTextChanged("",0,0,0);
+                mNameAdapter.reset();
+                break;
         }
     }
 
-    private void addOneMedicineView() {
+    private void addOneMedicineView(int id, String name) {
         Health.HealthInfoBean.MedicationUsingSituationsBean bean = new Health.HealthInfoBean.MedicationUsingSituationsBean();
-        Holder holder = (Holder) yyViews.get(0).getTag();
-        bean.endTime = holder.endTime.getText().toString();
-        bean.frequencyUnit = (String) holder.timeUnit.getSelectedItem();
-        Medicine m = medicines.get(holder.yaowuName.getSelectedItem().toString());
-        if (m != null) {
-            bean.medicineId = m.id;
-            bean.medicineName = m.name;
-        }
-        bean.medicineUnit = (String) holder.valueUnit.getSelectedItem();
-        bean.singleDose = holder.dcyyl.getText().toString();
-        bean.startTime = holder.startTime.getText().toString();
-        bean.usingFrequency = (String) holder.yypd.getSelectedItem();
+        bean.endTime = tv_end_time.getText().toString();
+        bean.frequencyUnit = (String) timeUnit.getSelectedItem();
+        bean.medicineId = id;
+        bean.medicineName = name;
+        bean.medicineUnit = (String) valueUnit.getSelectedItem();
+        bean.singleDose = regester_three_danciyonyaoliang.getText().toString();
+        bean.startTime = tv_start_time.getText().toString();
+        bean.usingFrequency = (String) yypd.getSelectedItem();
         medicationUsingSituationsList.add(bean);
         mMedicineAdapter.notifyItemInserted(medicationUsingSituationsList.size() - 1);
     }
@@ -736,6 +812,61 @@ public class RegisterInfoAcitivity extends BaseActivity {
         headerView.setKitkat(systemBarConfig);
     }
 
+    @Override
+    public void onRecyclerItemClick(View v, int position) {
+        if (type ==1){
+            spm.setText(mNameAdapter.getName(position));
+        }else {
+            hxm.setText(mNameAdapter.getName(position));
+        }
+        mPopupWindow.dismiss();
+    }
+
+    @Override
+    public void onDismiss() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (type ==1){
+            spName = s.toString();
+            hxName = hxm.getText().toString().trim();
+        }else {
+            hxName = s.toString();
+            spName = spm.getText().toString().trim();
+        }
+        requestName();
+    }
+    private void requestName(){
+        L.e("type = " +type +" spName = " +spName +" hxName = " +hxName);
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_MEDICINE_NAME, type, spName, hxName), this, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                L.e(jsonObject.toString());
+                try {
+                    List<Mecicine> results = JSON.parseArray(jsonObject.getString("results"), Mecicine.class);
+                    mNameAdapter.setResults(results);
+                    mNameAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
+
     private class OutHolder {
         public TextView dateText;
         public EditText msgText;
@@ -752,18 +883,16 @@ public class RegisterInfoAcitivity extends BaseActivity {
     }
 
     private boolean checkYYBeforeIsFull() {
-        for (View view : yyViews) {
-            Holder holder = (Holder) view.getTag();
-            if (TextUtils.isEmpty(holder.startTime.getText().toString().trim()) ||
-                    TextUtils.isEmpty(holder.endTime.getText().toString().trim()) ||
-                    holder.yaowuName.getSelectedItem().equals("药物名") ||
-                    holder.yypd.getSelectedItem().equals("用药频度") ||
-                    TextUtils.isEmpty(holder.dcyyl.getText().toString().trim())) {
-                return false;
-            }
+        if (TextUtils.isEmpty(tv_start_time.getText().toString().trim()) ||
+                TextUtils.isEmpty(spm.getText().toString()) ||
+                TextUtils.isEmpty(hxm.getText().toString()) ||
+                "用药频度".equals(yypd.getSelectedItem()) ||
+                TextUtils.isEmpty(regester_three_danciyonyaoliang.getText().toString().trim())) {
+            return false;
         }
         return true;
     }
+
 
     private boolean checkOutBeforeIsFull() {
         for (View view : outViews) {
@@ -807,13 +936,17 @@ public class RegisterInfoAcitivity extends BaseActivity {
                     OutHolder outHolder = (OutHolder) outViews.get(ys).getTag();
                     outHolder.dateText.setText(date);
                     break;
-                case 2:        //服药开始时间
-                    Holder holder = (Holder) yyViews.get(ys).getTag();
-                    holder.startTime.setText(date);
-                    break;
-                case 3:     //服药结束时间
-                    Holder holder1 = (Holder) yyViews.get(ys).getTag();
-                    holder1.endTime.setText(date);
+                case 2: case 3:
+                    if (requestCode == 200){
+                        //服药开始时间
+                        Holder holder = (Holder) yyViews.get(ys).getTag();
+                        holder.startTime.setText(date);
+                    }                    //服药结束时间
+                   else if (requestCode==299){ //服药结束时间
+                        tv_end_time.setText(date);
+                    }else {
+                        mMedicineAdapter.notifyEndTimeChanged(requestCode-300,date);
+                    }
                     break;
                 case 4:         //血管时间发生时间
                     regester_info_xueguanfashengshijian.setText(date);

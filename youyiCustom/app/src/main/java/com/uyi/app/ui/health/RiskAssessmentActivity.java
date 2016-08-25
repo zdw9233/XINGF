@@ -1,14 +1,17 @@
 package com.uyi.app.ui.health;
 
+import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
@@ -19,6 +22,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.RiskAssessmentAdapter;
+import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
@@ -48,12 +52,14 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
 //    private TextView deils;
     @ViewInject(R.id.no_assessment)
     private TextView no_assessment;
+    @ViewInject(R.id.back_top)
+    private Button back_top;
     int isgone = 0;
     @ViewInject(R.id.recyclerView)
     private EndlessRecyclerView recyclerView;
     @ViewInject(R.id.swipeRefreshLayout)
     private SwipeRefreshLayout swipeRefreshLayout;
-    private LinearLayoutManager linearLayoutManager;
+    private MyLinearLayoutManager linearLayoutManager;
     private RiskAssessmentAdapter healthDatabaseAdapter;
     private ArrayList<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
     int scorllW;
@@ -61,7 +67,7 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
     @Override
     protected void onInitLayoutAfter() {
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("风险评估").setTitleColor(getResources().getColor(R.color.blue));
-        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new MyLinearLayoutManager(this);
         healthDatabaseAdapter = new RiskAssessmentAdapter(this);
         healthDatabaseAdapter.setOnItemClickListener(this);
         healthDatabaseAdapter.setDatas(datas);
@@ -71,7 +77,15 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         recyclerView.setProgressView(R.layout.item_progress);
         recyclerView.setAdapter(healthDatabaseAdapter);
         recyclerView.setPager(this);
-
+        recyclerView.addOnScrollListener(new android.support.v7.widget.RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(android.support.v7.widget.RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (linearLayoutManager.getScrollY() >400){
+                    back_top.setVisibility(View.VISIBLE);
+                }else back_top.setVisibility(View.GONE);
+            }
+        });
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -101,6 +115,13 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
     @Override
     public boolean shouldLoad() {
         return isLooding;
+    }
+
+    @OnClick({
+        R.id.back_top
+    })
+    public void onClick(View v){
+        recyclerView.smoothScrollToPosition(0);
     }
 
     @Override
@@ -170,5 +191,48 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                         }
                     }
                 });
+    }
+    class MyLinearLayoutManager extends LinearLayoutManager {
+
+        private RecyclerView.Recycler mRecycler;
+
+        public MyLinearLayoutManager(Context context) {
+            super(context);
+        }
+
+        @Override
+        public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
+            super.onMeasure(recycler, state, widthSpec, heightSpec);
+            mRecycler = recycler;
+        }
+
+        public int getScrollY() {
+            int scrollY = getPaddingTop();
+            int firstVisibleItemPosition = findFirstVisibleItemPosition();
+
+            if (firstVisibleItemPosition >= 0 && firstVisibleItemPosition < getItemCount()) {
+                for (int i = 0; i < firstVisibleItemPosition; i++) {
+                    View view = mRecycler.getViewForPosition(i);
+                    if (view == null) {
+                        continue;
+                    }
+                    if (view.getMeasuredHeight() <= 0) {
+                        measureChildWithMargins(view, 0, 0);
+                    }
+                    RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) view.getLayoutParams();
+                    scrollY += lp.topMargin;
+                    scrollY += getDecoratedMeasuredHeight(view);
+                    scrollY += lp.bottomMargin;
+                    mRecycler.recycleView(view);
+                }
+
+                View firstVisibleItem = findViewByPosition(firstVisibleItemPosition);
+                RecyclerView.LayoutParams firstVisibleItemLayoutParams = (RecyclerView.LayoutParams) firstVisibleItem.getLayoutParams();
+                scrollY += firstVisibleItemLayoutParams.topMargin;
+                scrollY -= getDecoratedTop(firstVisibleItem);
+            }
+
+            return scrollY;
+        }
     }
 }
