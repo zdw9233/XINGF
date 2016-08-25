@@ -285,8 +285,8 @@ public class FragmentHealthManager extends BaseFragment implements OnTabChanage,
             add("餐后2小时血糖");
             add("血脂总胆固醇");
             add("血脂甘油三酯");
-            add("血脂低密度蛋白胆固醇");
-            add("血脂高密度蛋白胆固醇");
+            add("血脂低密度脂蛋白胆固醇");
+            add("血脂高密度脂蛋白胆固醇");
             add("尿酸");
             add("静息心率");
             add("脉搏");

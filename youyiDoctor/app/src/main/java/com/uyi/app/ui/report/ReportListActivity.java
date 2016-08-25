@@ -19,7 +19,6 @@ import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.FragmentHealthListManager;
 import com.uyi.app.ui.report.adapter.ReportListAdapter;
 import com.uyi.app.ui.report.model.ReportItem;
-import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
@@ -90,7 +89,7 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
                 } else {
                     if (pageIndex == 1) {
                         mReportItems.clear();
-                        T.showShort(ReportListActivity.this, "您还没有报告");
+//                        T.showShort(ReportListActivity.this, "您还没有报告");
                     }
                 }
             }

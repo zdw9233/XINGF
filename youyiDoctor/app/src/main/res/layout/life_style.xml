@@ -16,7 +16,9 @@
        android:layout_marginRight="10dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
+       android:textScaleX="1.05"
        android:gravity="top"
+       android:lineSpacingExtra="5dp"
        android:background="@drawable/hui_stroke"
        android:textSize="@dimen/font_style_15"
        android:minLines="10"/>

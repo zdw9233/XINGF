@@ -519,6 +519,11 @@ public abstract class Constens {
      * 获取报告详情
      */
     public static final String GET_REPORT_DETAIL = SERVER_URL + "/app/api/doctor/health/info/dailyinfo/data/%d?cusid=%d&repId=%d";
+
+    /**
+     * 发送报告详情
+     */
+    public static final String SEND_REPORT = SERVER_URL + "/app/api/account/sendEmail?reportId=%d&recipientEmail=%s";
     /**
      * 获取定制服务
      */

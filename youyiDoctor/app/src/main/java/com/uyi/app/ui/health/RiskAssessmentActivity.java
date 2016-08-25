@@ -149,7 +149,7 @@ public void onClick(View v){
                 activity, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {
-                        System.out.print("_________________________________"+data.toString());
+//                        System.out.print("_________________________________"+data.toString());
                         try {
                             Loading.bulid(activity, null).dismiss();
                             totalPage = data.getInt("pages");
@@ -158,9 +158,21 @@ public void onClick(View v){
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
 
-                                item.put("content", jsonObject.getString("content"));
+//                                item.put("content", jsonObject.getString("content"));
+//                                item.put("createTime", jsonObject.getString("createTime"));
+//                                item.put("percentage", jsonObject.getString("percentage"));
+
+                                if(jsonObject.has("content")){
+                                    item.put("content", jsonObject.getString("content"));
+                                }else{
+                                    item.put("content", "");
+                                }
                                 item.put("createTime", jsonObject.getString("createTime"));
-                                item.put("percentage", jsonObject.getString("percentage"));
+                                if(jsonObject.has("percentage")){
+                                    item.put("percentage", jsonObject.getString("percentage"));
+                                }else{
+                                    item.put("percentage", "");
+                                }
                                 item.put("doc_name", jsonObject.getString("doc_name"));
 //                                item.put("createTime", jsonObject.getString("createTime"));
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));

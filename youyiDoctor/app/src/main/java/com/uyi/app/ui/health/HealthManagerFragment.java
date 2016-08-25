@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.view.View;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -17,6 +18,7 @@ import com.uyi.app.ui.report.ReportListActivity;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONException;
@@ -68,7 +70,26 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
                 startActivity(new Intent(this, AlarmStandardActivity.class));
                 break;
             case R.id.telephone:
-                //个人资料
+                //电话
+
+//			UserInfo userInfo = UserInfoManager.getLoginUserInfo(this);
+//			userInfo.password = pwd;
+//			UserInfoManager.setLoginUserInfo(this,userInfo);
+//			L.e("userinfo == ",userInfo.toString());
+                RequestManager.getObject(String.format(Constens.COSTOM_HEALTH_CALL_PHONE, FragmentHealthListManager.customer), activity,null ,null, new RequestErrorListener(){
+                    @Override
+                    public void requestError(VolleyError e) {
+                        if (e.networkResponse != null) {
+                            if (e.networkResponse.statusCode == 200) {
+
+                            } else {
+
+                            }
+                        } else {
+
+                        }
+                    }
+                });
                 RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMER_INFO, FragmentHealthListManager.customer), activity, new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
                         try {

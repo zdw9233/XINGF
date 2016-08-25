@@ -35,12 +35,12 @@ public abstract class Constens {
     /**
      * 测试服地址
      */
-//    public final static String SERVER_URL = "http://121.42.142.228:8080";
+    public final static String SERVER_URL = "http://121.42.142.228:8080";
 
     /**
      * 生产服地址
      */
-	public final static String SERVER_URL = "http://www.uyidoctor.com";
+//	public final static String SERVER_URL = "http://www.uyidoctor.com";
     //登陆
     public final static String LOGIN_URL = SERVER_URL + "/app/api/account/login";
     //获取欢迎图片
@@ -71,6 +71,22 @@ public abstract class Constens {
      * 医生修改密码
      */
     public final static String SETTING_PASSWORD = SERVER_URL + "/app/api/doctor/setting/password";
+    /**
+     * 医生获取生活方式
+     */
+    public final static String GET_LIFESTYLE = SERVER_URL + "/app/api/doctor/get/customer/lifestyle";
+    /**
+     * 医生获取饮食计划
+     */
+    public final static String GET_EATHEALTH = SERVER_URL + "/app/api/doctor/get/customer/eatinghabits";
+    /**
+     * 医生修改生活方式
+     */
+    public final static String SETTING_LIFESTYLE = SERVER_URL + "/app/api/doctor/update/customer/lifestyle";
+    /**
+     * 医生修改饮食计划
+     */
+    public final static String SETTING_EATHEALTH = SERVER_URL + "/app/api/doctor/update/customer/eatinghabits";
     /**
      * 用户安全问题获取
      */
@@ -431,7 +447,10 @@ public abstract class Constens {
      */
     public final static String COSTOM_HEALTH_WARNING_DATA = SERVER_URL + "/app/api/doctor/health/info/warning/data/%s";
 
-
+    /**
+     * 拨打电话
+     */
+    public final static String COSTOM_HEALTH_CALL_PHONE = SERVER_URL + "/app/api/doctor/already/visit/%s";
     /**
      * 医生解除报警
      */
