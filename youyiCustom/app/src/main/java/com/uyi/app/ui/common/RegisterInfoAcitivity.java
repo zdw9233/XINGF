@@ -321,7 +321,7 @@ public class RegisterInfoAcitivity extends BaseActivity implements PopupWindow.O
 
             @Override
             public void onChoiceEndTime(int position, String sDate) {
-
+                startDatePicker(300+position, sDate);
             }
         }));
 
@@ -436,7 +436,6 @@ public class RegisterInfoAcitivity extends BaseActivity implements PopupWindow.O
                 AbnormalEvent ae = abnormalEvents.get(fsType);
                 if (ae != null) {
                     abnormalEventJsonsBean.eventType = ae.eventType;
-                    abnormalEventJsonsBean.id = ae.id;
                     abnormalEventJsonsBean.name = ae.name;
                     abnormalEventJsonsBean.eventId = ae.id;
                 }
