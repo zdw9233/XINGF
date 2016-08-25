@@ -67,11 +67,11 @@
             android:name="com.uyi.app.ui.common.WelcomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name="com.uyi.app.ui.report.ReportListActivity"
@@ -157,7 +157,10 @@
             android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"></activity>
         <activity
             android:name="com.uyi.app.ui.common.RegisterInfoAcitivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+
+        </activity>
         <activity
             android:name="com.uyi.app.ui.common.UpdatePasswordActivity"
             android:screenOrientation="portrait"></activity>

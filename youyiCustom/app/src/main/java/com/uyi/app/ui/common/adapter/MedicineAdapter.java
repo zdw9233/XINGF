@@ -42,7 +42,7 @@ public class MedicineAdapter extends BaseAdapter {
         tv_start_time.setText(String.format(Locale.CHINA, "开始服药日期：%s", bean.startTime));
         tv_end_time.setText(String.format(Locale.CHINA, "结束服药日期：%s", bean.endTime==null?"":bean.endTime));
         tv_ywm.setText(String.format(Locale.CHINA, "药物名：%s", bean.medicineName));
-        yypd.setText(String.format(Locale.CHINA, "%s%s服药%s%s", bean.usingFrequency, bean.frequencyUnit, bean.singleDose, bean.medicineUnit));
+        yypd.setText(String.format(Locale.CHINA, "%s%s 每次用药%s%s", bean.usingFrequency, bean.frequencyUnit, bean.singleDose, bean.medicineUnit));
 
         if (TextUtils.isEmpty(bean.endTime)){
             xzrq.setVisibility(View.VISIBLE);
