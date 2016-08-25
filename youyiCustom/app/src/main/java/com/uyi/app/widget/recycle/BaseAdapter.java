@@ -184,6 +184,7 @@ public abstract class BaseAdapter extends
      */
     public abstract ViewHolder newHolder(View itemView);
 
+
     /**
      * ViewHolder做控件缓存
      */

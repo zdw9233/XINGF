@@ -268,12 +268,17 @@ public class RegisterInfoAcitivity extends BaseActivity {
                 mOutAdapter.notifyItemRemoved(position);
             }
         }));
-        ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(RegisterInfoAcitivity.this, medicationUsingSituationsList, new MedicineAdapter.OnDeleteListener() {
+        ywRecyclerView.setAdapter(mMedicineAdapter = new MedicineAdapter(RegisterInfoAcitivity.this, medicationUsingSituationsList, new MedicineAdapter.OnItemViewListener() {
             @Override
             public void onDelete(int position) {
                 Health.HealthInfoBean.MedicationUsingSituationsBean bean = medicationUsingSituationsList.get(position);
                 medicationUsingSituationsList.remove(position);
                 mMedicineAdapter.notifyItemRemoved(position);
+            }
+
+            @Override
+            public void onChoiceEndTime(int position, String sDate) {
+
             }
         }));
 

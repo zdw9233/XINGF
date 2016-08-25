@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Response.Listener;
@@ -19,11 +20,14 @@ import com.uyi.app.ui.custom.FlowRadioGroup;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
+import com.volley.ImageCacheManager;
 import com.volley.RequestManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,88 +58,92 @@ public class HealthDatabasePreviewActivity extends BaseActivity implements OnCli
     LayoutInflater inflater  ;
     @Override
     protected void onInitLayoutAfter() {
-//        data =  AddHealthDatabase.DATA;
-//        health_database_add_submit.setVisibility(View.VISIBLE);
-//        inflater  = LayoutInflater.from(activity);
-//        headerView.showTitle(true).showLeftReturn(true).showRight(true).setTitle("健康数据库预览").setTitleColor(getResources().getColor(R.color.blue));
-//                 Loading.bulid(activity, null).show();
-//                        try {
-//                            //检查时间
-//                            if(data.has("checkTime"))
-//                                addView(health_database_details_check_date_layout, "体检时间:", data.getString("checkTime"), "","");
-//                            //血压
-//                            if(data.has("morningSystolicPressure"))
-//                                addView(health_database_details_xueya_layout, "收缩(高)压:", data.getString("morningSystolicPressure"), "mm/Hg",JSONObjectUtils.getString(data, "morningSystolicPressureWarning"));
-//                            if(data.has("morningDiastolicPressure"))
-//                                addView(health_database_details_xueya_layout, "收缩(底)压:", data.getString("morningDiastolicPressure"), "mm/Hg",JSONObjectUtils.getString(data,"morningDiastolicPressureWarning"));
-//                            if(data.has("pulseRate"))
-//                                addView(health_database_details_xueya_layout, "脉搏:", data.getString("pulseRate"), "次/分", JSONObjectUtils.getString(data,"pulseRateWarning"));
-//
-//                            //血糖
-//                            if(data.has("fastBloodSugar"))
-//                                addView(health_database_details_xuetang_layout, "空腹血糖:", data.getString("fastBloodSugar"), "mmol/l", JSONObjectUtils.getString(data,"fastBloodSugarWarning"));
-//                            if(data.has("postPrandilaSugar"))
-//                                addView(health_database_details_xuetang_layout, "餐饮2小时血糖:", data.getString("postPrandilaSugar"), "mmol/l", JSONObjectUtils.getString(data,"postPrandilaSugarWarning"));
-//                            if(data.has("randomBloodSugar"))
-//                                addView(health_database_details_xuetang_layout, "随机血糖:", data.getString("randomBloodSugar"), "mmol/l", JSONObjectUtils.getString(data,"randomBloodSugarWarning"));
-//
-//                            //血脂
-//                            if(data.has("bloodFatChol"))
-//                                addView(health_database_details_xuezhi_layout, "总胆固醇:", data.getString("bloodFatChol"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatCholWarning"));
-//                            if(data.has("bloodFatTg"))
-//                                addView(health_database_details_xuezhi_layout, "甘油三酯:", data.getString("bloodFatTg"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatTgWarning"));
-//                            if(data.has("bloodFatLdl"))
-//                                addView(health_database_details_xuezhi_layout, "低密度脂蛋白胆固醇:", data.getString("bloodFatLdl"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatLdlWarning"));
-//                            if(data.has("bloodFatHdl"))
-//                                addView(health_database_details_xuezhi_layout, "高密度脂蛋白胆固醇:", data.getString("bloodFatHdl"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatHdlWarning"));
-//
-//                            //学氧
-//                            if(data.has("spo"))
-//                                addView(health_database_details_xueyang_layout, "饱和度:", data.getString("spo"), "umol/l", JSONObjectUtils.getString(data,"spoWarning"));
-//                            if(data.has("heartRate"))
-//                                addView(health_database_details_xueyang_layout, "静息心率(脉率):", data.getString("heartRate"), "次/分", JSONObjectUtils.getString(data,"heartRateWarning"));
-//
-//
-//                            //其他项目
-//                            if(data.has("urineAcid"))
-//                                addView(health_database_details_qita_layout, "尿酸:", data.getString("urineAcid"), "umol/l", JSONObjectUtils.getString(data,"urineAcidWarning"));
-//
-//                            health_database_details_jiangchaxiangmu.setText(JSONObjectUtils.getString(data,"checkItem"));
-//
-//
-//                            //检查报告
-//                            if(data.has("images")){
-//                                JSONArray array = data.getJSONArray("images");
-//                                for (int i = 0; i < array.length(); i++) {
-//                                    JSONObject jsonObject = array.getJSONObject(i);
-//                                    View view = inflater.inflate(R.layout.health_database_details_image,health_database_details_jiangchabaogao_layout, false);
-//                                    ImageView imageView = (ImageView)view.findViewById(R.id.health_database_details_image_);
-//                                    String imageUrl = jsonObject.getString("url").replace("http://localhost:8080", Constens.SERVER_URL);
-//                                    health_database_details_jiangchabaogao_layout.addView(view);
-//                                    imageView.setTag(imageUrl);
-//                                    imageView.setOnClickListener(HealthDatabasePreviewActivity.this);
-//                                    ImageCacheManager.loadImage(imageUrl, ImageCacheManager.getImageListener(imageView, null, null));
-//                                }
-//                            }
-//
-//                            //心电图
-//                            if(data.has("ecg")){
-//                                JSONArray array = data.getJSONArray("ecg");
-//                                for (int i = 0; i < array.length(); i++) {
-//                                    JSONObject jsonObject = array.getJSONObject(i);
-//                                    View view = inflater.inflate(R.layout.health_database_details_image,health_database_details_xindiantu_layout, false);
-//                                    ImageView imageView = (ImageView)view.findViewById(R.id.health_database_details_image_);
-//                                    String imageUrl = jsonObject.getString("url").replace("http://localhost:8080", Constens.SERVER_URL);
-//                                    imageView.setTag(imageUrl);
-//                                    imageView.setOnClickListener(HealthDatabasePreviewActivity.this);
-//                                    health_database_details_xindiantu_layout.addView(view);
-//                                    ImageCacheManager.loadImage(imageUrl, ImageCacheManager.getImageListener(imageView, null, null));
-//                                }
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                        Loading.bulid(activity, null).dismiss();
+        try {
+            data = new JSONObject(getIntent().getStringExtra("data"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        health_database_add_submit.setVisibility(View.VISIBLE);
+        inflater  = LayoutInflater.from(activity);
+        headerView.showTitle(true).showLeftReturn(true).showRight(true).setTitle("健康数据库预览").setTitleColor(getResources().getColor(R.color.blue));
+                 Loading.bulid(activity, null).show();
+                        try {
+                            //检查时间
+                            if(data.has("checkTime"))
+                                addView(health_database_details_check_date_layout, "体检时间:", data.getString("checkTime"), "","");
+                            //血压
+                            if(data.has("morningSystolicPressure"))
+                                addView(health_database_details_xueya_layout, "收缩(高)压:", data.getString("morningSystolicPressure"), "mm/Hg", JSONObjectUtils.getString(data, "morningSystolicPressureWarning"));
+                            if(data.has("morningDiastolicPressure"))
+                                addView(health_database_details_xueya_layout, "收缩(底)压:", data.getString("morningDiastolicPressure"), "mm/Hg",JSONObjectUtils.getString(data,"morningDiastolicPressureWarning"));
+                            if(data.has("pulseRate"))
+                                addView(health_database_details_xueya_layout, "脉搏:", data.getString("pulseRate"), "次/分", JSONObjectUtils.getString(data,"pulseRateWarning"));
+
+                            //血糖
+                            if(data.has("fastBloodSugar"))
+                                addView(health_database_details_xuetang_layout, "空腹血糖:", data.getString("fastBloodSugar"), "mmol/l", JSONObjectUtils.getString(data,"fastBloodSugarWarning"));
+                            if(data.has("postPrandilaSugar"))
+                                addView(health_database_details_xuetang_layout, "餐饮2小时血糖:", data.getString("postPrandilaSugar"), "mmol/l", JSONObjectUtils.getString(data,"postPrandilaSugarWarning"));
+                            if(data.has("randomBloodSugar"))
+                                addView(health_database_details_xuetang_layout, "随机血糖:", data.getString("randomBloodSugar"), "mmol/l", JSONObjectUtils.getString(data,"randomBloodSugarWarning"));
+
+                            //血脂
+                            if(data.has("bloodFatChol"))
+                                addView(health_database_details_xuezhi_layout, "总胆固醇:", data.getString("bloodFatChol"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatCholWarning"));
+                            if(data.has("bloodFatTg"))
+                                addView(health_database_details_xuezhi_layout, "甘油三酯:", data.getString("bloodFatTg"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatTgWarning"));
+                            if(data.has("bloodFatLdl"))
+                                addView(health_database_details_xuezhi_layout, "低密度脂蛋白胆固醇:", data.getString("bloodFatLdl"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatLdlWarning"));
+                            if(data.has("bloodFatHdl"))
+                                addView(health_database_details_xuezhi_layout, "高密度脂蛋白胆固醇:", data.getString("bloodFatHdl"), "mmol/l", JSONObjectUtils.getString(data,"bloodFatHdlWarning"));
+
+                            //学氧
+                            if(data.has("spo"))
+                                addView(health_database_details_xueyang_layout, "饱和度:", data.getString("spo"), "umol/l", JSONObjectUtils.getString(data,"spoWarning"));
+                            if(data.has("heartRate"))
+                                addView(health_database_details_xueyang_layout, "静息心率(脉率):", data.getString("heartRate"), "次/分", JSONObjectUtils.getString(data,"heartRateWarning"));
+
+
+                            //其他项目
+                            if(data.has("urineAcid"))
+                                addView(health_database_details_qita_layout, "尿酸:", data.getString("urineAcid"), "umol/l", JSONObjectUtils.getString(data,"urineAcidWarning"));
+
+                            health_database_details_jiangchaxiangmu.setText(JSONObjectUtils.getString(data,"checkItem"));
+
+
+                            //检查报告
+                            if(data.has("images")){
+                                JSONArray array = data.getJSONArray("images");
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject jsonObject = array.getJSONObject(i);
+                                    View view = inflater.inflate(R.layout.health_database_details_image,health_database_details_jiangchabaogao_layout, false);
+                                    ImageView imageView = (ImageView)view.findViewById(R.id.health_database_details_image_);
+                                    String imageUrl = jsonObject.getString("url").replace("http://localhost:8080", Constens.SERVER_URL);
+                                    health_database_details_jiangchabaogao_layout.addView(view);
+                                    imageView.setTag(imageUrl);
+                                    imageView.setOnClickListener(HealthDatabasePreviewActivity.this);
+                                    ImageCacheManager.loadImage(imageUrl, ImageCacheManager.getImageListener(imageView, null, null));
+                                }
+                            }
+
+                            //心电图
+                            if(data.has("ecg")){
+                                JSONArray array = data.getJSONArray("ecg");
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject jsonObject = array.getJSONObject(i);
+                                    View view = inflater.inflate(R.layout.health_database_details_image,health_database_details_xindiantu_layout, false);
+                                    ImageView imageView = (ImageView)view.findViewById(R.id.health_database_details_image_);
+                                    String imageUrl = jsonObject.getString("url").replace("http://localhost:8080", Constens.SERVER_URL);
+                                    imageView.setTag(imageUrl);
+                                    imageView.setOnClickListener(HealthDatabasePreviewActivity.this);
+                                    health_database_details_xindiantu_layout.addView(view);
+                                    ImageCacheManager.loadImage(imageUrl, ImageCacheManager.getImageListener(imageView, null, null));
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Loading.bulid(activity, null).dismiss();
 
     }
 

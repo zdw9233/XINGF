@@ -24,11 +24,18 @@
         <item>健康资料</item>
     </string-array>
     <string-array name="time_unit">
-        <item>小时</item>
-        <item>日</item>
-        <item>月</item>
-        <item>年</item>
+        <item>1次</item>
+        <item>2次</item>
+        <item>3次</item>
+        <item>4次</item>
+        <item>5次</item>
+        <item>6次</item>
+        <item>7次</item>
+        <item>8次</item>
+        <item>9次</item>
+        <item>10次</item>
     </string-array>
+
     <string-array name="medicine_unit">
         <item>g</item>
         <item>mg</item>
@@ -37,17 +44,12 @@
         <item>u</item>
         <item>iu</item>
     </string-array>
+
     <string-array name="medicine_pd">
-        <item>用药频度</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
+        <item>每小時</item>
+        <item>每天</item>
+        <item>每周</item>
+        <item>每月</item>
+        <item>每年</item>
     </string-array>
 </resources>

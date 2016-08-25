@@ -3,6 +3,7 @@ package com.uyi.app;
 public abstract class Constens {
 
 
+
     public static int START_ACTIVITY_FOR_RESULT = 10000;//跳转界面
     public static int BACK_LOGIN = 10001;//登陆
     public static int PHOTO_REQUEST_GALLERY = 10020;//相册
@@ -157,8 +158,8 @@ public abstract class Constens {
      */
     public final static String PASSWORD = SERVER_URL + "/app/api/common/getCustomerPassword?id=%s&password=%s";
     /**
-    /**
-    /**
+     * /**
+     * /**
      * 用户修改密码
      */
     public final static String SETTING_PASSWORD = SERVER_URL + "/app/api/account/setting/password";
@@ -530,4 +531,18 @@ public abstract class Constens {
      * 删除就医/用药情况
      */
     public static final String DELETE_INFO = SERVER_URL + "/app/api/common/delete/info?id=%d&type=%d";
+
+    /**
+     * 获取药物名
+     */
+    public static final String GET_MEDICINE_NAME = SERVER_URL + "/app/api/common/Medicine/names?type=%d&name=%s&chemicalName=%s";
+    /**
+     * 获取药物单位
+     */
+    public static final String GET_MEDICINE_UNIT = SERVER_URL+"/app/api/common/dataDictionary/MedicineUnit";
+
+    /**
+     * 	根据商品名加化学名获取药物信息
+     */
+    public static final String GET_MEDICINE_INFO = SERVER_URL+"/app/api/common/Medicine/single?name=%s&chemicalName=%s";
 }

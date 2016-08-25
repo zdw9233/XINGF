@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="165dp"
+    android:background="@drawable/hui_stroke"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/search_ywm"
+        android:layout_width="match_parent"
+        android:background="@drawable/hui_bg"
+        android:paddingLeft="8dp"
+        android:layout_margin="4dp"
+        android:paddingRight="8dp"
+        android:imeOptions="actionDone"
+        android:singleLine="true"
+        android:hint="请输入药物名"
+        android:textSize="12sp"
+        android:layout_height="40dp" />
+    <com.uyi.app.widget.recycle.RecyclerView
+        android:padding="4dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"/>
+</LinearLayout>
