@@ -68,21 +68,26 @@ public class BloodInfoFragment extends BaseFragment
                 }
                 regester_info_xueguanfashengleixing.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.layout_spinner_item, R.id.textView2, listdata));
 
-                RequestManager.getObject(Constens.ACCOUNT_BLOOD_INFO, getActivity(), new Response.Listener<JSONObject>() {
+                RequestManager.getObject(Constens.ACCOUNT_BLOOD_INFO, getActivity(), null, new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
                         try {
-                            L.e("ONE", data.toString()+"_____"+listtype.toString());
+                            L.e("ONE", data.toString() + "_____" + listtype.toString());
                             regester_info_xueguanfashengshijian.setText(JSONObjectUtils.getString(data, "time"));
                             register_info_qitaleixin.setText(JSONObjectUtils.getString(data, "description"));
                             String eventId = JSONObjectUtils.getString(data, "eventId");
-                            for (int i =0; i<listtype.size();i++){
-                                if(eventId.equals(listtype.get(i))){
+                            for (int i = 0; i < listtype.size(); i++) {
+                                if (eventId.equals(listtype.get(i))) {
                                     regester_info_xueguanfashengleixing.setSelection(i);
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                    }
+                }, new RequestErrorListener() {
+                    @Override
+                    public void requestError(VolleyError e) {
+
                     }
                 });
             }

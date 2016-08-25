@@ -128,8 +128,8 @@ public class MedicineInfoFragment extends BaseFragment implements PopupWindow.On
                     List<Health.HealthInfoBean.MedicationUsingSituationsBean> medicationUsingSituations = JSON.parseArray(medicationUsingSituations1, Health.HealthInfoBean.MedicationUsingSituationsBean.class);
                      if (medicationUsingSituations!=null)
                     medicationUsingSituationsList.addAll(medicationUsingSituations);
-                    register_info_chengyingdeyaowu.setText(drugAddiction);
-                    register_info_guomingshi.setText(historyOfAllergy);
+                    register_info_chengyingdeyaowu.setText("null".equals(drugAddiction)?"":drugAddiction);
+                    register_info_guomingshi.setText("null".equals(historyOfAllergy)?"":historyOfAllergy);
 
                     ywRecyclerView.setAdapter(mMedicineAdapter = new com.uyi.app.ui.common.adapter.MedicineAdapter(getActivity(), medicationUsingSituationsList, new com.uyi.app.ui.common.adapter.MedicineAdapter.OnItemViewListener() {
                         @Override
