@@ -36,9 +36,12 @@ public class LifeStyleActivity extends BaseActivity {
         RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_LIFE_DIET,FragmentHealthListManager.customer+""),this, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {
-                        System.out.print("_________________________________"+data.toString());
                         try {
-                            life_style_details.setText( data.getString("liefstyle"));
+                            if (!data.getString("liefstyle").equals("null")) {
+                                life_style_details.setText( ""+data.getString("liefstyle"));
+                            } else {
+                                life_style_details.setText("");
+                            }
                             diet = data.getString("eatinghabiit");
 
                         } catch (JSONException e) {
@@ -62,7 +65,6 @@ public class LifeStyleActivity extends BaseActivity {
                     params.put("eatinghabiit", diet);
                     RequestManager.postObject(String.format(Constens.DOCTOR_HEALTH_LIFE_DIET_UPDATA, FragmentHealthListManager.customer + ""), activity, params, new Response.Listener<JSONObject>() {
                         public void onResponse(JSONObject data) {
-                            System.out.print("+++++++++++++++++++++" + data.toString());
                             T.showShort(activity, "提交成功!");
                             finish();
                         }

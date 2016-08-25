@@ -1,14 +1,15 @@
 package com.uyi.app.ui.personal.customer;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -30,16 +31,15 @@ import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -92,7 +92,6 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 	public void onRefresh() { 
 		pageNo = 1;
 		isLooding = true;
-		datas.clear();
 		recyclerView.setRefreshing(false);
 		loadNextPage();
 	}
@@ -119,6 +118,8 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");
+					if (pageNo == 1)
+						datas.clear();
 					for(int i = 0;i<array.length();i++){
 						Map<String,Object> item = new HashMap<String,Object>();
 						JSONObject jsonObject = array.getJSONObject(i);

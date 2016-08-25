@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
-import com.uyi.app.ui.common.model.Health;
+import com.uyi.app.ui.healthinfo.model.OutXiTon;
 import com.uyi.app.widget.recycle.BaseAdapter;
 import com.uyi.custom.app.R;
 
@@ -14,9 +14,9 @@ import java.util.List;
  * Created by Leeii on 2016/7/18.
  */
 public class OutXiTonAdapter extends BaseAdapter {
-    List<Health.HealthInfoBean.ExternalSituationsBean> datas;
+    List<OutXiTon> datas;
 
-    public OutXiTonAdapter(Context context, List<Health.HealthInfoBean.ExternalSituationsBean> datas, OnDeleteListener onDeleteListener) {
+    public OutXiTonAdapter(Context context, List<OutXiTon> datas, OnDeleteListener onDeleteListener) {
         super(context, R.layout.layout_out_item);
         this.datas = datas;
         this.onDeleteListener = onDeleteListener;
@@ -31,7 +31,7 @@ public class OutXiTonAdapter extends BaseAdapter {
     protected void onBindHolder(ViewHolder holder, int position) {
         TextView tv_date = holder.holder(R.id.tv_date, TextView.class);
         TextView content = holder.holder(R.id.content, TextView.class);
-        Health.HealthInfoBean.ExternalSituationsBean bean = datas.get(position);
+        OutXiTon bean = datas.get(position);
         tv_date.setText(bean.treatmentTime);
         content.setText(bean.content);
     }

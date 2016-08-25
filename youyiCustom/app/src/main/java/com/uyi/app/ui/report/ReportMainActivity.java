@@ -3,8 +3,10 @@ package com.uyi.app.ui.report;
 import android.content.Intent;
 import android.text.Html;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -13,9 +15,14 @@ import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
+import com.volley.RequestManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -31,13 +38,30 @@ public class ReportMainActivity extends BaseActivity {
     @ViewInject(R.id.send_messge)
     private TextView send_messge;
     @ViewInject(R.id.detail_messge)
-    private TextView detail_messge;
+    private EditText detail_messge;
 
     @Override
     protected void onInitLayoutAfter() {
+
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("主诊报告").setTitleColor(getResources().getColor(R.color.blue));
 
         nameText.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>尊敬的</font><font color='#FF4500'>%s</font><font color='#252525'>先生/女士：</font>", UserInfoManager.getLoginUserInfo(this).realName)));
+        Loading.bulid(ReportMainActivity.this, null).show();
+        RequestManager.getObject(Constens.ACCOUNT_DETAIL, activity, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                Loading.bulid(ReportMainActivity.this, null).dismiss();
+                try {
+                    if( UserInfoManager.getLoginUserInfo(ReportMainActivity.this).logasguardian){
+                        detail_messge.setText(data.getJSONObject("guardianInfo").getString("email"));
+                    }else{
+                        detail_messge.setText(data.getString("email"));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -50,6 +74,7 @@ public class ReportMainActivity extends BaseActivity {
         switch (v.getId()){
             case R.id.detail_report:
                 int id = getIntent().getIntExtra("reportId", 0);
+
                 Intent intent = new Intent(this, ReportActivity.class);
                 intent.putExtra("reportId", id);
                 startActivity(intent);
@@ -61,7 +86,23 @@ public class ReportMainActivity extends BaseActivity {
                         T.showLong(application, "邮箱格式不正确!");
                         return;
                     }else{
-                        //发送邮箱
+                        int reportId = getIntent().getIntExtra("reportId", 0);
+                        JSONObject params = new JSONObject();
+                        try {
+                            params.put("recipientEmail", emeile);
+                            params.put("reportId", reportId);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Loading.bulid(ReportMainActivity.this, null).show();
+                        RequestManager.getObject(String.format(Locale.CHINA, Constens.SEND_REPORT, reportId,emeile), this, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject jsonObject) {
+//                                L.e("jsonObject",jsonObject.toString());
+                                Loading.bulid(ReportMainActivity.this, null).dismiss();
+                                T.showLong(application, "发送成功!");
+                            }
+                        });
 
                     }
                 }else{

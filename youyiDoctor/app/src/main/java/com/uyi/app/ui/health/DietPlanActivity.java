@@ -36,9 +36,14 @@ public class DietPlanActivity extends BaseActivity {
         RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_LIFE_DIET,FragmentHealthListManager.customer+""),this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject data) {
-                System.out.print("_________________________________"+data.toString());
                 try {
-                    diet_plan_details.setText( data.getString("eatinghabiit"));
+                    if (!data.getString("eatinghabiit").equals("null")) {
+                        diet_plan_details.setText( ""+data.getString("eatinghabiit"));
+
+                    } else {
+                        diet_plan_details.setText("");
+                    }
+
                     life = data.getString("liefstyle");
 
                 } catch (JSONException e) {
@@ -62,7 +67,6 @@ if(v.getId() == R.id.diet_plan_submit){
             params.put("eatinghabiit", diet_plan_details.getText().toString());
             RequestManager.postObject(String.format(Constens.DOCTOR_HEALTH_LIFE_DIET_UPDATA, FragmentHealthListManager.customer + ""), activity, params, new Response.Listener<JSONObject>() {
                 public void onResponse(JSONObject data) {
-                    System.out.print("+++++++++++++++++++++" + data.toString());
                     T.showShort(activity, "提交成功!");
                     finish();
                 }
