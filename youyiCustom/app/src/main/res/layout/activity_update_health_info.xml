@@ -287,18 +287,18 @@
 
             android:orientation="horizontal">
 
-            <EditText
+            <TextView
                 android:id="@+id/register_card"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/hui_stroke"
                 android:ems="10"
+                android:gravity="center_vertical"
                 android:hint="@string/reg_card"
                 android:inputType="text"
                 android:paddingLeft="5dp"
-
-                android:textSize="@dimen/font_style_14"></EditText>
+                android:textSize="@dimen/font_style_14"></TextView>
 
             <ImageView
                 android:layout_width="20dp"

@@ -28,7 +28,7 @@
 			android:textColor="@color/blue"
 			android:layout_margin="5dp"
 			android:textSize="@dimen/font_style_16"
-			android:text="剩余次数" />
+			android:text="健康咨询剩余次数：" />
 		<TextView
 			android:id="@+id/healthy_qusetion_number"
 			android:layout_width="wrap_content"

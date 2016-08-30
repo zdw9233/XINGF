@@ -28,6 +28,7 @@ import com.uyi.app.ui.common.model.Health;
 import com.uyi.app.ui.common.model.MedicineUnit;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.SystemBarTintManager;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.healthinfo.adapter.MedicineAdapter;
 import com.uyi.app.ui.healthinfo.model.Mecicine;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
@@ -107,6 +108,7 @@ public class MedicineInfoFragment extends BaseFragment implements PopupWindow.On
         mNameAdapter.setItemClickListener(this);
 
         ywRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        Loading.bulid(getActivity(), null).show();
         RequestManager.getArray(Constens.GET_MEDICINE_UNIT, this, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
@@ -148,8 +150,10 @@ public class MedicineInfoFragment extends BaseFragment implements PopupWindow.On
                             startDatePicker(300+position, sDate);
                         }
                     }));
+                    Loading.bulid(getActivity(), null).dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Loading.bulid(getActivity(), null).dismiss();
                 }
             }
         });
@@ -211,12 +215,14 @@ public class MedicineInfoFragment extends BaseFragment implements PopupWindow.On
                 break;
             case R.id.spm:
                 type =1;
+                mPopupWindowSearch.setText("");
                 mPopupWindow.showAsDropDown(spm);
                 onTextChanged("",0,0,0);
                 mNameAdapter.reset();
                 break;
             case R.id.hxm:
                 type =2;
+                mPopupWindowSearch.setText("");
                 mPopupWindow.showAsDropDown(hxm);
                 onTextChanged("",0,0,0);
                 mNameAdapter.reset();
@@ -261,6 +267,7 @@ public class MedicineInfoFragment extends BaseFragment implements PopupWindow.On
                     e.printStackTrace();
                 }
                 L.e(object.toString());
+                Loading.bulid(getActivity(), null).show();
                 RequestManager.postObject(Constens.ACCOUNT_MEDISINE_INFO_UPDATE, this, object, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
@@ -271,11 +278,14 @@ public class MedicineInfoFragment extends BaseFragment implements PopupWindow.On
                         if (e.networkResponse!=null){
                             if (e.networkResponse.statusCode==200){
                                         T.showShort(getActivity(),"修改成功");
+                                Loading.bulid(getActivity(), null).dismiss();
                             }else {
                                 T.showShort(getActivity(),"修改失敗");
+                                Loading.bulid(getActivity(), null).dismiss();
                             }
                         }else {
                             T.showShort(getActivity(),"修改成功");
+                            Loading.bulid(getActivity(), null).dismiss();
                         }
                     }
                 });

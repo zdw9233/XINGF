@@ -40,7 +40,7 @@ public class YaowuAdapter extends BaseRecyclerAdapter<Map<String, Object>> {
             hodler.time_start.setText("开始日期:"+data.get("startTime").toString());
             hodler.time_end.setText("结束日期:"+data.get("endTime").toString());
             hodler.medsin.setText(data.get("medicineName").toString());
-            hodler.jiliang.setText(data.get("usingFrequency").toString()+data.get("frequencyUnit").toString()+data.get("singleDose").toString()+data.get("medicineUnit").toString());
+            hodler.jiliang.setText(data.get("usingFrequency").toString()+data.get("frequencyUnit").toString()+"  每次"+data.get("singleDose").toString()+data.get("medicineUnit").toString());
         }
     }
     /**

@@ -57,6 +57,7 @@ public class BloodInfoFragment extends BaseFragment
 
     @Override
     protected void onInitLayoutAfter() {
+        Loading.bulid(getActivity(), null).show();
         RequestManager.getArray(Constens.ABNORMAL_EVENT, this, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
@@ -71,6 +72,7 @@ public class BloodInfoFragment extends BaseFragment
                 RequestManager.getObject(Constens.ACCOUNT_BLOOD_INFO, getActivity(), null, new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
                         try {
+
                             L.e("ONE", data.toString() + "_____" + listtype.toString());
                             regester_info_xueguanfashengshijian.setText(JSONObjectUtils.getString(data, "time"));
                             register_info_qitaleixin.setText(JSONObjectUtils.getString(data, "description"));
@@ -80,14 +82,16 @@ public class BloodInfoFragment extends BaseFragment
                                     regester_info_xueguanfashengleixing.setSelection(i);
                                 }
                             }
+                            Loading.bulid(getActivity(), null).dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
+                            Loading.bulid(getActivity(), null).dismiss();
                         }
                     }
                 }, new RequestErrorListener() {
                     @Override
                     public void requestError(VolleyError e) {
-
+                        Loading.bulid(getActivity(), null).dismiss();
                     }
                 });
             }

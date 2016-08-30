@@ -2,6 +2,7 @@ package com.uyi.app.ui.health;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.BitmapUtils;
+import com.uyi.app.utils.FileUtils;
 import com.uyi.app.utils.ImageUtil;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
@@ -33,6 +35,7 @@ import com.volley.RequestManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -142,7 +145,7 @@ public class AddHealthDatabase extends BaseActivity {
 //			 }
 
 
-        Loading.bulid(activity, null).show();
+
 
         Thread thread = new Thread(new Runnable() {
             public void run() {
@@ -261,7 +264,16 @@ public class AddHealthDatabase extends BaseActivity {
                 if (data != null) {
                     if (addImageIndex == 1) {
                         try {
-                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(data.getData().getPath(), 240, 400);
+//                            if (data != null) {
+//                                Bundle bundle = data.getExtras();
+//                                if (bundle != null) {
+//                                    photo = (Bitmap) bundle.get("data");
+//                                    register_header_image.setImageBitmap(photo);
+//                                }
+//                            }
+
+//                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(data.getData().getPath(), 240, 400);
+                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(Uri.fromFile(new File(FileUtils.getPath(activity, data.getData()))).toString(), 240, 400);
                             images.add(bitmap);
                             showJCView();
                         } catch (Exception e) {
@@ -269,7 +281,8 @@ public class AddHealthDatabase extends BaseActivity {
                         }
                     } else if (addImageIndex == 2) {
                         try {
-                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(data.getData().getPath(), 240, 400);
+//                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(data.getData().getPath(), 240, 400);
+                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(Uri.fromFile(new File(FileUtils.getPath(activity, data.getData()))).toString(), 240, 400);
                             ecgs.add(bitmap);
                             showYaowuWenbenView();
                         } catch (Exception e) {

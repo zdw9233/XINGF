@@ -3,6 +3,7 @@ package com.uyi.app.ui.personal.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ public class PersonalPagerAdapter extends PagerAdapter {
         SimpleDraweeView img = (SimpleDraweeView) view.findViewById(R.id.img);
         TextView content = (TextView) view.findViewById(R.id.content);
         String url = null;
+
         if (position == 0) {
             title.setText("血压趋势图");
             if (pagerData == null) {
@@ -62,6 +64,13 @@ public class PersonalPagerAdapter extends PagerAdapter {
                 ImageUtil.load(url = pagerData.getBloodSugar_pic(), img);
             }
         }
+        final String datacontent =content.getText().toString();
+        content.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                oncontextClick(datacontent);
+            }
+        });
         final String finalUrl = url;
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +102,9 @@ public class PersonalPagerAdapter extends PagerAdapter {
             intent.putExtra("imageUrl", new String[]{url});
             mContext.startActivity(intent);
         }
+    }
+    private void oncontextClick(String context) {
+        new AlertDialog.Builder(mContext).setTitle("检测详情").setMessage(context).setPositiveButton("确定", null).show();
     }
 
 }

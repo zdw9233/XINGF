@@ -1,45 +1,34 @@
 package com.uyi.app.ui.health;
 
 import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckedTextView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
-import com.uyi.app.adapter.BaseRecyclerAdapter.OnItemClickListener;
-import com.uyi.app.ui.custom.BaseActivity;
-import com.uyi.app.ui.custom.DividerItemDecoration;
-import com.uyi.app.ui.custom.EndlessRecyclerView;
-import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
+import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.health.adapter.HealthDatabaseAdapter;
+import com.uyi.app.ui.health.fragment.AllReportFragment;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.DateUtils;
-import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
-import com.volley.RequestManager;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -49,8 +38,9 @@ import java.util.Map;
  * @author user
  */
 @ContentView(R.layout.fragment_health_database)
-public class HealthDatabaseActivity extends BaseActivity implements OnItemClickListener<Map<String, Object>>, Pager, OnRefreshListener {
-
+public class HealthDatabaseActivity extends BaseFragmentActivity {
+    private List<Fragment> fragments;
+    private Fragment currentFragment;
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
     @ViewInject(R.id.health_database_starttime)
@@ -62,53 +52,112 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
 
     @ViewInject(R.id.new_health_database_layout_start)
     private LinearLayout new_health_database_layout_start;
-    @ViewInject(R.id.recyclerView)
-    private EndlessRecyclerView recyclerView;
-    @ViewInject(R.id.swipeRefreshLayout)
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private LinearLayoutManager linearLayoutManager;
-    private HealthDatabaseAdapter healthDatabaseAdapter;
-
+    int clicknum = 0;
     private ArrayList<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
     Calendar cal = Calendar.getInstance();
     /**
      * 选则时间
      */
     private int selectedDate;
-    String startDate;
-    String endDate;
-
+   public static String startDate;
+    public static  String endDate;
+    private View currentView;
+    AllReportFragment allReportFragment = new AllReportFragment();
+    @OnClick({
+            R.id.qb,      //
+            R.id.xy,       //
+            R.id.xt,       //
+            R.id.xz,    //
+            R.id.xyang,       //
+            R.id.qtxm,       //
+            R.id.xdt,    //
+            R.id.jcbg         //
+    })
+    public void onItemsClick(View view) {
+        if (currentView != null) {
+            currentView.setBackgroundColor(getResources().getColor(R.color.white));
+            ((CheckedTextView) ((FrameLayout) currentView).getChildAt(0)).setChecked(false);
+        }
+        view.setBackgroundColor(getResources().getColor(R.color.blue));
+        ((CheckedTextView) ((FrameLayout) view).getChildAt(0)).setChecked(true);
+        switch (view.getId()) {
+            case R.id.qb:
+                clicknum = 0;
+                changeFragment(0);
+                break;  //
+            case R.id.xy:
+                clicknum = 1;
+//                changeFragment(1);
+                break;  //
+            case R.id.xt:
+                clicknum = 2;
+//                changeFragment(2);
+                break;  //
+            case R.id.xz:
+                clicknum = 3;
+//                changeFragment(3);
+                break;  //
+            case R.id.xyang:
+                clicknum = 4;
+//                changeFragment(4);
+                break;  //
+            case R.id.qtxm:
+                clicknum = 5;
+//                changeFragment(5);
+                break;  //
+            case R.id.xdt:
+                clicknum = 6;
+//                changeFragment(6);
+                break;  //
+            case R.id.jcbg:
+                clicknum = 7;
+//                changeFragment(7);
+                break;  //
+        }
+        currentView = view;
+    }
     @Override
     protected void onInitLayoutAfter() {
+        startDate=null;endDate = null;
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("健康数据库").setTitleColor(getResources().getColor(R.color.blue));
         String[] str = getResources().getStringArray(R.array.health_manager);
         headerView.setTitleTabs(str);
         headerView.selectTabItem(2);
-        linearLayoutManager = new LinearLayoutManager(this);
-        healthDatabaseAdapter = new HealthDatabaseAdapter(this);
-        healthDatabaseAdapter.setOnItemClickListener(this);
-        healthDatabaseAdapter.setDatas(datas);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setProgressView(R.layout.item_progress);
-        recyclerView.setAdapter(healthDatabaseAdapter);
-        recyclerView.setPager(this);
-        //设置刷新时动画的颜色，可以设置4个
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
-        swipeRefreshLayout.setOnRefreshListener(this);
-        onRefresh();
+        fragments = new ArrayList<>();
+        fragments.add(allReportFragment);
+//        fragments.add(new TrendMapFragment());
+//        fragments.add(new ECGFragment());
+//        fragments.add(new PhysiqueFragment());
+//        fragments.add(new HealthReportFragment());
+        onItemsClick(findViewById(R.id.qb));
     }
-
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
         headerView.setKitkat(systemBarConfig);
     }
-
+    private void changeFragment(int position) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Fragment f = fragments.get(position);
+        if (!f.isAdded()) {
+            ft.add(R.id.content, f);
+            if (currentFragment != null) {
+                ft.hide(currentFragment);
+            }
+            currentFragment = f;
+            ft.show(f);
+        } else {
+            if (f != currentFragment) {
+                ft.hide(currentFragment);
+                currentFragment = f;
+                ft.show(f);
+            }
+        }
+        ft.commit();
+    }
     @Override
     public void onResume() {
         super.onResume();
-        onRefresh();
     }
     @OnClick({R.id.health_database_starttime, R.id.health_database_endtime, R.id.health_database_submit, R.id.new_health_database_layout_start})
     public void onClick(View v) {
@@ -118,7 +167,7 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
         } else if (v.getId() == R.id.health_database_endtime) {
             selectedDate = 2;
             selectedDate();
-        } else if (v.getId() == R.id.health_database_submit) {
+        } else if (v.getId() == R.id.health_database_submit) {//查询
             startDate =health_database_starttime.getText().toString();
             endDate = health_database_endtime.getText().toString();
             if (!ValidationUtils.isNull(startDate) && !ValidationUtils.isNull(endDate)) {
@@ -129,11 +178,18 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
                         T.showLong(this, "开始时间不能大于结束时间");
                         return;
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            onRefresh();
+            //查询
+            switch (clicknum){
+                case 0:
+                    allReportFragment.onRefresh();
+                    break;
+            }
+
         } else if (v.getId() == R.id.new_health_database_layout_start) {
             Intent intent = new Intent(this, AddHealthDatabase.class);
             startActivity(intent);
@@ -146,26 +202,6 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
      *
      */
     public void selectedDate() {
-//		final AlertDialog dialog = new AlertDialog.Builder(this).create();
-//        dialog.show();
-//        DatePicker picker = new DatePicker(getView().getContext());
-//        picker.setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
-//        picker.setMode(DPMode.SINGLE);
-//        picker.setOnDatePickedListener(new DatePicker.OnDatePickedListener() {
-//            @Override
-//            public void onDatePicked(String date) {
-//           	 text.setText(date);
-//	           	 if(isStartDate){
-//	           		startDate  = date;
-//	           	 }else{
-//	           		 endDate  = date;
-//	           	 }
-//                dialog.dismiss();
-//            }
-//        });
-//        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        dialog.getWindow().setContentView(picker, params);
-//        dialog.getWindow().setGravity(Gravity.CENTER);
 
         if (selectedDate == 1) {
             Intent intent = new Intent(this, DatePickerActivity.class);
@@ -215,63 +251,5 @@ public class HealthDatabaseActivity extends BaseActivity implements OnItemClickL
     }
 
 
-
-    @Override
-    public void onItemClick(int position, Map<String, Object> data) {
-        String id = data.get("id").toString();
-        Intent intent = new Intent(this, HealthDatabaseDetails.class);
-        intent.putExtra("id", id);
-        startActivity(intent);
-    }
-
-    @Override
-    public boolean shouldLoad() {
-        return isLooding;
-    }
-
-    @Override
-    public void loadNextPage() {
-        isLooding = false;
-        Loading.bulid(this, null).show();
-        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, startDate, endDate, pageNo, pageSize), this, new Response.Listener<JSONObject>() {
-            public void onResponse(JSONObject data) {
-                Loading.bulid(HealthDatabaseActivity.this, null).dismiss();
-                try {
-                    L.d(TAG, data.toString());
-                    totalPage = data.getInt("pages");
-                    JSONArray array = data.getJSONArray("results");
-                    for (int i = 0; i < array.length(); i++) {
-                        Map<String, Object> item = new HashMap<String, Object>();
-                        JSONObject jsonObject = array.getJSONObject(i);
-                        item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime"));
-                        item.put("uploadItems", jsonObject.getString("uploadItems"));
-                        item.put("isWarning", jsonObject.getBoolean("isWarning"));
-                        datas.add(item);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                healthDatabaseAdapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
-
-                if (pageNo <= totalPage) {
-                    isLooding = true;
-                    pageNo++;
-                } else {
-                    recyclerView.setRefreshing(false);
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onRefresh() {
-        pageNo = 1;
-        isLooding = true;
-        datas.clear();
-        recyclerView.setRefreshing(false);
-        loadNextPage();
-    }
 
 }

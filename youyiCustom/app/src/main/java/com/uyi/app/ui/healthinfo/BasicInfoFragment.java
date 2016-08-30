@@ -46,6 +46,7 @@ public class BasicInfoFragment extends BaseFragment{
 
     @Override
     protected void onInitLayoutAfter() {
+        Loading.bulid(getActivity(), null).show();
         RequestManager.getObject(Constens.ACCOUNT_BASIC_INFO, getActivity(), new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
@@ -60,9 +61,10 @@ public class BasicInfoFragment extends BaseFragment{
                         if(chronicDiseaseType !=0)
                             radioGroup.check(ints[chronicDiseaseType - 1]);
                     }
-
+                    Loading.bulid(getActivity(), null).dismiss();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Loading.bulid(getActivity(), null).dismiss();
                 }
             }
         });

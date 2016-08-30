@@ -71,17 +71,198 @@
             android:text="查询"
             android:textColor="@color/white" />
 
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshLayout"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_marginTop="10dp"
+            android:layout_height="1px"
+            android:background="@color/lightgray" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center">
 
-            <com.uyi.app.ui.custom.EndlessRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
+
+
+
+            <FrameLayout
+                android:id="@+id/qb"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="vertical" />
-        </android.support.v4.widget.SwipeRefreshLayout>
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="全部"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:id="@+id/xy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="血压"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:id="@+id/xt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="血糖"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:id="@+id/xz"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="血脂"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/lightgray" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center">
+
+
+
+
+            <FrameLayout
+                android:id="@+id/xyang"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="血氧"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:id="@+id/qtxm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="其他项目（尿酸）"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:id="@+id/xdt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="心电图"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/lightgray" />
+
+            <FrameLayout
+                android:id="@+id/jcbg"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/sel_white_to_press">
+
+                <CheckedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="检查报告"
+                    android:textColor="@color/sel_report_text_clr" />
+            </FrameLayout>
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="10dp"
+            android:background="@color/lightgray" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
