@@ -19,7 +19,7 @@
             android:drawablePadding="16dp"
             android:drawableStart="@drawable/file_report"
             android:gravity="center_vertical"
-            android:text="检测项目"
+            android:text="主诊报告"
             android:textColor="@color/text_clr"
             android:textSize="@dimen/font_style_16" />
 

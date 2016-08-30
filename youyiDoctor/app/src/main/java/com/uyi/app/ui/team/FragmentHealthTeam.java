@@ -148,7 +148,7 @@ String name;
         if (mLoading == null) {
             mLoading = Loading.bulid(getActivity(), null);
             mLoading.show();
-        }
+        }else
         mLoading.show();
         if (team_selected_caty.getText().equals("全部城市")) {
             RequestManager.getObject(String.format(Constens.HEALTH_GROUPS_ALL,name, "", pageNo, pageSize), getActivity(), new Listener<JSONObject>() {

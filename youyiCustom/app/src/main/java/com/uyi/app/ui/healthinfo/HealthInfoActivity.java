@@ -103,7 +103,7 @@ public class HealthInfoActivity extends BaseFragmentActivity implements HeaderVi
     @ViewInject(R.id.register_email)
     private EditText register_email;
     @ViewInject(R.id.register_card)
-    private EditText register_card;
+    private TextView register_card;
     @ViewInject(R.id.register_zhiye)
     private EditText register_zhiye;
     @ViewInject(R.id.register_three_submit)
@@ -138,6 +138,7 @@ public class HealthInfoActivity extends BaseFragmentActivity implements HeaderVi
     private List<Fragment> fragments;
     private View currentView;
     private Fragment currentFragment;
+    public  static  String garner = "";
     @Override
     protected void onInitLayoutAfter() {
         String[] tag = getResources().getStringArray(R.array.update_user_info);
@@ -148,6 +149,8 @@ public class HealthInfoActivity extends BaseFragmentActivity implements HeaderVi
         userInfo = UserInfoManager.getLoginUserInfo(activity);
         spinerPopWindow = new SpinerPopWindow(activity);
         spinerPopWindow.setItemListener(this);
+//        register_card.setEnabled(false);
+        Loading.bulid(this, null).show();
         RequestManager.getArray(Constens.PROVINCDS, activity, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray array) {
@@ -167,6 +170,7 @@ public class HealthInfoActivity extends BaseFragmentActivity implements HeaderVi
                 try {
                     L.e("ONE", data.toString());
                     ImageCacheManager.loadImage(JSONObjectUtils.getString(data, "icon"), ImageCacheManager.getImageListener(register_header_image, null, null));
+                    garner = JSONObjectUtils.getString(data, "gender");
                     register_shen.setText(data.getJSONObject("province").getString("name"));
                     shengfen = data.getJSONObject("province").getInt("id");
                     register_city.setText(data.getJSONObject("city").getString("name"));
@@ -178,8 +182,10 @@ public class HealthInfoActivity extends BaseFragmentActivity implements HeaderVi
                     register_email.setText(JSONObjectUtils.getString(data, "email"));
                     register_card.setText(JSONObjectUtils.getString(data, "idCardNumber"));
                     register_zhiye.setText(JSONObjectUtils.getString(data, "occupation"));
+                    Loading.bulid(HealthInfoActivity.this, null).dismiss();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Loading.bulid(HealthInfoActivity.this, null).dismiss();
                 }
             }
         });

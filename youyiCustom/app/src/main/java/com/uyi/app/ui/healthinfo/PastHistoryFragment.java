@@ -19,12 +19,15 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.SystemBarTintManager;
+import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.healthinfo.adapter.OutXiTonAdapter;
 import com.uyi.app.ui.healthinfo.model.OutXiTon;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
+import com.uyi.app.utils.UYIUtils;
+import com.uyi.app.utils.ValidationUtils;
 import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
@@ -91,6 +94,7 @@ public class PastHistoryFragment extends BaseFragment {
 
     @Override
     protected void onInitLayoutAfter() {
+        Loading.bulid(getActivity(), null).show();
         outRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         RequestManager.getObject(Constens.ACCOUNT_PAST_INFO, getActivity(), new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
@@ -108,10 +112,10 @@ public class PastHistoryFragment extends BaseFragment {
                     register_info_jiazhubinshi.setText(JSONObjectUtils.getString(data, "familyMedical"));
                     register_info_yufangjiezhonshi.setText(JSONObjectUtils.getString(data, "vaccinationHistory"));
                     register_info_xitonghuigu.setText(JSONObjectUtils.getString(data, "retrospection"));
-//                    if (ValidationUtils.equlse(UYIUtils.convertGender(data.getString("gender")), "男")) {
-//                        register_info_yuejing_layout.setVisibility(View.GONE);
-//                        register_info_liucanshi_layout.setVisibility(View.GONE);
-//                    }
+                    if (ValidationUtils.equlse(UYIUtils.convertGender(HealthInfoActivity.garner),"男")) {
+                        register_info_yuejing_layout.setVisibility(View.GONE);
+                        register_info_liucanshi_layout.setVisibility(View.GONE);
+                    }
                     JSONArray array = data.getJSONArray("externalSituations");
                     OutXiTon outXiTon;
                     for (int i =0;i < array.length();i++){
@@ -134,8 +138,10 @@ public class PastHistoryFragment extends BaseFragment {
                             }
                         }
                     }));
+                    Loading.bulid(getActivity(), null).dismiss();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Loading.bulid(getActivity(), null).dismiss();
                 }
             }
         });
@@ -203,6 +209,7 @@ public class PastHistoryFragment extends BaseFragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                Loading.bulid(getActivity(), null).show();
                 RequestManager.postObject(Constens.ACCOUNT_PAST_INFO_UPDATE, this, object, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
@@ -214,11 +221,14 @@ public class PastHistoryFragment extends BaseFragment {
                         if (e.networkResponse!=null){
                             if (e.networkResponse.statusCode==200){
                                 T.showShort(getActivity(),"修改成功");
+                                Loading.bulid(getActivity(), null).dismiss();
                             }else {
                                 T.showShort(getActivity(),"修改失敗");
+                                Loading.bulid(getActivity(), null).dismiss();
                             }
                         }else {
                             T.showShort(getActivity(),"修改成功");
+                            Loading.bulid(getActivity(), null).dismiss();
                         }
                     }
                 });

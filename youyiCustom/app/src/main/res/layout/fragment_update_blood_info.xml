@@ -93,7 +93,6 @@
                         android:layout_weight="1"
                         android:background="@null"
                         android:dropDownWidth="match_parent"
-                        android:entries="@array/medicine_pd"
                         android:gravity="center_vertical" />
 
                     <ImageView
