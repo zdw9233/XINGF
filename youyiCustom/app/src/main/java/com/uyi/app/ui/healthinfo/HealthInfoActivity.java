@@ -26,7 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -573,7 +572,6 @@ public class HealthInfoActivity extends BaseFragmentActivity implements HeaderVi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        L.e("data-path = " + data.getData().getPath() + JSON.toJSONString(data));
         if (requestCode == Constens.PHOTO_REQUEST_TAKEPHOTO) {
             if (resultCode == RESULT_OK) {
                 if (tempFile != null) {
