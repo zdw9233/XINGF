@@ -3,6 +3,7 @@ package com.uyi.app.ui.health;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -145,7 +146,7 @@ public class AddHealthDatabase extends BaseActivity {
 //			 }
 
 
-
+        Loading.bulid(activity, null).show();
 
         Thread thread = new Thread(new Runnable() {
             public void run() {
@@ -250,9 +251,17 @@ public class AddHealthDatabase extends BaseActivity {
 
     //相册
     private void requestGallery() {
-        Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
-        getAlbum.setType("image/*");
-        startActivityForResult(getAlbum, Constens.PHOTO_REQUEST_GALLERY);
+        if (Build.VERSION.SDK_INT < 19) {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), Constens.PHOTO_REQUEST_GALLERY);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("image/jpeg");
+            startActivityForResult(intent, Constens.PHOTO_REQUEST_GALLERY);
+        }
     }
 
 
@@ -264,16 +273,7 @@ public class AddHealthDatabase extends BaseActivity {
                 if (data != null) {
                     if (addImageIndex == 1) {
                         try {
-//                            if (data != null) {
-//                                Bundle bundle = data.getExtras();
-//                                if (bundle != null) {
-//                                    photo = (Bitmap) bundle.get("data");
-//                                    register_header_image.setImageBitmap(photo);
-//                                }
-//                            }
-
-//                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(data.getData().getPath(), 240, 400);
-                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(Uri.fromFile(new File(FileUtils.getPath(activity, data.getData()))).toString(), 240, 400);
+                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(Uri.fromFile(new File(FileUtils.getPath(activity, data.getData()))).getPath(), 240, 400);
                             images.add(bitmap);
                             showJCView();
                         } catch (Exception e) {
@@ -281,8 +281,7 @@ public class AddHealthDatabase extends BaseActivity {
                         }
                     } else if (addImageIndex == 2) {
                         try {
-//                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(data.getData().getPath(), 240, 400);
-                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(Uri.fromFile(new File(FileUtils.getPath(activity, data.getData()))).toString(), 240, 400);
+                            Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(Uri.fromFile(new File(FileUtils.getPath(activity, data.getData()))).getPath(), 240, 400);
                             ecgs.add(bitmap);
                             showYaowuWenbenView();
                         } catch (Exception e) {

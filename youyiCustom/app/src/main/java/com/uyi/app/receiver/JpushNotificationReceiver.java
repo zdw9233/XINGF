@@ -27,7 +27,7 @@ import cn.jpush.android.api.JPushInterface;
  *
  */
 public class JpushNotificationReceiver  extends BroadcastReceiver {
-	private static final String TAG = "JpushNotificationReceiver";
+	private static final String TAG = "Receiver";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
