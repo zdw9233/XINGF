@@ -86,12 +86,13 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
     public void loadNextPage() {
         isLooding = false;
         Loading.bulid(getActivity(), null).show();
-        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, HealthDatabaseActivity.startDate, HealthDatabaseActivity.endDate, pageNo, pageSize), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, HealthDatabaseActivity.startDate, HealthDatabaseActivity.endDate, pageNo, pageSize,"0"), this, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 Loading.bulid(getActivity(), null).dismiss();
                 try {
                     L.d(TAG, data.toString());
                     totalPage = data.getInt("pages");
+                    if (pageNo == 1) datas.clear();
                     JSONArray array = data.getJSONArray("results");
                     for (int i = 0; i < array.length(); i++) {
                         Map<String, Object> item = new HashMap<String, Object>();
@@ -122,7 +123,6 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
     public void onRefresh() {
         pageNo = 1;
         isLooding = true;
-        datas.clear();
         recyclerView.setRefreshing(false);
         loadNextPage();
     }

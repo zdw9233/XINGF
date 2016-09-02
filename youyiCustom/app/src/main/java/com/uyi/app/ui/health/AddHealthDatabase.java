@@ -14,10 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.ErrorCode;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.FlowRadioGroup;
 import com.uyi.app.ui.custom.HeaderView;
@@ -31,6 +33,7 @@ import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONArray;
@@ -120,14 +123,19 @@ public class AddHealthDatabase extends BaseActivity {
                 RequestManager.postObject(Constens.HEALTH_CHECK_PREVIEW, activity,params, new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
                         L.d(TAG, data.toString());
-                        Loading.bulid(activity, "").dismiss();
+                        Loading.bulid(activity, null).dismiss();
                         Intent intent
                                  = new Intent(AddHealthDatabase.this,HealthDatabasePreviewActivity.class);
                         intent.putExtra("data",data.toString());
                         startActivity(intent);
                         finish();
                     }
-                }, null);
+                },  new RequestErrorListener() {
+                    public void requestError(VolleyError e) {
+                        Loading.bulid(activity, null).dismiss();
+                        T.show(AddHealthDatabase.this, ErrorCode.getErrorByNetworkResponse(e.networkResponse), -1);
+                    }
+                });
             } else if (msg.what == 2) {
                 T.showLong(activity, msg.obj.toString());
             }

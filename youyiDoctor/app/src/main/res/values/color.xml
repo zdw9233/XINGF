@@ -10,6 +10,7 @@
 
     <!-- 黑色 -->
     <color name="black">#000000</color>
+    <color name="BLACK">#000000</color>
     <color name="red">#ff4800</color>
     <color name="qianhui">#E0E0E0</color>
     <color name="green">#00BB00</color>

@@ -1,6 +1,11 @@
 package com.uyi.app.ui.personal.customer.adapter;
 
-import java.util.Map;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.uyi.app.adapter.BaseRecyclerAdapter;
 import com.uyi.app.ui.custom.RoundedImageView;
@@ -8,12 +13,7 @@ import com.uyi.app.utils.UYIUtils;
 import com.uyi.doctor.app.R;
 import com.volley.ImageCacheManager;
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import java.util.Map;
 
 
 /**
@@ -48,7 +48,11 @@ public class CustomerAdapter extends BaseRecyclerAdapter<Map<String, Object>> {
 			hodler.item_customer_name.setText(data.get("realName").toString());
 			hodler.item_customer_age.setText("年龄："+data.get("age"));
 			hodler.item_customer_gender.setText("性别："+UYIUtils.convertGender(data.get("gender").toString()));
-			
+			if(data.get("status").equals("DEAD")){
+				hodler.siwang.setVisibility(View.VISIBLE);
+			}else{
+				hodler.siwang.setVisibility(View.INVISIBLE);
+			}
 			if(onItemCustomerClickListenner != null){
 				hodler.item_customer_info.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
@@ -76,6 +80,7 @@ public class CustomerAdapter extends BaseRecyclerAdapter<Map<String, Object>> {
         	item_customer_gender = (TextView) v.findViewById(R.id.item_customer_gender);
         	item_customer_info = (TextView) v.findViewById(R.id.item_customer_info);
         	item_customer_consult = (TextView) v.findViewById(R.id.item_customer_consult);
+			siwang = (TextView) v.findViewById(R.id.siwang);
 		}
         
         private RoundedImageView roundedImageView1;
@@ -84,6 +89,7 @@ public class CustomerAdapter extends BaseRecyclerAdapter<Map<String, Object>> {
         private TextView item_customer_gender;
         private TextView item_customer_info;
         private TextView item_customer_consult;
+		private TextView siwang;
     }
 
     

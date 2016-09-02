@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
 import com.uyi.doctor.app.R;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -23,8 +24,10 @@ import java.util.Map;
 public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object>> {
 
 	public Context context;
+	private ArrayList<Integer> showDetailPositions;
 	public RiskAssessmentAdapter(Context context) {
 		this.context = context;
+		showDetailPositions = new ArrayList<>();
 	}
 
 	@Override
@@ -34,25 +37,31 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	}
 
 	@Override
-	public void onBind(final ViewHolder viewHolder, int RealPosition, Map<String, Object> data) {
+	public void onBind(final ViewHolder viewHolder, final int RealPosition, final Map<String, Object> data) {
 		if(viewHolder instanceof Holder){
 			final Holder hodler = (Holder)viewHolder;
-			hodler.item.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if(hodler.deils.getVisibility() == View.GONE){
-						hodler.deils.setVisibility(View.VISIBLE);
-						hodler.riskitem.setVisibility(View.VISIBLE);
-					}else{
-						hodler.deils.setVisibility(View.GONE);
-						hodler.riskitem.setVisibility(View.GONE);
-					}
+			if (showDetailPositions.contains(RealPosition)){
+				hodler.deils.setVisibility(View.VISIBLE);
+				hodler.riskitem.setVisibility(View.VISIBLE);
+			}else {
+				hodler.deils.setVisibility(View.GONE);
+				hodler.riskitem.setVisibility(View.GONE);
+			}
+					hodler.item.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							if (showDetailPositions.contains(RealPosition)){
+								showDetailPositions.remove(showDetailPositions.indexOf(RealPosition));
+							}else{
+								showDetailPositions.add(RealPosition);
+							}
+							notifyItemChanged(RealPosition);
+						}
+					});
 
-				}
-			});
 //			hodler.title.setText(data.get("content").toString());
-		hodler.time.setText(data.get("createTime").toString());
-		hodler.deils.setText(data.get("content").toString());
+			hodler.time.setText(data.get("createTime").toString());
+			hodler.deils.setText(data.get("content").toString());
 			hodler.riskindix.setText("风险系数:  "+data.get("percentage").toString());
 			hodler.doc_name.setText("填写医生:  "+data.get("doc_name").toString());
 

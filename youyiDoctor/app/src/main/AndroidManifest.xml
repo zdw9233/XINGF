@@ -291,7 +291,14 @@
             android:name="com.uyi.app.ui.personal.standard.AlarmStandardActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan" />
-
+        <activity
+            android:name="com.uyi.app.ui.health.InspectionReportDetailsActivity"
+            android:screenOrientation="portrait"
+        />
+        <activity
+            android:name="com.uyi.app.ui.health.ElectrocarDiogramDetailsActivity"
+            android:screenOrientation="portrait"
+            />
 
         <!-- alipay sdk begin -->
         <activity

@@ -27,6 +27,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.customer.adapter.CustomerAdapter;
 import com.uyi.app.ui.personal.customer.adapter.CustomerAdapter.OnItemCustomerClickListenner;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -115,6 +116,7 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 		RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMERS,name,pageNo,pageSize),activity, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				Loading.bulid(activity, null).dismiss();
+				L.e("data==",data.toString());
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");
@@ -128,6 +130,7 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 						item.put("icon", jsonObject.getString("icon"));
 						item.put("age", jsonObject.getInt("age"));
 						item.put("gender", jsonObject.getString("gender"));
+						item.put("status", jsonObject.getString("status"));
 						datas.add(item);
 					}
 				} catch (JSONException e) {

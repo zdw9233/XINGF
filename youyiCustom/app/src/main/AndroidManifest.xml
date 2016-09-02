@@ -76,7 +76,12 @@
         <activity
             android:name="com.uyi.app.ui.report.ReportListActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.uyi.app.ui.health.ElectrocarDiogramDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.health.InspectionReportDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.personal.CustomServiceActivity"
             android:screenOrientation="portrait" />

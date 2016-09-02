@@ -376,7 +376,7 @@ public abstract class Constens {
      * ${pageIndex}
      * ${pageSize}
      */
-    public final static String HEALTH_CHECK_INFOS = SERVER_URL + "/app/api/account/health/check/infos?startDate=%s&endDate=%s&page=%s&pageSize=%s";
+    public final static String HEALTH_CHECK_INFOS = SERVER_URL + "/app/api/account/health/check/infos?startDate=%s&endDate=%s&page=%s&pageSize=%s&dataType=%s";
 
 
     /**

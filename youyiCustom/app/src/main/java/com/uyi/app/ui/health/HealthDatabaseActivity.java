@@ -19,6 +19,13 @@ import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.health.fragment.AllReportFragment;
+import com.uyi.app.ui.health.fragment.BloodFatFragment;
+import com.uyi.app.ui.health.fragment.BloodPressureFragment;
+import com.uyi.app.ui.health.fragment.BloodSugarFragment;
+import com.uyi.app.ui.health.fragment.ElectrocarDiogramFragment;
+import com.uyi.app.ui.health.fragment.InspectionReportFragment;
+import com.uyi.app.ui.health.fragment.OtherItemsFragment;
+import com.uyi.app.ui.health.fragment.OxygenFragment;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.T;
@@ -63,6 +70,13 @@ public class HealthDatabaseActivity extends BaseFragmentActivity {
     public static  String endDate;
     private View currentView;
     AllReportFragment allReportFragment = new AllReportFragment();
+    BloodPressureFragment bloodPressureFragment = new BloodPressureFragment();
+    BloodSugarFragment bloodSugarFragment = new BloodSugarFragment();
+    BloodFatFragment bloodFatFragment = new BloodFatFragment();
+    OxygenFragment oxygenFragment = new OxygenFragment();
+    OtherItemsFragment otherItemsFragment = new OtherItemsFragment();
+    ElectrocarDiogramFragment electrocarDiogramFragment = new ElectrocarDiogramFragment();
+    InspectionReportFragment inspectionReportFragment = new InspectionReportFragment();
     @OnClick({
             R.id.qb,      //
             R.id.xy,       //
@@ -87,31 +101,31 @@ public class HealthDatabaseActivity extends BaseFragmentActivity {
                 break;  //
             case R.id.xy:
                 clicknum = 1;
-//                changeFragment(1);
+                changeFragment(1);
                 break;  //
             case R.id.xt:
                 clicknum = 2;
-//                changeFragment(2);
+                changeFragment(2);
                 break;  //
             case R.id.xz:
                 clicknum = 3;
-//                changeFragment(3);
+                changeFragment(3);
                 break;  //
             case R.id.xyang:
                 clicknum = 4;
-//                changeFragment(4);
+                changeFragment(4);
                 break;  //
             case R.id.qtxm:
                 clicknum = 5;
-//                changeFragment(5);
+                changeFragment(5);
                 break;  //
             case R.id.xdt:
                 clicknum = 6;
-//                changeFragment(6);
+                changeFragment(6);
                 break;  //
             case R.id.jcbg:
                 clicknum = 7;
-//                changeFragment(7);
+                changeFragment(7);
                 break;  //
         }
         currentView = view;
@@ -125,10 +139,13 @@ public class HealthDatabaseActivity extends BaseFragmentActivity {
         headerView.selectTabItem(2);
         fragments = new ArrayList<>();
         fragments.add(allReportFragment);
-//        fragments.add(new TrendMapFragment());
-//        fragments.add(new ECGFragment());
-//        fragments.add(new PhysiqueFragment());
-//        fragments.add(new HealthReportFragment());
+        fragments.add(bloodPressureFragment);
+        fragments.add(bloodSugarFragment);
+        fragments.add(bloodFatFragment);
+        fragments.add(oxygenFragment);
+        fragments.add(otherItemsFragment);
+        fragments.add(electrocarDiogramFragment);
+        fragments.add(inspectionReportFragment);
         onItemsClick(findViewById(R.id.qb));
     }
     @Override
@@ -187,6 +204,27 @@ public class HealthDatabaseActivity extends BaseFragmentActivity {
             switch (clicknum){
                 case 0:
                     allReportFragment.onRefresh();
+                    break;
+                case 1:
+                    bloodPressureFragment.onRefresh();
+                    break;
+                case 2:
+                    bloodSugarFragment.onRefresh();
+                    break;
+                case 3:
+                    bloodSugarFragment.onRefresh();
+                    break;
+                case 4:
+                    oxygenFragment.onRefresh();
+                    break;
+                case 5:
+                    otherItemsFragment.onRefresh();
+                    break;
+                case 6:
+                    electrocarDiogramFragment.onRefresh();
+                    break;
+                case 7:
+                    inspectionReportFragment.onRefresh();
                     break;
             }
 
