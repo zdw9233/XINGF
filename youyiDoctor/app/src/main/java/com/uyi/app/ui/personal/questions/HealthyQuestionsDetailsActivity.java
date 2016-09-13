@@ -84,6 +84,7 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 		
 		if(ValidationUtils.length(content) > 200){
 			T.showShort(activity, "字数不能大于200字!");
+			return;
 		}
 		healthy_questions_details_content.setText("");
 //		

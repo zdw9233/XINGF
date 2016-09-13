@@ -88,6 +88,7 @@ public class ScheduleActivity extends BaseActivity implements OnClickListener {
         headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("日程").setTitleColor(getResources().getColor(R.color.blue));
         pageSize = 1;
         schedule_time.setText(DateUtils.toDate(cal.getTime(), "yyyy年MM月dd日"));
+//        schedule_time.setText( "2016年09月07日");
         load();
     }
 

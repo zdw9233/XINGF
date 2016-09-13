@@ -104,6 +104,7 @@ public class DatePicker extends LinearLayout {
         // 月份显示
         tvMonth = new TextView(context);
         tvMonth.setText("六月");
+        tvMonth.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow_new, 0, R.drawable.right_arrow_new, 0);
         tvMonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
         tvMonth.setTextColor(mTManager.colorTitle());
 

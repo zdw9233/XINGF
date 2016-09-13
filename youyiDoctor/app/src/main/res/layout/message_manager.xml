@@ -10,16 +10,8 @@ android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </com.uyi.app.ui.custom.HeaderView>
-    <include layout="@layout/new_message_manager_start"/>
-          <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
-        android:layout_width="match_parent" 
-        android:layout_height="match_parent">
-	    <com.uyi.app.ui.custom.EndlessRecyclerView 
-	        xmlns:android="http://schemas.android.com/apk/res/android"
-	    	android:id="@+id/recyclerView"
-	    	android:orientation="vertical"
-	   	 	android:layout_width="match_parent"
-	    	android:layout_height="match_parent"/>
-        </android.support.v4.widget.SwipeRefreshLayout>
+	<FrameLayout
+		android:id="@+id/content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
 </LinearLayout>

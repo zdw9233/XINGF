@@ -252,6 +252,20 @@ public abstract class Constens {
      */
     public final static String CONSULT_ADVICD_REPLY = SERVER_URL + "/app/api/consult/advice/reply";
 
+    /**
+     * 医生对话查询
+     * ${id}  ${page}  ${pageSize}
+     * %s
+     */
+    public final static String MESSAGE_DOCTOR_ADVICD = SERVER_URL + "/app/api/doctor/find/messages?doctorId=%s&historyTime=%s&num=%s";
+//    public final static String MESSAGE_DOCTOR_ADVICD = SERVER_URL + "/app/api/doctor/find/messages";
+
+    /**
+     * 回复医生
+     */
+    public final static String MESSAGE_DOCTOR_ADVICD_REPLY = SERVER_URL + "/app/api/doctor/send/message/%s";
+
+
 
     /**
      * 日程查询GET
@@ -408,6 +422,10 @@ public abstract class Constens {
      * 查询所有健康团队
      */
     public final static String HEALTH_GROUPS_ALL = SERVER_URL + "/app/api/account/query/health/groups?name=%s&cityId=%s&page=%s&pageSize=%s";
+    /**
+     * 查询医生消息
+     */
+    public final static String HEALTH_MESSAGE_HISTORY = SERVER_URL + "/app/api/doctor/getDoctorDialogue";
     /**
      * 查询所有城市
      */
