@@ -1,15 +1,19 @@
 package com.uyi.app.ui.consult;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -501,8 +505,12 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
             @Override
             public void onClick(View v) {
                 mSetPhotoPop.dismiss();
-                // 拍照获取
-                doTakePhoto();
+				// 拍照获取
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+					requestPermissions(new String[]{Manifest.permission.CAMERA}, 0x100);
+				} else
+					doTakePhoto();
+
                 
             }
 
@@ -598,4 +606,12 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
         intent.putExtra("return-data", true);
         return intent;
     }
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == 0x100 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			doTakePhoto();
+		}
+
+	}
 }

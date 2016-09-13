@@ -1103,6 +1103,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), Constens.PHOTO_REQUEST_GALLERY);
         } else {
+
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("image/jpeg");
@@ -1555,8 +1556,16 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
             @Override
             public void onClick(View v) {
                 mSetPhotoPop.dismiss();
-                // 相册获取
-                requestGallery();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    L.e("VERSION1==",Build.VERSION.SDK_INT +"");
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 10002);
+                } else{
+                    L.e("VERSION2==",Build.VERSION.SDK_INT +"");
+                }
+
+//                    requestGallery();
+
+
             }
         });
         Button btnCancle = (Button) mainView.findViewById(R.id.btn_cancel);
@@ -1599,6 +1608,8 @@ public class UpdateUserInfoActivity extends BaseActivity implements OnTabChanage
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 0x100 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             requestTakePhoto();
+        }else if (requestCode == 10002 && grantResults[0] == PackageManager.PERMISSION_GRANTED&& grantResults[1] == PackageManager.PERMISSION_GRANTED){
+            requestGallery();
         }
     }
 }

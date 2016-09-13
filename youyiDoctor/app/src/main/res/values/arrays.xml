@@ -17,7 +17,7 @@
     </string-array>
     <string-array name="message_who">
         <item>用户消息</item>
-        <item>医生消息</item>
+        <item>医师消息</item>
     </string-array>
     <string-array name="exclusive">
         <item>我的预约</item>

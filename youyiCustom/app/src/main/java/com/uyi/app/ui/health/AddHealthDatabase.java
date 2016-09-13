@@ -1,10 +1,13 @@
 package com.uyi.app.ui.health;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -244,10 +247,22 @@ public class AddHealthDatabase extends BaseActivity {
     public void click(View view) {
         if (view.getId() == R.id.health_database_add_jianchabaogao_add) {
             addImageIndex = 1;
-            requestGallery();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                L.e("VERSION1==",Build.VERSION.SDK_INT +"");
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 10002);
+            } else {
+                L.e("VERSION2==", Build.VERSION.SDK_INT + "");
+                requestGallery();
+            }
         } else if (view.getId() == R.id.health_database_add_xindiantu_add) {
             addImageIndex = 2;
-            requestGallery();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                L.e("VERSION1==",Build.VERSION.SDK_INT +"");
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 10002);
+            } else {
+                L.e("VERSION2==", Build.VERSION.SDK_INT + "");
+                requestGallery();
+            }
         } else if (view.getId() == R.id.checkTime) {
             Intent intent = new Intent(activity, DatePickerActivity.class);
             intent.putExtra("format", Constens.DATE_FORMAT);
@@ -348,5 +363,12 @@ public class AddHealthDatabase extends BaseActivity {
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
         headerView.setKitkat(systemBarConfig);
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+       if (requestCode == 10002 && grantResults[0] == PackageManager.PERMISSION_GRANTED&& grantResults[1] == PackageManager.PERMISSION_GRANTED){
+            requestGallery();
+        }
 
+    }
 }

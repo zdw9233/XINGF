@@ -30,7 +30,7 @@ public class MessageManagerActivity extends BaseFragmentActivity implements Head
 	@ViewInject(R.id.headerView) private HeaderView headerView;
 
 	@Override
-	protected void onInitLayoutAfter() {
+	protected void onInitLayoutAfter() { 
 		headerView.showLeftReturn(true).showTab(true).showRight(true).setOnTabChanage(this);
 		String[] str = getResources().getStringArray(R.array.message_who);
 		headerView.setTitleTabs(str);

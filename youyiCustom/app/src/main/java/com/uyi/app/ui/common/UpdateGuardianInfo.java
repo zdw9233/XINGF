@@ -44,6 +44,7 @@ import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.FileUtils;
 import com.uyi.app.utils.JSONObjectUtils;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.custom.app.R;
@@ -477,8 +478,13 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
             @Override
             public void onClick(View v) {
                 mSetPhotoPop.dismiss();
-                // 相册获取
-                requestGallery();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    L.e("VERSION1==",Build.VERSION.SDK_INT +"");
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 10002);
+                } else {
+                    L.e("VERSION2==", Build.VERSION.SDK_INT + "");
+                    requestGallery();
+                }
             }
         });
         Button btnCancle = (Button) mainView.findViewById(R.id.btn_cancel);
@@ -597,8 +603,10 @@ public class UpdateGuardianInfo extends BaseActivity implements AbstractSpinerAd
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 0x100) {
+        if (requestCode == 0x100 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             requestTakePhoto();
+        }else if (requestCode == 10002 && grantResults[0] == PackageManager.PERMISSION_GRANTED&& grantResults[1] == PackageManager.PERMISSION_GRANTED){
+            requestGallery();
         }
     }
 }
