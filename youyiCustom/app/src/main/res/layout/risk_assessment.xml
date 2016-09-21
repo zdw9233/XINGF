@@ -37,6 +37,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"
         android:text="回到\n顶部"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:background="@drawable/shape_yuan_btn"
         android:layout_height="64dp" />

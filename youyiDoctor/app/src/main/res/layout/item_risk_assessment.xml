@@ -20,21 +20,55 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="血压/检查报告"
+        android:text="时间:"
         android:maxLines="1"
-        android:textSize="16dp"
-        android:layout_marginLeft="10dp"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/BLACK"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/imageView"
         android:layout_toEndOf="@+id/imageView" />
+      <!--  <TextView
+            android:id="@+id/fxxs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1%"
+            android:maxLines="1"
+            android:textSize="15dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/orangered"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/title"
+             />-->
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/lightgray"
+        android:layout_toRightOf="@+id/title"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
         android:text="2016-12-12"/>
+        <TextView
+            android:id="@+id/crect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/time"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/BLACK"
+            android:text="创建人:"
+            />
+        <TextView
+            android:id="@+id/crectdoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/crect"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/blue"
+            android:text="---"
+            />
 
 </RelativeLayout>
     <LinearLayout
@@ -68,5 +102,5 @@
         android:visibility="gone"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="这是想抢是大的萨达萨达撒打算的撒的撒的撒的撒的撒的撒旦撒旦撒旦撒旦撒旦撒旦撒旦撒旦撒大师的撒的撒的撒的撒打算的撒的撒的撒的撒的撒的"/>
+        android:text=""/>
 </LinearLayout>

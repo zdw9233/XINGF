@@ -304,6 +304,11 @@ public abstract class Constens {
      * 查询咨询次数
      */
     public final static String HAVE_NUMBER = SERVER_URL + "/app/api/servicePackage/getCustomerServiceDetail";
+
+    /**
+     * 获取用户最后一条风险评估以及历史健康管理
+     */
+    public final static String HEALTH_PERSONAL_PROGRAM= SERVER_URL + "/app/api/account/getLastRiskReport?cid=%s";
     /**
      * 查询加入的健康团队
      */

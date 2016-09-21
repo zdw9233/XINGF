@@ -91,8 +91,8 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
 //                    startActivity(new Intent(getContext(), LifeStyleActivity.class));
 //                    requsetOnItemClick(3);
 //                } else {
-                    startActivity(new Intent(getContext(), LifeStyleActivity.class));
-                    requsetOnItemClick(3);
+                    startActivity(new Intent(getContext(), PreviewPersonalProgramActivity.class));
+//                    requsetOnItemClick(3);
 //                }
                 break;
             case R.id.diet:     //饮食计划
@@ -161,9 +161,9 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                     if (data.getBoolean("isAssessment")) {
                         assessment_num.setVisibility(View.VISIBLE);
                     } else assessment_num.setVisibility(View.GONE);
-                    if (data.getBoolean("isLife")) {
-                        life_num.setVisibility(View.VISIBLE);
-                    } else life_num.setVisibility(View.GONE);
+//                    if (data.getBoolean("isLife")) {
+//                        life_num.setVisibility(View.VISIBLE);
+//                    } else life_num.setVisibility(View.GONE);
                     if (data.getBoolean("isDiet")) {
                         diet_num.setVisibility(View.VISIBLE);
                     } else diet_num.setVisibility(View.GONE);

@@ -372,6 +372,20 @@ public abstract class Constens {
      */
     public final static String HEALTH_CONSULT_DISCUSS = SERVER_URL + "/app/api/doctor/health/consult/%s/discuss";
 
+    /**
+     * 创建健康管理
+     */
+    public final static String CREACT_PERSONAL_PROGRAM= SERVER_URL + "/app/api/doctor/newHealthManagement";
+
+    /**
+     * 获取健康管理模板
+     */
+    public final static String GET_PERSONAL_PROGRAM_EXAMPLE= SERVER_URL + "/app/api/doctor/getTemplate";
+
+    /**
+     * 获取用户最后一条风险评估以及历史健康管理
+     */
+    public final static String HEALTH_PERSONAL_PROGRAM= SERVER_URL + "/app/api/account/getLastRiskReport?cid=%s";
 
     /**
      * 医生查询用户个人资料
@@ -417,7 +431,7 @@ public abstract class Constens {
      * 插入风险评估列表
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
-    public final static String DOCTOR_HEALTH_RISK_INSERT = SERVER_URL + "/app/api/doctor/setting/riskreport/insert";
+    public final static String DOCTOR_HEALTH_RISK_INSERT = SERVER_URL + "/app/api/doctor/setting/risk/report/insert";
     /**
      * 查询所有健康团队
      */

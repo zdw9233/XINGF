@@ -61,7 +61,8 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
                 startActivity(new Intent(this, RiskAssessmentActivity.class));
                 break;
             case R.id.life:      //生活方式
-                startActivity(new Intent(this, LifeStyleActivity.class));
+//                startActivity(new Intent(this, LifeStyleActivity.class));
+                startActivity(new Intent(this, NewPersonalProgramActivity.class));
                 break;
             case R.id.diet:     //饮食计划
                 startActivity(new Intent(this, DietPlanActivity.class));

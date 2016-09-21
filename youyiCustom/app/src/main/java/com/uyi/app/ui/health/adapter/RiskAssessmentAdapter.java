@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.uyi.app.Constens;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
+import com.uyi.app.ui.health.RiskAssessmentActivity;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
@@ -36,7 +37,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	public RiskAssessmentAdapter(Context context) {
 		this.context = context;
 		showDetailPositions = new ArrayList<>();
-		showDetailPositions.add(0);
+//		showDetailPositions.add(0);
 
 	}
 
@@ -50,13 +51,13 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	public void onBind(final ViewHolder viewHolder, final int RealPosition, final Map<String, Object> data) {
 		if(viewHolder instanceof Holder){
 			final Holder hodler = (Holder)viewHolder;
-			if (showDetailPositions.contains(RealPosition)){
-				hodler.deils.setVisibility(View.VISIBLE);
-				hodler.riskitem.setVisibility(View.VISIBLE);
-			}else {
-				hodler.deils.setVisibility(View.GONE);
-				hodler.riskitem.setVisibility(View.GONE);
-			}
+//			if (showDetailPositions.contains(RealPosition)){
+//				hodler.deils.setVisibility(View.VISIBLE);
+//				hodler.riskitem.setVisibility(View.VISIBLE);
+//			}else {
+//				hodler.deils.setVisibility(View.GONE);
+//				hodler.riskitem.setVisibility(View.GONE);
+//			}
 			hodler.item.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -69,6 +70,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	//								hodler.checked.setVisibility(View.GONE);
 									data.put("checked","true");
 									notifyItemChanged(RealPosition);
+									((RiskAssessmentActivity)context).gotoChooesTeam(RealPosition,data);
 								}
 							}, new RequestErrorListener() {
 								public void requestError(VolleyError e) {
@@ -77,18 +79,20 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
+					}else{
+						((RiskAssessmentActivity)context).gotoChooesTeam(RealPosition,data);
 					}
-					if (showDetailPositions.contains(RealPosition)){
-						showDetailPositions.remove(showDetailPositions.indexOf(RealPosition));
-					}else showDetailPositions.add(RealPosition);
-					notifyItemChanged(RealPosition);
+//					if (showDetailPositions.contains(RealPosition)){
+//						showDetailPositions.remove(showDetailPositions.indexOf(RealPosition));
+//					}else showDetailPositions.add(RealPosition);
+//					notifyItemChanged(RealPosition);
 				}
 			});
 //			hodler.title.setText(data.get("content").toString());
 			hodler.time.setText(data.get("createTime").toString());
-			hodler.deils.setText(data.get("content").toString());
-			hodler.riskindix.setText("风险系数:  "+data.get("percentage").toString());
-			hodler.doc_name.setText("填写医生:  "+data.get("doc_name").toString());
+//			hodler.deils.setText(data.get("content").toString());
+//			hodler.riskindix.setText("风险系数:  "+data.get("percentage").toString());
+//			hodler.doc_name.setText("填写医生:  "+data.get("doc_name").toString());
 			if(data.get("checked").toString().equals("false") ){
 				hodler.checked.setVisibility(View.VISIBLE);
 			}else hodler.checked.setVisibility(View.GONE);

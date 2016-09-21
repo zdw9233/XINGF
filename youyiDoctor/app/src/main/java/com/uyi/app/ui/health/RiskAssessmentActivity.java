@@ -1,15 +1,14 @@
 package com.uyi.app.ui.health;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -20,13 +19,10 @@ import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
-import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
-import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.RiskAssessmentAdapter;
-import com.uyi.app.utils.T;
+import com.uyi.app.utils.SerializableMap;
 import com.uyi.doctor.app.R;
-import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONArray;
@@ -35,25 +31,20 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by ThinkPad on 2016/7/1.
  */
 @ContentView(R.layout.risk_assessment)
-public class RiskAssessmentActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String,Object>>, EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener,AbstractSpinerAdapter.IOnItemSelectListener {
+public class RiskAssessmentActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String,Object>>, EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener{
     @ViewInject(R.id.headerView) private HeaderView headerView;
-    @ViewInject(R.id.new_risk_assessment) private EditText new_risk_assessment;
-    @ViewInject(R.id.risk_indexs) private TextView risk_indexs;
-    @ViewInject(R.id.new_risk_submit) private Button new_risk_submit;
+    @ViewInject(R.id.new_report) private Button new_report;
     @ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
     @ViewInject(R.id.swipeRefreshLayout) private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayoutManager linearLayoutManager;
     private RiskAssessmentAdapter healthDatabaseAdapter;
     private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
-    private SpinerPopWindow spinerPopWindow;
-    List<String> riskIndixs = new ArrayList<String>() ;
     @Override
     protected void onInitLayoutAfter() {
         headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("风险评估").setTitleColor(getResources().getColor(R.color.blue));
@@ -67,12 +58,6 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         recyclerView.setProgressView(R.layout.item_progress);
         recyclerView.setAdapter(healthDatabaseAdapter);
         recyclerView.setPager(this);
-        for (int i = 0; i < 100;i++){
-            riskIndixs.add(""+i+"%");
-        }
-        spinerPopWindow = new SpinerPopWindow(this);
-        spinerPopWindow.setItemListener(this);
-        spinerPopWindow.refreshData(riskIndixs, 1);
 
 
         //设置刷新时动画的颜色，可以设置4个
@@ -80,40 +65,13 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         swipeRefreshLayout.setOnRefreshListener(this);
         onRefresh();
     }
-@OnClick({R.id.new_risk_submit,R.id.risk_indexs})
+@OnClick({R.id.new_report})
 public void onClick(View v){
-    if(v.getId() == R.id.risk_indexs){
-        spinerPopWindow.setWidth(risk_indexs.getWidth());
-        spinerPopWindow.refreshData(riskIndixs, 0);
-        spinerPopWindow.showAsDropDown(risk_indexs);
-    }else if(v.getId() ==R.id.new_risk_submit ){
-        try {
-            JSONObject params = new JSONObject();
-            params.put("percentage",risk_indexs.getText().toString());
-            params.put("content",""+new_risk_assessment.getText().toString());
-            params.put("customerid",FragmentHealthListManager.customer+"");
-            params.put("checked",false);
+    if(v.getId() == R.id.new_report){
+        Intent intent = new Intent();
+        intent.setClass(RiskAssessmentActivity.this,NewRiskAssessmentActivity.class);
+        startActivityForResult(intent, 10003);
 
-            RequestManager.postObject(Constens.DOCTOR_HEALTH_RISK_INSERT, activity, params, new Response.Listener<JSONObject>() {
-                public void onResponse(JSONObject data) {
-                    System.out.print("+++++++++++++++++++++"+data.toString());
-                    T.showShort(activity, "提交成功!");
-                    onRefresh();
-                }
-            }, new RequestErrorListener() {
-                public void requestError(VolleyError e) {
-//                    if(e.networkResponse != null){
-//                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
-//                    }else{
-//                        T.showShort(activity, "提交成功!");
-//                        onRefresh();
-//                    }
-                    T.showShort(activity, "提交失败!");
-                }
-            });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 }
     @Override
@@ -123,7 +81,14 @@ public void onClick(View v){
 
     @Override
     public void onItemClick(int position, Map<String, Object> data) {
-
+        Intent intent = new Intent();
+        SerializableMap myMap=new SerializableMap();
+        myMap.setMap(data);//将map数据添加到封装的myMap中
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("map", myMap);
+        intent.putExtras(bundle);
+        intent.setClass(RiskAssessmentActivity.this,RiskAssessmentDetailsActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -134,6 +99,12 @@ public void onClick(View v){
         recyclerView.setRefreshing(false);
         loadNextPage();
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        onRefresh();
+//    }
 
     @Override
     public boolean shouldLoad() {
@@ -158,24 +129,49 @@ public void onClick(View v){
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
 
-//                                item.put("content", jsonObject.getString("content"));
-//                                item.put("createTime", jsonObject.getString("createTime"));
-//                                item.put("percentage", jsonObject.getString("percentage"));
-
+                                item.put("createTime", jsonObject.getString("createTime"));
+                                item.put("doc_name", jsonObject.getString("doc_name"));
+                                if(jsonObject.has("percentageASVCD")){
+                                    item.put("percentageASVCD", jsonObject.getString("percentageASVCD"));
+                                }else{
+                                    item.put("percentageASVCD", "");
+                                }
+                                if(jsonObject.has("percentageICVD")){
+                                    item.put("percentageICVD", jsonObject.getString("percentageICVD"));
+                                }else{
+                                    item.put("percentageICVD", "");
+                                }
+                                if(jsonObject.has("bloodPressureConditions")){
+                                    item.put("bloodPressureConditions", jsonObject.getString("bloodPressureConditions"));
+                                }else{
+                                    item.put("bloodPressureConditions", "");
+                                }
+                                if(jsonObject.has("bloodSugarConditions")){
+                                    item.put("bloodSugarConditions", jsonObject.getString("bloodSugarConditions"));
+                                }else{
+                                    item.put("bloodSugarConditions", "");
+                                }
+                                if(jsonObject.has("healthIndicator")){
+                                    item.put("healthIndicator", jsonObject.getString("healthIndicator"));
+                                }else{
+                                    item.put("healthIndicator", "");
+                                }
+                                if(jsonObject.has("advice")){
+                                    item.put("advice", jsonObject.getString("advice"));
+                                }else{
+                                    item.put("advice", "");
+                                }
                                 if(jsonObject.has("content")){
                                     item.put("content", jsonObject.getString("content"));
                                 }else{
                                     item.put("content", "");
                                 }
-                                item.put("createTime", jsonObject.getString("createTime"));
                                 if(jsonObject.has("percentage")){
                                     item.put("percentage", jsonObject.getString("percentage"));
                                 }else{
                                     item.put("percentage", "");
                                 }
-                                item.put("doc_name", jsonObject.getString("doc_name"));
-//                                item.put("createTime", jsonObject.getString("createTime"));
-//								item.put("isWarning", jsonObject.getBoolean("isWarning"));
+
                                 datas.add(item);
                             }
                         } catch (JSONException e) {
@@ -194,9 +190,13 @@ public void onClick(View v){
                     }
                 });
     }
-
     @Override
-    public void onItemClick(int pos) {
-        risk_indexs.setText(riskIndixs.get(pos));
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 10003){
+            if(resultCode == RESULT_OK){
+                onRefresh();
+            }
+        }
     }
 }

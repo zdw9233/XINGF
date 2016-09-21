@@ -1,6 +1,8 @@
 package com.uyi.app.ui.health;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +24,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.RiskAssessmentAdapter;
+import com.uyi.app.utils.SerializableMap;
 import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
@@ -100,10 +103,45 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
     }
 
     @Override
-    public void onItemClick(int position, Map<String, Object> data) {
+    public void onItemClick(int position, final Map<String, Object> data) {
+//        final Intent intent = new Intent();
+//        SerializableMap myMap=new SerializableMap();
+//        myMap.setMap(data);//将map数据添加到封装的myMap中
+//        Bundle bundle=new Bundle();
+//        bundle.putSerializable("map", myMap);
+//        intent.putExtras(bundle);
+//        intent.setClass(RiskAssessmentActivity.this,RiskAssessmentDetailsActivity.class);
+//
+//        if (data.get("checked").toString().equals("false")){
+//        try {
+//            JSONObject params = new JSONObject();
+//            RequestManager.postObject(String.format(Constens.CUSTOMER_HEALTH_RISK_UPDATA,data.get("id").toString()), this,params, new Response.Listener<JSONObject>() {
+//                public void onResponse(JSONObject jsonData) {
+//                    startActivity(intent);
+//                }
+//            }, new RequestErrorListener() {
+//                public void requestError(VolleyError e) {
+//                }
+//            });
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        }else{
+//            startActivity(intent);
+//        }
+
 
     }
-
+    public void gotoChooesTeam(int realPosition, Map<String, Object> data) {
+                    final Intent intent = new Intent();
+        SerializableMap myMap=new SerializableMap();
+        myMap.setMap(data);//将map数据添加到封装的myMap中
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("map", myMap);
+        intent.putExtras(bundle);
+        intent.setClass(RiskAssessmentActivity.this,RiskAssessmentDetailsActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onRefresh() {
         pageNo = 1;
@@ -111,6 +149,12 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
         recyclerView.setRefreshing(false);
         loadNextPage();
     }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        onRefresh();
+//    }
 
     @Override
     public boolean shouldLoad() {
@@ -143,20 +187,50 @@ public class RiskAssessmentActivity extends BaseActivity implements BaseRecycler
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
                                 item.put("id", jsonObject.getString("id"));
+                                item.put("createTime", jsonObject.getString("createTime"));
+                                item.put("doc_name", jsonObject.getString("doc_name"));
+                                item.put("checked", jsonObject.getString("checked"));
+                                if(jsonObject.has("percentageASVCD")){
+                                    item.put("percentageASVCD", jsonObject.getString("percentageASVCD"));
+                                }else{
+                                    item.put("percentageASVCD", "");
+                                }
+                                if(jsonObject.has("percentageICVD")){
+                                    item.put("percentageICVD", jsonObject.getString("percentageICVD"));
+                                }else{
+                                    item.put("percentageICVD", "");
+                                }
+                                if(jsonObject.has("bloodPressureConditions")){
+                                    item.put("bloodPressureConditions", jsonObject.getString("bloodPressureConditions"));
+                                }else{
+                                    item.put("bloodPressureConditions", "");
+                                }
+                                if(jsonObject.has("bloodSugarConditions")){
+                                    item.put("bloodSugarConditions", jsonObject.getString("bloodSugarConditions"));
+                                }else{
+                                    item.put("bloodSugarConditions", "");
+                                }
+                                if(jsonObject.has("healthIndicator")){
+                                    item.put("healthIndicator", jsonObject.getString("healthIndicator"));
+                                }else{
+                                    item.put("healthIndicator", "");
+                                }
+                                if(jsonObject.has("advice")){
+                                    item.put("advice", jsonObject.getString("advice"));
+                                }else{
+                                    item.put("advice", "");
+                                }
                                 if(jsonObject.has("content")){
                                     item.put("content", jsonObject.getString("content"));
                                 }else{
                                     item.put("content", "");
                                 }
-                                item.put("createTime", jsonObject.getString("createTime"));
                                 if(jsonObject.has("percentage")){
                                     item.put("percentage", jsonObject.getString("percentage"));
                                 }else{
                                     item.put("percentage", "");
                                 }
 
-                                item.put("checked", jsonObject.getString("checked"));
-                                item.put("doc_name", jsonObject.getString("doc_name"));
 //								item.put("isWarning", jsonObject.getBoolean("isWarning"));
 
                                 datas.add(item);

@@ -40,31 +40,29 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 	public void onBind(final ViewHolder viewHolder, final int RealPosition, final Map<String, Object> data) {
 		if(viewHolder instanceof Holder){
 			final Holder hodler = (Holder)viewHolder;
-			if (showDetailPositions.contains(RealPosition)){
-				hodler.deils.setVisibility(View.VISIBLE);
-				hodler.riskitem.setVisibility(View.VISIBLE);
-			}else {
-				hodler.deils.setVisibility(View.GONE);
-				hodler.riskitem.setVisibility(View.GONE);
-			}
-					hodler.item.setOnClickListener(new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							if (showDetailPositions.contains(RealPosition)){
-								showDetailPositions.remove(showDetailPositions.indexOf(RealPosition));
-							}else{
-								showDetailPositions.add(RealPosition);
-							}
-							notifyItemChanged(RealPosition);
-						}
-					});
+//			if (showDetailPositions.contains(RealPosition)){
+//				hodler.deils.setVisibility(View.VISIBLE);
+//				hodler.riskitem.setVisibility(View.VISIBLE);
+//			}else {
+//				hodler.deils.setVisibility(View.GONE);
+//				hodler.riskitem.setVisibility(View.GONE);
+//			}
+//					hodler.item.setOnClickListener(new View.OnClickListener() {
+//						@Override
+//						public void onClick(View v) {
+//							if (showDetailPositions.contains(RealPosition)){
+//								showDetailPositions.remove(showDetailPositions.indexOf(RealPosition));
+//							}else{
+//								showDetailPositions.add(RealPosition);
+//							}
+//							notifyItemChanged(RealPosition);
+//						}
+//					});
 
 //			hodler.title.setText(data.get("content").toString());
-			hodler.time.setText(data.get("createTime").toString());
-			hodler.deils.setText(data.get("content").toString());
-			hodler.riskindix.setText("风险系数:  "+data.get("percentage").toString());
-			hodler.doc_name.setText("填写医生:  "+data.get("doc_name").toString());
-
+			hodler.time.setText(data.get("createTime").toString().substring(0,10));
+//			hodler.fxxs.setText(data.get("percentage").toString());
+			hodler.crectdoctor.setText(data.get("doc_name").toString());
 		}
 	}
 	
@@ -81,6 +79,8 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 			deils = (TextView) v.findViewById(R.id.deils);
 			riskindix = (TextView) v.findViewById(R.id.risk_index);
 			doc_name = (TextView) v.findViewById(R.id.doc_name);
+			crectdoctor = (TextView) v.findViewById(R.id.crectdoctor);
+//			fxxs = (TextView) v.findViewById(R.id.fxxs);
 		}
         private TextView title;
         private TextView time;
@@ -89,6 +89,8 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 		private RelativeLayout item;
 		private LinearLayout riskitem;
 		private TextView doc_name;
+		private TextView crectdoctor;
+		private TextView fxxs;
     }
 
 }
