@@ -10,7 +10,7 @@
 	   <ListView
 	      android:id="@+id/spiner_listview"
 	      android:layout_width="fill_parent"
-	      android:layout_height="wrap_content" 
+	      android:layout_height="wrap_content"
 	      android:cacheColorHint="#00000000"
 	      android:background="@color/white"
 	      android:scrollbars="none">

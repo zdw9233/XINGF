@@ -16,39 +16,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-<LinearLayout
-
-    android:layout_marginTop="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:orientation="horizontal">
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:text="时间"
-        android:textSize="18dp"
-        android:gravity="right|center_vertical"
-        android:textColor="@color/black"/>
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginLeft="10dp"
-        android:textSize="15dp"
-        android:textColor="@color/orangered"/>
-</LinearLayout>
             <LinearLayout
+
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="医生"
-                    android:textSize="18dp"
-                    android:gravity="right|center_vertical"
+                    android:text="评估日期:"
+
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="评估医生:"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/doctor"
@@ -56,21 +59,22 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="10dp"
-                    android:textSize="18dp"
-                    android:textColor="@color/orangered"/>
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_icvd"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="ICVD"
-                    android:textSize="18dp"
-                    android:gravity="right|center_vertical"
+                    android:text="缺血性心血管疾病（ICVD）风险等级:"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/icvd"
@@ -78,21 +82,22 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/orangered"/>
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_ASCVD"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="ASCVD"
-                    android:textSize="18dp"
-                    android:gravity="right|center_vertical"
+                    android:text="脑卒中（ASVCD）风险等级:"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/ascvd"
@@ -100,21 +105,22 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/orangered"/>
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_xy"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:text="您的血压状况"
-                    android:textSize="15dp"
-                    android:gravity="right|center_vertical"
+                    android:text="您的血压状况:"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/xy"
@@ -122,21 +128,22 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/orangered"/>
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_xt"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:text="您的血糖状况"
-                    android:textSize="15dp"
-                    android:gravity="right|center_vertical"
+                    android:text="您的血糖状况:"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/xt"
@@ -144,12 +151,12 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/orangered"/>
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_zdgz"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -157,9 +164,10 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="您应该重点关注的健康指标"
-                    android:textSize="15dp"
-                    android:gravity="right|center_vertical"
+                    android:text="您应该重点关注的健康指标:"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/zdgz"
@@ -167,22 +175,23 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/orangered"/>
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_jkjy"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="健康管理建议"
-                    android:textSize="15dp"
-                    android:gravity="right|center_vertical"
+                    android:text="健康管理建议:"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/jkjy"
@@ -191,9 +200,9 @@
                     android:text=""
 
                     android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:textColor="@color/orangered"/>
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
             </LinearLayout>
-</LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

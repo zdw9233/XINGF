@@ -18,7 +18,7 @@
         android:text="你还没有医生为您提交的个人方案！"/>
     <ScrollView
         android:id="@+id/scroll"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -54,7 +54,8 @@
                 android:layout_height="30dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_height="match_parent"
                     android:text="录入人:"
                     android:textSize="14dp"
@@ -67,7 +68,7 @@
 
                     android:layout_marginLeft="10dp"
                     android:textSize="14dp"
-                    android:textColor="@color/orangered"/>
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_icvd"
@@ -75,7 +76,8 @@
                 android:layout_height="30dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_height="match_parent"
                     android:text="录入时间:"
                     android:textSize="14dp"
@@ -88,7 +90,7 @@
 
                     android:layout_marginLeft="10dp"
                     android:textSize="14dp"
-                    android:textColor="@color/orangered"/>
+                    android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
