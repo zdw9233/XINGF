@@ -15,10 +15,11 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:gravity="center"
-        android:text="你还没有医生为您提交的个人方案！"/>
+        android:text="您的主管医生尚未为您提交个人方案！"/>
     <ScrollView
         android:id="@+id/scroll"
-        android:visibility="visible"
+
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
