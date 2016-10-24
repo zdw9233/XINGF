@@ -44,7 +44,7 @@ public class HeaderView extends LinearLayout implements View.OnClickListener {
 	
 	private LinearLayout view_header_right;
 	private ImageView view_header_right_icon;
-	
+
 	
 	public OnTabChanage onTabChanage;
 	
@@ -64,8 +64,8 @@ public class HeaderView extends LinearLayout implements View.OnClickListener {
 		view_header_three = find(this, R.id.view_header_three);
 		view_header_right = find(this, R.id.view_header_right);
 		view_header_right_icon = find(this, R.id.view_header_right_icon); 
-		view_header_left_layout_return = find(this, R.id.view_header_left_layout_return); 
-		
+		view_header_left_layout_return = find(this, R.id.view_header_left_layout_return);
+
 		//隐藏Left
 		view_header_left_layout_return.setVisibility(View.GONE);
 		view_header_left.setVisibility(View.GONE);
@@ -78,7 +78,7 @@ public class HeaderView extends LinearLayout implements View.OnClickListener {
 		
 		//隐藏Right
 		view_header_right_icon.setVisibility(View.GONE);
-		
+
 		view_header_one.setOnClickListener(this);
 		view_header_two.setOnClickListener(this);
 		view_header_three.setOnClickListener(this);

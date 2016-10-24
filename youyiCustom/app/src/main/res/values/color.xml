@@ -21,10 +21,11 @@
 
     <!-- 蓝色 -->
     <color name="blue">#0ea6fa</color>
+    <color name="blue1">#1fb7fb</color>
 
     <!-- 浅黑  -->
     <color name="footer_somber">#999999</color>
-
+    <color name="footer_somber_more">#666666</color>
     <!-- 透明 -->
     <color name="opacity">#00000000</color>
 

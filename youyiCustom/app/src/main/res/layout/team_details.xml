@@ -65,7 +65,7 @@
                   <com.uyi.app.ui.custom.RoundedImageView
                     android:id="@+id/team_zl_group_logo"
                     android:layout_width="50dp"
-                    
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="50dp"
                     android:src="@drawable/user_picture" 
                     android:layout_marginTop="10dp"/>
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     
                     android:layout_height="wrap_content"
-                android:text="团队助理"
+                android:text="慢病管理师"
                 android:textSize="12sp"
                 android:textColor="@color/blue"
                     android:layout_marginTop="5dp"/>/>

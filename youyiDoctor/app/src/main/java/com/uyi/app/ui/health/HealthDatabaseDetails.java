@@ -1,11 +1,17 @@
 package com.uyi.app.ui.health;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.android.volley.VolleyError;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -24,15 +30,9 @@ import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 
@@ -94,7 +94,7 @@ public class HealthDatabaseDetails extends BaseActivity implements OnClickListen
 					if(data.has("morningSystolicPressure"))
 					addView(health_database_details_xueya_layout, "收缩(高)压:", data.getString("morningSystolicPressure"), "mm/Hg",JSONObjectUtils.getString(data, "morningSystolicPressureWarning"));
 					if(data.has("morningDiastolicPressure"))
-					addView(health_database_details_xueya_layout, "收缩(底)压:", data.getString("morningDiastolicPressure"), "mm/Hg",JSONObjectUtils.getString(data,"morningDiastolicPressureWarning"));
+					addView(health_database_details_xueya_layout, "舒张(低)压:", data.getString("morningDiastolicPressure"), "mm/Hg",JSONObjectUtils.getString(data,"morningDiastolicPressureWarning"));
 					if(data.has("pulseRate"))
 					addView(health_database_details_xueya_layout, "脉搏:", data.getString("pulseRate"), "次/分", JSONObjectUtils.getString(data,"pulseRateWarning"));
 				
@@ -102,7 +102,7 @@ public class HealthDatabaseDetails extends BaseActivity implements OnClickListen
 					if(data.has("fastBloodSugar"))
 					addView(health_database_details_xuetang_layout, "空腹血糖:", data.getString("fastBloodSugar"), "mmol/l", JSONObjectUtils.getString(data,"fastBloodSugarWarning"));
 					if(data.has("postPrandilaSugar"))
-					addView(health_database_details_xuetang_layout, "餐饮2小时血糖:", data.getString("postPrandilaSugar"), "mmol/l", JSONObjectUtils.getString(data,"postPrandilaSugarWarning"));
+					addView(health_database_details_xuetang_layout, "餐后2小时血糖:", data.getString("postPrandilaSugar"), "mmol/l", JSONObjectUtils.getString(data,"postPrandilaSugarWarning"));
 					if(data.has("randomBloodSugar"))
 					addView(health_database_details_xuetang_layout, "随机血糖:", data.getString("randomBloodSugar"), "mmol/l", JSONObjectUtils.getString(data,"randomBloodSugarWarning"));
 					

@@ -44,7 +44,8 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
             R.id.life,          //生活方式
             R.id.diet,          //饮食计划
             R.id.alarm,         //设置报警
-            R.id.telephone      //电话回访
+            R.id.telephone,      //电话回访
+            R.id.follow_up     //三甲随访
     })
     public void onClick(View v) {
         switch (v.getId()) {
@@ -69,6 +70,9 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
                 break;
             case R.id.alarm:   //设置报警
                 startActivity(new Intent(this, AlarmStandardActivity.class));
+                break;
+            case R.id.follow_up:   //三甲随访
+                startActivity(new Intent(this, FollowUpaActivity.class));
                 break;
             case R.id.telephone:
                 //电话

@@ -13,11 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.ErrorCode;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.service.MessageService;
@@ -30,6 +32,9 @@ import com.uyi.app.ui.consult.FragmentFollow;
 import com.uyi.app.ui.consult.FragmentLineInspection;
 import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.ui.dialog.MessageConform;
+import com.uyi.app.ui.health.FollowUpPayActivity;
 import com.uyi.app.ui.health.FragmentWearableDevice;
 import com.uyi.app.ui.health.HealthManagerFragment;
 import com.uyi.app.ui.personal.PersonalCenterFragment;
@@ -37,8 +42,11 @@ import com.uyi.app.ui.team.FragmentHealthTeam;
 import com.uyi.app.utils.NetUtils;
 import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -47,9 +55,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 @ContentView(R.layout.main)
-public class Main extends BaseFragmentActivity {
+public class Main extends BaseFragmentActivity implements MessageConform.OnMessageClick {
     UpdateManager manager = new UpdateManager();
 
+    private MessageConform conform;
     private FragmentManager fm;// fragment管理器
     private List<Fragment> fragments = new ArrayList<Fragment>();
 
@@ -185,9 +194,13 @@ public class Main extends BaseFragmentActivity {
                         if (isUpdate) {
                             manager.update(activity);
                         }
+                        if(!isUpdate){
+                            getPay();
+                        }
                     }
                 });
             }
+
             fm = getSupportFragmentManager();
             UserService.loadUserInfo(application);
             MessageService.loadMessagesAll(activity);
@@ -197,12 +210,64 @@ public class Main extends BaseFragmentActivity {
         }
 
     }
+    public void getPay() {
+        Loading.bulid(activity, null).show();
+        RequestManager.getObject(Constens.GET_SERVER_THREE_PAY, this, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                System.out.println("_____________________"+jsonObject.toString());
+                Loading.bulid(activity, null).dismiss();
+                JSONArray array= new JSONArray();
+                try {
+                   array = jsonObject.getJSONArray("unpaidTopThreeServiceJsonList");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if(array.length() > 0){
+                    if(conform == null){
+                        conform = new MessageConform(Main.this, MessageConform.MessageType.CONFORM);
+                    }
+                    conform.setTitle("提示").setContent("您有需要付款的三甲服务包，是否马上去付款?").setOnMessageClick(Main.this);
+                    conform.show()   ;
+                }
 
+            }
+        }, new RequestErrorListener() {
+            @Override
+            public void requestError(VolleyError e) {
+                if (e.networkResponse != null) {
+                    if (e.networkResponse.statusCode == 200) {
+                        if(conform == null){
+                            conform = new MessageConform(Main.this, MessageConform.MessageType.CONFORM);
+                        }
+                        conform.setTitle("提示").setContent("您有需要付款的三甲服务包，是否马上去付款?").setOnMessageClick(Main.this);
+                        conform.show();
+                    } else {
+                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+                    }
+                } else {
+                    if(conform == null){
+                        conform = new MessageConform(Main.this, MessageConform.MessageType.CONFORM);
+                    }
+                    conform.setTitle("提示").setContent("您有需要付款的三甲服务包，是否马上去付款?").setOnMessageClick(Main.this);
+                    conform.show();
+                }
+            }
+        });
+
+
+    }
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
 
     }
+
+    protected void pay() {
+
+
+    }
+
 
     /**
      * 菜单、返回键响应
@@ -259,6 +324,14 @@ public class Main extends BaseFragmentActivity {
     }
 
     private BeansReceiver mBeansReceiver;
+
+    @Override
+    public void onClick(MessageConform.Result result, Object object) {
+        if(result == MessageConform.Result.OK){
+            startActivity(new Intent(Main.this, FollowUpPayActivity.class));
+        }
+    }
+
 
     private class BeansReceiver extends BroadcastReceiver {
 

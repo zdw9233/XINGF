@@ -46,6 +46,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
 
     @OnClick({
             R.id.diagnosis, //主诊报告
+            R.id.follow_up, //三甲随访
             R.id.report,       //健康报告
             R.id.database,      //健康数据库
             R.id.assessment,    //风险评估
@@ -68,6 +69,9 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
 //                }
 
                 break; //主诊报告
+            case R.id.follow_up:
+                startActivity(new Intent(context, FollowUpaActivity.class));
+                break; //三甲随访
             case R.id.report:     //健康报告
                 startActivity(new Intent(context, HealthReportActivity.class));
 

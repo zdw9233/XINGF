@@ -252,6 +252,7 @@
                 </LinearLayout>
 
                 <FrameLayout
+                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_marginLeft="4dp"
@@ -303,6 +304,7 @@
                             </LinearLayout>
 
                         </FrameLayout>
+
                     </LinearLayout>
 
                     <TextView
@@ -323,6 +325,83 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_style_8"
                         android:visibility="gone" />
+
+                </FrameLayout>
+                <FrameLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/follow_up"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:background="#fe7fc2"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/review" />
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="三甲随访"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="center"
+                                    android:maxLines="1"
+                                    android:text="follow up"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/assessment_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@drawable/shape_new_bg"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="1dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:paddingTop="1dp"
+                        android:text="new"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_style_8"
+                        android:visibility="gone" />
+
                 </FrameLayout>
 
             </TableRow>

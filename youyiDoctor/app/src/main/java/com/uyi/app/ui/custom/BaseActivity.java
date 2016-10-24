@@ -1,13 +1,5 @@
 package com.uyi.app.ui.custom;
 
-import com.android.volley.Request;
-import com.lidroid.xutils.ViewUtils;
-import com.uyi.app.UYIApplication;
-import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.utils.AppUtils;
-import com.uyi.doctor.app.R;
-import com.volley.RequestManager;
-
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
@@ -18,6 +10,14 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.android.volley.Request;
+import com.lidroid.xutils.ViewUtils;
+import com.uyi.app.UYIApplication;
+import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.utils.AppUtils;
+import com.uyi.doctor.app.R;
+import com.volley.RequestManager;
 
 
 /**
@@ -135,5 +135,6 @@ public abstract class BaseActivity extends Activity {
 		super.onStop();
 		RequestManager.cancelAll(this);
 	}
-	
+
+
 }

@@ -250,8 +250,72 @@
                         </FrameLayout>
                     </LinearLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/follow_up"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="#fe7fc2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/review" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:text="三甲随访"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_18" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:text="follow up"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="4dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/notice_background"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/assessment"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
@@ -463,6 +527,7 @@
                             android:visibility="gone" />
                     </FrameLayout>
                 </LinearLayout>
+
             </TableRow>
 
             <LinearLayout

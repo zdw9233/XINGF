@@ -101,6 +101,12 @@ public abstract class Constens {
     public final static String REGISTER_AGREEMENT = SERVER_URL + "/app/api/common/protocol";
     //获取欢迎图片
     public final static String WELCOME_PICTRUE = SERVER_URL + "/app/api/common/mainpageurl/%s";
+    //5获取服务包详细列表
+    public final static String GET_SERVER_THREE = SERVER_URL + "/app/api/topThreeService/get/topThreeServices?page=%s&customerId=%s";
+    //查看是否有服务包需要付费
+    public final static String GET_SERVER_THREE_ISPAY = SERVER_URL + "/app/api/topThreeService/getTopThreePackageState";
+    //5获取2获取为付费服务包
+    public final static String GET_SERVER_THREE_PAY = SERVER_URL + "/app/api/topThreeService/getTopThreeServiceCustomerPlanList";
     //风险评估已读接口
     public final static String RISK_READ = SERVER_URL + "/app/api/doctor/setting/riskreport/update/%s";
     //获取血糖血压图片
@@ -124,6 +130,14 @@ public abstract class Constens {
      * 客户充值健康豆 ${money} POST
      */
     public final static String CUSTOMER_BUY_MOBILE_COIN = SERVER_URL + "/app/api/customer/buy/mobile/coin/%s";
+    /**
+     * 客户服务包支付 POST
+     */
+    public final static String CUSTOMER_BUY_MOBILE_FOLLOW_UP = SERVER_URL + "/app/api/topThreeService/mobile/topthreePay";
+    /**
+     * 客户服务包健康豆支付 get
+     */
+    public final static String CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN = SERVER_URL + "/app/api/topThreeService/buyTopThreeServiceByBeen?been=%s&planId=%s";
     /**
      * 客户充值成功后查询健康豆 ${orderNo} GET
      */

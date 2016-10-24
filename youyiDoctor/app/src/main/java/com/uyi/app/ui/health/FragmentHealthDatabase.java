@@ -63,7 +63,6 @@ public class FragmentHealthDatabase extends BaseFragment implements OnTabChanage
     private SwipeRefreshLayout swipeRefreshLayout;
     private LinearLayoutManager linearLayoutManager;
     private HealthDatabaseAdapter healthDatabaseAdapter;
-
     private ArrayList<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
     Calendar cal = Calendar.getInstance();
     /**

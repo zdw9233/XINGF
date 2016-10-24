@@ -142,7 +142,7 @@ public class HistoryDetailsActivity extends BaseActivity implements OnClickListe
 					
 					//助理意见
 					if(data.has("assistantAdvice")){
-						addYijian(data.getJSONObject("assistantAdvice"),"助理意见",null);
+						addYijian(data.getJSONObject("assistantAdvice"),"慢病管理师意见",null);
 					}
 					
 					

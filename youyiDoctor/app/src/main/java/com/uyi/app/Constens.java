@@ -43,6 +43,16 @@ public abstract class Constens {
 //	public final static String SERVER_URL = "http://www.uyidoctor.com";
     //登陆
     public final static String LOGIN_URL = SERVER_URL + "/app/api/account/login";
+    //5获取服务包详细列表
+    public final static String GET_SERVER_THREE = SERVER_URL + "/app/api/topThreeService/get/topThreeServices?page=%s&customerId=%s";
+    //5获取服务包方案
+    public final static String GET_SERVER_FANGAN = SERVER_URL + "/app/api/topThreeService/get/plan?customerId=%s";
+    //3获取项目列表
+    public final static String GET_SERVER_XIANMU = SERVER_URL + "/app/api/topThreeService/get/item?customerId=%s";
+    //5获取服务包方案2导入方案
+    public final static String GET_SERVER_FANGAN_DAORU = SERVER_URL + "/app/api/topThreeService/import/plan?customerId=%s&planId=%s&startTime=%s";
+    //5穿件服务包
+    public final static String GET_SERVER_FANGAN_CREATU = SERVER_URL + "/app/api/topThreeService/set/topThreeService?customerId=%s";
     //获取欢迎图片
     public final static String WELCOME_PICTRUE = SERVER_URL + "/app/api/common/mainpageurl/%s";
     //获取问题答案列表

@@ -57,7 +57,7 @@
             android:layout_toRightOf="@+id/time"
             android:layout_marginLeft="10dp"
             android:textColor="@color/BLACK"
-            android:text="创建人:"
+            android:text="录入人:"
             />
         <TextView
             android:id="@+id/crectdoctor"

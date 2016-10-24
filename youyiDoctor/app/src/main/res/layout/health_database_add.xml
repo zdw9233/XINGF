@@ -89,7 +89,7 @@
         		         android:layout_height="wrap_content" 
         		         android:textColor="@color/list_item_content_color"
         		         android:textSize="@dimen/font_style_12"
-        		         android:text="收缩(低)压："/>
+        		         android:text="舒张(低)压："/>
         		     <EditText
         		         android:id="@+id/diya"
         		          android:layout_margin="3dp"

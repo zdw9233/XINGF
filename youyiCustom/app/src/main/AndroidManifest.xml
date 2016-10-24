@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.uyi.custom.app"
-    android:versionCode="14"
-    android:versionName="2.1.0.4">
+    android:versionCode="15"
+    android:versionName="2.1.0.5">
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -76,6 +76,13 @@
         </activity>
         <activity
             android:name="com.uyi.app.ui.report.ReportListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.health.FollowUpaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.health.FollowUpPayActivity"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.ElectrocarDiogramDetailsActivity"
@@ -293,6 +300,10 @@
         <!-- alipay sdk begin -->
         <activity
             android:name="com.uyi.app.ui.recharge.AlipayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent"></activity>
+        <activity
+            android:name="com.uyi.app.ui.health.FollowUpAlipayActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent"></activity>
         <activity
