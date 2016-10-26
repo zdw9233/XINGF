@@ -139,7 +139,7 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
 
 
                                 try {
-                                    param.put("been",shurujiankandou.getText().toString());
+                                    param.put("bean",shurujiankandou.getText().toString());
                                     param.put("planId",id);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -168,7 +168,7 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                             } else {
                                 Intent intent = new Intent(activity, FollowUpAlipayActivity.class);
                                 intent.putExtra("money", Integer.parseInt(heji.getText().toString().substring(0,heji.getText().toString().length()-2))-Integer.parseInt(shurujiankandou.getText().toString())+"");
-                                intent.putExtra("panyId",id+"");
+                                intent.putExtra("planId",id+"");
                                 intent.putExtra("bean",shurujiankandou.getText().toString());
                                 System.out.println(intent.toString());
                                 startActivityForResult(intent, Constens.START_ALIPAY_FOR_RESULT);
@@ -182,7 +182,7 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                 }else if(zfbnum ==1 && jkdnum ==0){
                     Intent intent = new Intent(activity, FollowUpAlipayActivity.class);
                     intent.putExtra("money", Integer.parseInt(heji.getText().toString().substring(0,heji.getText().toString().length()-2))+"");
-                    intent.putExtra("panyId",id+"");
+                    intent.putExtra("planId",id+"");
                     intent.putExtra("bean",0+"");
                     System.out.println(intent.toString());
 
@@ -197,7 +197,7 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                         }else{
                             JSONObject  param = new JSONObject();
                             try {
-                                param.put("been",shurujiankandou.getText().toString());
+                                param.put("bean",shurujiankandou.getText().toString());
                                 param.put("planId",id);
                             } catch (JSONException e) {
                                 e.printStackTrace();

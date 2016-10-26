@@ -77,11 +77,16 @@
         <activity
             android:name="com.uyi.app.ui.report.ReportListActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="com.uyi.app.ui.health.FollowUpaActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.uyi.app.ui.health.FollowUpPayActivity"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.newCalendar.CalendarActivity"
             android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
             android:screenOrientation="portrait" />
         <activity

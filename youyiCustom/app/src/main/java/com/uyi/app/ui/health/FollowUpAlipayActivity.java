@@ -34,7 +34,7 @@ public class FollowUpAlipayActivity  extends BaseActivity{
     protected void onInitLayoutAfter() {
         String money = getIntent().getStringExtra("money");
         String bean = getIntent().getStringExtra("bean");
-        String panyId = getIntent().getStringExtra("panyId");
+        String panyId = getIntent().getStringExtra("planId");
         Loading.bulid(activity, null).show();
         JSONObject  param = new JSONObject();
         JSONObject  params = new JSONObject();
@@ -42,8 +42,8 @@ public class FollowUpAlipayActivity  extends BaseActivity{
 
 
             params.put("money",money);
-            params.put("panyId",panyId);
-            params.put("been",bean);
+            params.put("planId",panyId);
+            params.put("bean",bean);
             param.put("PayTopThreeJson",params);
         } catch (JSONException e) {
             e.printStackTrace();

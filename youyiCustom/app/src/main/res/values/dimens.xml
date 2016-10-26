@@ -889,4 +889,7 @@
     <dimen name="px_to_dip_847">423.50dp</dimen>
     <dimen name="px_to_dip_848">424.00dp</dimen>
     <dimen name="px_to_dip_849">424.50dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="historyscore_tb">10dp</dimen>
 </resources>

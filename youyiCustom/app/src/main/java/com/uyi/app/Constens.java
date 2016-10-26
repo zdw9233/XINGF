@@ -137,7 +137,7 @@ public abstract class Constens {
     /**
      * 客户服务包健康豆支付 get
      */
-    public final static String CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN = SERVER_URL + "/app/api/topThreeService/buyTopThreeServiceByBeen?been=%s&planId=%s";
+    public final static String CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN = SERVER_URL + "/app/api/topThreeService/buyTopThreeServiceByBeen?bean=%s&planId=%s";
     /**
      * 客户充值成功后查询健康豆 ${orderNo} GET
      */
@@ -547,6 +547,10 @@ public abstract class Constens {
      * 获取定制服务
      */
     public static final String GET_CUSTOM_SERVICE = SERVER_URL + "/app/api/servicePackage/query/custom";
+    /**
+     * 获取richeng
+     */
+    public static final String GET_CUSTOM_RICHEN = SERVER_URL + "/app/api/schedule/month?startDate=%s&endDate=%s";
     /**
      * 购买定制服务
      */
