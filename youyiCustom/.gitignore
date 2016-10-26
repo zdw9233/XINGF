@@ -1,5 +1,9 @@
-.idea
-<<<<<<< HEAD
-=======
-.idea
->>>>>>> 27b19df6a9663b9808774d3165698c8e3c4b5b3b
+
+.gradle/
+app/build/
+"app/\347\224\250\346\210\267.apk"
+build/
+gradle/
+gradlew
+gradlew.bat
+.idea/

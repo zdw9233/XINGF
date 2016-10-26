@@ -34,6 +34,7 @@ public class CalendarActivity extends BaseActivity {
 	@Override
 	protected void onInitLayoutAfter() {
 		Loading.bulid(this, null).show();
+
 		RequestManager.getArray(String.format(Constens.GET_CUSTOM_RICHEN,"2016-09-11","2016-10-11"), this, new Response.Listener<JSONArray>() {
 			@Override
 			public void onResponse(JSONArray jsonObject) {
@@ -80,6 +81,10 @@ public class CalendarActivity extends BaseActivity {
 				Toast.makeText(CalendarActivity.this, format.format(date), Toast.LENGTH_SHORT).show();
 			}
 
+			@Override
+			public void onCalendarMonthChange(Date firstDate, Date endDate) {
+
+			}
 		});
 
 

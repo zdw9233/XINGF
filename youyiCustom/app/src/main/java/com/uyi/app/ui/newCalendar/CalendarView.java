@@ -32,13 +32,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static android.R.attr.animation;
+
 /**
  * 日历控件，支持旧历、节气、日期标注、点击操作 （参考网络上的日历控件改写）
  *
  * @author wangcccong
  * @version 1.406 create at: Mon, 03 Sep. 2014
- * <br>update at: Mon, 23 Sep. 2014
- * &nbsp;&nbsp;新增日期标注和点击操作
+ *          <br>update at: Mon, 23 Sep. 2014
+ *          &nbsp;&nbsp;新增日期标注和点击操作
  */
 public class CalendarView extends LinearLayout implements OnTouchListener,
         AnimationListener, OnGestureListener {
@@ -48,11 +50,16 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
      */
     public interface OnCalendarViewListener {
         void onCalendarItemClick(CalendarView view, Date date);
+        void onCalendarMonthChange(Date firstDate, Date endDate);
     }
 
-    /** 顶部控件所占高度 */
+    /**
+     * 顶部控件所占高度
+     */
     private final static int TOP_HEIGHT = 40;
-    /** 日历item中默认id从0xff0000开始 */
+    /**
+     * 日历item中默认id从0xff0000开始
+     */
     private final static int DEFAULT_ID = 0xff0000;
 
     // 判断手势用
@@ -71,11 +78,17 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
     private ViewFlipper viewFlipper;
     private GestureDetector mGesture = null;
 
-    /** 上一月 */
+    /**
+     * 上一月
+     */
     private GridView gView1;
-    /** 当月 */
+    /**
+     * 当月
+     */
     private GridView gView2;
-    /** 下一月 */
+    /**
+     * 下一月
+     */
     private GridView gView3;
 
     boolean bIsSelection = false;// 是否是选择事件发生
@@ -95,8 +108,10 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
     private static final int calLayoutID = 55; // 日历布局ID
     private Context mContext;
 
-    /** 标注日期 */
-    private final List<Map<String,Object>> markDates;
+    /**
+     * 标注日期
+     */
+    private final List<Map<String, Object>> markDates;
 
     private OnCalendarViewListener mListener;
 
@@ -168,7 +183,9 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         mMainLayout.addView(br, params_br);
     }
 
-    /** 生成顶部控件 */
+    /**
+     * 生成顶部控件
+     */
     @SuppressWarnings("deprecation")
     private void generateTopView() {
         // 顶部显示上一个下一个，以及当前年月
@@ -193,8 +210,8 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         mTitle.setSingleLine(true);
         mTitle.setGravity(Gravity.CENTER);
         mTitle.setHorizontallyScrolling(true);
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月");
-        String date=sdf.format(new java.util.Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月");
+        String date = sdf.format(new java.util.Date());
         mTitle.setText(date);
         top.addView(mTitle);
 
@@ -208,8 +225,8 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
                 BitmapFactory.decodeStream(CalendarView.class
                         .getResourceAsStream("image/left_arrow_pre.png")));
         stateListDrawableL.addState(
-                new int[] { -android.R.attr.state_pressed }, lDrawableNor);
-        stateListDrawableL.addState(new int[] { android.R.attr.state_pressed },
+                new int[]{-android.R.attr.state_pressed}, lDrawableNor);
+        stateListDrawableL.addState(new int[]{android.R.attr.state_pressed},
                 lDrawablePre);
         mLeftView.setBackgroundDrawable(stateListDrawableL);
 
@@ -241,9 +258,9 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         Drawable rDrawablePre = new BitmapDrawable(mContext.getResources(),
                 BitmapFactory.decodeStream(CalendarView.class
                         .getResourceAsStream("image/right_arrow_pre.png")));
-        stateListDrawable.addState(new int[] { -android.R.attr.state_pressed },
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed},
                 rDrawableNor);
-        stateListDrawable.addState(new int[] { android.R.attr.state_pressed },
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed},
                 rDrawablePre);
         mRightView.setBackgroundDrawable(stateListDrawable);
 
@@ -267,7 +284,9 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         top.addView(mRightView);
     }
 
-    /** 生成中间显示week */
+    /**
+     * 生成中间显示week
+     */
     private void generateWeekGirdView() {
         GridView gridView = new GridView(mContext);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -288,7 +307,9 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         mMainLayout.addView(gridView);
     }
 
-    /** 生成底部日历 */
+    /**
+     * 生成底部日历
+     */
     private void generateClaendarGirdView() {
         Calendar tempSelected1 = Calendar.getInstance(); // 临时
         Calendar tempSelected2 = Calendar.getInstance(); // 临时
@@ -302,20 +323,20 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         gAdapter1 = new CalendarGridViewAdapter(mContext, tempSelected1,
                 markDates);
         gView1.setAdapter(gAdapter1);// 设置菜单Adapter
-//        gView1.setId(calLayoutID);
+        gView1.setId(calLayoutID);
 
         gView2 = new CalendarGridView(mContext);
         gAdapter = new CalendarGridViewAdapter(mContext, tempSelected2,
                 markDates);
         gView2.setAdapter(gAdapter);// 设置菜单Adapter
-//        gView2.setId(calLayoutID);
+        gView2.setId(calLayoutID);
 
         gView3 = new CalendarGridView(mContext);
         tempSelected3.add(Calendar.MONTH, 1);
         gAdapter3 = new CalendarGridViewAdapter(mContext, tempSelected3,
                 markDates);
         gView3.setAdapter(gAdapter3);// 设置菜单Adapter
-//        gView3.setId(calLayoutID);
+        gView3.setId(calLayoutID);
 
         gView2.setOnTouchListener(this);
         gView1.setOnTouchListener(this);
@@ -347,6 +368,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         calStartDate.set(Calendar.DAY_OF_MONTH, 1); // 设置日为当月1日
         calStartDate.set(Calendar.MONTH, iMonthViewCurrentMonth); // 设置月
         calStartDate.set(Calendar.YEAR, iMonthViewCurrentYear); // 设置年
+        if (mListener!=null) mListener.onCalendarMonthChange(getFirstDate(),getEndDate());
     }
 
     // 下一个月
@@ -359,6 +381,8 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         calStartDate.set(Calendar.DAY_OF_MONTH, 1);
         calStartDate.set(Calendar.MONTH, iMonthViewCurrentMonth);
         calStartDate.set(Calendar.YEAR, iMonthViewCurrentYear);
+
+        if (mListener!=null) mListener.onCalendarMonthChange(getFirstDate(),getEndDate());
     }
 
     // 根据改变的日期更新日历
@@ -406,6 +430,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
     public void setOnCalendarViewListener(OnCalendarViewListener listener) {
         this.mListener = listener;
     }
+
     /**
      * 设置点击日历监听
      *
@@ -414,6 +439,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
     public void setOnleftViewListener(OnCalendarViewListener listener) {
         this.mListener = listener;
     }
+
     @Override
     public boolean onDown(MotionEvent e) {
         // TODO Auto-generated method stub
@@ -501,6 +527,28 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
             }
         }
         return false;
+    }
+
+    public Date getFirstDate() {
+        LinearLayout txtDay = (LinearLayout) gView2.findViewById(0 + DEFAULT_ID);
+        if (txtDay != null) {
+            if (txtDay.getTag() != null) {
+                Date date = (Date) txtDay.getTag();
+                return date;
+            }
+        }
+        return null;
+    }
+
+    public Date getEndDate() {
+        LinearLayout txtDay = (LinearLayout) gView2.findViewById(41 + DEFAULT_ID);
+        if (txtDay != null) {
+            if (txtDay.getTag() != null) {
+                Date date = (Date) txtDay.getTag();
+                return date;
+            }
+        }
+        return null;
     }
 
     @Override
