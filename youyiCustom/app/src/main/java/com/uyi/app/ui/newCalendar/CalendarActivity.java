@@ -172,6 +172,11 @@ public class CalendarActivity extends BaseActivity implements BaseRecyclerAdapte
 				layout_3.setVisibility(View.GONE);
 				layout_4.setVisibility(View.GONE);
 			}
+
+			@Override
+			public void onAnimationStart() {
+
+			}
 		});
 
 

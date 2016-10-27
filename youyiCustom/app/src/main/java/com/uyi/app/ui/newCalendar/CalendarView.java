@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -47,6 +48,8 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         void onCalendarItemClick(CalendarView view, Date date);
 
         void onCalendarMonthChange(Date firstDate, Date endDate);
+
+        void onAnimationStart();
     }
 
     /**
@@ -107,7 +110,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
     /**
      * 标注日期
      */
-    private final List<Map<String, Object>> markDates;
+    private List<Map<String, Object>> markDates;
 
     private OnCalendarViewListener mListener;
 
@@ -212,7 +215,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         top.addView(mTitle);
 
         // 左方按钮
-        TextView mLeftView = new TextView(mContext);
+        ImageView mLeftView = new ImageView(mContext);
 //        StateListDrawable stateListDrawableL = new StateListDrawable();
 //        Drawable lDrawableNor = new BitmapDrawable(mContext.getResources(),
 //                BitmapFactory.decodeStream(CalendarView.class
@@ -225,7 +228,8 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
 //        stateListDrawableL.addState(new int[]{android.R.attr.state_pressed},
 //                lDrawablePre);
 //        mLeftView.setBackgroundDrawable(stateListDrawableL);
-        mLeftView.setBackgroundResource(R.drawable.left);
+        mLeftView.setImageResource(R.drawable.left);
+        mLeftView.setScaleType(ImageView.ScaleType.CENTER);
 
         RelativeLayout.LayoutParams leftPP = new RelativeLayout.LayoutParams(
                 ViewUtil.dip2px(mContext, 25), ViewUtil.dip2px(mContext, 22));
@@ -248,8 +252,10 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         top.addView(mLeftView);
 
         // 右方按钮
-        TextView mRightView = new TextView(mContext);
-        mLeftView.setBackgroundResource(R.drawable.right);
+        ImageView mRightView = new ImageView(mContext);
+        mRightView.setImageResource(R.drawable.right);
+        mRightView.setScaleType(ImageView.ScaleType.CENTER);
+
         RelativeLayout.LayoutParams rightPP = new RelativeLayout.LayoutParams(
                 ViewUtil.dip2px(mContext, 25), ViewUtil.dip2px(mContext, 22));
         rightPP.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -399,8 +405,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
      * @param markDates
      */
     public void setMarkDates(List<Map<String, Object>> markDates) {
-        this.markDates.clear();
-        this.markDates.addAll(markDates);
+        this.markDates = markDates;
         gAdapter.notifyDataSetChanged();
         gAdapter1.notifyDataSetChanged();
         gAdapter3.notifyDataSetChanged();
@@ -572,7 +577,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
 
     @Override
     public void onAnimationStart(Animation animation) {
-
+        if (mListener != null) mListener.onAnimationStart();
     }
 
 }
