@@ -45,6 +45,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
      */
     public interface OnCalendarViewListener {
         void onCalendarItemClick(CalendarView view, Date date);
+
         void onCalendarMonthChange(Date firstDate, Date endDate);
     }
 
@@ -353,7 +354,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         calStartDate.set(Calendar.DAY_OF_MONTH, 1); // 设置日为当月1日
         calStartDate.set(Calendar.MONTH, iMonthViewCurrentMonth); // 设置月
         calStartDate.set(Calendar.YEAR, iMonthViewCurrentYear); // 设置年
-        if (mListener!=null) mListener.onCalendarMonthChange(getFirstDate(),getEndDate());
+
     }
 
     // 下一个月
@@ -366,9 +367,6 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         calStartDate.set(Calendar.DAY_OF_MONTH, 1);
         calStartDate.set(Calendar.MONTH, iMonthViewCurrentMonth);
         calStartDate.set(Calendar.YEAR, iMonthViewCurrentYear);
-
-        if (mListener!=null)
-            mListener.onCalendarMonthChange(getFirstDate(),getEndDate());
     }
 
     // 根据改变的日期更新日历
@@ -514,6 +512,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         }
         return false;
     }
+
     public Date getShangFirstDate() {
 
         LinearLayout txtDay = (LinearLayout) gView1.findViewById(0 + DEFAULT_ID);
@@ -525,6 +524,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         }
         return null;
     }
+
     public Date getFirstDate() {
 
         LinearLayout txtDay = (LinearLayout) gView2.findViewById(0 + DEFAULT_ID);
@@ -547,6 +547,7 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         }
         return null;
     }
+
     public Date getShanEndDate() {
         LinearLayout txtDay = (LinearLayout) gView1.findViewById(41 + DEFAULT_ID);
         if (txtDay != null) {
@@ -557,9 +558,11 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         }
         return null;
     }
+
     @Override
     public void onAnimationEnd(Animation animation) {
         generateClaendarGirdView();
+        if (mListener != null) mListener.onCalendarMonthChange(getFirstDate(), getEndDate());
     }
 
     @Override
