@@ -2,11 +2,7 @@ package com.uyi.app.ui.newCalendar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.StateListDrawable;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
@@ -19,11 +15,12 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import com.uyi.custom.app.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,8 +28,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import static android.R.attr.animation;
 
 /**
  * 日历控件，支持旧历、节气、日期标注、点击操作 （参考网络上的日历控件改写）
@@ -216,26 +211,28 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         top.addView(mTitle);
 
         // 左方按钮
-        ImageButton mLeftView = new ImageButton(mContext);
-        StateListDrawable stateListDrawableL = new StateListDrawable();
-        Drawable lDrawableNor = new BitmapDrawable(mContext.getResources(),
-                BitmapFactory.decodeStream(CalendarView.class
-                        .getResourceAsStream("image/left_arrow.png")));
-        Drawable lDrawablePre = new BitmapDrawable(mContext.getResources(),
-                BitmapFactory.decodeStream(CalendarView.class
-                        .getResourceAsStream("image/left_arrow_pre.png")));
-        stateListDrawableL.addState(
-                new int[]{-android.R.attr.state_pressed}, lDrawableNor);
-        stateListDrawableL.addState(new int[]{android.R.attr.state_pressed},
-                lDrawablePre);
-        mLeftView.setBackgroundDrawable(stateListDrawableL);
+        TextView mLeftView = new TextView(mContext);
+//        StateListDrawable stateListDrawableL = new StateListDrawable();
+//        Drawable lDrawableNor = new BitmapDrawable(mContext.getResources(),
+//                BitmapFactory.decodeStream(CalendarView.class
+//                        .getResourceAsStream("image/left_arrow.png")));
+//        Drawable lDrawablePre = new BitmapDrawable(mContext.getResources(),
+//                BitmapFactory.decodeStream(CalendarView.class
+//                        .getResourceAsStream("image/left_arrow_pre.png")));
+//        stateListDrawableL.addState(
+//                new int[]{-android.R.attr.state_pressed}, lDrawableNor);
+//        stateListDrawableL.addState(new int[]{android.R.attr.state_pressed},
+//                lDrawablePre);
+//        mLeftView.setBackgroundDrawable(stateListDrawableL);
+        mLeftView.setBackgroundResource(R.drawable.left);
 
-        android.widget.RelativeLayout.LayoutParams leftPP = new android.widget.RelativeLayout.LayoutParams(
+        RelativeLayout.LayoutParams leftPP = new RelativeLayout.LayoutParams(
                 ViewUtil.dip2px(mContext, 25), ViewUtil.dip2px(mContext, 22));
         leftPP.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
         leftPP.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
         leftPP.setMargins(20, 0, 0, 0);
         mLeftView.setLayoutParams(leftPP);
+
         mLeftView.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -250,21 +247,9 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         top.addView(mLeftView);
 
         // 右方按钮
-        ImageButton mRightView = new ImageButton(mContext);
-        StateListDrawable stateListDrawable = new StateListDrawable();
-        Drawable rDrawableNor = new BitmapDrawable(mContext.getResources(),
-                BitmapFactory.decodeStream(CalendarView.class
-                        .getResourceAsStream("image/right_arrow.png")));
-        Drawable rDrawablePre = new BitmapDrawable(mContext.getResources(),
-                BitmapFactory.decodeStream(CalendarView.class
-                        .getResourceAsStream("image/right_arrow_pre.png")));
-        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed},
-                rDrawableNor);
-        stateListDrawable.addState(new int[]{android.R.attr.state_pressed},
-                rDrawablePre);
-        mRightView.setBackgroundDrawable(stateListDrawable);
-
-        android.widget.RelativeLayout.LayoutParams rightPP = new android.widget.RelativeLayout.LayoutParams(
+        TextView mRightView = new TextView(mContext);
+        mLeftView.setBackgroundResource(R.drawable.right);
+        RelativeLayout.LayoutParams rightPP = new RelativeLayout.LayoutParams(
                 ViewUtil.dip2px(mContext, 25), ViewUtil.dip2px(mContext, 22));
         rightPP.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         rightPP.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
@@ -323,20 +308,20 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         gAdapter1 = new CalendarGridViewAdapter(mContext, tempSelected1,
                 markDates);
         gView1.setAdapter(gAdapter1);// 设置菜单Adapter
-        gView1.setId(calLayoutID);
+//        gView1.setId(calLayoutID);
 
         gView2 = new CalendarGridView(mContext);
         gAdapter = new CalendarGridViewAdapter(mContext, tempSelected2,
                 markDates);
         gView2.setAdapter(gAdapter);// 设置菜单Adapter
-        gView2.setId(calLayoutID);
+//        gView2.setId(calLayoutID);
 
         gView3 = new CalendarGridView(mContext);
         tempSelected3.add(Calendar.MONTH, 1);
         gAdapter3 = new CalendarGridViewAdapter(mContext, tempSelected3,
                 markDates);
         gView3.setAdapter(gAdapter3);// 设置菜单Adapter
-        gView3.setId(calLayoutID);
+//        gView3.setId(calLayoutID);
 
         gView2.setOnTouchListener(this);
         gView1.setOnTouchListener(this);
@@ -382,7 +367,8 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         calStartDate.set(Calendar.MONTH, iMonthViewCurrentMonth);
         calStartDate.set(Calendar.YEAR, iMonthViewCurrentYear);
 
-        if (mListener!=null) mListener.onCalendarMonthChange(getFirstDate(),getEndDate());
+        if (mListener!=null)
+            mListener.onCalendarMonthChange(getFirstDate(),getEndDate());
     }
 
     // 根据改变的日期更新日历
@@ -528,8 +514,19 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         }
         return false;
     }
+    public Date getShangFirstDate() {
 
+        LinearLayout txtDay = (LinearLayout) gView1.findViewById(0 + DEFAULT_ID);
+        if (txtDay != null) {
+            if (txtDay.getTag() != null) {
+                Date date = (Date) txtDay.getTag();
+                return date;
+            }
+        }
+        return null;
+    }
     public Date getFirstDate() {
+
         LinearLayout txtDay = (LinearLayout) gView2.findViewById(0 + DEFAULT_ID);
         if (txtDay != null) {
             if (txtDay.getTag() != null) {
@@ -550,7 +547,16 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         }
         return null;
     }
-
+    public Date getShanEndDate() {
+        LinearLayout txtDay = (LinearLayout) gView1.findViewById(41 + DEFAULT_ID);
+        if (txtDay != null) {
+            if (txtDay.getTag() != null) {
+                Date date = (Date) txtDay.getTag();
+                return date;
+            }
+        }
+        return null;
+    }
     @Override
     public void onAnimationEnd(Animation animation) {
         generateClaendarGirdView();

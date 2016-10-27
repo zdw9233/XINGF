@@ -451,8 +451,14 @@ public abstract class Constens {
      * /日程创建 POST
      */
     public final static String ACCOUNT_SCHEDULE = SERVER_URL + "/app/api/account/schedule";
-
-
+    /**
+     * /日程删除 POST
+     */
+    public final static String ACCOUNT_SCHEDULE_DELETE = SERVER_URL + "/app/api/schedule";
+    /**
+     * /日程xiugai POST
+     */
+    public final static String ACCOUNT_SCHEDULE_UPDATE = SERVER_URL + "/app/api/schedule/edit";
     /**
      * 客户查询消息/公告列表 ${type} ${isRead} ${page}${pageSize} GET
      */
@@ -551,6 +557,14 @@ public abstract class Constens {
      * 获取richeng
      */
     public static final String GET_CUSTOM_RICHEN = SERVER_URL + "/app/api/schedule/month?startDate=%s&endDate=%s";
+    /**
+     * 获取richeng(day)
+     */
+    public static final String GET_CUSTOM_RICHEN_DAY = SERVER_URL + "/app/api/schedule/day?date=%s";
+    /**
+     * 添加richeng(day)/修改
+     */
+    public static final String GET_CUSTOM_RICHEN_ADD = SERVER_URL + "/app/api/schedule/edit";
     /**
      * 购买定制服务
      */

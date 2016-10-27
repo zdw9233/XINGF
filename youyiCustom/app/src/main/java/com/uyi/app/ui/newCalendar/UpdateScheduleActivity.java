@@ -1,4 +1,4 @@
-package com.uyi.app.ui.personal.schedule;
+package com.uyi.app.ui.newCalendar;
 
 import android.content.Intent;
 import android.view.View;
@@ -17,6 +17,7 @@ import com.uyi.app.ErrorCode;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
@@ -37,17 +38,20 @@ import java.util.Date;
  */
 
 @ContentView(R.layout.schedule_add)
-public class AddScheduleActivity extends BaseActivity {
-	
+public class UpdateScheduleActivity extends BaseActivity {
+
 	@ViewInject(R.id.schedule_add_time) private TextView schedule_add_time;
 	@ViewInject(R.id.schedule_add_content) private EditText schedule_add_content;
 	@ViewInject(R.id.add_schedule_submit) private Button add_schedule_submit;
 	@ViewInject(R.id.schedule_add_close) private ImageView schedule_add_close;
+	String id = "";
 	
 	@Override
 	protected void onInitLayoutAfter() {
-		
-	
+		schedule_add_time.setText(getIntent().getStringExtra("date"));
+		schedule_add_content.setText(getIntent().getStringExtra("content"));
+		id = getIntent().getStringExtra("id");
+		L.e("da",id+"@@@@@@@@");
 	}
 	
 	@OnClick({R.id.add_schedule_submit,R.id.schedule_add_close,R.id.schedule_add_time})
@@ -75,14 +79,15 @@ public class AddScheduleActivity extends BaseActivity {
 		}
 		JSONObject params = new JSONObject();
 		try {
-			params.put("scheduleDate", date+" "+DateUtils.toDate(new Date(), Constens.DATE_FORMAT_HH_MM_SS));
+			params.put("date", date+" "+DateUtils.toDate(new Date(), Constens.DATE_FORMAT_HH_MM_SS));
 			params.put("content", content);
+			params.put("id", id);
 			Loading.bulid(activity, null).show();
-			RequestManager.postObject(Constens.ACCOUNT_SCHEDULE, activity, params, new Listener<JSONObject>( ) {
+			RequestManager.postObject(Constens.ACCOUNT_SCHEDULE_UPDATE, activity, params, new Listener<JSONObject>( ) {
 				public void onResponse(JSONObject arg0) {
 					L.d(TAG, arg0.toString());
 					Loading.bulid(activity, null).dismiss();
-					T.showShort(activity, "添加成功");
+					T.showShort(activity, "修改成功");
 					setResult(RESULT_OK);
 					finish();
 				}
@@ -93,7 +98,7 @@ public class AddScheduleActivity extends BaseActivity {
 					if(e.networkResponse != null){
 						T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
 					}else{
-						T.showShort(activity, "添加成功");
+						T.showShort(activity, "修改成功");
 						setResult(RESULT_OK);
 						finish();
 					}

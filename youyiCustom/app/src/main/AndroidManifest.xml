@@ -82,6 +82,10 @@
             android:name="com.uyi.app.ui.health.FollowUpaActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.uyi.app.ui.newCalendar.UpdateScheduleActivity"
+            android:theme="@style/Transparent"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.uyi.app.ui.health.FollowUpPayActivity"
             android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
             android:screenOrientation="portrait" />

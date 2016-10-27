@@ -117,7 +117,7 @@ class CalendarGridViewAdapter extends BaseAdapter {
 //        textDay.setPadding(0,10,0,10);
 //        int day = myDate.getDate(); // 日期
 //        textDay.setText(String.valueOf(day));
-//        textDay.setId(position + DEFAULT_ID);
+        textDay.setId(position + DEFAULT_ID);
 
 //        itemLayout.addView(textDay, text_params);
         int day = myDate.getDate(); // 日期
