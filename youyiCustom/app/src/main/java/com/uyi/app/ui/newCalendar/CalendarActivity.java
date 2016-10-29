@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -85,6 +84,7 @@ public class CalendarActivity extends BaseActivity implements BaseRecyclerAdapte
 	ArrayList<Map<String,Object>> datamedicalConsult = new ArrayList<>();
 	String time = "";//记录点击的时间
 	String newtime = "";//记录当前日期
+	SimpleDateFormat format;
 	@Override
 	protected void onInitLayoutAfter() {
 		headerView.showLeftReturn(true).showTitle(true).setTitle("").setTitleColor(getResources().getColor(R.color.blue)).showRight(false);
@@ -114,48 +114,16 @@ public class CalendarActivity extends BaseActivity implements BaseRecyclerAdapte
 		recyclerView4.setLayoutManager(linearLayoutManager4);
 		recyclerView4.setAdapter(medicalAdapter);
 
-		Loading.bulid(this, null).show();
 
-		RequestManager.getArray(String.format(Constens.GET_CUSTOM_RICHEN,"2016-09-11","2016-10-11"), this, new Response.Listener<JSONArray>() {
-			@Override
-			public void onResponse(JSONArray jsonObject) {
-				Loading.bulid(CalendarActivity.this, null).dismiss();
-				L.e(jsonObject.toString());
-
-					try {
-						for(int i = 0 ; i< jsonObject.length();i++){
-							Map<String,Object> stringObjectMap = new HashMap<String, Object>();
-							JSONObject object = jsonObject.getJSONObject(i);
-							stringObjectMap.put("day",object.getString("day"));
-							JSONArray array = jsonObject.getJSONObject(i).getJSONArray("type");
-							L.e(datas.toString());
-							if(array.length()> 0){
-								List<Integer > integers = new ArrayList<Integer>();
-								for(int j = 0 ;j< array.length();j++){
-									integers.add(array.getInt(j));
-								}
-								stringObjectMap.put("type",integers);
-								datas.add(stringObjectMap);
-								L.e(datas.toString());
-							}
-
-
-						}
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-
-
-			}
-		});
-		L.e("数据"+datas.toString());
+		format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+		getMak();
 //		List<Date> markDates = new ArrayList<Date>();
 //		markDates.add(new Date());
-		calendarView.setMarkDates(datas);
 		getDate(newtime);
 		//设置点击操作
-		final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
-		Toast.makeText(CalendarActivity.this,"开始"+calendarView.getFirstDate()+"结束"+calendarView.getEndDate(), Toast.LENGTH_LONG).show();
+//		Toast.makeText(CalendarActivity.this,"开始"+calendarView.getFirstDate()+"结束"+calendarView.getEndDate(), Toast.LENGTH_LONG).show();
+
+//		Toast.makeText(CalendarActivity.this,"开始"+format.format(calendarView.getFirstDate())+"结束"+ format.format(calendarView.getEndDate()), Toast.LENGTH_LONG).show();
 		calendarView.setOnCalendarViewListener(new CalendarView.OnCalendarViewListener() {
 
 			@Override
@@ -171,6 +139,7 @@ public class CalendarActivity extends BaseActivity implements BaseRecyclerAdapte
 				layout_2.setVisibility(View.GONE);
 				layout_3.setVisibility(View.GONE);
 				layout_4.setVisibility(View.GONE);
+				getMak();
 			}
 
 			@Override
@@ -181,7 +150,43 @@ public class CalendarActivity extends BaseActivity implements BaseRecyclerAdapte
 
 
 	}
+	public void getMak(){
+		Loading.bulid(this, null).show();
+		RequestManager.getArray(String.format(Constens.GET_CUSTOM_RICHEN,format.format(calendarView.getFirstDate()),format.format(calendarView.getEndDate())), this, new Response.Listener<JSONArray>() {
+			@Override
+			public void onResponse(JSONArray jsonObject) {
+				Loading.bulid(CalendarActivity.this, null).dismiss();
+				L.e(jsonObject.toString());
 
+				try {
+					for(int i = 0 ; i< jsonObject.length();i++){
+						Map<String,Object> stringObjectMap = new HashMap<String, Object>();
+						JSONObject object = jsonObject.getJSONObject(i);
+						stringObjectMap.put("day",object.getString("day"));
+						JSONArray array = jsonObject.getJSONObject(i).getJSONArray("type");
+						L.e(datas.toString());
+						if(array.length()> 0){
+							List<Integer> integers = new ArrayList<Integer>();
+							for(int j = 0 ;j< array.length();j++){
+								integers.add(array.getInt(j));
+							}
+							stringObjectMap.put("type",integers);
+							datas.add(stringObjectMap);
+							L.e(datas.toString());
+						}
+
+
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				calendarView.notifyDateSetChanged(datas);
+
+			}
+		});
+		L.e("数据"+datas.toString());
+		calendarView.setMarkDates(datas);
+	}
 	public void getDate(String str){
 		dataexclusiveConsult.clear();
  		dataselfCreate.clear();

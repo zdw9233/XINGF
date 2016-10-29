@@ -140,6 +140,7 @@ public class FragmentPersonalCenter extends BaseFragment {
 			R.id.persinal_center_taolunzu_layout, R.id.persinal_center_jiankangwenda_layout })
 	public void click(View v) {
 		if (v.getId() == R.id.persinal_center_rizhi_layout) {
+//			startActivity(new Intent(context, ScheduleActivity.class));
 			startActivity(new Intent(context, ScheduleActivity.class));
 		} else if (v.getId() == R.id.persinal_center_tongzhi_layout) {
 			startActivity(new Intent(context, MessageActivity.class));

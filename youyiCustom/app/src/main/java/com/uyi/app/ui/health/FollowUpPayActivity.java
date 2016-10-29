@@ -145,7 +145,7 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                                     e.printStackTrace();
                                 }
                                 System.out.println(param.toString());
-                                RequestManager.getObject(String.format(Constens.CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN,shurujiankandou.getText().toString(),id), activity, null,new Response.Listener<JSONObject>() {
+                                RequestManager.postObject(String.format(Constens.CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN), activity, param,new Response.Listener<JSONObject>() {
                                     public void onResponse(JSONObject data) {
                                         try {
                                             L.d(TAG, data.toString());
@@ -203,7 +203,7 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                                 e.printStackTrace();
                             }
                             System.out.println(param.toString());
-                            RequestManager.getObject(String.format(Constens.CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN,shurujiankandou.getText().toString(),id), activity, null,new Response.Listener<JSONObject>() {
+                            RequestManager.postObject(String.format(Constens.CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN), activity, param,new Response.Listener<JSONObject>() {
                                 public void onResponse(JSONObject data) {
                                     try {
                                         L.d(TAG, data.toString());

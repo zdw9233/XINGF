@@ -17,8 +17,8 @@ import com.uyi.app.service.MessageService;
 import com.uyi.app.ui.common.LoginActivity;
 import com.uyi.app.ui.dialog.MessageConform.OnMessageClick;
 import com.uyi.app.ui.dialog.MessageConform.Result;
+import com.uyi.app.ui.newCalendar.CalendarRCActivity;
 import com.uyi.app.ui.personal.message.MessageActivity;
-import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.custom.app.R;
 
 
@@ -110,7 +110,7 @@ public class HeaderMenuDialog extends AbstrctDialog implements android.view.View
 //			Intent intent = new Intent(getContext(), HealthyQuestionsActivity.class);
 //			getContext().startActivity(intent);
         } else if (v.getId() == R.id.header_menu_richeng) {
-            getContext().startActivity(new Intent(getContext(), ScheduleActivity.class));
+            getContext().startActivity(new Intent(getContext(), CalendarRCActivity.class));
         } else if (v.getId() == R.id.header_menu_exit) {
 //			if(conform == null){
 //				conform = new MessageConform(getContext(), MessageType.CONFORM);

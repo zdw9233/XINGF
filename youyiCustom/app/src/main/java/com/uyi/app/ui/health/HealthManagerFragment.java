@@ -2,6 +2,7 @@ package com.uyi.app.ui.health;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -31,6 +32,10 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
     private HeaderView headerView;
     @ViewInject(R.id.schedule_num)
     private TextView schedule_num;
+    @ViewInject(R.id.fx)
+    private FrameLayout fx;
+    @ViewInject(R.id.sj)
+    private FrameLayout sj;
     @ViewInject(R.id.notice_num)
     private TextView notice_num;
     @ViewInject(R.id.consulting_num)
@@ -130,6 +135,7 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon);
         isfree = UserInfoManager.getLoginUserInfo(getContext()).isFree;
         requestIsNew();
+        onInitLayoutAfter();
     }
 
     @Override
@@ -142,6 +148,25 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon)
                 .showTab(false).showRight(true).showTitle(true)
                 .setTitle("健康管理").setTitleColor(getResources().getColor(R.color.blue));
+        sj.setVisibility(View.GONE);
+        fx.setVisibility(View.GONE );
+        RequestManager.getObject(String.format(Constens.IS_THREE_TOP,UserInfoManager.getLoginUserInfo(context).userId), getContext(), new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                System.out.println(data.toString());
+                try {
+                    if (data.getBoolean("topTeam")) {
+                        sj.setVisibility(View.VISIBLE);
+                        fx.setVisibility(View.GONE  );
+                    }else{
+                        sj.setVisibility(View.GONE);
+                        fx.setVisibility(View.VISIBLE );
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 

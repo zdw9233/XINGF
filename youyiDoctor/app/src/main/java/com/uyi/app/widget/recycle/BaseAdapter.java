@@ -3,6 +3,7 @@ package com.uyi.app.widget.recycle;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -78,9 +79,7 @@ public abstract class BaseAdapter extends
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case TYPE_ITEM:
-                return newHolder(View.inflate(parent.getContext(),
-                        mItemLayout,
-                        null));
+                return newHolder(LayoutInflater.from(mContext).inflate(mItemLayout,parent,false));
 //            case TYPE_FOOTER:
 //                View loadMore = View.inflate(parent.getContext(),
 //                                             R.layout.layout_load_more,

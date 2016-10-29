@@ -41,6 +41,10 @@ import java.util.Map;
 public class CalendarView extends LinearLayout implements OnTouchListener,
         AnimationListener, OnGestureListener {
 
+    public void notifyDateSetChanged(ArrayList<Map<String, Object>> datas) {
+        gAdapter.notifyDataSetChanged(datas);
+    }
+
     /**
      * 点击日历
      */
@@ -180,6 +184,8 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         LinearLayout.LayoutParams params_br = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT, 3);
         mMainLayout.addView(br, params_br);
+
+        gView2.setSelector(R.drawable.sel_white_to_press);
     }
 
     /**
@@ -309,25 +315,41 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
         tempSelected1.setTime(calStartDate.getTime());
         tempSelected2.setTime(calStartDate.getTime());
         tempSelected3.setTime(calStartDate.getTime());
-
+        if(gView1 == null)
         gView1 = new CalendarGridView(mContext);
         tempSelected1.add(Calendar.MONTH, -1);
-        gAdapter1 = new CalendarGridViewAdapter(mContext, tempSelected1,
-                markDates);
-        gView1.setAdapter(gAdapter1);// 设置菜单Adapter
+        if(gAdapter1==null){
+            gAdapter1 = new CalendarGridViewAdapter(mContext, tempSelected1,
+                    markDates);
+            gView1.setAdapter(gAdapter1);// 设置菜单Adapter
+        }else{
+            gAdapter1.notifyDataSetChanged();
+        }
+
 //        gView1.setId(calLayoutID);
-
+        if(gView2 == null)
         gView2 = new CalendarGridView(mContext);
-        gAdapter = new CalendarGridViewAdapter(mContext, tempSelected2,
-                markDates);
-        gView2.setAdapter(gAdapter);// 设置菜单Adapter
-//        gView2.setId(calLayoutID);
+        if(gAdapter==null){
+            gAdapter = new CalendarGridViewAdapter(mContext, tempSelected2,
+                    markDates);
+            gView2.setAdapter(gAdapter);// 设置菜单Adapter
+        }else{
+            gAdapter.notifyDataSetChanged();
+        }
 
+
+//        gView2.setId(calLayoutID);
+        if(gView3 == null)
         gView3 = new CalendarGridView(mContext);
         tempSelected3.add(Calendar.MONTH, 1);
-        gAdapter3 = new CalendarGridViewAdapter(mContext, tempSelected3,
-                markDates);
-        gView3.setAdapter(gAdapter3);// 设置菜单Adapter
+        if(gAdapter3==null){
+            gAdapter3 = new CalendarGridViewAdapter(mContext, tempSelected3,
+                    markDates);
+            gView3.setAdapter(gAdapter3);// 设置菜单Adapter
+        }else{
+            gAdapter3.notifyDataSetChanged();
+        }
+
 //        gView3.setId(calLayoutID);
 
         gView2.setOnTouchListener(this);
@@ -405,10 +427,11 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
      * @param markDates
      */
     public void setMarkDates(List<Map<String, Object>> markDates) {
-        this.markDates = markDates;
-        gAdapter.notifyDataSetChanged();
-        gAdapter1.notifyDataSetChanged();
-        gAdapter3.notifyDataSetChanged();
+this.markDates = markDates;
+//        gAdapter.setMarks(markDates);
+//        gAdapter.notifyDataSetChanged();
+//        gAdapter1.notifyDataSetChanged();
+//        gAdapter3.notifyDataSetChanged();
     }
 
     /**
@@ -531,26 +554,12 @@ public class CalendarView extends LinearLayout implements OnTouchListener,
     }
 
     public Date getFirstDate() {
-
-        LinearLayout txtDay = (LinearLayout) gView2.findViewById(0 + DEFAULT_ID);
-        if (txtDay != null) {
-            if (txtDay.getTag() != null) {
-                Date date = (Date) txtDay.getTag();
-                return date;
-            }
-        }
-        return null;
+        return (Date) gAdapter.getItem(0);
     }
 
     public Date getEndDate() {
-        LinearLayout txtDay = (LinearLayout) gView2.findViewById(41 + DEFAULT_ID);
-        if (txtDay != null) {
-            if (txtDay.getTag() != null) {
-                Date date = (Date) txtDay.getTag();
-                return date;
-            }
-        }
-        return null;
+        return (Date) gAdapter.getItem(41);
+
     }
 
     public Date getShanEndDate() {

@@ -4,14 +4,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.uyi.app.Constens;
+import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class NewCalendarActivity extends Activity {
 
@@ -21,14 +32,16 @@ public class NewCalendarActivity extends Activity {
 	private List<String> list = new ArrayList<String>(); //设置标记列表
 	boolean isinput=false;
 	private String date1 = null;//单天日期
+	SimpleDateFormat format;
+	ArrayList<Map<String,Object>> datas = new ArrayList<>();
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_newcalendar_main);
 
+		format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         SimpleDateFormat    formatter    =   new    SimpleDateFormat    ("yyyy-MM-dd");
 		Date    curDate    =   new    Date(System.currentTimeMillis());//获取当前时间       
 		date1 =formatter.format(curDate); 
-		
 		popupwindow_calendar_month = (TextView) findViewById(R.id.popupwindow_calendar_month);
 		calendar = (SignCalendar) findViewById(R.id.popupwindow_calendar);
 		popupwindow_calendar_month.setText(calendar.getCalendarYear() + "年"
@@ -44,7 +57,7 @@ public class NewCalendarActivity extends Activity {
 //			calendar.setCalendarDayBgColor(date,
 //					R.drawable.calendar_date_focused);
 //		}
-
+		getMak();
 		list.add("2015-11-10");
 		list.add("2015-11-02");
 		list.add("2016-12-01");
@@ -98,7 +111,39 @@ public class NewCalendarActivity extends Activity {
 			}
 		});
 	}
-	
+	public void getMak(){
+		RequestManager.getArray(String.format(Constens.GET_CUSTOM_RICHEN,"2016-10-01","2016-10-31"), this, new Response.Listener<JSONArray>() {
+			@Override
+			public void onResponse(JSONArray jsonObject) {
+				Loading.bulid(NewCalendarActivity.this, null).dismiss();
+				L.e(jsonObject.toString());
+
+				try {
+					for(int i = 0 ; i< jsonObject.length();i++){
+						Map<String,Object> stringObjectMap = new HashMap<String, Object>();
+						JSONObject object = jsonObject.getJSONObject(i);
+						stringObjectMap.put("day",object.getString("day"));
+						JSONArray array = jsonObject.getJSONObject(i).getJSONArray("type");
+						if(array.length()> 0){
+							List<Integer> integers = new ArrayList<Integer>();
+							for(int j = 0 ;j< array.length();j++){
+								integers.add(array.getInt(j));
+							}
+							stringObjectMap.put("type",integers);
+							datas.add(stringObjectMap);
+						}
+					}
+					L.e("数据"+datas.toString());
+					calendar.addMarks(datas, 0);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+//		calendarView.setMarkDates(datas);
+
+	}
 	 public void add(String date)
 	    {
 	        ArrayList<sqlit> persons = new ArrayList<sqlit>();
@@ -120,7 +165,7 @@ public class NewCalendarActivity extends Activity {
 //					isinput=true;
 //				}
 //	        }
-	        calendar.addMarks(list, 0);
+//	        calendar.addMarks(list, 0);
 	    }
 	
 	  @Override

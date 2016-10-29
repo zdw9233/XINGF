@@ -52,12 +52,43 @@ public abstract class Constens {
     //5获取服务包方案2导入方案
     public final static String GET_SERVER_FANGAN_DAORU = SERVER_URL + "/app/api/topThreeService/import/plan?customerId=%s&planId=%s&startTime=%s";
     //5穿件服务包
-    public final static String GET_SERVER_FANGAN_CREATU = SERVER_URL + "/app/api/topThreeService/set/topThreeService?customerId=%s";
+    public final static String GET_SERVER_FANGAN_CREATU = SERVER_URL + "/app/api/topThreeService/set/topThreeService/%s";
+    //t添加項目
+    public final static String GET_SERVER_FANGAN_ADD= SERVER_URL + "/app/api/topThreeService/update/items/%s";
+    //修改日程
+    public final static String GET_SERVER_FANGAN_UP= SERVER_URL + "/app/api/schedule/edit";
+    //t补充
+
+    public final static String GET_SERVER_FANGAN_BUCHON= SERVER_URL + "/app/api/topThreeService/replenish";
     //获取欢迎图片
     public final static String WELCOME_PICTRUE = SERVER_URL + "/app/api/common/mainpageurl/%s";
+    /**
+     * 添加richeng(day)/修改
+     */
+    public static final String GET_CUSTOM_RICHEN_ADD = SERVER_URL + "/app/api/schedule/edit";
+    /**
+     * /日程删除 POST
+     */
+    public final static String ACCOUNT_SCHEDULE_DELETE = SERVER_URL + "/app/api/schedule";
+    /**
+     * /日程延期
+     */
+    public final static String ACCOUNT_SCHEDULE_YANQI = SERVER_URL + "/app/api/topThreeService/delay";
+    /**
+     * /日程xiugai POST
+     */
+    public final static String ACCOUNT_SCHEDULE_UPDATE = SERVER_URL + "/app/api/schedule/edit";
+    /**
+     * 获取richeng
+     */
+
+    public static final String GET_CUSTOM_RICHEN = SERVER_URL + "/app/api/schedule/month?startDate=%s&endDate=%s";
     //获取问题答案列表
     public final static String SAFE_QUESTIONS = SERVER_URL + "/app/api/common/safe/questions";
-
+    /**
+     * 获取richeng(day)
+     */
+    public static final String GET_CUSTOM_RICHEN_DAY = SERVER_URL + "/app/api/schedule/day?date=%s";
     /**
      * 客户充值健康豆 ${money} POST
      */

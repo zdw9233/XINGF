@@ -23,7 +23,7 @@ import com.uyi.app.ui.consult.NewConsultActivity;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
-import com.uyi.app.ui.newCalendar.CalendarActivity;
+import com.uyi.app.ui.newCalendar.CalendarRCActivity;
 import com.uyi.app.ui.personal.adapter.PersonalPagerAdapter;
 import com.uyi.app.ui.personal.exclusive.ExclusiveActivity;
 import com.uyi.app.ui.personal.message.MessageActivity;
@@ -139,7 +139,8 @@ public class PersonalCenterFragment extends BaseFragment implements ViewPager.On
                 startActivity(new Intent(context, CustomServiceActivity.class));
                 break;   //定制服务
             case R.id.schedule:
-                startActivity(new Intent(context, CalendarActivity.class));
+//                startActivity(new Intent(context, CalendarActivity.class));
+                startActivity(new Intent(context, CalendarRCActivity.class));
 //                startActivity(new Intent(context, ScheduleActivity.class));
                 break;   //日程
             case R.id.notice:

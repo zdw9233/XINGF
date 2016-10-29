@@ -90,6 +90,14 @@
             android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.uyi.app.ui.newCalendar.NewCalendarActivity"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.uyi.app.ui.newCalendar.CalendarRCActivity"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.uyi.app.ui.newCalendar.CalendarActivity"
             android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
             android:screenOrientation="portrait" />

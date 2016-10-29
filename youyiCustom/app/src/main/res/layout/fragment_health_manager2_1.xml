@@ -252,7 +252,7 @@
                 </LinearLayout>
 
                 <FrameLayout
-                    android:visibility="gone"
+                    android:id="@+id/fx"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_marginLeft="4dp"
@@ -328,7 +328,8 @@
 
                 </FrameLayout>
                 <FrameLayout
-
+                    android:id="@+id/sj"
+                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_marginLeft="4dp"
@@ -384,7 +385,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/assessment_num"
+                        android:id="@+id/three_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

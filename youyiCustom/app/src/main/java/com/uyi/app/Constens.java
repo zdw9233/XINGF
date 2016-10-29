@@ -124,6 +124,8 @@ public abstract class Constens {
     public final static String SAFE_QUESTIONS = SERVER_URL + "/app/api/common/safe/questions";
     //是否有新的未读
     public final static String MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/get/manage/customer";
+    //判断是否是三甲
+    public final static String IS_THREE_TOP = SERVER_URL + "/app/api/topThreeService/get/groupType?customerId=%s";
     //更新是否有未读
     public final static String UPDATA_MESSEGE_COMSTOMER = SERVER_URL + "/app/api/account/update/manage/customer?type=%d";
     /**
@@ -137,7 +139,7 @@ public abstract class Constens {
     /**
      * 客户服务包健康豆支付 get
      */
-    public final static String CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN = SERVER_URL + "/app/api/topThreeService/buyTopThreeServiceByBeen?bean=%s&planId=%s";
+    public final static String CUSTOMER_BUY_MOBILE_FOLLOW_UP_BEAN = SERVER_URL + "/app/api/topThreeService/buyTopThreeServiceByBeen";
     /**
      * 客户充值成功后查询健康豆 ${orderNo} GET
      */

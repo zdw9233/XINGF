@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -25,18 +24,24 @@ import java.util.Map;
  */
 class CalendarGridViewAdapter extends BaseAdapter {
 
-    /** 日历item中默认id从0xff0000开始 */
+    /**
+     * 日历item中默认id从0xff0000开始
+     */
     private final static int DEFAULT_ID = 0xff0000;
     private Calendar calStartDate = Calendar.getInstance();// 当前显示的日历
     private Calendar calSelected = Calendar.getInstance(); // 选择的日历
     LayoutInflater inflater;
-    /** 标注的日期 */
-    private  List<Map<String,Object>>  markDates;
+    /**
+     * 标注的日期
+     */
+    private List<Map<String, Object>> markDates;
 
     private Context mContext;
 
     private Calendar calToday = Calendar.getInstance(); // 今日
     private ArrayList<Date> titles;
+
+    private int selectedPosition = -1;
 
     private ArrayList<Date> getDates() {
 
@@ -52,13 +57,17 @@ class CalendarGridViewAdapter extends BaseAdapter {
         return alArrayList;
     }
 
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+    }
+
     // construct
-    public CalendarGridViewAdapter(Context context, Calendar cal, List<Map<String,Object>> dates) {
+    public CalendarGridViewAdapter(Context context, Calendar cal, List<Map<String, Object>> dates) {
         calStartDate = cal;
         this.mContext = context;
         titles = getDates();
         this.markDates = dates;
-        
+
         inflater = LayoutInflater.from(mContext);
     }
 
@@ -89,7 +98,7 @@ class CalendarGridViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // 整个Item
-        View  infview = inflater.inflate(R.layout.item_calandar_day, null);
+        View infview = inflater.inflate(R.layout.item_calandar_day, null);
 //        LinearLayout itemLayout = new LinearLayout(mContext);
 //        itemLayout.setId(position + DEFAULT_ID);
 //        itemLayout.setGravity(Gravity.CENTER);
@@ -103,6 +112,7 @@ class CalendarGridViewAdapter extends BaseAdapter {
         infview.setTag(myDate);
         Calendar calCalendar = Calendar.getInstance();
         calCalendar.setTime(myDate);
+
 
         // 显示日期day
 //        TextView textDay = new TextView(mContext);// 日期
@@ -148,18 +158,19 @@ class CalendarGridViewAdapter extends BaseAdapter {
 ////            chineseDay.setTextColor(Color.argb(0xff, 0xc2, 0xa5, 0x3d));
 ////            chineseDay.setTextColor(Color.argb(0xff, 0x60, 0x3b, 0x07));
 //            // 设置背景颜色
-//            if (equalsDate(calSelected.getTime(), myDate)) {
-//                // 选择的
-//                itemLayout.setBackgroundColor(Color.argb(0xff, 0xdc, 0xe2, 0xff));
-//            } else {
-//                if (equalsDate(calToday.getTime(), myDate)) {
-//                    // 当前日期faedda
-//                    itemLayout.setBackgroundColor(Color.argb(0xff, 0xfa, 0xed, 0xda));
-//                }
-//            }
+            if (equalsDate(calSelected.getTime(), myDate)) {
+                // 选择的
+                infview.setBackgroundColor(Color.argb(0xff, 0xdc, 0xe2, 0xff));
+            } else {
+                if (equalsDate(calToday.getTime(), myDate)) {
+                    // 当前日期faedda
+                    infview.setBackgroundColor(Color.argb(0xff, 0xfa, 0xed, 0xda));
+                }
+            }
+
 //        }
         /** 设置标注日期颜色 */
-        System.out.println(myDate+"========================"+markDates.size());
+        System.out.println(myDate + "========================" + markDates.size());
         if (markDates != null) {
             final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 //            for (Date date : markDates) {
@@ -168,24 +179,20 @@ class CalendarGridViewAdapter extends BaseAdapter {
 //                    break;
 //                }
 //            }
-            for(int i = 0 ; i< markDates.size();i++){
-                Map<String,Object> stringObjectMap = new HashMap<String, Object>();
-                System.out.println(myDate+markDates.get(i).get("day").toString());
-                if (format.format(myDate).equals(format.format(markDates.get(i).get("day").toString()))) {
+            for (int i = 0; i < markDates.size(); i++) {
+                if (format.format(myDate).equals(markDates.get(i).get("day").toString())) {
 //                    itemLayout.setBackgroundColor(Color.argb(0xff, 0xd3, 0x3a, 0x3a));
 
-                        List<Integer> ints = (List<Integer>) markDates.get(i).get("type");
-                    for(int j = 0 ; j< ints.size();j++){
-                        if(ints.get(j) == 1){
+                    List<Integer> ints = (List<Integer>) markDates.get(i).get("type");
+                    for (int j = 0; j < ints.size(); j++) {
+                        if (ints.get(j) == 1) {
                             da1.setVisibility(View.VISIBLE);
-                        }else if(ints.get(j) == 2){
-                            da2.setVisibility(View.VISIBLE);
-                        }
-                        else if(ints.get(j) == 3){
-                            da3.setVisibility(View.VISIBLE);
-                        }
-                        else if(ints.get(j) == 4){
+                        } else if (ints.get(j) == 2) {
                             da4.setVisibility(View.VISIBLE);
+                        } else if (ints.get(j) == 3) {
+                            da2.setVisibility(View.VISIBLE);
+                        } else if (ints.get(j) == 4) {
+                            da3.setVisibility(View.VISIBLE);
                         }
 
                     }
@@ -198,8 +205,8 @@ class CalendarGridViewAdapter extends BaseAdapter {
         return infview;
     }
 
-    @Override
-    public void notifyDataSetChanged() {
+    public void notifyDataSetChanged(List<Map<String, Object>> marks) {
+        setMarks(marks);
         super.notifyDataSetChanged();
     }
 
@@ -241,5 +248,10 @@ class CalendarGridViewAdapter extends BaseAdapter {
     public void setSelectedDate(Calendar cal) {
         calSelected = cal;
     }
+
+    public void setMarks(List<Map<String, Object>> marks) {
+        this.markDates = marks;
+    }
+
 
 }

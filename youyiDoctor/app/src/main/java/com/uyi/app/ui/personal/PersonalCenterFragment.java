@@ -15,6 +15,7 @@ import com.uyi.app.service.MessageService;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
+import com.uyi.app.ui.newCalendar.CalendarRCActivity;
 import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.ui.personal.discuss.DiscussGroupActivity;
 import com.uyi.app.ui.personal.exclusive.ExclusiveActivity;
@@ -22,7 +23,6 @@ import com.uyi.app.ui.personal.message.MessageActivity;
 import com.uyi.app.ui.personal.messagemanager.MessageManagerActivity;
 import com.uyi.app.ui.personal.notice.NoticeActivity;
 import com.uyi.app.ui.personal.questions.HealthyQuestionsActivity;
-import com.uyi.app.ui.personal.schedule.ScheduleActivity;
 import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 
@@ -73,7 +73,8 @@ public class PersonalCenterFragment extends BaseFragment {
     public void click(View v) {
         switch (v.getId()) {
             case R.id.schedule:
-                startActivity(new Intent(context, ScheduleActivity.class));
+//                startActivity(new Intent(context, ScheduleActivity.class));
+                startActivity(new Intent(context, CalendarRCActivity.class));
                 break;   //日程
             case R.id.notice:
                 startActivity(new Intent(context, MessageActivity.class));

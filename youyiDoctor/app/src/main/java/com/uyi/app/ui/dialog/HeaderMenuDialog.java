@@ -1,16 +1,5 @@
 package com.uyi.app.ui.dialog;
 
-import com.uyi.app.UserInfoManager;
-import com.uyi.app.service.MessageService;
-import com.uyi.app.ui.Main;
-import com.uyi.app.ui.common.LoginActivity;
-import com.uyi.app.ui.dialog.MessageConform.MessageType;
-import com.uyi.app.ui.dialog.MessageConform.OnMessageClick;
-import com.uyi.app.ui.dialog.MessageConform.Result;
-import com.uyi.app.ui.personal.message.MessageActivity;
-import com.uyi.app.ui.personal.schedule.ScheduleActivity;
-import com.uyi.doctor.app.R;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +8,17 @@ import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.uyi.app.UserInfoManager;
+import com.uyi.app.service.MessageService;
+import com.uyi.app.ui.Main;
+import com.uyi.app.ui.common.LoginActivity;
+import com.uyi.app.ui.dialog.MessageConform.MessageType;
+import com.uyi.app.ui.dialog.MessageConform.OnMessageClick;
+import com.uyi.app.ui.dialog.MessageConform.Result;
+import com.uyi.app.ui.newCalendar.CalendarRCActivity;
+import com.uyi.app.ui.personal.message.MessageActivity;
+import com.uyi.doctor.app.R;
 
 
 /**
@@ -95,7 +95,7 @@ public class HeaderMenuDialog extends AbstrctDialog implements android.view.View
 			Intent intent = new Intent(getContext(), Main.class);
 			getContext().startActivity(intent);
 		}else if(v.getId() == R.id.header_menu_richeng){
-			getContext().startActivity(new Intent(getContext(), ScheduleActivity.class));
+			getContext().startActivity(new Intent(getContext(), CalendarRCActivity.class));
 		}else if(v.getId() == R.id.header_menu_exit){
 			if(conform == null){
 				conform = new MessageConform(getContext(), MessageType.CONFORM);
