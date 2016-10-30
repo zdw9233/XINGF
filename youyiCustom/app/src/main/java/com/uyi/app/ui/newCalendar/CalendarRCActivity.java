@@ -35,8 +35,10 @@ import com.uyi.app.ui.newCalendar.adapter.SelfAdapter;
 import com.uyi.app.ui.newCalendar.adapter.TopthreeAdapter;
 import com.uyi.app.ui.newCalendar.model.Marker;
 import com.uyi.app.ui.personal.schedule.AddScheduleActivity;
+import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.DensityUtils;
 import com.uyi.app.utils.L;
+import com.uyi.app.utils.T;
 import com.uyi.app.widget.recycle.RecyclerView;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
@@ -46,6 +48,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -338,7 +341,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pervious_month:
-                time = "";
+
                 startPreviousAnimation();
                 break;
             case R.id.next_month:
@@ -357,7 +360,18 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
 
     @Override
     public void onItemClick(int position, Map<String, Object> data) {
-        showPop(position, data);
+        try {
+            long sTime = DateUtils.toDateByString(time, Constens.DATE_FORMAT_YYYY_MM_DD).getTime();
+            long cTime = DateUtils.toDateByString(newtime, Constens.DATE_FORMAT_YYYY_MM_DD).getTime();
+            if (cTime > sTime) {
+                T.showShort(activity,"无法编辑以前的日程！");
+                return;
+            }
+            showPop(position, data);
+        } catch (ParseException e) {
+            L.e("data",e.toString());
+        }
+
     }
 
     /**

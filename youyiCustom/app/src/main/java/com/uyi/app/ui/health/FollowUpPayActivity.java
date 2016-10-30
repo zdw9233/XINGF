@@ -68,6 +68,10 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
     private LinearLayout jiandoushurukuan;
     @ViewInject(R.id.heji)
     private TextView heji;
+    @ViewInject(R.id.yanqifei)
+    private TextView yanqifeitext;
+    @ViewInject(R.id.xiangmufei)
+    private TextView xiangmufei;
     @ViewInject(R.id.new_report)
     private FrameLayout new_report;
     private ArrayList<Map<String, Object>> datas;
@@ -75,7 +79,7 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
     private FollowUpPayAdapter followUpPayAdapter;
     int zfbnum = 0;
     int jkdnum = 0;
-    String yanqifei = "";
+    String yanqifei = "0";
     int id = 0;
     MessageConform messageCoonform;
 
@@ -125,6 +129,10 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                 }
                 break;
             case R.id.new_report:
+                if(Double.parseDouble(yanqifeitext.getText().toString())-Double.parseDouble(xiangmufei.getText().toString())>0){
+                    T.showShort(activity,"项目方案费用不能低于延期费用,请联系慢病管理师!");
+                    return;
+                }
                 if(zfbnum ==1 && jkdnum == 1){
                     if(!shurujiankandou.getText().toString().equals("")){
 
@@ -244,6 +252,8 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                     JSONArray array = json.getJSONArray("unpaidTopThreeServiceJsonList");
                     if (json.has("deferredPrice")) {
                         yanqifei = json.getString("deferredPrice");
+                    }else{
+                        yanqifei="0";
                     }
                     for (int i = 0; i < array.length(); i++) {
                         Map<String, Object> item = new HashMap<String, Object>();
@@ -265,7 +275,14 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
                     e.printStackTrace();
                 }
                 followUpPayAdapter.notifyDataSetChanged();
-                heji.setText(Double.parseDouble(datas.get(0).get("price").toString())-Double.parseDouble(yanqifei)+"");
+                yanqifeitext.setText(yanqifei);
+                xiangmufei.setText(Double.parseDouble(datas.get(0).get("price").toString())+"");
+                if(Double.parseDouble(datas.get(0).get("price").toString())-Double.parseDouble(yanqifei)<0){
+                    heji.setText(0+"");
+                }else{
+                    heji.setText(Double.parseDouble(datas.get(0).get("price").toString())-Double.parseDouble(yanqifei)+"");
+                }
+
             }
         });
 
@@ -299,7 +316,13 @@ public class FollowUpPayActivity extends BaseActivity implements BaseRecyclerAda
         }
         followUpPayAdapter.setDatas(datas);
         followUpPayAdapter.notifyItemChanged(position);
-        heji.setText(Double.parseDouble(datas.get(position).get("price").toString())-Double.parseDouble(yanqifei)+"");
+        xiangmufei.setText(Double.parseDouble(datas.get(position).get("price").toString())+"");
+        if(Double.parseDouble(datas.get(position).get("price").toString())-Double.parseDouble(yanqifei)<0){
+            heji.setText(0+"");
+        }else{
+            heji.setText(Double.parseDouble(datas.get(position).get("price").toString())-Double.parseDouble(yanqifei)+"");
+        }
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
