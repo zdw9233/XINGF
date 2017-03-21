@@ -24,6 +24,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	DbUtils dbUtils = null;
 	public BaseDaoImpl(Context context) {
 		this.context = context;
+
 		dbUtils  = DbUtils.create(context, dbname, dbVersion, null);
 		dbUtils.configDebug(false); // debug模式 会输出sql语句
 		dbUtils.configAllowTransaction(true); // 允许事务

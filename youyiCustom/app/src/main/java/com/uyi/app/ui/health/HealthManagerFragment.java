@@ -3,6 +3,7 @@ package com.uyi.app.ui.health;
 import android.content.Intent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Response;
@@ -15,6 +16,7 @@ import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.report.ReportListActivity;
+import com.uyi.app.ui.stroke.StrokeListActivity;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
@@ -36,6 +38,10 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
     private FrameLayout fx;
     @ViewInject(R.id.sj)
     private FrameLayout sj;
+    @ViewInject(R.id.sanjia)
+    private LinearLayout sanjia;
+    @ViewInject(R.id.life)
+    private LinearLayout life;
     @ViewInject(R.id.notice_num)
     private TextView notice_num;
     @ViewInject(R.id.consulting_num)
@@ -46,6 +52,8 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
     private TextView life_num;
     @ViewInject(R.id.diet_num)
     private TextView diet_num;
+    @ViewInject(R.id.apoplexy)
+    private LinearLayout apoplexy;
     JSONObject params;
     int isfree;
 
@@ -55,8 +63,10 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
             R.id.report,       //健康报告
             R.id.database,      //健康数据库
             R.id.assessment,    //风险评估
-            R.id.life,          //生活方式
+            R.id.life,          //生活方式（个人方案）
+            R.id.sanjia,          //三甲方案
             R.id.diet,          //饮食计划
+            R.id.apoplexy,          //卒中随访
     })
     public void onClick(View v) {
 
@@ -74,6 +84,10 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
 //                }
 
                 break; //主诊报告
+            case  R.id.apoplexy:
+                startActivity(new Intent(context, StrokeListActivity.class));
+//                startActivity(new Intent(this, TestActivity.class));
+                break; //卒中随访
             case R.id.follow_up:
                 startActivity(new Intent(context, FollowUpaActivity.class));
                 break; //三甲随访
@@ -94,15 +108,18 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
                     requsetOnItemClick(2);
 //                }
                 break;
-            case R.id.life:      //生活方式
+            case R.id.life:      //个人方案
 //                if (isfree == 1) {
 //                    T.showShort(getContext(), " 该服务仅针对服务包用户，请购买相应服务包！");
 //                    startActivity(new Intent(getContext(), LifeStyleActivity.class));
 //                    requsetOnItemClick(3);
 //                } else {
-                    startActivity(new Intent(getContext(), PreviewPersonalProgramActivity.class));
+                    startActivity(new Intent(getContext(), PersonalProgramListActivity.class));
 //                    requsetOnItemClick(3);
 //                }
+                break;
+            case R.id.sanjia:      //三甲方案
+                startActivity(new Intent(getContext(), ThreeTopListActivity.class));
                 break;
             case R.id.diet:     //饮食计划
 //                if (isfree == 1) {
@@ -148,25 +165,42 @@ public class HealthManagerFragment extends BaseFragment implements HeaderView.On
         headerView.showLeftHeader(true, UserInfoManager.getLoginUserInfo(context).icon)
                 .showTab(false).showRight(true).showTitle(true)
                 .setTitle("健康管理").setTitleColor(getResources().getColor(R.color.blue));
+//        L.e("grouptype",UserInfoManager.getLoginUserInfo(context).groupType+"");
+//        if(UserInfoManager.getLoginUserInfo(context).groupType == 1){
+//            apoplexy.setVisibility(View.VISIBLE);
+//        }else{
+//            apoplexy.setVisibility(View.GONE);
+//        }
         sj.setVisibility(View.GONE);
         fx.setVisibility(View.GONE );
+        sanjia.setVisibility(View.GONE );
+        life.setVisibility(View.GONE );
         RequestManager.getObject(String.format(Constens.IS_THREE_TOP,UserInfoManager.getLoginUserInfo(context).userId), getContext(), new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 System.out.println(data.toString());
                 try {
                     if (data.getBoolean("topTeam")) {
                         sj.setVisibility(View.VISIBLE);
+                        sanjia.setVisibility(View.VISIBLE );
                         fx.setVisibility(View.GONE  );
+                        life.setVisibility(View.GONE );
                     }else{
+                        sanjia.setVisibility(View.GONE );
                         sj.setVisibility(View.GONE);
                         fx.setVisibility(View.VISIBLE );
+                        life.setVisibility(View.VISIBLE );
                     }
-
+                    if (data.getBoolean("strokeFollowUp")) {
+                        apoplexy.setVisibility(View.VISIBLE);
+                      }else{
+                         apoplexy.setVisibility(View.GONE);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         });
+
     }
 
 

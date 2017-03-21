@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.uyi.app.ui.custom.HeaderView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+<LinearLayout
+            android:id="@+id/layout1"
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_height="match_parent"
+
+        android:text="主管医生:"
+        android:textSize="14dp"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:textSize="14sp"
+        android:textColor="#ff8000"/>
+</LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="match_parent"
+                    android:text="录入人:"
+                    android:textSize="14dp"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/lururen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"
+                    android:textColor="#ff8000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_xy"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="match_parent"
+                    android:text="用户姓名:"
+                    android:textSize="14dp"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/yonhuxingming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14dp"
+                    android:textColor="#ff8000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_xt"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="match_parent"
+                    android:text="录入时间:"
+                    android:textSize="14dp"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/lurushijian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14dp"
+                    android:textColor="#ff8000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="服药注意事项:"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <Button
+                    android:id="@+id/sl1"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/blue_bg"
+                    android:text="示例"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fyzysx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/hui_stroke"
+                android:textSize="@dimen/font_style_14"
+                android:padding="5dp"
+                android:minLines="3"
+            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="营养指导:"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <Button
+                    android:id="@+id/sl2"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/blue_bg"
+                    android:text="示例"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/yyzd"
+                android:textSize="@dimen/font_style_14"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/hui_stroke"
+                android:padding="5dp"
+                android:minLines="3"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="休息与运动指导:"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <Button
+                    android:id="@+id/sl3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/blue_bg"
+                    android:text="示例"
+                    android:visibility="gone"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <TextView
+                android:textSize="@dimen/font_style_14"
+                android:layout_marginTop="5dp"
+                android:id="@+id/xxyydzd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/hui_stroke"
+                android:padding="5dp"
+                android:minLines="3"
+              />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="生活工作中注意事项:"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <Button
+                    android:id="@+id/sl4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/blue_bg"
+                    android:text="示例"
+                    android:visibility="gone"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <TextView
+                android:textSize="@dimen/font_style_14"
+                android:layout_marginTop="5dp"
+                android:id="@+id/shzzysx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/hui_stroke"
+                android:padding="5dp"
+                android:minLines="3"
+               />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="术后康复歌"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="清淡饮食    低盐低脂    控制体重    适度运动"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="戒烟限酒    注意保暖    避免受凉    控制情绪"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="心态平和    愉悦生活    睡眠充足    遵嘱服药"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="定期复查    不适随诊"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="30dp" />
+
+            <Button
+                android:visibility="gone"
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/blue_bg"
+                android:text="提交"
+                android:textColor="@color/white" />
+
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

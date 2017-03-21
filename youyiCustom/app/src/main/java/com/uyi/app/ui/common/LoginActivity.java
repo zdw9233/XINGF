@@ -130,6 +130,7 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
+//                                userInfo.groupType = data.getInt("groupType");
                                 if (data.has("liefstyle")) {
                                     userInfo.liefstyle = data.getString("liefstyle");
                                 }
@@ -164,6 +165,7 @@ public class LoginActivity extends BaseActivity {
                                 userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                                 userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                                 userInfo.lastLoginTime = data.getString("lastLoginTime");
+//                                userInfo.groupType = data.getInt("groupType");
                                 if (data.has("liefstyle")) {
                                     userInfo.liefstyle = data.getString("liefstyle");
                                 }
@@ -198,6 +200,7 @@ public class LoginActivity extends BaseActivity {
                             userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                             userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                             userInfo.lastLoginTime = data.getString("lastLoginTime");
+//                            userInfo.groupType = data.getInt("groupType");
                             if (data.has("liefstyle")) {
                                 userInfo.liefstyle = data.getString("liefstyle");
                             }
@@ -213,6 +216,7 @@ public class LoginActivity extends BaseActivity {
                                 T.showLong(activity, "只能登陆客户账户");
                                 return;
                             }
+
                             UserInfoManager.setLoginUserInfo(activity, userInfo);
                             setResult(RESULT_OK);
                             finish();

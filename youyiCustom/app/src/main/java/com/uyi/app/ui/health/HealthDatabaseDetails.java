@@ -57,7 +57,7 @@ public class HealthDatabaseDetails extends BaseActivity implements OnClickListen
 	@Override
 	protected void onInitLayoutAfter() {
 		inflater  = LayoutInflater.from(activity);
-		headerView.showTitle(true).showLeftReturn(true).showRight(true).setTitle("健康数据库详细资料").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showTitle(true).showLeftReturn(true).showRight(false).setTitle("健康数据库详细资料").setTitleColor(getResources().getColor(R.color.blue));
 		
 		String id = getIntent().getStringExtra("id");
 		if(id == null){

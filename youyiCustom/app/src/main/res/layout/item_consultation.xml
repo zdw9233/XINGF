@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/white"
+    android:background="@drawable/sel_new_white_btn_bg2"
+    android:id="@+id/lay"
     android:orientation="horizontal" >
     
     <com.uyi.app.ui.custom.RoundedImageView 
@@ -18,35 +19,38 @@
         android:gravity="center_vertical"
         android:paddingRight="5dp"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/item_consultation_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/tet_type_3"
+            android:textSize="@dimen/font_style_14"
+          />
         <LinearLayout 
             android:layout_width="match_parent" 
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
+            android:layout_marginTop="6dp"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/item_consultation_name"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:textColor="@color/red"
-                android:textSize="@dimen/font_style_15"
-                android:layout_weight="1"  />
-
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:textColor="@color/blue1"
+                android:textSize="@dimen/font_style_12"
+                />
             <TextView
                 android:id="@+id/item_consultation_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-             	android:textColor="@color/list_item_content_color"
+             	android:textColor="@color/tet_type_9"
              	android:textSize="@dimen/font_style_12" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/item_consultation_content"
-             android:layout_width="match_parent" 
-             android:layout_height="wrap_content"
-             android:maxLines="1"
-             android:textColor="@color/list_item_content_color"
-             android:textSize="@dimen/font_style_12"
-             />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -126,7 +126,7 @@ public class NewConsultActivity extends BaseActivity implements OnClickListener 
 		.setTitle("新建互动").showTitle(true)
 		.setTitleColor(getResources()
 		.getColor(R.color.blue))
-		.showRight(true);
+		.showRight(false);
 		new_consult_group_left.setOnClickListener(this);
 		new_consult_group_right.setOnClickListener(this);
 		 

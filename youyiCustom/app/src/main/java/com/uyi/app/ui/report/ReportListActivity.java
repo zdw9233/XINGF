@@ -71,7 +71,6 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
     private void requestReportList() {
         Loading.bulid(this, null).show();
         int cusId = UserInfoManager.getLoginUserInfo(this).userId;
-
         RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_LIST, cusId, pageIndex), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
@@ -84,11 +83,15 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
                         mReportItems.clear();
                     }
                     mReportItems.addAll(reportItems);
+                    mAdapter.notifyDataSetChanged();
                     if (reportItems.size() < 20) {
                         mAdapter.setLoad(false);
+                    }else{
+                        pageIndex++;
+                        mAdapter.setLoad(true);
                     }
-                    pageIndex++;
-                    mAdapter.notifyDataSetChanged();
+
+
                 } else {
                     if (pageIndex == 1) {
                         mReportItems.clear();
@@ -112,18 +115,26 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
     public void onLoadMore() {
         if (mAdapter.isLoad()) {
             requestReportList();
+
             mAdapter.setLoad(false);
         }
     }
     @Override
     public void onResume() {
         super.onResume();
+        pageIndex = 1;
         L.d(TAG, "onResume");
         requestReportList();
     }
+
     @Override
     public void onRecyclerItemClick(View v, int position) {
+        ReportItem reportItem = mReportItems.get(position);
         int id = mReportItems.get(position).id;
+//                if (!reportItem.checked) {
+//            mReportItems.get(position).checked = true;
+//            mAdapter.notifyItemChanged(position);
+//        }
         Intent intent = new Intent(this, ReportMainActivity.class);
         intent.putExtra("reportId", id);
         startActivity(intent);

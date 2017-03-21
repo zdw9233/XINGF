@@ -133,7 +133,11 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 					Loading.bulid(activity, null).dismiss();
 					team_group_name.setText(data.getString("name"));
 					team_group_info.setText(data.getString("info"));
-					tezm_money.setText(data.getString("beans"));
+//					if(data.has("beans")){
+//						tezm_money.setText(data.getString("beans"));
+//					}else{
+//						tezm_money.setText("0");
+//					}
 					team_zixunshu.setText(data.getInt("currentNum")+"");
 					team_zonzixunshu.setText(data.getInt("totalNum")+"");
 					team_details_rating.setRating((float) data.getDouble("star"));

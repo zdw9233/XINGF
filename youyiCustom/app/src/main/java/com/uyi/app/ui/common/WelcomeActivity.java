@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.uyi.app.Constens;
-import com.uyi.app.ui.Main;
+import com.uyi.app.ui.Main2_1;
 import com.uyi.app.utils.ImageUtil;
 import com.uyi.custom.app.R;
 import com.volley.RequestErrorListener;
@@ -36,7 +35,7 @@ private SimpleDraweeView welcomePictrue;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_welcome);
-        final Intent it = new Intent(this, Main.class); //你要转向的Activit
+        final Intent it = new Intent(this, Main2_1.class); //你要转向的Activit
         RequestManager.getObject(String.format(Constens.WELCOME_PICTRUE,"Android"), this,null,new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
 
@@ -71,12 +70,12 @@ private SimpleDraweeView welcomePictrue;
         });
 
         welcomePictrue = (SimpleDraweeView) findViewById(R.id.welcome_image);
-        welcomePictrue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        welcomePictrue.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
 
 

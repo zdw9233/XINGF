@@ -66,6 +66,8 @@ public abstract class Constens {
      * 添加richeng(day)/修改
      */
     public static final String GET_CUSTOM_RICHEN_ADD = SERVER_URL + "/app/api/schedule/edit";
+    //判断是否是三甲
+    public final static String IS_THREE_TOP = SERVER_URL + "/app/api/topThreeService/get/groupType?customerId=%s";
     /**
      * /日程删除 POST
      */
@@ -417,11 +419,23 @@ public abstract class Constens {
      * 创建健康管理
      */
     public final static String CREACT_PERSONAL_PROGRAM= SERVER_URL + "/app/api/doctor/newHealthManagement";
+    /**
+     * 创建/修改三甲方案
+     */
+    public final static String CREACT_THREE_TOP_PROGRAM= SERVER_URL + "/app/api/doctor/updateTopThreeHealthManagement";
 
     /**
      * 获取健康管理模板
      */
-    public final static String GET_PERSONAL_PROGRAM_EXAMPLE= SERVER_URL + "/app/api/doctor/getTemplate";
+    public final static String GET_PERSONAL_PROGRAM_EXAMPLE= SERVER_URL + "/app/api/doctor/getTemplate/%s";
+    /**
+     * 获取三甲管理模板
+     */
+    public final static String GET_PERSONAL_PROGRAM_THREE_TOP= SERVER_URL + "/app/api/doctor/getTopThreeHealthManagementTemplate/%s";
+    /**
+     * 获取三甲管理详情
+     */
+    public final static String GET_PERSONAL_PROGRAM_THREE_TOP_DETAILS= SERVER_URL + "/app/api/doctor/getTopThreeHealthManagement/%s";
 
     /**
      * 获取用户最后一条风险评估以及历史健康管理
@@ -462,6 +476,52 @@ public abstract class Constens {
     public final static String DOCTOR_HEALTH_LIFE_DIET = SERVER_URL + "/app/api/doctor/customer/%s/info";
     /**
      * /**
+     * 查个人方案列表
+     */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String DOCTOR_HEALTH_PERSON_PROGRAM = SERVER_URL + "/app/api/account/getHealthManagements?customerId=%s&page=%s&pageSize=%s";
+    /**
+     * /**
+     * 查个人方三甲列表
+     */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String DOCTOR_HEALTH_THREE_TOP_LIST = SERVER_URL + "/app/api/doctor/getTopThreeHealthManagementList?customerId=%s&page=%s&pageSize=%s";  /**
+     * /**
+     * 查个人方脑卒中随访
+     * get
+     */
+    public final static String DOCTOR_HEALTH_STROKE_LIST = SERVER_URL + "/app/api/strokeFollowUp/getStrokes?customerId=%s&page=%s&pageSize=%s";
+
+     /**
+     * 提交卒中方案列表
+     * post
+     */
+    public final static String DOCTOR_HEALTH_CREATE_STROKE_LIST = SERVER_URL + "/app/api/strokeFollowUp/addSchedules";
+    /**
+     * 提交卒中方案
+     * post
+     */
+    public final static String DOCTOR_HEALTH_SUBMIT_STROKE= SERVER_URL + "/app/api/strokeFollowUp/save";
+    /**
+     * 6填写报告时自动获取用户健康数据
+     * get
+     */
+    public final static String DOCTOR_HEALTH_GET_HEALTH_DATA= SERVER_URL + "/app/api/strokeFollowUp/getHealthData?customerId=%s";
+    /**
+     * 查个人方脑卒中随访6月列表
+     * get
+     */
+
+    public final static String DOCTOR_HEALTH_STROKE_DETAILS_LIST = SERVER_URL + "/app/api/strokeFollowUp/getRecordList?strokeId=%s";
+    /**
+     * 查个人方脑卒中随访6月汇总
+     * get
+     */
+    public final static String DOCTOR_HEALTH_STROKE_DETAILS_ALL = SERVER_URL + "/app/api/strokeFollowUp/getRecords?strokeFollowUpId=%s";
+
+    /**
+    /**
+     * /**
      * 改生活方式和饮食
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
@@ -473,6 +533,13 @@ public abstract class Constens {
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
     public final static String DOCTOR_HEALTH_RISK_INSERT = SERVER_URL + "/app/api/doctor/setting/risk/report/insert";
+    /**
+     * /**
+     * /**
+     * 风险评估自动生成
+     */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String DOCTOR_GET_ASCVD_AND_ICVD = SERVER_URL + "/app/api/doctor/getASCVDAndICVD/%s";
     /**
      * 查询所有健康团队
      */
@@ -541,7 +608,7 @@ public abstract class Constens {
     /**
      * 获取主诊报告列表
      */
-    public static final String GET_REPORT_LIST = SERVER_URL + "/app/api/account/majordignosereport/infos?customerid=%d&page=%d&pageSize=20";
+    public static final String GET_REPORT_LIST = SERVER_URL + "/app/api/account/majordignosereport/infos?customerid=%d&isCustomer=false&page=%d&pageSize=20";
     /**
      * 获取报告详情
      */

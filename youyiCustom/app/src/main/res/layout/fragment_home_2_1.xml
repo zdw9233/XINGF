@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_home_2_1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:elevation="8dp"
+        android:layout_height="44dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/title_tab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"
+            android:text="优医"/>
+
+        <ImageView
+            android:id="@+id/title_messge"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:background="@drawable/nav_message_blue2x"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12px"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/red_bg"/>
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+             >
+
+                <com.uyi.app.ui.view.AutoScrollViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="20dp"
+                    android:checkedButton="@+id/radioButton1"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton1"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/sel_radio_button"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/sel_radio_button"
+                        android:button="@null" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/sel_radio_button"
+                        android:button="@null" />
+                </RadioGroup>
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="2dp"
+                android:background="@color/help_button_view" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="149dp">
+
+        <LinearLayout
+            android:id="@+id/my_servece"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_new_white_btn_bg2">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home_service2x" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:text="我的服务"
+                    android:textSize="18sp"
+                    android:textColor="@color/tet_type_3"
+                   />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/tet_type_9" />
+
+        <LinearLayout
+            android:id="@+id/my_report"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sel_new_white_btn_bg2">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home_report2x" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:text="我的报告"
+                    android:textSize="18sp"
+                    android:textColor="@color/tet_type_3"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/help_button_view" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="149dp">
+
+                <LinearLayout
+                    android:id="@+id/my_datas"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_new_white_btn_bg2">
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="2dp"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/home_data2x" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginTop="12dp"
+                            android:text="我的数据"
+                            android:textSize="18sp"
+                            android:textColor="@color/tet_type_3"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/tet_type_9" />
+
+                <LinearLayout
+                    android:id="@+id/my_schedule"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/sel_new_white_btn_bg2">
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="2dp"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/home_schedule2x" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginTop="12dp"
+                            android:text="我的日程"
+                            android:textSize="18sp"
+                            android:textColor="@color/tet_type_3"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/help_button_view" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="#f2f5f9" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="69dp"
+    android:background="@color/white"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="78dp"
+        android:layout_height="26dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/home_news2x"/>
+    <com.uyi.app.ui.home.fragment.UPMarqueeView
+        android:id="@+id/vf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15px"
+        android:background="#fff"
+        android:gravity="center_vertical">
+
+    </com.uyi.app.ui.home.fragment.UPMarqueeView>
+
+    
+</LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#f2f5f9" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

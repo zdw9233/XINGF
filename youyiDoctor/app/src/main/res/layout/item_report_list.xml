@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TableRow
@@ -23,8 +23,26 @@
             android:textColor="@color/text_clr"
             android:textSize="@dimen/font_style_16" />
 
+        <!--<TextView-->
+            <!--android:id="@+id/new_word"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:background="@drawable/shape_new_bg"-->
+            <!--android:paddingBottom="2dp"-->
+            <!--android:paddingLeft="8dp"-->
+            <!--android:paddingRight="8dp"-->
+            <!--android:paddingTop="2dp"-->
+            <!--android:text="new"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/font_style_12" />-->
         <TextView
             android:id="@+id/new_word"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -37,7 +55,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingTop="2dp"
-            android:text="new"
+            android:text="草稿"
             android:textColor="@color/white"
             android:textSize="@dimen/font_style_12" />
 
@@ -48,7 +66,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="2016-15-56"
+            android:text=""
             android:textColor="@color/text2_clr" />
     </TableRow>
 

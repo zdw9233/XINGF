@@ -109,6 +109,31 @@
                     android:textColor="#ff8000"/>
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="match_parent"
+                    android:text="发生中风的风险等级："
+                    android:textSize="14dp"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/black"
+                    android:id="@+id/textView4" />
+
+                <TextView
+                    android:id="@+id/h_asvcd"
+                    android:layout_width="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:maxLength="5"
+                    android:gravity="center"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <LinearLayout
                 android:id="@+id/layout_xy"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"

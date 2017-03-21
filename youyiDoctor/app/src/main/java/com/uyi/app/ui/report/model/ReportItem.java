@@ -13,6 +13,7 @@ public class ReportItem {
 
     public int id;
     public String createTime;
+    public String editStatus;
     public boolean checked;
 
 }

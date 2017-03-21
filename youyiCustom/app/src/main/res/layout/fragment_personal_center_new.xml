@@ -70,7 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/sel_white_to_press">
+            android:background="@drawable/sel_new_blue_btn_bg2">
 
             <ImageView
                 android:layout_width="32dp"
@@ -78,7 +78,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
-                android:src="@drawable/suixin" />
+                android:src="@drawable/index_anxin2x" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,6 +93,7 @@
                     android:layout_gravity="center"
                     android:gravity="start"
                     android:text="安心服务"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -101,6 +102,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="4dp"
                     android:gravity="start"
+                    android:textColor="@color/white"
                     android:text="平稳控压 防治心安"
                     android:textSize="@dimen/font_style_7" />
             </LinearLayout>
@@ -109,14 +111,14 @@
         <View
             android:layout_width="1px"
             android:layout_height="match_parent"
-            android:background="@color/help_button_view" />
+            android:background="@color/white" />
 
         <TableRow
             android:id="@+id/txfw"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/sel_white_to_press">
+            android:background="@drawable/sel_new_blue_btn_bg2">
 
             <ImageView
                 android:layout_width="32dp"
@@ -124,7 +126,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
-                android:src="@drawable/tangxin" />
+                android:src="@drawable/index_tangxin2x" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -139,6 +141,7 @@
                     android:layout_gravity="center"
                     android:gravity="start"
                     android:text="糖心服务"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -148,6 +151,7 @@
                     android:layout_marginTop="4dp"
                     android:gravity="start"
                     android:text="糖心关爱 健康护航"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/font_style_7" />
             </LinearLayout>
         </TableRow>
@@ -155,14 +159,14 @@
         <View
             android:layout_width="1px"
             android:layout_height="match_parent"
-            android:background="@color/help_button_view" />
+            android:background="@color/white" />
 
         <TableRow
             android:id="@+id/dzfw"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/sel_white_to_press">
+            android:background="@drawable/sel_new_blue_btn_bg2">
 
             <ImageView
                 android:layout_width="32dp"
@@ -170,7 +174,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="6dp"
                 android:layout_marginStart="6dp"
-                android:src="@drawable/dingzhi" />
+                android:src="@drawable/index_suixin2x" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -184,7 +188,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="start"
-                    android:text="定制服务"
+                    android:text="随心服务"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -193,6 +198,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="4dp"
                     android:gravity="start"
+                    android:textColor="@color/white"
                     android:text="个性服务 随心定制"
                     android:textSize="@dimen/font_style_7" />
             </LinearLayout>

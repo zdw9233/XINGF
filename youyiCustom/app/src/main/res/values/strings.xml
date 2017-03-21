@@ -10,6 +10,8 @@
     <string name="all_consultation">所有咨询</string>
     <string name="follow">线上随访</string>
     <string name="line_check">线下预约</string>
+    <string name="fanwei"> (0.85) </string>
+
     <string name="new_consultation">新建咨询</string>
     <string name="hello">Hello World, ZxingCreate!</string>
 

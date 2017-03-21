@@ -45,33 +45,72 @@ public class HealthReportFragment extends BaseFragment {
     private View new_layout;  //可以改
 
 
-    @OnClick(R.id.commit_report)
+    @OnClick({R.id.commit_report,R.id.commit_report_caogao})
     public void onClick(View v) {
-        ReportActivity mActivity = (ReportActivity) getActivity();
-        Report report = mActivity.getReport();
+        switch (v.getId()){
 
-        JSONObject object = new JSONObject();
-        try {
-            object.put("comment1", report.getComment1());
-            object.put("comment2", report.getComment2());
-            object.put("comment3", report.getComment3());
-            object.put("comment4", report.getComment4());
-            object.put("cusid", FragmentHealthListManager.customer);
-            object.put("bloodPressure_pic", report.bloodPressure_pic);
-            object.put("BloodSugar_pic", report.bloodSugar_pic);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            case R.id.commit_report:
+                ReportActivity mActivity = (ReportActivity) getActivity();
+                Report report = mActivity.getReport();
+                JSONObject object = new JSONObject();
+                try {
+                    if(mActivity.getId()!= 0){
+                        object.put("id", mActivity.getId());
+                    }
+                    object.put("comment1", report.getComment1());
+                    object.put("comment2", report.getComment2());
+                    object.put("comment3", report.getComment3());
+                    object.put("comment4", report.getComment4());
+                    object.put("editStatus","DONE");
+                    object.put("cusid", FragmentHealthListManager.customer);
+                    object.put("bloodPressure_pic", report.bloodPressure_pic);
+                    object.put("BloodSugar_pic", report.bloodSugar_pic);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Loading.bulid(context, null).show();
+                RequestManager.postObject(Constens.COMMIT_REPORT, context, object, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        Loading.bulid(context, null).dismiss();
+                        T.showLong(context, "提交成功！");
+                        getActivity().setResult(0x200);
+                        getActivity().finish();
+                    }
+                }, null);
+                break;
+            case R.id.commit_report_caogao:
+                ReportActivity mActivity1 = (ReportActivity) getActivity();
+                Report report1 = mActivity1.getReport();
+                JSONObject object1 = new JSONObject();
+                try {
+                    if(mActivity1.getId()!= 0){
+                        object1.put("id", mActivity1.getId());
+                    }
+                    object1.put("comment1", report1.getComment1());
+                    object1.put("comment2", report1.getComment2());
+                    object1.put("comment3", report1.getComment3());
+                    object1.put("comment4", report1.getComment4());
+                    object1.put("editStatus","EDITING");
+                    object1.put("cusid", FragmentHealthListManager.customer);
+                    object1.put("bloodPressure_pic", report1.bloodPressure_pic);
+                    object1.put("BloodSugar_pic", report1.bloodSugar_pic);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Loading.bulid(context, null).show();
+                RequestManager.postObject(Constens.COMMIT_REPORT, context, object1, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        Loading.bulid(context, null).dismiss();
+                        T.showLong(context, "提交成功！");
+                        getActivity().setResult(0x200);
+                        getActivity().finish();
+                    }
+                }, null);
+                break;
         }
-        Loading.bulid(context, null).show();
-        RequestManager.postObject(Constens.COMMIT_REPORT, context, object, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject jsonObject) {
-                Loading.bulid(context, null).dismiss();
-                T.showLong(context, "提交成功！");
-                getActivity().setResult(0x200);
-                getActivity().finish();
-            }
-        }, null);
+
     }
 
     @Override

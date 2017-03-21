@@ -107,7 +107,7 @@ public class DatePickerActivity extends BaseActivity implements OnClickListener,
         });
 
 
-        headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("选择日期").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftReturn(true).showRight(false).showTitle(true).setTitle("选择日期").setTitleColor(getResources().getColor(R.color.blue));
         if (getIntent().hasExtra("sDate")) {
             sDate = getIntent().getStringExtra("sDate");
         }

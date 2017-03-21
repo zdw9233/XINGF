@@ -406,7 +406,77 @@
                 </FrameLayout>
 
             </TableRow>
+            <LinearLayout
+                android:id="@+id/apoplexy"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:background="#47d8c8"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:src="@drawable/apoplexy2x" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="卒中随访"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_18" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="apoplexy"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_10" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/shape_new_bg"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingBottom="1dp"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:paddingTop="1dp"
+                        android:text="new"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_style_8"
+                        android:visibility="gone" />
+                </FrameLayout>
+            </LinearLayout>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -484,7 +554,77 @@
                             android:visibility="gone" />
                     </FrameLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/sanjia"
+                    android:visibility="gone"
+                    android:layout_width="0dp"
+                    android:layout_height="68dp"
+                    android:layout_weight="1"
+                    android:background="#8990fa"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
+                        android:src="@drawable/life" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="12dp"
+                            android:layout_marginRight="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:text="三甲方案"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_18" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="end"
+                                android:maxLines="1"
+                                android:text="solution"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/shape_new_bg"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:paddingTop="1dp"
+                            android:text="new"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_style_8"
+                            android:visibility="gone" />
+                    </FrameLayout>
+                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/diet"
                     android:visibility="gone"

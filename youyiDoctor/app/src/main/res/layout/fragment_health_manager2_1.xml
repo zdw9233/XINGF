@@ -252,6 +252,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/follow_up"
+                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_marginLeft="4dp"
@@ -315,9 +316,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/assessment"
                     android:layout_width="0dp"
+
                     android:layout_height="140dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginStart="4dp"
@@ -384,76 +385,282 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="4dp"
+
                 android:paddingTop="4dp">
+    <LinearLayout
+        android:id="@+id/apoplexy"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_weight="1"
+        android:layout_marginRight="4dp"
+        android:background="#47d8c8"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/apoplexy2x" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:text="卒中随访"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_style_18" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="apoplexy"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_style_10" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="4dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/notice_background"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_style_10"
+                android:visibility="gone" />
+        </FrameLayout>
+</LinearLayout>
                 <LinearLayout
-                    android:id="@+id/life"
-                    android:layout_width="0dp"
-                    android:layout_height="68dp"
                     android:layout_weight="1"
-                    android:background="#8990fa"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginStart="12dp"
-                        android:src="@drawable/life" />
-
-                    <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:id="@+id/life"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="68dp"
+                        android:background="#8990fa"
+                        android:orientation="horizontal">
 
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="12dp"
-                            android:layout_marginRight="12dp"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/life" />
 
-                            <TextView
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <LinearLayout
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="vertical">
 
-                                android:gravity="end"
-                                android:maxLines="1"
-                                android:text="个人方案"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/font_style_18" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="个人方案"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="solution"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+
+                            </LinearLayout>
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_margin="4dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/notice_background"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="12"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/sanjia"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:background="#8990fa"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/life" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <LinearLayout
+
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:gravity="end"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="三甲方案"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="solution"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_margin="4dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/notice_background"
+                                android:gravity="center"
                                 android:maxLines="1"
-                                android:text="solution"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="12"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/font_style_10" />
+                                android:textSize="@dimen/font_style_10"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/alarm"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_weight="1"
+                        android:background="#ff5959"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
 
-                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:src="@drawable/alarm1" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_margin="4dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/notice_background"
-                            android:gravity="center"
-                            android:maxLines="1"
-                            android:paddingLeft="2dp"
-                            android:paddingRight="2dp"
-                            android:text="12"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_style_10"
-                            android:visibility="gone" />
-                    </FrameLayout>
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginRight="12dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="设置报警"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_18" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:gravity="end"
+                                    android:maxLines="1"
+                                    android:text="alarm"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/font_style_10" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_margin="4dp"
+                                android:layout_marginTop="20dp"
+                                android:background="@drawable/notice_background"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:paddingLeft="2dp"
+                                android:paddingRight="2dp"
+                                android:text="12"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_style_10"
+                                android:visibility="gone" />
+                        </FrameLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -530,80 +737,12 @@
 
             </TableRow>
 
-            <LinearLayout
-                android:id="@+id/alarm"
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:layout_weight="1"
-                android:background="#ff5959"
-                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginStart="12dp"
-                    android:src="@drawable/alarm1" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="12dp"
-                        android:layout_marginRight="12dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-
-                            android:gravity="end"
-                            android:maxLines="1"
-                            android:text="设置报警"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_style_18" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:gravity="end"
-                            android:maxLines="1"
-                            android:text="alarm"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/font_style_10" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_margin="4dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/notice_background"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingLeft="2dp"
-                        android:paddingRight="2dp"
-                        android:text="12"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_style_10"
-                        android:visibility="gone" />
-                </FrameLayout>
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/telephone"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
-                android:layout_marginTop="4dp"
                 android:layout_weight="1"
                 android:background="#28d385"
                 android:orientation="horizontal">

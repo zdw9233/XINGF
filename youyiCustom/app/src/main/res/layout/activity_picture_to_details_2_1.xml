@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12px"
+            android:background="@drawable/sel_btn_blue_to_write" />
+
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="优医服务"
+    android:textColor="@color/tet_type_3"
+    android:textSize="18sp"/>
+        <TextView
+
+            android:id="@+id/back_to_tab_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:text="首页"
+            android:textColor="@color/sel_blue_to_write"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/old_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            >
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:gravity="center">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/fxpg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/sel_axjcfw_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="安心基础服务"
+                android:textColor="@color/sel_report_text_clr2" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+
+        <LinearLayout
+            android:id="@+id/grfa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/sel_axjxfw_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="安心精细服务"
+                android:textColor="@color/sel_report_text_clr2" />
+        </LinearLayout>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightgray" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:gravity="center">
+
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/ybg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/sel_txjcfw_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="糖心基础服务"
+                android:textColor="@color/sel_report_text_clr2" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+        <LinearLayout
+            android:id="@+id/jbg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/sel_txjxfw_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="糖心精细服务"
+                android:textColor="@color/sel_report_text_clr2" />
+        </LinearLayout>
+    </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f2f5f9" />
+            <FrameLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+</LinearLayout>

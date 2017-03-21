@@ -4,6 +4,8 @@
     <color name="white">#FFFFFF</color>
     <!-- 背景色 -->
     <color name="content_background">#eeeeee</color>
+    <!-- 背景色 -->
+    <color name="gray_background">#cccccc</color>
 
     <color name="header_background">#f8f8f8</color>
 
@@ -24,6 +26,9 @@
     <color name="blue1">#1fb7fb</color>
 
     <!-- 浅黑  -->
+    <color name="tet_type_6">#666666</color>
+    <color name="tet_type_3">#333333</color>
+    <color name="tet_type_9">#999999</color>
     <color name="footer_somber">#999999</color>
     <color name="footer_somber_more">#666666</color>
     <!-- 透明 -->
@@ -33,8 +38,13 @@
     <color name="transparent">#4444</color>
     <color name="transparent1">#9000</color>
     <color name="lightgray">#D3D3D3</color>
+    <color name="lightgray1">#f0f0f0</color>
     <color name="orangered">#FF4500</color>
     <color name="listview_item_normal">#eef0ed</color>
     <color name="listview_item_pressed">#d4d4d4</color>
     <color name="trans_clr">#00000000</color>
+    <color name="service_bg">#0087ca</color>
+    <color name="my_service_bg">#f0f0f0</color>
+    <color name="gra_bg">#f2f5f9</color>
+    <color name="rend">#fb7070</color>
 </resources>

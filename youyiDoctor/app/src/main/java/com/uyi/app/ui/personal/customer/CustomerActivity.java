@@ -16,6 +16,7 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.UserInfoManager;
 import com.uyi.app.ui.consult.CustomInfoActivity;
 import com.uyi.app.ui.consult.HistoryConsultActivity;
 import com.uyi.app.ui.custom.BaseActivity;
@@ -56,18 +57,22 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 	@ViewInject(R.id.search_layout_search) private ImageView search_layout_search;
 	@ViewInject(R.id.search_layout_edit) private EditText search_layout_edit;
 	@ViewInject(R.id.search_layout_search_text) private TextView search_layout_search_text;
-	
+	@ViewInject(R.id.peoplenum) private TextView peoplenum;
 	@ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
 	
 	private LinearLayoutManager linearLayoutManager;
 	private CustomerAdapter customerAdapter;
 	private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
-	
+	String num = "";
 	String name = "";
 	
 	@Override
 	protected void onInitLayoutAfter() {
 		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("用户").setTitleColor(getResources().getColor(R.color.blue));
+		int type = UserInfoManager.getLoginUserInfo(activity).type;
+		if(type == 2){
+			peoplenum.setVisibility(View.GONE);
+		}
 		linearLayoutManager = new LinearLayoutManager(activity);
 		customerAdapter = new CustomerAdapter(activity);
 		customerAdapter.setDatas(datas);
@@ -119,6 +124,11 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 				L.e("data==",data.toString());
 				try {
 					totalPage = data.getInt("pages");
+					if(data.has("total")){
+						num = data.getString("total");
+						peoplenum.setText("管理人数："+num);
+					}
+
 					JSONArray  array = data.getJSONArray("results");
 					if (pageNo == 1)
 						datas.clear();

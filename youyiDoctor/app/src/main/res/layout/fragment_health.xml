@@ -45,12 +45,21 @@
 	                android:layout_marginRight="5dp"
 	                android:layout_gravity="center_vertical"
 	                android:textSize="12sp"/>
+
 	        </LinearLayout>
+	<TextView
+		android:id="@+id/people_tatle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:padding="8dp"
+		android:textColor="@color/BLACK"
+		/>
 	<!-- <include layout="@layout/new_consultation_start"/> -->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout_healthmanager"
         android:layout_width="match_parent" 
         android:layout_height="match_parent">
+
 	    <com.uyi.app.ui.custom.EndlessRecyclerView 
 	        xmlns:android="http://schemas.android.com/apk/res/android"
 	    	android:id="@+id/recyclerView_healthmanager"

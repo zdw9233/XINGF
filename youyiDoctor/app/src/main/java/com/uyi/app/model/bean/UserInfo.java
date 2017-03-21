@@ -54,7 +54,8 @@ public class UserInfo {
 	//医生/助理有此字段
 	@Column
 	public Boolean joinedGroup;
-	
+//	@Column
+//	public int groupType;
 	
 	
 	public UserInfo() {

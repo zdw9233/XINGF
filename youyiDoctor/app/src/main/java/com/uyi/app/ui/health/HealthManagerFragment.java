@@ -3,6 +3,7 @@ package com.uyi.app.ui.health;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -15,6 +16,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.personal.standard.AlarmStandardActivity;
 import com.uyi.app.ui.report.ReportListActivity;
+import com.uyi.app.ui.stroke.StrokeListActivity;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
@@ -31,6 +33,16 @@ import org.json.JSONObject;
 public class HealthManagerFragment extends BaseFragmentActivity implements HeaderView.OnTabChanage {
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
+    @ViewInject(R.id.assessment)
+    private LinearLayout assessment;
+    @ViewInject(R.id.follow_up)
+    private LinearLayout follow_up;
+    @ViewInject(R.id.life)
+    private LinearLayout life;
+    @ViewInject(R.id.sanjia)
+    private LinearLayout sanjia;
+    @ViewInject(R.id.apoplexy)
+    private LinearLayout apoplexy;
 
 //    public HealthManagerFragment(Main main) {
 //        this.main = main;
@@ -38,13 +50,15 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
 
     @OnClick({
             R.id.diagnosis, //主诊报告
+            R.id.apoplexy, //卒中随访
             R.id.report,       //健康报告
             R.id.database,      //健康数据库
             R.id.assessment,    //风险评估
-            R.id.life,          //生活方式
+            R.id.life,          //生活方式(个人方案)
             R.id.diet,          //饮食计划
             R.id.alarm,         //设置报警
             R.id.telephone,      //电话回访
+            R.id.sanjia,      //三甲方案
             R.id.follow_up     //三甲随访
     })
     public void onClick(View v) {
@@ -52,6 +66,11 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
             case R.id.diagnosis:
                 startActivity(new Intent(this, ReportListActivity.class));
                 break; //主诊报告
+            case  R.id.apoplexy:
+
+                startActivity(new Intent(this, StrokeListActivity.class));
+//                startActivity(new Intent(this, TestActivity.class));
+                break; //卒中随访
             case R.id.report:     //健康报告
                 startActivity(new Intent(this, HealthManagerMain.class));
                 break;
@@ -61,9 +80,12 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
             case R.id.assessment: //风险评估
                 startActivity(new Intent(this, RiskAssessmentActivity.class));
                 break;
-            case R.id.life:      //生活方式
+            case R.id.life:      //个人方案
 //                startActivity(new Intent(this, LifeStyleActivity.class));
-                startActivity(new Intent(this, NewPersonalProgramActivity.class));
+                startActivity(new Intent(this, PersonalProgramListActivity.class));
+                break;
+            case R.id.sanjia:      //三甲方案
+                startActivity(new Intent(this, ThreeTopListActivity.class));
                 break;
             case R.id.diet:     //饮食计划
                 startActivity(new Intent(this, DietPlanActivity.class));
@@ -127,6 +149,39 @@ public class HealthManagerFragment extends BaseFragmentActivity implements Heade
         headerView.showLeftReturn(true)
                 .showTab(false).showRight(true).showTitle(true)
                 .setTitle("健康管理").setTitleColor(getResources().getColor(R.color.blue));
+//        if(UserInfoManager.getLoginUserInfo(this).groupType == 1){
+//            apoplexy.setVisibility(View.VISIBLE);
+//        }else{
+//            apoplexy.setVisibility(View.GONE);
+//        }
+        follow_up.setVisibility(View.GONE);
+        sanjia.setVisibility(View.GONE );
+        RequestManager.getObject(String.format(Constens.IS_THREE_TOP, FragmentHealthListManager.customer),this, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                System.out.println(data.toString());
+                try {
+                    if (data.getBoolean("topTeam")) {
+                        follow_up.setVisibility(View.VISIBLE);
+                        sanjia.setVisibility(View.VISIBLE  );
+                        life.setVisibility(View.GONE);
+                        assessment.setVisibility(View.GONE  );
+                    }else{
+                        life.setVisibility(View.VISIBLE);
+                        assessment.setVisibility(View.VISIBLE );
+                        follow_up.setVisibility(View.GONE);
+                        sanjia.setVisibility(View.GONE );
+                    }
+                    if (data.getBoolean("strokeFollowUp")) {
+                        apoplexy.setVisibility(View.VISIBLE);
+                    }else{
+                        apoplexy.setVisibility(View.GONE);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

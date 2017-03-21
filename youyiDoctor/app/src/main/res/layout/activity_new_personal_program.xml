@@ -63,6 +63,7 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_icvd"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">
@@ -85,6 +86,7 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_ASCVD"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">

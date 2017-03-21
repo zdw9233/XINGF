@@ -12,6 +12,11 @@
     </com.uyi.app.ui.custom.HeaderView>
 
     <include layout="@layout/search_layout" />
+    <TextView
+        android:id="@+id/peoplenum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
 
         <com.uyi.app.ui.custom.EndlessRecyclerView
             xmlns:android="http://schemas.android.com/apk/res/android"

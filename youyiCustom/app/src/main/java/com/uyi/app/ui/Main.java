@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,7 +31,6 @@ import com.uyi.app.ui.consult.FragmentFollow;
 import com.uyi.app.ui.consult.FragmentLineInspection;
 import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.health.FollowUpPayActivity;
 import com.uyi.app.ui.health.FragmentWearableDevice;
@@ -51,8 +49,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 @ContentView(R.layout.main)
 public class Main extends BaseFragmentActivity implements MessageConform.OnMessageClick {
@@ -211,12 +207,10 @@ public class Main extends BaseFragmentActivity implements MessageConform.OnMessa
 
     }
     public void getPay() {
-        Loading.bulid(activity, null).show();
         RequestManager.getObject(Constens.GET_SERVER_THREE_PAY, this, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 System.out.println("_____________________"+jsonObject.toString());
-                Loading.bulid(activity, null).dismiss();
                 JSONArray array= new JSONArray();
                 try {
                    array = jsonObject.getJSONArray("unpaidTopThreeServiceJsonList");
@@ -235,23 +229,24 @@ public class Main extends BaseFragmentActivity implements MessageConform.OnMessa
         }, new RequestErrorListener() {
             @Override
             public void requestError(VolleyError e) {
-                if (e.networkResponse != null) {
-                    if (e.networkResponse.statusCode == 200) {
-                        if(conform == null){
-                            conform = new MessageConform(Main.this, MessageConform.MessageType.CONFORM);
-                        }
-                        conform.setTitle("提示").setContent("您有需要付款的三甲服务包，是否马上去付款?").setOnMessageClick(Main.this);
-                        conform.show();
-                    } else {
-                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
-                    }
-                } else {
-                    if(conform == null){
-                        conform = new MessageConform(Main.this, MessageConform.MessageType.CONFORM);
-                    }
-                    conform.setTitle("提示").setContent("您有需要付款的三甲服务包，是否马上去付款?").setOnMessageClick(Main.this);
-                    conform.show();
-                }
+                T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+//                if (e.networkResponse != null) {
+//                    if (e.networkResponse.statusCode == 200) {
+//                        if(conform == null){
+//                            conform = new MessageConform(Main.this, MessageConform.MessageType.CONFORM);
+//                        }
+//                        conform.setTitle("提示").setContent("您有需要付款的三甲服务包，是否马上去付款?").setOnMessageClick(Main.this);
+//                        conform.show();
+//                    } else {
+//                        T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+//                    }
+//                } else {
+//                    if(conform == null){
+//                        conform = new MessageConform(Main.this, MessageConform.MessageType.CONFORM);
+//                    }
+//                    conform.setTitle("提示").setContent("您有需要付款的三甲服务包，是否马上去付款?").setOnMessageClick(Main.this);
+//                    conform.show();
+//                }
             }
         });
 
@@ -272,40 +267,40 @@ public class Main extends BaseFragmentActivity implements MessageConform.OnMessa
     /**
      * 菜单、返回键响应
      */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (currentPage == 1) {
-                exitBy2Click();
-            } else {
-                onClickTab(main_tab_1);
-            }
-        }
-        return false;
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (currentPage == 1) {
+//                exitBy2Click();
+//            } else {
+//                onClickTab(main_tab_1);
+//            }
+//        }
+//        return false;
+//    }
 
     /**
      * 双击退出函数
      */
-    private static Boolean isExit = false;
-
-    private void exitBy2Click() {
-        Timer tExit = null;
-        if (isExit == false) {
-            isExit = true; // 准备退出
-            T.showLong(this, "再按一次退出程序");
-            tExit = new Timer();
-            tExit.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    isExit = false; // 取消退出
-                }
-            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
-        } else {
-            finish();
-            System.exit(0);
-        }
-    }
+//    private static Boolean isExit = false;
+//
+//    private void exitBy2Click() {
+//        Timer tExit = null;
+//        if (isExit == false) {
+//            isExit = true; // 准备退出
+//            T.showLong(this, "再按一次退出程序");
+//            tExit = new Timer();
+//            tExit.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    isExit = false; // 取消退出
+//                }
+//            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+//        } else {
+//            finish();
+//            System.exit(0);
+//        }
+//    }
 
 
     @Override

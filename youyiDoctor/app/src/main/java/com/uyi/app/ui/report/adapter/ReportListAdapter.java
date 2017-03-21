@@ -33,7 +33,14 @@ public class ReportListAdapter extends BaseAdapter {
         TextView newView = holder.holder(R.id.new_word, TextView.class);
         TextView time = holder.holder(R.id.time, TextView.class);
         ReportItem reportItem = mReportItems.get(position);
-        newView.setVisibility(reportItem.checked ? View.INVISIBLE : View.VISIBLE);
+
+//        newView.setVisibility(reportItem.checked ? View.INVISIBLE : View.VISIBLE);
+        if(reportItem.editStatus.equals("DONE")){
+            newView.setVisibility(View.GONE);
+        }else{
+            newView.setVisibility(View.VISIBLE);
+        }
+//        newView.setVisibility(View.GONE);
         time.setText(reportItem.createTime);
     }
 

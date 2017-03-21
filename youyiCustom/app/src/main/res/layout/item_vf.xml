@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/date1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingRight="6dp"
+        android:singleLine="true"
+        android:text="2、港功能世纪大道健康撒娇的了可撒就的了可就撒 大莘建东路看见撒旦就啊三了就的啦三"
+        android:textColor="@color/tet_type_6"
+        android:textSize="@dimen/font_style_14" />
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="2、港功能世纪大道健康撒娇的了可撒就的了可就撒 大莘建东路看见撒旦就啊三了就的啦三"
+        android:layout_marginTop="10dp"
+        android:paddingRight="6dp"
+        android:textColor="@color/tet_type_6"
+        android:textSize="@dimen/font_style_14" />
+</LinearLayout>

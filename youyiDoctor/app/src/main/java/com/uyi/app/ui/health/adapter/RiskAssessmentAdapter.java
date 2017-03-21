@@ -60,6 +60,13 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 //					});
 
 //			hodler.title.setText(data.get("content").toString());
+			if(data.get("verifyStatus").toString().equals("PASS")){
+				hodler.zhuangtai.setText("通过");
+			}else if(data.get("verifyStatus").toString().equals("NOPASS")){
+				hodler.zhuangtai.setText("未通过");
+			}else if(data.get("verifyStatus").toString().equals("UNREVIEWED")){
+				hodler.zhuangtai.setText("未审核");
+			}
 			hodler.time.setText(data.get("createTime").toString().substring(0,10));
 //			hodler.fxxs.setText(data.get("percentage").toString());
 			hodler.crectdoctor.setText(data.get("doc_name").toString());
@@ -80,6 +87,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 			riskindix = (TextView) v.findViewById(R.id.risk_index);
 			doc_name = (TextView) v.findViewById(R.id.doc_name);
 			crectdoctor = (TextView) v.findViewById(R.id.crectdoctor);
+			zhuangtai = (TextView) v.findViewById(R.id.zhuangtai);
 //			fxxs = (TextView) v.findViewById(R.id.fxxs);
 		}
         private TextView title;
@@ -91,6 +99,7 @@ public class RiskAssessmentAdapter extends BaseRecyclerAdapter<Map<String,Object
 		private TextView doc_name;
 		private TextView crectdoctor;
 		private TextView fxxs;
+		private TextView zhuangtai;
     }
 
 }

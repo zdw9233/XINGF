@@ -27,6 +27,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.personal.questions.adapter.HealthyQuestionsAdapter;
+import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
@@ -171,6 +172,7 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 		RequestManager.getObject(String.format(Constens.HEALTH_ADVICES,pageNo,pageSize),activity, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				Loading.bulid(activity, null).dismiss();
+				L.e(data.toString());
 				try {
 					totalPage = data.getInt("pages");
 					JSONArray  array = data.getJSONArray("results");

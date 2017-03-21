@@ -34,7 +34,6 @@ import com.uyi.custom.app.R;
 import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +60,6 @@ public class HealthReportActivity extends BaseActivity implements IOnItemSelectL
     @ViewInject(R.id.health_manager_tubiao)
     private ImageView health_manager_tubiao;
 
-    Calendar cal = Calendar.getInstance();
     Bitmap bitmap = null;
     /**
      * 选则时间
@@ -94,7 +92,6 @@ public class HealthReportActivity extends BaseActivity implements IOnItemSelectL
     @OnClick({R.id.health_manager_zb, R.id.health_manager_starttime, R.id.health_manager_endtime, R.id.health_manager_submit, R.id.health_manager_tubiao})
     public void onClick(View v) {
         if (v.getId() == R.id.health_manager_zb) {
-//			startActivity(new Intent(getView().getContext(), ViewPagerImageActivity.class));
             spinerPopWindow.setWidth(health_manager_zb.getWidth());
             spinerPopWindow.refreshData(zbString, 0);
             spinerPopWindow.showAsDropDown(health_manager_zb);
@@ -179,23 +176,7 @@ public class HealthReportActivity extends BaseActivity implements IOnItemSelectL
     }
 
     public void selectedDate() {
-//		 final AlertDialog dialog = new AlertDialog.Builder(getView().getContext()).create();
-//         dialog.show();
-//         DatePicker picker = new DatePicker(getView().getContext());
-//         picker.setDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
-//         picker.setMode(DPMode.SINGLE);
-//         picker.setOnDatePickedListener(new DatePicker.OnDatePickedListener() {
-//             @Override
-//             public void onDatePicked(String date) {
-//            	 text.setText(date);
-//                 dialog.dismiss();
-//             }
-//         });
-//         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//         dialog.getWindow().setContentView(picker, params);
-//         dialog.getWindow().setGravity(Gravity.CENTER);
-
-        if (selectedDate == 1) {
+       if (selectedDate == 1) {
             Intent intent = new Intent(this, DatePickerActivity.class);
             intent.putExtra("currentDate", health_manager_starttime.getText().toString().trim());
             startActivityForResult(intent, Constens.START_ACTIVITY_FOR_RESULT);
@@ -233,21 +214,6 @@ public class HealthReportActivity extends BaseActivity implements IOnItemSelectL
             }
         }
     }
-
-//	@Override
-//	public void onChanage(int postion) {
-//		if(postion == 2){
-//			dianjifangda.setVisibility(View.GONE);
-//			if(bitmap != null){
-//
-//				bitmap.recycle();
-//				bitmap = null;
-//			}
-//			this.replaceView(5);
-//		}else if(postion == 3){
-//			this.replaceView(7);
-//		}
-//	}
 
     @Override
     public void onItemClick(int pos) {

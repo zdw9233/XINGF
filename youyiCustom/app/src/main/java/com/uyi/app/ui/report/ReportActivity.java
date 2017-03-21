@@ -81,7 +81,7 @@ public class ReportActivity extends BaseFragmentActivity {
     @Override
     protected void onInitLayoutAfter() {
         reportId = getIntent().getIntExtra("reportId", 0);
-        headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("详细报告").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftReturn(true).showTitle(true).showRight(false).setTitle("详细报告").setTitleColor(getResources().getColor(R.color.blue));
         fragments = new ArrayList<>();
         fragments.add(new RoutineFragment());
         fragments.add(new TrendMapFragment());

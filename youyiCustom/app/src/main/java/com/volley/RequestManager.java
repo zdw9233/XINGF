@@ -1,5 +1,6 @@
 package com.volley;
 
+import android.app.Activity;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -93,11 +94,13 @@ public class RequestManager {
 		addRequest(request , tag);
 	}
     /**
-     * 
-     * @param url
-     * @param tag
-     */
-    public static void postObject(String url, Object tag, Response.Listener<JSONObject> successListener) {
+     *
+	 * @param format
+	 * @param activity
+	 * @param url
+	 * @param tag
+	 */
+    public static void postObject(String format, Activity activity, String url, Object tag, Response.Listener<JSONObject> successListener) {
     	postObject(url, tag, null, successListener,null);
     }
     

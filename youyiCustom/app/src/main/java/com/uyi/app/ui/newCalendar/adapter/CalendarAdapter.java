@@ -60,6 +60,7 @@ public class CalendarAdapter extends BaseAdapter {
                     da4.setVisibility(m.type.contains(2) ? View.VISIBLE : View.GONE);
                     da2.setVisibility(m.type.contains(3) ? View.VISIBLE : View.GONE);
                     da3.setVisibility(m.type.contains(4) ? View.VISIBLE : View.GONE);
+                    da3.setVisibility(m.type.contains(5) ? View.VISIBLE : View.GONE);
                 }
             }
         //本月

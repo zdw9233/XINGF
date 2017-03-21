@@ -87,6 +87,7 @@ public class LoginActivity extends BaseActivity {
             RequestManager.postObject(Constens.LOGIN_URL, activity, params, new Response.Listener<JSONObject>() {
                 public void onResponse(JSONObject data) {
                     UserInfo userInfo = new UserInfo();
+                    System.out.print("getdata+++++++++++++++++++++" + data.toString());
                     try {
                         userInfo.authToken = data.getString("authToken");
                         userInfo.type = data.getInt("type");
@@ -100,19 +101,18 @@ public class LoginActivity extends BaseActivity {
                         userInfo.beans = data.has("beans") ? data.getInt("beans") : null;
                         userInfo.consumedBeans = data.has("consumedBeans") ? data.getInt("consumedBeans") : null;
                         userInfo.lastLoginTime = data.getString("lastLoginTime");
-
                         userInfo.info = JSONObjectUtils.getString(data, "info");
                         userInfo.joinedGroup = JSONObjectUtils.getBoolean(data, "joinedGroup");
-
-                        Set<String> tags = new HashSet<String>();
-                        tags.add("bulletin");
-                        tags.add("message_doctor_" + userInfo.userId);
-                        JPushInterface.setTags(activity, tags, null);
+//                        userInfo.groupType = data.getInt("groupType");
                         if (userInfo.type != 1 && userInfo.type != 2) {
                             T.showLong(activity, "只能登陆专家和资深专家账户");
                             return;
                         }
                         UserInfoManager.setLoginUserInfo(activity, userInfo);
+                        Set<String> tags = new HashSet<String>();
+                        tags.add("bulletin");
+                        tags.add("message_doctor_" + userInfo.userId);
+                        JPushInterface.setTags(activity, tags, null);
                         setResult(RESULT_OK);
                         finish();
                     } catch (JSONException e) {

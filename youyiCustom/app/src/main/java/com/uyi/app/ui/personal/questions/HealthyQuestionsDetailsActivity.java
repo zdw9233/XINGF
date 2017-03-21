@@ -58,7 +58,7 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 	@Override
 	protected void onInitLayoutAfter() {
 		id = getIntent().getStringExtra("id");
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康咨询").setTitleColor(getResources().getColor(R.color.blue));
+		headerView.showLeftReturn(true).showRight(false).showTitle(true).setTitle("健康咨询").setTitleColor(getResources().getColor(R.color.blue));
 		linearLayoutManager = new LinearLayoutManager(activity);
 		healthyQuestionsAdapter = new HealthyQuestionsDetailsAdapter(activity);
 		healthyQuestionsAdapter.setDatas(datas);

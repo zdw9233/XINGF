@@ -98,6 +98,8 @@ public class RightMenuDialog extends AbstrctDialog implements android.view.View.
 //个人信息（服务次数）
 			Intent intent = new Intent(getContext(), ServiceNumberActivity.class);
 			getContext().startActivity(intent);
+//			Intent intent = new Intent(getContext(), TestActiviry.class);
+//			getContext().startActivity(intent);
 
 		}else if(v.getId() == R.id.right_menu_Sweep){
 			Intent intent = new Intent(getContext(), CaptureActivity.class);

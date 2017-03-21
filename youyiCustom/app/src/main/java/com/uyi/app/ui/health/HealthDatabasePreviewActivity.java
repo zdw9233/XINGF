@@ -65,7 +65,7 @@ public class HealthDatabasePreviewActivity extends BaseActivity implements OnCli
         }
         health_database_add_submit.setVisibility(View.VISIBLE);
         inflater  = LayoutInflater.from(activity);
-        headerView.showTitle(true).showLeftReturn(true).showRight(true).setTitle("健康数据库预览").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showTitle(true).showLeftReturn(true).showRight(false).setTitle("健康数据库预览").setTitleColor(getResources().getColor(R.color.blue));
                  Loading.bulid(activity, null).show();
                         try {
                             //检查时间

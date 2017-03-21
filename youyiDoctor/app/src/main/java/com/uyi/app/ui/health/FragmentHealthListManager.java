@@ -44,6 +44,8 @@ public class FragmentHealthListManager extends BaseFragment
     private EditText health_edit_text;
     @ViewInject(R.id.sousuo_health)
     private TextView sousuo_health;
+    @ViewInject(R.id.people_tatle)
+    private TextView people_tatle;
 
     private ArrayList<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
     @ViewInject(R.id.recyclerView_healthmanager)
@@ -52,6 +54,7 @@ public class FragmentHealthListManager extends BaseFragment
     private SwipeRefreshLayout swipeRefreshLayout_healthmanager;
     public static int customer;
     private LinearLayoutManager linearLayoutManager;
+
     private HealthManagerAdapter healthManagerAdapter;
     public boolean initLoad = true;// 初始化加载
     public Main main;
@@ -128,6 +131,7 @@ public class FragmentHealthListManager extends BaseFragment
                         System.out.print(data.toString());
                         try {
                             loading.dismiss();
+                            people_tatle.setText("您的主管病人人数："+data.get("total").toString());
                             totalPage = data.getInt("pages");
                             JSONArray array = data.getJSONArray("results");
                             for (int i = 0; i < array.length(); i++) {

@@ -96,7 +96,11 @@ public abstract class Constens {
      * 生产服地址
      */
 //	public final static String SERVER_URL = "http://www.uyidoctor.com";
-
+    /**
+     * 查个人方脑卒中随访
+     * get
+     */
+    public final static String DOCTOR_HEALTH_STROKE_LIST = SERVER_URL + "/app/api/strokeFollowUp/getStrokes?customerId=%s&page=%s&pageSize=%s";
     //获取协议
     public final static String REGISTER_AGREEMENT = SERVER_URL + "/app/api/common/protocol";
     //获取欢迎图片
@@ -146,10 +150,48 @@ public abstract class Constens {
     public final static String CUSTOMER_BUY_COIN_RESULT = SERVER_URL + "/app/api/customer/buy/coin/result/%s";
     /**
      * /**
+     * 查个人方三甲列表
+     */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String DOCTOR_HEALTH_THREE_TOP_LIST = SERVER_URL + "/app/api/account/getTopThreeHealthManagemenList?customerId=%s&page=%s&pageSize=%s";
+    /**
+     * /**
+     * 查个人方案列表
+     */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String DOCTOR_HEALTH_PERSON_PROGRAM = SERVER_URL + "/app/api/account/getHealthManagements?customerId=%s&page=%s&pageSize=%s";
+    /**
+     * /**
+     * 查个人服务
+     */
+    public final static String MY_SERVICE = SERVER_URL + "/app/api/account/getMyService/%s";
+    /**
+     * /**
+     * 查个月报告季报告
+     */
+//	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String DOCTOR_HEALTH_MONTH_AND_QUA = SERVER_URL + "/app/api/account/getAutomationReport?type=%s&page=%s&pageSize=%s";
+    /**
+     * /**
+     * 查个月报告季报告详情
+     */
+    public final static String DOCTOR_HEALTH_MONTH_AND_QUA_DETAILS = SERVER_URL + "/app/api/account/get/pic/sumReport?startDate=%s&endDate=%s";
+    /**
+     * /**
+     * 查最新报告
+     */
+    public final static String DOCTOR_HEALTH_NEWS_REPORT = SERVER_URL + "/app/api/account/getRecentReport";
+    /**
+     * /**
      * 查风险评估列表
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
-    public final static String CUSTOMER_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?customerid=%s&iscustomer=false&page=%s&pageSize=%s";
+    public final static String CUSTOMER_HEALTH_RISK = SERVER_URL + "/app/api/account/riskreport/infos?customerid=%s&iscustomer=true&page=%s&pageSize=%s";
+    /**
+     * /**
+     * 查风首页健康资讯
+     */
+    public final static String HEALTH_ZIXUN = SERVER_URL + "/app/api/common/articles?type=%s&page=%s&pageSize=%s";
     /**
      * /**
      * gai风险评估列表
@@ -160,6 +202,11 @@ public abstract class Constens {
      * 检查问题
      */
     public final static String SAFE_CHECK_ANSWER = SERVER_URL + "/app/api/common/safe/check/answer";
+    /**
+     * 查个人方脑卒中随访6月汇总
+     * get
+     */
+    public final static String DOCTOR_HEALTH_STROKE_DETAILS_ALL = SERVER_URL + "/app/api/strokeFollowUp/getRecords?strokeFollowUpId=%s";
 
     /**
      * 客户重置密码
@@ -174,11 +221,21 @@ public abstract class Constens {
      */
     public final static String PASSWORD = SERVER_URL + "/app/api/common/getCustomerPassword?id=%s&password=%s";
     /**
+     * 获取三甲管理详情
+     */
+    public final static String GET_PERSONAL_PROGRAM_THREE_TOP_DETAILS= SERVER_URL + "/app/api/doctor/getTopThreeHealthManagement/%s";
+    /**
      * /**
      * /**
      * 用户修改密码
      */
     public final static String SETTING_PASSWORD = SERVER_URL + "/app/api/account/setting/password";
+    /**
+     * /**
+     * /**
+     * 更改用户报告状态
+     */
+    public final static String SETTING_REPORT = SERVER_URL + "/app/api/account/update/%s/report/%s";
     /**
      * 用户安全问题获取
      */
@@ -417,7 +474,8 @@ public abstract class Constens {
      * 查询健康问答
      * /app/api/account/health/advices?startTime={startTime}&endTime={endTime}&page={page}&pageSize={pageSize}&sort={sort}
      */
-    public final static String HEALTH_ADVICES = SERVER_URL + "/app/api/account/health/advices?page=%s&pageSize=%s";
+//    public final static String HEALTH_ADVICES = SERVER_URL + "/app/api/account/health/advices?page=%s&pageSize=%s";
+    public final static String HEALTH_ADVICES = SERVER_URL + "/app/api/common/health/advices?page=%s&pageSize=%s";
 
 
     /**
@@ -510,6 +568,10 @@ public abstract class Constens {
      * 系统公告详情
      */
     public final static String COMMON_BULLETINS_DETAILS = SERVER_URL + "/app/api/common/bulletin/%s";
+    /**
+     * 健康资讯详情
+     */
+    public final static String COMMON_ARTUCLE_DETAILS = SERVER_URL + "/app/api/common/article/%s";
     /**
      * 扫描条形码上传
      */

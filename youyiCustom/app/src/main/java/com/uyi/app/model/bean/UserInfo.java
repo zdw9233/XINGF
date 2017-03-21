@@ -54,7 +54,8 @@ public class UserInfo {
     public boolean logasguardian;
     @Column
     public int isFree;
-
+//    @Column
+//    public int groupType ;
     @Column
     public boolean login;//当前登录的
 

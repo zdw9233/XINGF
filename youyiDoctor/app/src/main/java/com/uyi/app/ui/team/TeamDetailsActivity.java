@@ -49,6 +49,7 @@ import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
+
 @ContentView(R.layout.team_details)
 public class TeamDetailsActivity extends BaseActivity implements android.widget.AdapterView.OnItemClickListener {
 	private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
@@ -133,7 +134,7 @@ public class TeamDetailsActivity extends BaseActivity implements android.widget.
 					Loading.bulid(activity, null).dismiss();
 					team_group_name.setText(data.getString("name"));
 					team_group_info.setText(data.getString("info"));
-					tezm_money.setText(data.getString("beans"));
+//					tezm_money.setText(data.getString("beans"));
 					team_zixunshu.setText(data.getInt("currentNum")+"");
 					team_zonzixunshu.setText(data.getInt("totalNum")+"");
 					team_details_rating.setRating((float) data.getDouble("star"));

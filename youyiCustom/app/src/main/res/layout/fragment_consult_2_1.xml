@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_consult_2_1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12px"
+            android:background="@drawable/sel_btn_blue_to_write" />
+
+        <ImageView
+            android:id="@+id/title_messge"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12px"
+            android:background="@drawable/nav_message_blue2x" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="90dip"
+
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tab_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="问健管师"
+                    android:textColor="@color/tet_type_3"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tab_line_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#1ca3fe" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="90dip"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tab_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:text="问医生"
+                    android:textColor="@color/tet_type_9"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tab_line_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#1ca3fe"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+
+            android:id="@+id/back_to_tab_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:text="首页"
+            android:textColor="@color/sel_blue_to_write"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+
+        <TextView
+            android:id="@+id/consult_text"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:background="@color/gra_bg"
+            android:gravity="center"
+            android:text="免费咨询次数剩余：--次"
+            android:textColor="#ff7200"
+            android:textSize="14sp" />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_below="@id/consult_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.uyi.app.ui.custom.EndlessRecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+        <Button
+            android:id="@+id/submit_question"
+            android:layout_width="160dp"
+            android:layout_height="44dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:text="我要提问"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:background="@drawable/sel_new_question_btn_bg"
+            android:layout_marginBottom="50px"/>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

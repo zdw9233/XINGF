@@ -98,7 +98,7 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
                         item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime"));
+                        item.put("uploadTime", jsonObject.getString("checkTime"));
                         item.put("uploadItems", jsonObject.getString("uploadItems"));
                         item.put("isWarning", jsonObject.getBoolean("isWarning"));
                         datas.add(item);
@@ -109,7 +109,7 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
                 healthDatabaseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo <totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

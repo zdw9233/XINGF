@@ -20,19 +20,113 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
-
         android:visibility="visible">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <com.uyi.app.ui.custom.RoundedImageView
+        android:id="@+id/register_header_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/upload_head_hint" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
 
-        <com.uyi.app.ui.custom.RoundedImageView
-            android:id="@+id/register_header_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/upload_head_hint" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务包类型："
+
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_margin="5dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务包到期时间："
+
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/service_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_margin="5dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主诊医生："
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_margin="5dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所属团队:"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_margin="5dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
 
         <View
             android:layout_width="match_parent"
+            android:layout_marginTop="30dp"
             android:layout_height="10dp" />
 
         <LinearLayout

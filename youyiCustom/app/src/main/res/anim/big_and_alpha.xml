@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>    
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--缩放动画-->
+    <scale
+        android:duration="1500"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:toXScale="1.4"
+        android:toYScale="1.4"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:repeatMode="restart"
+        android:repeatCount="infinite"/>
+
+
+    <!--透明动画-->
+    <alpha
+        android:duration="1500"
+        android:fromAlpha="1.0"
+        android:toAlpha="0.1"
+        android:repeatMode="restart"
+        android:repeatCount="infinite"/>
+</set>   
+

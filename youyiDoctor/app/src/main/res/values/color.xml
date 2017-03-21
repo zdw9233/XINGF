@@ -3,12 +3,17 @@
 
     <!-- 白色 -->
     <color name="white">#FFFFFF</color>
+    <!-- 淡蓝色 -->
+    <color name="half_blue">#d2f2ff</color>
     <!-- 背景色 -->
     <color name="content_background">#eeeeee</color>
     <color name="header_background">#f8f8f8</color>
     <color name="list_item_content_color">#666666</color>
 
     <!-- 黑色 -->
+    <color name="tet_type_6">#666666</color>
+    <color name="tet_type_3">#333333</color>
+    <color name="tet_type_9">#999999</color>
     <color name="black">#000000</color>
     <color name="BLACK">#000000</color>
     <color name="red">#ff4800</color>

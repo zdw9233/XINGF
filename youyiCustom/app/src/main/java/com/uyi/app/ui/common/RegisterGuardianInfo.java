@@ -342,7 +342,7 @@ public class RegisterGuardianInfo extends BaseActivity implements AbstractSpiner
                     UserInfoManager.setLoginUserInfo(RegisterGuardianInfo.this, userInfo);
                     setResult(RESULT_OK);
                     finish();
-                    main.replaceView(0);
+//                    main.replaceView(0);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

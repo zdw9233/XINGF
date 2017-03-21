@@ -62,17 +62,18 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
                 .showTitle(true).showRight(true).setTitle("主诊报告列表")
                 .setTitleColor(getResources().getColor(R.color.blue));
         mRecyclerView.addOnScrollListener(new RecyclerListener(this));
-        Loading.bulid(this, null).show();
         requestReportList();
     }
 
     private void requestReportList() {
+        isLooding = false;
         int cusId = FragmentHealthListManager.customer;
-
+        Loading.bulid(this, null).show();
         RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_LIST, cusId, pageIndex), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportListActivity.this, null).dismiss();
+//                L.e("data",jsonObject.toString());
                 com.alibaba.fastjson.JSONObject object = JSON.parseObject(jsonObject.toString());
 //                int total = object.getIntValue("total");
                 List<ReportItem> reportItems = JSON.parseArray(object.getString("results"), ReportItem.class);
@@ -81,11 +82,13 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
                         mReportItems.clear();
                     }
                     mReportItems.addAll(reportItems);
+                    mAdapter.notifyDataSetChanged();
                     if (reportItems.size() < 20) {
                         mAdapter.setLoad(false);
+                    }else{
+                        pageIndex++;
+                        mAdapter.setLoad(true);
                     }
-                    pageIndex++;
-                    mAdapter.notifyDataSetChanged();
                 } else {
                     if (pageIndex == 1) {
                         mReportItems.clear();
@@ -114,12 +117,21 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
     public void onRecyclerItemClick(View v, int position) {
         ReportItem reportItem = mReportItems.get(position);
         int id = reportItem.id;
-        if (!reportItem.checked) {
-            mReportItems.get(position).checked = true;
-            mAdapter.notifyItemChanged(position);
+        String editStatus = reportItem.editStatus;
+        int status = -1;
+        if(editStatus.equals("DONE")){
+            status = 1;
+        }else{
+            status = 0;
         }
+
+//        if (!reportItem.checked) {
+//            mReportItems.get(position).checked = true;
+//            mAdapter.notifyItemChanged(position);
+//        }
         Intent intent = new Intent(this, ReportActivity.class);
         intent.putExtra("reportId", id);
+        intent.putExtra("status", status);
         startActivityForResult(intent, 0x100);
     }
 
@@ -127,6 +139,7 @@ public class ReportListActivity extends BaseActivity implements RecyclerView.Loa
     public void onClick(View view) {
         Intent intent = new Intent(this, ReportActivity.class);
         intent.putExtra("reportId", 0);
+        intent.putExtra("status", 0);
         startActivityForResult(intent, 0x100);
     }
 

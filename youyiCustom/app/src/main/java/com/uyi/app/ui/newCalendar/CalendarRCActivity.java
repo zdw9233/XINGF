@@ -35,6 +35,7 @@ import com.uyi.app.ui.newCalendar.adapter.SelfAdapter;
 import com.uyi.app.ui.newCalendar.adapter.TopthreeAdapter;
 import com.uyi.app.ui.newCalendar.model.Marker;
 import com.uyi.app.ui.personal.schedule.AddScheduleActivity;
+import com.uyi.app.ui.stroke.fragment.StrockAllFragment;
 import com.uyi.app.utils.DateUtils;
 import com.uyi.app.utils.DensityUtils;
 import com.uyi.app.utils.L;
@@ -65,6 +66,7 @@ import java.util.Map;
 
 @ContentView(R.layout.activity_calendar_rc)
 public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String, Object>> {
+    private   String id = "0";//随访ID
     @ViewInject(R.id.headerView)
     private HeaderView headerView;
     @ViewInject(R.id.calendarView1)
@@ -93,8 +95,14 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
     private LinearLayout layout_3;
     @ViewInject(R.id.layout_4)
     private LinearLayout layout_4;
+    @ViewInject(R.id.layout_5)
+    private LinearLayout layout_5;
+    @ViewInject(R.id.strock_context)
+    private TextView strock_context;
     @ViewInject(R.id.view_header_left_layout_return)
     private LinearLayout view_header_left_layout_return;
+    @ViewInject(R.id.details)
+    private TextView details;
     private CalendarAdapter mAdapter;
     private CalendarAdapter mAdapter2;
     String time = "";//记录点击的时间
@@ -162,7 +170,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
         recyclerView3.setAdapter(topthreeAdapter);
         recyclerView4.setLayoutManager(linearLayoutManager4);
         recyclerView4.setAdapter(medicalAdapter);
-
+      L.e("newtime==",newtime);
         getDate(newtime);
     }
 
@@ -187,7 +195,15 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                     JSONArray exclusiveConsult = jsonObject.getJSONArray("exclusiveConsult");
                     JSONArray medicalConsult = jsonObject.getJSONArray("medicalConsult");
                     JSONArray selfCreate = jsonObject.getJSONArray("selfCreate");
+                    JSONArray strokes = jsonObject.getJSONArray("strokes");
                     JSONObject topThree = jsonObject.getJSONObject("topThree");
+                    if (strokes.length() > 0) {
+                        layout_5.setVisibility(View.VISIBLE);
+                        strock_context.setText(strokes.getJSONObject(0).get("content")+"");
+                        id = strokes.getJSONObject(0).get("entityId")+"";
+                    } else {
+                        layout_5.setVisibility(View.GONE);
+                    }
                     if (exclusiveConsult.length() > 0) {
                         layout_1.setVisibility(View.VISIBLE);
                     } else {
@@ -286,6 +302,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                 layout_2.setVisibility(View.GONE);
                 layout_3.setVisibility(View.GONE);
                 layout_4.setVisibility(View.GONE);
+                layout_5.setVisibility(View.GONE);
             }
 
             @Override
@@ -321,6 +338,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                 layout_2.setVisibility(View.GONE);
                 layout_3.setVisibility(View.GONE);
                 layout_4.setVisibility(View.GONE);
+                layout_5.setVisibility(View.GONE);
             }
 
             @Override
@@ -337,12 +355,24 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
     }
 
     @OnClick({R.id.pervious_month, R.id.next_month, R.id.view_header_left_layout_return, //返回
-            R.id.view_header_right}) //编辑
+            R.id.view_header_right,R.id.strock_context,R.id.details}) //编辑
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.pervious_month:
 
                 startPreviousAnimation();
+                break;
+            case R.id.strock_context:
+                Intent intent = new Intent();
+                intent.putExtra("id",id);
+                intent.setClass(activity,StrockAllFragment.class);
+                startActivity(intent);
+                break;
+            case R.id.details:
+                Intent intent1 = new Intent();
+                intent1.putExtra("id",id);
+                intent1.setClass(activity,StrockAllFragment.class);
+                startActivity(intent1);
                 break;
             case R.id.next_month:
                 time = "";
@@ -352,7 +382,6 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                 finish();
                 break;
             case R.id.view_header_right:
-
                 startActivityForResult(new Intent(activity, AddScheduleActivity.class), 0x100);
                 break;
         }

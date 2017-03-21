@@ -113,7 +113,7 @@ public class AddHealthDatabase extends BaseActivity {
 
     @Override
     protected void onInitLayoutAfter() {
-        headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("添加健康数据库").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftReturn(true).showRight(false).showTitle(true).setTitle("添加健康数据库").setTitleColor(getResources().getColor(R.color.blue));
     }
 
 
@@ -157,7 +157,6 @@ public class AddHealthDatabase extends BaseActivity {
 //			 }
 
 
-        Loading.bulid(activity, null).show();
 
         Thread thread = new Thread(new Runnable() {
             public void run() {

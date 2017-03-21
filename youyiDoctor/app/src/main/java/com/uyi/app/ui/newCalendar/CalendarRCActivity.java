@@ -32,6 +32,7 @@ import com.uyi.app.ui.newCalendar.adapter.CalendarAdapter;
 import com.uyi.app.ui.newCalendar.adapter.ExclusiveAdapter;
 import com.uyi.app.ui.newCalendar.adapter.MedicalAdapter;
 import com.uyi.app.ui.newCalendar.adapter.SelfAdapter;
+import com.uyi.app.ui.newCalendar.adapter.StrokeAdapter;
 import com.uyi.app.ui.newCalendar.adapter.TopthreeAdapter;
 import com.uyi.app.ui.newCalendar.model.Marker;
 import com.uyi.app.ui.personal.schedule.AddScheduleActivity;
@@ -83,6 +84,8 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
     private android.support.v7.widget.RecyclerView recyclerView3;
     @ViewInject(R.id.recyclerView4)
     private android.support.v7.widget.RecyclerView recyclerView4;
+    @ViewInject(R.id.recyclerView5)
+    private android.support.v7.widget.RecyclerView recyclerView5;
     @ViewInject(R.id.view_header_right)
     private LinearLayout view_header_right;
     @ViewInject(R.id.layout_1)
@@ -93,6 +96,8 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
     private LinearLayout layout_3;
     @ViewInject(R.id.layout_4)
     private LinearLayout layout_4;
+    @ViewInject(R.id.layout_5)
+    private LinearLayout layout_5;
     @ViewInject(R.id.view_header_left_layout_return)
     private LinearLayout view_header_left_layout_return;
     private CalendarAdapter mAdapter;
@@ -106,16 +111,18 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
     private LinearLayoutManager linearLayoutManager2;
     private LinearLayoutManager linearLayoutManager3;
     private LinearLayoutManager linearLayoutManager4;
+    private LinearLayoutManager linearLayoutManager5;
     private ExclusiveAdapter exclusiveAdapter;
     private MedicalAdapter medicalAdapter;
     private SelfAdapter selfAdapter;
     private TopthreeAdapter topthreeAdapter;
+    private StrokeAdapter strokeAdapter;
     ArrayList<Map<String, Object>> datas = new ArrayList<>();
     ArrayList<Map<String, Object>> dataexclusiveConsult = new ArrayList<>();
     ArrayList<Map<String, Object>> dataselfCreate = new ArrayList<>();
     ArrayList<Map<String, Object>> datatopThree = new ArrayList<>();
     ArrayList<Map<String, Object>> datamedicalConsult = new ArrayList<>();
-
+    ArrayList<Map<String, Object>> strokelist = new ArrayList<>();
     @Override
     protected void onInitLayoutAfter() {
 
@@ -145,13 +152,16 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
         linearLayoutManager2 = new LinearLayoutManager(this);
         linearLayoutManager3 = new LinearLayoutManager(this);
         linearLayoutManager4 = new LinearLayoutManager(this);
+        linearLayoutManager5= new LinearLayoutManager(this);
         exclusiveAdapter = new ExclusiveAdapter(this);
         medicalAdapter = new MedicalAdapter(this);
+        strokeAdapter = new StrokeAdapter(this);
         selfAdapter = new SelfAdapter(this);
         selfAdapter.setOnItemClickListener(this);
         topthreeAdapter = new TopthreeAdapter(this);
         exclusiveAdapter.setDatas(dataexclusiveConsult);
         medicalAdapter.setDatas(datamedicalConsult);
+        strokeAdapter.setDatas(strokelist);
         selfAdapter.setDatas(dataselfCreate);
         topthreeAdapter.setDatas(datatopThree);
         recyclerView1.setLayoutManager(linearLayoutManager);
@@ -162,7 +172,8 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
         recyclerView3.setAdapter(topthreeAdapter);
         recyclerView4.setLayoutManager(linearLayoutManager4);
         recyclerView4.setAdapter(medicalAdapter);
-
+        recyclerView5.setLayoutManager(linearLayoutManager5);
+        recyclerView5.setAdapter(strokeAdapter);
         getDate(newtime);
     }
 
@@ -176,6 +187,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
         dataselfCreate.clear();
         datatopThree.clear();
         datamedicalConsult.clear();
+        strokelist.clear();
         Loading.bulid(this, null).show();
         RequestManager.getObject(String.format(Constens.GET_CUSTOM_RICHEN_DAY, str), this, new Response.Listener<JSONObject>() {
             @Override
@@ -187,7 +199,13 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                     JSONArray exclusiveConsult = jsonObject.getJSONArray("exclusiveConsult");
                     JSONArray medicalConsult = jsonObject.getJSONArray("medicalConsult");
                     JSONArray selfCreate = jsonObject.getJSONArray("selfCreate");
+                    JSONArray stroke = jsonObject.getJSONArray("strokes");
                     JSONObject topThree = jsonObject.getJSONObject("topThree");
+                    if (stroke.length() > 0) {
+                        layout_5.setVisibility(View.VISIBLE);
+                    } else {
+                        layout_5.setVisibility(View.GONE);
+                    }
                     if (exclusiveConsult.length() > 0) {
                         layout_1.setVisibility(View.VISIBLE);
                     } else {
@@ -222,6 +240,13 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                         stringObjectMap.put("date", object.getString("date"));
                         stringObjectMap.put("id", object.getString("id"));
                         dataselfCreate.add(stringObjectMap);
+                    }
+                    for (int i = 0; i < stroke.length(); i++) {
+                        Map<String, Object> stringObjectMap = new HashMap<String, Object>();
+                        JSONObject object = stroke.getJSONObject(i);
+                        stringObjectMap.put("content", object.getString("content"));
+                        stringObjectMap.put("entityId", object.getString("entityId"));
+                        strokelist.add(stringObjectMap);
                     }
                     if (topThree.toString().equals("{}")) {
                         layout_3.setVisibility(View.GONE);
@@ -259,6 +284,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                 medicalAdapter.notifyDataSetChanged();
                 selfAdapter.notifyDataSetChanged();
                 topthreeAdapter.notifyDataSetChanged();
+                strokeAdapter.notifyDataSetChanged();
 
             }
         });
@@ -297,6 +323,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                 layout_2.setVisibility(View.GONE);
                 layout_3.setVisibility(View.GONE);
                 layout_4.setVisibility(View.GONE);
+                layout_5.setVisibility(View.GONE);
             }
 
             @Override
@@ -332,6 +359,7 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
                 layout_2.setVisibility(View.GONE);
                 layout_3.setVisibility(View.GONE);
                 layout_4.setVisibility(View.GONE);
+                layout_5.setVisibility(View.GONE);
             }
 
             @Override
@@ -483,6 +511,15 @@ public class CalendarRCActivity extends BaseActivity implements BaseRecyclerAdap
         }
 
 
+
+    }
+    public  void choseStrock(Map<String, Object> data){
+
+        Intent intent = new Intent();
+        intent.putExtra("id",data.get("entityId").toString());
+//        intent.putExtra("customerId",data.get("customerId").toString());
+        intent.setClass(activity,StrokeRCDetailsActivity.class);
+startActivity(intent);
 
     }
     public void showPop2(int position, final Map<String, Object> data) {

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -13,7 +15,6 @@ import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
-import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.HealthDatabaseActivity;
 import com.uyi.app.ui.health.InspectionReportDetailsActivity;
 import com.uyi.app.ui.health.adapter.InspectionReportAdapter;
@@ -36,8 +37,10 @@ import java.util.Map;
 public class InspectionReportFragment extends BaseFragment implements EndlessRecyclerView.Pager,SwipeRefreshLayout.OnRefreshListener {
     @ViewInject(R.id.recyclerView)
     private EndlessRecyclerView recyclerView;
-    @ViewInject(R.id.swipeRefreshLayout)
-    private SwipeRefreshLayout swipeRefreshLayout;
+    @ViewInject(R.id.nocomtoms)
+    private LinearLayout nocomtoms;
+    @ViewInject(R.id.hascontent)
+    private LinearLayout hascontent;
     private LinearLayoutManager linearLayoutManager;
     private InspectionReportAdapter inspectionReportAdapter;
     private ArrayList<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
@@ -68,8 +71,6 @@ public class InspectionReportFragment extends BaseFragment implements EndlessRec
         recyclerView.setAdapter(inspectionReportAdapter);
         recyclerView.setPager(this);
         //设置刷新时动画的颜色，可以设置4个
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
-        swipeRefreshLayout.setOnRefreshListener(this);
         onRefresh();
     }
 
@@ -86,15 +87,16 @@ public class InspectionReportFragment extends BaseFragment implements EndlessRec
     @Override
     public void loadNextPage() {
         isLooding = false;
-        Loading.bulid(getActivity(), null).show();
         RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, HealthDatabaseActivity.startDate, HealthDatabaseActivity.endDate, pageNo, pageSize,"7"), this, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
-                Loading.bulid(getActivity(), null).dismiss();
                 try {
                     L.d(TAG, data.toString());
                     totalPage = data.getInt("pages");
                     if (pageNo == 1) datas.clear();
                     JSONArray array = data.getJSONArray("results");
+                    if(array.length() > 0){
+                        nocomtoms.setVisibility(View.GONE);
+                        hascontent.setVisibility(View.VISIBLE);
                     for (int i = 0; i < array.length(); i++) {
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
@@ -119,13 +121,18 @@ public class InspectionReportFragment extends BaseFragment implements EndlessRec
                         }
                         datas.add(item);
                     }
+                }else{
+                    hascontent.setVisibility(View.GONE);
+                    nocomtoms.setVisibility(View.VISIBLE);
+                }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                hascontent.setVisibility(View.GONE);
+                nocomtoms.setVisibility(View.VISIBLE);
                 }
                 inspectionReportAdapter.notifyDataSetChanged();
-                swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo <totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

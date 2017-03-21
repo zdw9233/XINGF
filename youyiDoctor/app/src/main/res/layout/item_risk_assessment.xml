@@ -69,7 +69,16 @@
             android:textColor="@color/blue"
             android:text="---"
             />
-
+        <TextView
+            android:id="@+id/zhuangtai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/crectdoctor"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/blue"
+            android:text=""
+            />
 </RelativeLayout>
     <LinearLayout
         android:id="@+id/risk_item"

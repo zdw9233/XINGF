@@ -138,17 +138,32 @@
                 android:text="作为慢性病管理专家，患者更期望您能够根据他的具体情况给出更有效、更贴近实际的建议，请您根据该患者的实际情况修改模板中的数字或文字，或直接给出您的意见，我们会根据患者的反馈情况为您的建议积累评价，并作为您工作量和绩效的主要依据之一"
                 android:textColor="@color/blue"
                 android:textSize="@dimen/font_style_10" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">  <Button
+    android:id="@+id/commit_report"
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:background="@drawable/sel_blue_btn_bg"
+    android:padding="10dp"
+    android:text="提交报告"
+    android:textColor="@color/white"
+    android:textSize="18sp" />
+    <Button
+        android:id="@+id/commit_report_caogao"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/sel_blue_btn_bg"
+        android:padding="10dp"
+        android:text="保存草稿"
+        android:textColor="@color/white"
+        android:textSize="18sp" /></LinearLayout>
 
-            <Button
-                android:id="@+id/commit_report"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:background="@drawable/sel_blue_btn_bg"
-                android:padding="16dp"
-                android:text="提交报告"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout

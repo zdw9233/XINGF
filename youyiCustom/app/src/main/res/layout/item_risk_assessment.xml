@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:id="@+id/item"
+    android:gravity="center_vertical"
+    android:padding="10dp"
     >
-    <RelativeLayout
-        android:id="@+id/item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:gravity="center_vertical">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,37 +41,4 @@
             android:textColor="@color/lightgray"
             android:text="2016-12-12"/>
 
-    </RelativeLayout>
-    <LinearLayout
-        android:id="@+id/risk_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/doc_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/font_style_16"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text=""/>
-        <TextView
-            android:id="@+id/risk_index"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/font_style_16"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="风险系数:"/>
-
-    </LinearLayout>
-    <TextView
-        android:id="@+id/deils"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text=""/>
-</LinearLayout>
+</RelativeLayout>

@@ -153,7 +153,7 @@
 		                    android:layout_marginTop="10dp"
 		                    android:textSize="@dimen/font_style_11"
 		                    android:textColor="@color/blue"
-		                    android:text="包括扎手指、抽血、拍片、心电图、B超或其他检查也包括接诊医生在病历本上书写的文字" />
+		                    android:text="包括测血糖、抽血、拍片、心电图、B超或其他检查也包括接诊医生在病历本上书写的文字" />
                 </LinearLayout>
             </LinearLayout>
             

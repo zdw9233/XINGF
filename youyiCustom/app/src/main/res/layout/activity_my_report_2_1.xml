@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12px"
+            android:background="@drawable/sel_btn_blue_to_write" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="90dip"
+
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tab_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="最新"
+                    android:textColor="@color/tet_type_3"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tab_line_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#1ca3fe" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="90dip"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tab_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+
+                    android:text="历史"
+                    android:textColor="@color/tet_type_9"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tab_line_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#1ca3fe"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+
+            android:id="@+id/back_to_tab_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:text="首页"
+            android:textColor="@color/sel_blue_to_write"
+            android:textSize="16sp" />
+    </RelativeLayout>
+<ScrollView
+    android:id="@+id/new_scroll"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="149dp"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/content1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/sel_white_to_press"
+                android:layout_weight="1">
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:layout_centerInParent="true"
+             >
+                <ImageView
+                    android:id="@+id/image1_bag"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/hong_bg"/>
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/risk_assessment_grey2x"/>
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_below="@id/image1"
+                    android:text="风险评估报告"
+                    android:textSize="18sp"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/gray_background"/>
+                <TextView
+                    android:id="@+id/time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:layout_below="@id/text1"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray_background"/>
+            </RelativeLayout>
+                <ImageView
+                    android:id="@+id/news_1"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/news2x"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/help_button_view"/>
+            <RelativeLayout
+
+                android:id="@+id/content2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/sel_white_to_press"
+                android:layout_weight="1">
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/news_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/news2x"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"/>
+                <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    >
+                    <ImageView
+                        android:id="@+id/image2_bag"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/lan_bg"/>
+                    <ImageView
+                        android:id="@+id/image2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/personal_plan_grey2x"/>
+                    <TextView
+                        android:id="@+id/text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@id/image2"
+                        android:text="健康管理计划"
+                        android:textSize="18sp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/gray_background"/>
+                    <TextView
+                        android:id="@+id/time2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/text2"
+                        android:textSize="12sp"
+                        android:textColor="@color/gray_background"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/help_button_view"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="149dp"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/content3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/sel_white_to_press"
+                android:layout_weight="1">
+                <ImageView
+                    android:visibility="gone"
+                    android:id="@+id/news_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/news2x"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"/>
+                <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical"
+                    android:id="@+id/linearLayout">
+                    <ImageView
+                        android:id="@+id/image3_bag"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/huang_bg"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/image3"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/monthly_report_grey2x"/>
+                    <TextView
+                        android:id="@+id/text3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@id/image3"
+                        android:text="月度健康报告"
+                        android:textSize="18sp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/gray_background"/>
+                    <TextView
+                        android:id="@+id/time3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_below="@id/text3"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12sp"
+                        android:textColor="@color/gray_background"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/help_button_view"/>
+            <RelativeLayout
+                android:id="@+id/content4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/sel_white_to_press"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/news_4"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/news2x"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"/>
+                <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    >
+                    <ImageView
+                        android:id="@+id/image4_bag"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/nv_bg"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/image4"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/quarterly_report_grey2x"/>
+                    <TextView
+                        android:id="@+id/text4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="季度健康报告"
+                        android:layout_below="@id/image4"
+                        android:textSize="18sp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/gray_background"/>
+                    <TextView
+                        android:id="@+id/time4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_below="@id/text4"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12sp"
+                        android:textColor="@color/gray_background"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/help_button_view"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/help_button_view"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="149dp"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/content5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/sel_white_to_press"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/news_5"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/news2x"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginTop="6dp"/>
+                <RelativeLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true"
+                    >
+                    <ImageView
+                        android:id="@+id/image5_bag"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+
+                        android:background="@drawable/lan2_bg"/>
+                    <ImageView
+                        android:id="@+id/image5"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/main_report_grey2x"/>
+                    <TextView
+                        android:id="@+id/text5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="年度健康报告"
+                        android:textSize="18sp"
+                        android:layout_below="@id/image5"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/gray_background"/>
+                    <TextView
+                        android:id="@+id/time5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_below="@id/text5"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="12sp"
+                        android:textColor="@color/gray_background"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/new_report_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#ff7200"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="12dp"
+            android:text=""/>
+
+    </LinearLayout>
+</ScrollView>
+        <LinearLayout
+            android:id="@+id/old_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            >
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:gravity="center">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/fxpg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/sel_fxpg_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="风险评估报告"
+                android:textColor="@color/sel_report_text_clr2" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+
+        <LinearLayout
+            android:id="@+id/grfa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/sel_grfa_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="健康管理计划"
+                android:textColor="@color/sel_report_text_clr2" />
+        </LinearLayout>
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightgray" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:gravity="center">
+
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/ybg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/sel_ybg_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="月度健康报告"
+                android:textColor="@color/sel_report_text_clr2" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/lightgray" />
+        <LinearLayout
+            android:id="@+id/jbg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/sel_jbg_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="季度健康报告"
+                android:textColor="@color/sel_report_text_clr2" />
+        </LinearLayout>
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightgray" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:gravity="center">
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/zzbg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/sel_white_to_press">
+            <CheckedTextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="@drawable/sel_zzbg_to_bag" />
+            <CheckedTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:text="年度健康报告"
+                android:textColor="@color/sel_report_text_clr2" />
+
+        </LinearLayout>
+    </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f2f5f9" />
+            <FrameLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+</LinearLayout>

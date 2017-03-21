@@ -43,7 +43,7 @@ public class ReportMainActivity extends BaseActivity {
     @Override
     protected void onInitLayoutAfter() {
 
-        headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("主诊报告").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showLeftReturn(true).showTitle(true).showRight(false).setTitle("主诊报告").setTitleColor(getResources().getColor(R.color.blue));
 
         nameText.setText(Html.fromHtml(String.format(Locale.CHINA, "<font color='#252525'>尊敬的</font><font color='#FF4500'>%s</font><font color='#252525'>先生/女士：</font>", UserInfoManager.getLoginUserInfo(this).realName)));
         Loading.bulid(ReportMainActivity.this, null).show();

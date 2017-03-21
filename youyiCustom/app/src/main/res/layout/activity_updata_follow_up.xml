@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.uyi.app.ui.custom.HeaderView
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#f0f0f0"
+                android:layout_height="10dp"></LinearLayout>
+            <RelativeLayout
+                android:id="@+id/layout1"
+                android:layout_marginTop="29dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  时间"
+                    android:layout_marginLeft="5dp"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#333333"/>
+
+                <TextView
+                    android:id="@+id/fangansj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1992-08-09"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#666666"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@id/text1"
+                    android:layout_marginLeft="10dp"
+                    android:background="#cccccc"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout2"
+                android:layout_marginTop="29dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  事件选择"
+                    android:layout_marginLeft="5dp"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#333333"/>
+                <TextView
+                    android:id="@+id/fanganxz"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text=""
+                    android:layout_centerHorizontal="true"
+                    android:textSize="14sp"
+                    android:textColor="#666666"/>
+                <ImageView
+                    android:id="@+id/shijianbiaoji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#666666"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/duoxuanlayout"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="10dp"
+                android:background="#cccccc"/>
+            <FrameLayout
+                android:id="@+id/new_report"
+                android:layout_width="176dp"
+                android:layout_marginTop="49dp"
+                android:layout_marginBottom="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="44dip"
+                android:background="@drawable/sel_new_blue_btn_bg"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="确定"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_style_18" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

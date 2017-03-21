@@ -88,7 +88,7 @@ public void onClick(View v){
         bundle.putSerializable("map", myMap);
         intent.putExtras(bundle);
         intent.setClass(RiskAssessmentActivity.this,RiskAssessmentDetailsActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 10003);
     }
 
     @Override
@@ -120,7 +120,7 @@ public void onClick(View v){
                 activity, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {
-//                        System.out.print("_________________________________"+data.toString());
+                        System.out.print("__________________data_______________"+data.toString());
                         try {
                             Loading.bulid(activity, null).dismiss();
                             totalPage = data.getInt("pages");
@@ -128,18 +128,19 @@ public void onClick(View v){
                             for (int i = 0; i < array.length(); i++) {
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
-
+                                item.put("verifyStatus", jsonObject.getString("verifyStatus"));
+                                item.put("id", jsonObject.getString("id"));
                                 item.put("createTime", jsonObject.getString("createTime"));
                                 item.put("doc_name", jsonObject.getString("doc_name"));
                                 if(jsonObject.has("percentageASVCD")){
                                     item.put("percentageASVCD", jsonObject.getString("percentageASVCD"));
                                 }else{
-                                    item.put("percentageASVCD", "");
+                                    item.put("percentageASVCD", "%");
                                 }
                                 if(jsonObject.has("percentageICVD")){
                                     item.put("percentageICVD", jsonObject.getString("percentageICVD"));
                                 }else{
-                                    item.put("percentageICVD", "");
+                                    item.put("percentageICVD", "%");
                                 }
                                 if(jsonObject.has("bloodPressureConditions")){
                                     item.put("bloodPressureConditions", jsonObject.getString("bloodPressureConditions"));
