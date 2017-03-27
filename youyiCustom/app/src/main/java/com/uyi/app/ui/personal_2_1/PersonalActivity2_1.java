@@ -12,8 +12,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,10 +40,6 @@ import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.healthinfo.BasicInfoFragment;
-import com.uyi.app.ui.healthinfo.BloodInfoFragment;
-import com.uyi.app.ui.healthinfo.MedicineInfoFragment;
-import com.uyi.app.ui.healthinfo.PastHistoryFragment;
 import com.uyi.app.ui.personal.schedule.DatePickerActivity;
 import com.uyi.app.utils.BitmapUtils;
 import com.uyi.app.utils.DateUtils;
@@ -190,6 +184,11 @@ public class PersonalActivity2_1 extends BaseFragmentActivity implements HeaderV
                     register_email.setText(JSONObjectUtils.getString(data, "email"));
                     register_card.setText(JSONObjectUtils.getString(data, "idCardNumber"));
                     register_zhiye.setText(JSONObjectUtils.getString(data, "occupation"));
+                    service.setText(JSONObjectUtils.getString(data, "servicePackageName"));
+                    service_time.setText(JSONObjectUtils.getString(data, "servicePackageEndTime"));
+                    team.setText(JSONObjectUtils.getString(data, "teamName"));
+                    if(data.has("attendingDoctor"))
+                    doctor.setText(JSONObjectUtils.getString(data, "attendingDoctor"));
                     Loading.bulid(PersonalActivity2_1.this, null).dismiss();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -198,12 +197,6 @@ public class PersonalActivity2_1 extends BaseFragmentActivity implements HeaderV
             }
         });
 
-        fragments.add(new BasicInfoFragment());
-        fragments.add(new PastHistoryFragment());
-        fragments.add(new MedicineInfoFragment());
-        fragments.add(new BloodInfoFragment());
-        changeFragment(0);
-        setBackground(jbzl);
 
     }
 
@@ -222,19 +215,11 @@ public class PersonalActivity2_1 extends BaseFragmentActivity implements HeaderV
         ((CheckedTextView) ((FrameLayout) view).getChildAt(0)).setChecked(true);
     }
     @OnClick({
-//            R.id.grzl,      //个人资料
-            R.id.jbzl,       //基本资料
-            R.id.jws,       //既往史
-            R.id.yyqk,    //药物情况
-            R.id.xgsj,       //血管事件
             R.id.register_three_submit, R.id.register_shen, R.id.register_city, R.id.register_chushennianyue, R.id.register_header_image
     })
     public void onClick(View view) {
 
         switch (view.getId()) {
-//            case R.id.grzl:
-//                changeFragment(0);
-//                break;  //个人资料
             case R.id.register_shen:
                 spinerIndex = 3;
                 spinerPopWindow.refreshData(provinces, 0);
@@ -258,26 +243,6 @@ public class PersonalActivity2_1 extends BaseFragmentActivity implements HeaderV
             case R.id.register_header_image:
                 showPop();
                 break;
-            case R.id.jbzl:
-                setBackground(view);
-                changeFragment(0);
-                currentView = view;
-                break;  //基本资料
-            case R.id.jws:
-                setBackground(view);
-                changeFragment(1);
-                currentView = view;
-                break;  //既往史
-            case R.id.yyqk:
-                setBackground(view);
-                changeFragment(2);
-                currentView = view;
-                break;  //药物情况
-            case R.id.xgsj:
-                setBackground(view);
-                changeFragment(3);
-                currentView = view;
-                break;  //血管事件
             case R.id.register_three_submit:
                 try {
                     String address = register_address.getText().toString();
@@ -352,24 +317,6 @@ public class PersonalActivity2_1 extends BaseFragmentActivity implements HeaderV
                         }
                     });
 
-//                    RequestManager.postObject(Constens.ACCOUNT_UPDATE, activity, params, new Response.Listener<JSONObject>() {
-//                        public void onResponse(JSONObject data) {
-//                            try {
-//                               System.out.print(data.toString()+"11111111111111111111111111111");
-//                                if(data != null)
-//                                T.showShort(activity, "修改成功!");
-//
-//                                if(userInfo.logasguardian == true){
-//
-//                                }else
-//                                    userInfo.icon = data.getString("icon");
-//                                UserInfoManager.setLoginUserInfo(activity, userInfo);
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }, null);
-//
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -399,26 +346,6 @@ public class PersonalActivity2_1 extends BaseFragmentActivity implements HeaderV
                 }
             }
         }, null);
-    }
-    private void changeFragment(int position) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        Fragment f = fragments.get(position);
-        if (!f.isAdded()) {
-            ft.add(R.id.content, f);
-            if (currentFragment != null) {
-                ft.hide(currentFragment);
-            }
-            currentFragment = f;
-            ft.show(f);
-        } else {
-            if (f != currentFragment) {
-                ft.hide(currentFragment);
-                currentFragment = f;
-                ft.show(f);
-            }
-        }
-        ft.commit();
     }
     @Override
     public void onChanage(int postion) {

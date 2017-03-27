@@ -136,6 +136,8 @@ String monthStartTime  = "";
     private TextView time4;
     @ViewInject(R.id.time5)
     private TextView time5;
+    @ViewInject(R.id.new_report_time)
+    private TextView new_report_time;
     public static int chosehosttype = 6;
     //记录最新的数据
     JSONObject context1;
@@ -382,6 +384,7 @@ String monthStartTime  = "";
                     public void onResponse(JSONObject data) {
                         L.e(data.toString());
                         try {
+                            new_report_time.setText(data.getString("nextReport"));
                             isTop = data.getBoolean("topThree");
                             if (data.has("riskReportJson")) {
                                 try {
@@ -524,6 +527,9 @@ String monthStartTime  = "";
                                     try {
                                         hasReport(2);
                                         context2id = data.getJSONObject("topThreeJson").getInt("id");
+                                        if(!data.getJSONObject("topThreeJson").getBoolean("read")){
+                                            hasNewReport(2);
+                                        }
 //                                            hasNewReport(2);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -587,7 +593,228 @@ String monthStartTime  = "";
                     }
                 });
     }
+    private void getNews1() {
+        RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_NEWS_REPORT),
+                this, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject data) {
+                        L.e(data.toString());
+                        try {
+                            new_report_time.setText(data.getString("nextReport"));
+                            isTop = data.getBoolean("topThree");
+                            if (data.has("riskReportJson")) {
+                                try {
+                                    hasReport(1);
+                                    context1 = data.getJSONObject("riskReportJson");
+                                    time1.setText(context1.getString("createTime").substring(0, 10));
+                                    context1id = context1.getInt("id");
+                                    item = new HashMap<String, Object>();
+                                    JSONObject jsonObject = context1;
 
+                                    item.put("id", jsonObject.getString("id"));
+                                    item.put("createTime", jsonObject.getString("createTime"));
+                                    item.put("doc_name", jsonObject.getString("doc_name"));
+                                    item.put("checked", jsonObject.getString("checked"));
+                                    if (!jsonObject.getBoolean("checked")) {
+                                        hasNewReport(1);
+                                    }else{
+                                        news_1.setVisibility(View.GONE);
+                                        if( image1_bag.getAnimation() != null)
+                                            image1_bag.clearAnimation();
+                                    }
+                                    if (jsonObject.has("percentageASVCD")) {
+                                        item.put("percentageASVCD", jsonObject.getString("percentageASVCD"));
+                                    } else {
+                                        item.put("percentageASVCD", "");
+                                    }
+                                    if (jsonObject.has("percentageICVD")) {
+                                        item.put("percentageICVD", jsonObject.getString("percentageICVD"));
+                                    } else {
+                                        item.put("percentageICVD", "");
+                                    }
+                                    if (jsonObject.has("bloodPressureConditions")) {
+                                        item.put("bloodPressureConditions", jsonObject.getString("bloodPressureConditions"));
+                                    } else {
+                                        item.put("bloodPressureConditions", "");
+                                    }
+                                    if (jsonObject.has("bloodSugarConditions")) {
+                                        item.put("bloodSugarConditions", jsonObject.getString("bloodSugarConditions"));
+                                    } else {
+                                        item.put("bloodSugarConditions", "");
+                                    }
+                                    if (jsonObject.has("healthIndicator")) {
+                                        item.put("healthIndicator", jsonObject.getString("healthIndicator"));
+                                    } else {
+                                        item.put("healthIndicator", "");
+                                    }
+                                    if (jsonObject.has("advice")) {
+                                        item.put("advice", jsonObject.getString("advice"));
+                                    } else {
+                                        item.put("advice", "");
+                                    }
+                                    if (jsonObject.has("content")) {
+                                        item.put("content", jsonObject.getString("content"));
+                                    } else {
+                                        item.put("content", "");
+                                    }
+                                    if (jsonObject.has("percentage")) {
+                                        item.put("percentage", jsonObject.getString("percentage"));
+                                    } else {
+                                        item.put("percentage", "");
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            if (!isTop) {
+                                if (data.has("healthManagementJson")) {
+                                    try {
+                                        hasReport(2);
+                                        context2 = data.getJSONObject("healthManagementJson");
+
+                                        item2 = new HashMap<String, Object>();
+                                        JSONObject jsonObject = context2;
+                                        item2.put("customerId", jsonObject.getString("customerId"));
+                                        item2.put("customerName", jsonObject.getString("customerName"));
+                                        item2.put("doctorId", jsonObject.getString("doctorId"));
+                                        item2.put("doctorName", jsonObject.getString("doctorName"));
+                                        item2.put("attendingDoctor", jsonObject.getString("attendingDoctor"));
+                                        item2.put("checked", jsonObject.getString("checked"));
+                                        if (!jsonObject.getBoolean("checked")) {
+                                            hasNewReport(2);
+                                        }else{
+                                            news_2.setVisibility(View.GONE);
+                                            if( image2_bag.getAnimation() != null)
+                                                image2_bag.clearAnimation();
+                                        }
+                                        if (jsonObject.has("personalHealthManagementTemplateJson")) {
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("id")) {
+                                                item2.put("id", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("id"));
+                                                context2id = jsonObject.getJSONObject("personalHealthManagementTemplateJson").getInt("id");
+                                            } else {
+                                                item2.put("id", 0);
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("bloodPressureManagementAdvice")) {
+                                                item2.put("bloodPressureManagementAdvice", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("bloodPressureManagementAdvice"));
+                                            } else {
+                                                item2.put("bloodPressureManagementAdvice", "");
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("bloodSugarManagementAdvice")) {
+                                                item2.put("bloodSugarManagementAdvice", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("bloodSugarManagementAdvice"));
+                                            } else {
+                                                item2.put("bloodSugarManagementAdvice", "");
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("resultsAndSuggestions")) {
+                                                item2.put("resultsAndSuggestions", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("resultsAndSuggestions"));
+                                            } else {
+                                                item2.put("resultsAndSuggestions", "");
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("medicalAdvice")) {
+                                                item2.put("medicalAdvice", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("medicalAdvice"));
+                                            } else {
+                                                item2.put("medicalAdvice", "");
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("dietaryAdviceToRemindAndTaboos")) {
+                                                item2.put("dietaryAdviceToRemindAndTaboos", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("dietaryAdviceToRemindAndTaboos"));
+                                            } else {
+                                                item2.put("dietaryAdviceToRemindAndTaboos", "");
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("exerciseAdvice")) {
+                                                item2.put("exerciseAdvice", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("exerciseAdvice"));
+                                            } else {
+                                                item2.put("exerciseAdvice", "");
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("personalHabitsSuggest")) {
+                                                item2.put("personalHabitsSuggest", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("personalHabitsSuggest"));
+                                            } else {
+                                                item2.put("personalHabitsSuggest", "");
+                                            }
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("updateTime")) {
+                                                item2.put("updateTime", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("updateTime"));
+                                                time2.setText(jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("updateTime").toString().substring(0, 10));
+                                            } else {
+                                                item2.put("updateTime", "");
+                                            }
+
+                                            if (jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("verifyStatus")) {
+                                                item2.put("verifyStatus", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("verifyStatus"));
+                                            } else {
+                                                item2.put("verifyStatus", "");
+                                            }
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } else {
+                                if (data.has("topThreeJson")) {
+                                    try {
+                                        hasReport(2);
+                                        context2id = data.getJSONObject("topThreeJson").getInt("id");
+                                        if(!data.getJSONObject("topThreeJson").getBoolean("read")){
+                                            hasNewReport(2);
+                                        }else{
+                                            news_2.setVisibility(View.GONE);
+                                            if( image2_bag.getAnimation() != null)
+                                                image2_bag.clearAnimation();
+                                        }
+//                                            hasNewReport(2);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                            if (data.has("monthReport")) {
+                                hasReport(3);
+                                context3 = data.getJSONObject("monthReport");
+                                monthStartTime = data.getJSONObject("monthReport").getString("startTime");
+                                monthEndTime = data.getJSONObject("monthReport").getString("endTime");
+                                if (!context3.getBoolean("checked")) {
+                                    hasNewReport(3);
+                                }else{
+                                    news_3.setVisibility(View.GONE);
+                                    if( image3_bag.getAnimation() != null)
+                                        image3_bag.clearAnimation();
+                                }
+                                time3.setText(context3.getString("endTime").substring(0, 10));
+                            }
+                            if (data.has("seasonReport")) {
+                                hasReport(4);
+                                context4 = data.getJSONObject("seasonReport");
+                                quaStartTime = data.getJSONObject("seasonReport").getString("startTime");
+                                quaEndTime = data.getJSONObject("seasonReport").getString("endTime");
+                                context4id = data.getJSONObject("seasonReport").getInt("id");
+                                if (!context4.getBoolean("checked")) {
+                                    hasNewReport(4);
+                                }else{
+                                    news_4.setVisibility(View.GONE);
+                                    if( image4_bag.getAnimation() != null)
+                                        image4_bag.clearAnimation();
+                                }
+                                time4.setText(context4.getString("endTime").substring(0, 10));
+                            }
+                            if (data.has("diagnosisReportJson")) {
+                                hasReport(5);
+                                context5 = data.getJSONObject("diagnosisReportJson");
+                                if (!context5.getBoolean("checked")) {
+                                    hasNewReport(5);
+                                }else{
+                                    news_5.setVisibility(View.GONE);
+                                    if( image5_bag.getAnimation() != null)
+                                        image5_bag.clearAnimation();
+                                }
+                                time5.setText(context5.getString("createTime").substring(0, 10));
+                                mainReportId = context5.getInt("id");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+    }
     @Override
     protected void onInitLayoutAfter() {
         choseType = 1;
@@ -607,6 +834,7 @@ String monthStartTime  = "";
         switch (v.getId()) {
             case R.id.tab_1:
                 chose(1);
+                getNews1();//获取最新报告
                 break;
             case R.id.tab_2:
                 chose(2);
@@ -731,10 +959,7 @@ String monthStartTime  = "";
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 10003) {
-            L.e("111.onRefresh();");
-            if (choseType == 1) {
-                onInitLayoutAfter();
-            }
+            getNews1();//获取最新报告
         }
 
 

@@ -98,7 +98,11 @@ public class MonthReportFragment extends BaseFragment implements BaseRecyclerAda
                 }
             });
         }
-
+        Intent intent = new Intent();
+        intent.putExtra("startDate",data.get("startTime").toString());
+        intent.putExtra("endDate",data.get("endTime").toString());
+        intent.setClass(getContext(),MonthReportDetailsActivity.class);
+        startActivityForResult(intent,10003);
     }
 
     @Override

@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="　　感谢您一直以来对“优医”的信任与支持。现向您呈现过去的一个月里您身体部分指标的监测数据及医生的解读报告，请认真阅读，也可联系我们的客服热线400-00000000或我们的慢病管理师寻求更进一步的指导。"
+            android:text="　　感谢您一直以来对“优医”的信任与支持。现向您呈现过去的一个周期里您身体部分指标的监测数据及医生的解读报告，请认真阅读，也可联系我们的客服热线400-0808820或我们的慢病管理师寻求更进一步的指导。"
             android:textSize="@dimen/font_style_12" />
 
         <TextView
@@ -42,6 +42,7 @@
             android:textSize="@dimen/font_style_18" />
 
         <TableRow
+            android:id="@+id/bmi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -61,6 +62,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/zdgc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -80,6 +82,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/gysz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -99,6 +102,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/dmdzdbdgc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -118,6 +122,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/gmdzdbdgc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -137,6 +142,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/zjxybhd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -156,6 +162,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/xns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

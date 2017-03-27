@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
+import com.uyi.app.ErrorCode;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
 import com.uyi.app.ui.custom.BaseFragment;
@@ -19,7 +21,9 @@ import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.health.ThreeTopDetailsActivity;
 import com.uyi.app.ui.home.fragment.adapter.PersonalProgramAdapter2_1;
 import com.uyi.app.utils.L;
+import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
+import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
 import org.json.JSONArray;
@@ -67,6 +71,27 @@ public class ThreeTopFragment extends BaseFragment implements BaseRecyclerAdapte
 
     @Override
     public void onItemClick(int position, Map<String, Object> data) {
+        if(data.get("checked").toString().equals("false") ) {
+            MyReport.chosehosttype = 2;
+            RequestManager.postObject(String.format(Constens.SETTING_REPORT, 2, data.get("id").toString()), this, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject jsonObject) {
+                }
+            }, new RequestErrorListener() {
+                @Override
+                public void requestError(VolleyError e) {
+                    if (e.networkResponse != null) {
+                        if (e.networkResponse.statusCode == 200) {
+                        } else {
+                            T.showShort(getActivity(), ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+                        }
+                    } else {
+                    }
+                }
+            });
+        }else{
+            MyReport.chosehosttype = 6;
+        }
         Intent intent = new Intent();
         intent.putExtra("id",data.get("id").toString());
         intent.setClass(getActivity(),ThreeTopDetailsActivity.class);
@@ -104,7 +129,7 @@ public class ThreeTopFragment extends BaseFragment implements BaseRecyclerAdapte
                                 JSONObject jsonObject = array.getJSONObject(i);
                                 item.put("id", jsonObject.getString("id"));
                                 item.put("updateTime", jsonObject.getString("updateTime"));
-                                item.put("checked", "true");
+                                item.put("checked", jsonObject.getString("checked"));
                                 item.put("status", jsonObject.getString("status"));
                                 item.put("doctorName", jsonObject.getString("doctorName"));
                                 datas.add(item);

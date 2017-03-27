@@ -3,6 +3,7 @@ package com.uyi.app.ui.home.fragment;
 import android.content.Intent;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
@@ -15,9 +16,12 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
+import com.uyi.app.ui.common.ViewPagerImageActivity;
 import com.uyi.app.ui.custom.BaseFragmentActivity;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
+import com.uyi.app.ui.home.fragment.adapter.BloodPressureAdapter2_1;
+import com.uyi.app.ui.home.fragment.adapter.BloodSugarAdapter2_1;
 import com.uyi.app.ui.home.fragment.adapter.DataAdapter2_1;
 import com.uyi.app.ui.home.fragment.model.QuaReport;
 import com.uyi.app.utils.ImageUtil;
@@ -28,6 +32,7 @@ import com.volley.RequestManager;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -139,7 +144,8 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
     private LinearLayoutManager linearLayoutManager10 = new LinearLayoutManager(activity);
     private LinearLayoutManager linearLayoutManager11 = new LinearLayoutManager(activity);
     private LinearLayoutManager linearLayoutManager12 = new LinearLayoutManager(activity);
-
+    private LinearLayoutManager linearLayoutManagerxy = new LinearLayoutManager(activity);
+    private LinearLayoutManager linearLayoutManagerxt = new LinearLayoutManager(activity);
     DataAdapter2_1 adapter1 = new DataAdapter2_1(this);
     DataAdapter2_1 adapter2 = new DataAdapter2_1(this);
     DataAdapter2_1 adapter3 = new DataAdapter2_1(this);
@@ -152,14 +158,15 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
     DataAdapter2_1 adapter10 = new DataAdapter2_1(this);
     DataAdapter2_1 adapter11 = new DataAdapter2_1(this);
     DataAdapter2_1 adapter12 = new DataAdapter2_1(this);
-
+    BloodPressureAdapter2_1 bloodPressureAdapter;
+    BloodSugarAdapter2_1 bloodSugarAdapterr;
 
     @OnClick({
             R.id.yhjbxx,       //
             R.id.qmtzjc,       //
             R.id.xyqst,    //
             R.id.xtqst,       //
-            R.id.nsxzsxjc         //
+            R.id.nsxzsxjc ,        //
     })
     public void onItemsClick(View view) {
         if (currentView != null) {
@@ -189,7 +196,28 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
         }
         currentView = view;
     }
-
+    @OnClick({
+            R.id.img_xy,       //
+            R.id.img_xt     //
+    })
+    public void onImgClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_xy:
+                if (!TextUtils.isEmpty(quaReport.getBloodPressure_pic())) {
+                    Intent intent = new Intent(activity, ViewPagerImageActivity.class);
+                    intent.putExtra("imageUrl", new String[]{quaReport.getBloodPressure_pic()});
+                    startActivity(intent);
+                }
+                break;  //
+            case R.id.img_xt:
+                if (!TextUtils.isEmpty(quaReport.getBloodSugar_pic())) {
+                    Intent intent = new Intent(activity, ViewPagerImageActivity.class);
+                    intent.putExtra("imageUrl", new String[]{quaReport.getBloodSugar_pic()});
+                    startActivity(intent);
+                }
+                break;  //
+        }
+    }
     private void showContext(int i) {
         yhjbzl_context.setVisibility(View.GONE);
         xyqst_context.setVisibility(View.GONE);
@@ -219,6 +247,8 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
     @Override
     protected void onInitLayoutAfter() {
         tab_1.setText("季度健康报告");
+        bloodPressureAdapter = new BloodPressureAdapter2_1(this);
+        bloodSugarAdapterr = new BloodSugarAdapter2_1(this);
         recyclerView1.setLayoutManager(linearLayoutManager1);
         recyclerView2.setLayoutManager(linearLayoutManager2);
         recyclerView3.setLayoutManager(linearLayoutManager3);
@@ -231,6 +261,10 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
         recyclerView10.setLayoutManager(linearLayoutManager10);
         recyclerView11.setLayoutManager(linearLayoutManager11);
         recyclerView12.setLayoutManager(linearLayoutManager12);
+        recyclerView_xy.setLayoutManager(linearLayoutManagerxy);
+        recyclerView_xt.setLayoutManager(linearLayoutManagerxt);
+        bloodPressureAdapter.setDatas(datas_xy);
+        bloodSugarAdapterr.setDatas(datas_xt);
         adapter1.setDatas(datas1);
         adapter2.setDatas(datas2);
         adapter3.setDatas(datas3);
@@ -255,6 +289,8 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
         recyclerView10.setAdapter(adapter10);
         recyclerView11.setAdapter(adapter11);
         recyclerView12.setAdapter(adapter12);
+        recyclerView_xy.setAdapter(bloodPressureAdapter);
+        recyclerView_xt.setAdapter(bloodSugarAdapterr);
         onItemsClick(findViewById(R.id.yhjbxx));
         startData = getIntent().getStringExtra("startDate");
         endData = getIntent().getStringExtra("endDate");
@@ -267,8 +303,8 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
                         quaReport = JSON.parseObject(data.toString(), QuaReport.class);
                         name.setText(quaReport.getRealName());
                         idcard.setText(quaReport.getIdNumber());
-                        hight.setText(quaReport.getHeight()+"cm");
-                        wight.setText(quaReport.getWeight()+"Kg");
+                        hight.setText(quaReport.getHeight() + "cm");
+                        wight.setText(quaReport.getWeight() + "Kg");
                         BMI.setText(quaReport.getBmi());
                         bingshi.setText(quaReport.getChronicDiseaseType());
                         time.setText(startData + "~" + endData);
@@ -318,16 +354,15 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
                             map.put("data", quaReport.getRoutines().get(i).getWaist());
                             datas6.add(map);
                         }
-                        L.e(datas6.size()+"");
+                        L.e(datas6.size() + "!!!!");
                         adapter6.notifyDataSetChanged();
-                        recyclerView6.setAdapter(new DataAdapter2_1(activity));
                         for (int i = 0; i < quaReport.getRoutines().size(); i++) {
                             Map<String, Object> map = new ArrayMap<String, Object>();
                             map.put("time", quaReport.getRoutines().get(i).getCheckTime());
                             map.put("data", quaReport.getRoutines().get(i).getHipline());
                             datas7.add(map);
                         }
-                        L.e(datas7.size()+"");
+                        L.e(datas7.size() + "");
                         adapter7.notifyDataSetChanged();
                         for (int i = 0; i < quaReport.getRoutines().size(); i++) {
                             Map<String, Object> map = new ArrayMap<String, Object>();
@@ -364,38 +399,34 @@ public class QuaReportDetailsActivity extends BaseFragmentActivity {
                             datas12.add(map);
                         }
                         adapter12.notifyDataSetChanged();
-
-
+                        for (int i = 0; i < quaReport.getBloodPressures().size(); i++) {
+                            Map<String, Object> item = new HashMap<String, Object>();
+                            item.put("id", quaReport.getBloodPressures().get(i).getId());
+                            item.put("uploadTime",quaReport.getBloodPressures().get(i).getUploadTime().substring(0,4)+"\n"+quaReport.getBloodPressures().get(i).getUploadTime().substring(5,10));
+                            item.put("morningSystolicPressure", quaReport.getBloodPressures().get(i).getMorningSystolicPressure());
+                            item.put("morningDiastolicPressure", quaReport.getBloodPressures().get(i).getMorningDiastolicPressure());
+                            item.put("pulseRate", quaReport.getBloodPressures().get(i).getPulseRate());
+                            item.put("mspState", quaReport.getBloodPressures().get(i).getMspState());
+                            item.put("mdpState", quaReport.getBloodPressures().get(i).getMdpState());
+                            item.put("prState", quaReport.getBloodPressures().get(i).getPrState());
+                            datas_xy.add(item);
+                        }
+                        bloodPressureAdapter.notifyDataSetChanged();
+                        for (int i = 0; i < quaReport.getBloodSugars().size(); i++) {
+                            Map<String, Object> item = new HashMap<String, Object>();
+                            item.put("id", quaReport.getBloodSugars().get(i).getId());
+                            item.put("uploadTime",quaReport.getBloodSugars().get(i).getUploadTime().substring(0,4)+"\n"+quaReport.getBloodSugars().get(i).getUploadTime().substring(5,10));
+                            item.put("fastBloodSugar", quaReport.getBloodSugars().get(i).getFastBloodSugar());
+                            item.put("postPrandilaSugar", quaReport.getBloodSugars().get(i).getPostPrandilaSugar());
+                            item.put("randomBloodSugar", quaReport.getBloodSugars().get(i).getRandomBloodSugar());
+                            item.put("fbsState", quaReport.getBloodSugars().get(i).getFbsState());
+                            item.put("ppsState", quaReport.getBloodSugars().get(i).getPpsState());
+                            item.put("rbsState", quaReport.getBloodSugars().get(i).getRbsState());
+                            datas_xt.add(item);
+                        }
+                        bloodSugarAdapterr.notifyDataSetChanged();
                     }
                 });
-//        RequestManager.getObject(String.format(DOCTOR_HEALTH_MONTH_AND_QUA_DETAILS,"2016-12-09", "2017-03-09"),
-//                activity,params , new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject data) {
-//                        L.e(data.toString());
-////                        try {
-////                            JSONArray array = data.getJSONArray("results");
-//////                            if (pageNo == 1) datas.clear();
-////                            for (int i = 0; i < array.length(); i++) {
-////                                Map<String, Object> item = new HashMap<String, Object>();
-////                                JSONObject jsonObject = array.getJSONObject(i);
-////                                item.put("startTime", jsonObject.getString("startTime"));
-////                                item.put("endTime", jsonObject.getString("endTime"));
-////                                item.put("id", jsonObject.getString("id"));
-////                                item.put("checked", jsonObject.getString("checked"));
-////                                item.put("reportType", jsonObject.getString("reportType"));
-////                            }
-////                        } catch (JSONException e) {
-////                            e.printStackTrace();
-////                        }
-//
-//                    }
-//                }, new RequestErrorListener() {
-//                    @Override
-//                    public void requestError(VolleyError e) {
-//
-//                    }
-//                });
     }
 
 

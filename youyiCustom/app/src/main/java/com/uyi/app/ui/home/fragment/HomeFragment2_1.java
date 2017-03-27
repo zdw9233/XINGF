@@ -8,6 +8,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -59,6 +60,12 @@ public class HomeFragment2_1 extends BaseFragment implements ViewPager.OnPageCha
     private TextView mConsultingNum;
     @ViewInject(R.id.question_num)
     private TextView mQuestionNum;
+    @ViewInject(R.id.messge_new)
+    private TextView messge_new;
+    @ViewInject(R.id.my_report_new)
+    private ImageView my_report_new;
+    @ViewInject(R.id.my_schedule_new)
+    private ImageView my_schedule_new;
     List<T> list = new ArrayList<>();
     private int[] radioIds = {R.id.radioButton1, R.id.radioButton2,R.id.radioButton3};
     UserInfo userInfo;
@@ -77,6 +84,9 @@ public class HomeFragment2_1 extends BaseFragment implements ViewPager.OnPageCha
 
     @Override
     protected void onInitLayoutAfter() {
+        initdata();
+    }
+    private void pageView(){
         pagerData = new PagerData();
         mViewPager.addOnPageChangeListener(this);
         RequestManager.getObject(String.format(Constens.ELECTROCARDIOGRAN, UserInfoManager.getLoginUserInfo(getContext()).userId), this, null, new Response.Listener<JSONObject>() {
@@ -117,9 +127,6 @@ public class HomeFragment2_1 extends BaseFragment implements ViewPager.OnPageCha
                 mPagerAdapter.notifyDataSetChanged();
             }
         });
-        initdata();
-
-
     }
     /**
      * 初始化界面程序
@@ -256,7 +263,11 @@ public class HomeFragment2_1 extends BaseFragment implements ViewPager.OnPageCha
     public void onResume() {
         super.onResume();
         L.d(TAG, "onResume");
-        MessageService.loadMessagesAll(context);
+        onPageSelected(0);
+        pageView();
+        getNews();
+
+//        MessageService.loadMessagesAll(context);
 //        refreshMessage();
     }
 
@@ -302,5 +313,32 @@ public class HomeFragment2_1 extends BaseFragment implements ViewPager.OnPageCha
             mQuestionNum.setVisibility(View.VISIBLE);
             mQuestionNum.setText(count + "");
         }
+    }
+
+    public void getNews() {
+        RequestManager.getObject(Constens.DOCTOR_HEALTH_NEWS, getActivity(), new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    L.e("HomeNEW==", data.toString());
+                    if(data.getInt("message")> 0){
+                        messge_new.setVisibility(View.VISIBLE);
+                    }else{
+                        messge_new.setVisibility(View.GONE);
+                    }
+                    if(data.getBoolean("mySchedule")){
+                        my_schedule_new.setVisibility(View.VISIBLE);
+                    }else{
+                        my_schedule_new.setVisibility(View.GONE);
+                    }
+                    if(data.getBoolean("myPresentation")){
+                        my_report_new.setVisibility(View.VISIBLE);
+                    }else{
+                        my_report_new.setVisibility(View.GONE);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

@@ -19,6 +19,7 @@ import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.report.model.Report;
+import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.RequestManager;
 
@@ -101,6 +102,7 @@ public class ReportActivity extends BaseFragmentActivity {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportActivity.this, null).dismiss();
+                L.e(jsonObject.toString());
                 mReport = JSON.parseObject(jsonObject.toString(), Report.class);
 
                 if(mReport.basalMetabolism == null){
@@ -121,6 +123,24 @@ public class ReportActivity extends BaseFragmentActivity {
             if(mReport.whr == null){
                 mReport.whr = "";
             }
+                if(mReport.fatPercentage_tred == null){
+                    mReport.fatPercentage_tred = "";
+                }
+                if(mReport.basalMetabolism_tred == null){
+                    mReport.basalMetabolism_tred = "";
+                }
+                if(mReport.waterContent_tred == null){
+                    mReport.waterContent_tred = "";
+                }
+                if(mReport.waist_tred == null){
+                    mReport.waist_tred = "";
+                }
+                if(mReport.hipline_tred == null){
+                    mReport.hipline_tred = "";
+                }
+                if(mReport.whr_tred == null){
+                    mReport.whr_tred = "";
+                }
                 onClick(findViewById(R.id.jkbg));
             }
         });

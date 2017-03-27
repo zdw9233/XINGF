@@ -6,7 +6,7 @@ import java.util.List;
  * Created by ThinkPad on 2017/3/16.
  */
 
-public class QuaReport {
+public class MonthReport {
 
     /**
      * customerId : 1627
@@ -15,19 +15,19 @@ public class QuaReport {
      * height : 153
      * weight : 47
      * bmi : 20.08
-     * bloodPressure_pic : http://localhost:8080/pics/business/images/business/2017/03/524b6c03-4956-4273-9ba7-b0935a034ff4.jpg
-     * bloodSugar_pic : http://localhost:8080/pics/business/images/business/2017/03/2792f2c6-6da4-4474-b75a-2f06d6001ee7.jpg
-     * allNumSugar : 5
-     * allNumPressure : 8
-     * allNum : 8
+     * bloodPressure_pic : http://localhost:8080/pics/business/images/business/2017/03/be420365-632e-4f3b-ba8c-f6c397f30fcc.jpg
+     * bloodSugar_pic : http://localhost:8080/pics/business/images/business/2017/03/0ce1c248-c60e-45dc-af85-1c1df7c0e552.jpg
+     * allNumSugar : 3
+     * allNumPressure : 6
+     * allNum : 6
      * chronicDiseaseType : 高血压+糖尿病
      * routines : [{"id":56561,"checkTime":"2017-03-01","spo":"67","fatPercentage":"1.0","basalMetabolism":"1.0","waterContent":"1.0","waist":"1.0","hipline":"0.7","whr":"1.0"},{"id":56562,"checkTime":"2017-03-02","spo":"5","fatPercentage":"1.0","basalMetabolism":"1.0","waterContent":"1.0","waist":"0.6","hipline":"\u2014\u2014","whr":"0.5"}]
      * bloodFats : [{"id":56561,"checkTime":"2017-03-01","urineAcid":"33.0","bloodFatChol":"55.0","bloodFatTg":"66.0","bloodFatHdl":"88.0","bloodFatLdl":"77.0"},{"id":56562,"checkTime":"2017-03-02","urineAcid":"7.0","bloodFatChol":"4.0","bloodFatTg":"4.0","bloodFatHdl":"5.0","bloodFatLdl":"6.0"}]
-     * bloodPressures : [{"id":56567,"uploadTime":"2017-03-17 16:04:40","uploadItems":"血压/血糖/脉搏","isWarning":true,"morningSystolicPressure":222,"morningSystolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 130）异常.","mspState":1,"morningDiastolicPressure":222,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":222,"pulseRateWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 90）异常.","prState":1,"checkTime":"2016-12-24 21:00:00","warning":true},{"id":56566,"uploadTime":"2017-03-17 15:57:19","uploadItems":"血压/血糖/脉搏","isWarning":true,"morningSystolicPressure":90,"morningSystolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 100）异常.","mspState":2,"morningDiastolicPressure":90,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":90,"prState":0,"checkTime":"2017-02-10 02:00:00","warning":true},{"id":56565,"uploadTime":"2017-03-17 15:56:28","uploadItems":"血压/血糖/脉搏","isWarning":true,"morningSystolicPressure":123,"mspState":0,"morningDiastolicPressure":123,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":123,"pulseRateWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 90）异常.","prState":1,"checkTime":"2016-12-24 02:00:00","warning":true},{"id":56562,"uploadTime":"2017-03-13 09:52:32","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":false,"morningSystolicPressure":80,"morningSystolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 100）异常.","mspState":2,"morningDiastolicPressure":120,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":33,"pulseRateWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 50）异常.","prState":2,"checkTime":"2017-03-02 02:00:00","warning":false},{"id":56561,"uploadTime":"2017-03-13 09:51:04","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":true,"morningSystolicPressure":90,"morningSystolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 100）异常.","mspState":2,"morningDiastolicPressure":120,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":60,"prState":0,"checkTime":"2017-03-01 01:00:00","warning":true},{"id":55185,"uploadTime":"2017-02-21 19:08:21","uploadItems":"血压/心电图/检查报告.","isWarning":false,"morningSystolicPressure":111,"mspState":0,"checkTime":"2017-02-21 19:08:21","warning":false},{"id":55184,"uploadTime":"2017-02-21 19:01:15","uploadItems":"血压/心电图","isWarning":false,"morningSystolicPressure":122,"mspState":0,"checkTime":"2017-02-21 19:01:15","warning":false},{"id":55183,"uploadTime":"2017-02-21 19:00:27","uploadItems":"血压/心电图","isWarning":false,"morningSystolicPressure":122,"mspState":0,"checkTime":"2017-02-21 19:00:27","warning":false}]
-     * bloodSugars : [{"id":56567,"uploadTime":"2017-03-17 16:04:40","uploadItems":"血压/血糖/脉搏","isWarning":true,"fastBloodSugar":222,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","fbsState":1,"postPrandilaSugar":222,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","ppsState":1,"randomBloodSugar":222,"randomBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","rbsState":1,"checkTime":"2016-12-24 21:00:00","warning":true},{"id":56566,"uploadTime":"2017-03-17 15:57:19","uploadItems":"血压/血糖/脉搏","isWarning":true,"fastBloodSugar":90,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","fbsState":1,"postPrandilaSugar":90,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","ppsState":1,"randomBloodSugar":90,"randomBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","rbsState":1,"checkTime":"2017-02-10 02:00:00","warning":true},{"id":56565,"uploadTime":"2017-03-17 15:56:28","uploadItems":"血压/血糖/脉搏","isWarning":true,"fastBloodSugar":123,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","fbsState":1,"postPrandilaSugar":123,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","ppsState":1,"randomBloodSugar":123,"randomBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","rbsState":1,"checkTime":"2016-12-24 02:00:00","warning":true},{"id":56562,"uploadTime":"2017-03-13 09:52:32","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":false,"fastBloodSugar":5,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","fbsState":2,"postPrandilaSugar":6,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","ppsState":2,"randomBloodSugar":7,"rbsState":0,"checkTime":"2017-03-02 02:00:00","warning":false},{"id":56561,"uploadTime":"2017-03-13 09:51:04","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":true,"fastBloodSugar":5,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","fbsState":2,"postPrandilaSugar":6,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","ppsState":2,"randomBloodSugar":7,"rbsState":0,"checkTime":"2017-03-01 01:00:00","warning":true}]
-     * pressureReportText : 您从2016-12-09至2017-03-09内共测量了8次血压，其中收缩压最高为222，最低80；舒张压最高为222，最低90，其中5次超出了正常血压范围，异常率占62.5%， 提示您的血压控制不理想，根据您的年龄阶段、疾病状况和我国居民高血压治疗指南的建议，您的血压的理想控制范围是：收缩压100至130mmHg，舒张压60至80mmHg，如果您已经按照医嘱要求服用降压药物，根据您这一阶段的监测情况，需要请求医生的专业帮助，您可以通过“优医”在线咨询与您的主诊医生取得联系，必要时需要调整药物治疗方案。
-     * sugarReportText : 您从2016-12-09至2017-03-09内共测量了5次血糖，其中空腹血糖最高为222，最低5；餐后血糖最高为222.0mmol/L，最低为6.0mmol/L其中5次超出了正常血糖范围，异常率占100% ，提示您的血糖控制不理想。如果您今天已经按照医嘱要求服用降糖药物或注射了胰岛素，并且您的血糖监测符合要求，根据您的年龄阶段、疾病状况和中国糖尿病防治指南的建议，您的空腹血糖的理想控制范围是7.0mmol/L至11.1mmol/L，餐后血糖的理想控制范围是7.0mmol/L至11.1mmol/L，根据您这一阶段的监测情况，需要请求医生的专业帮助，您可以通过“优医”在线咨询与您的主诊医生取得联系，必要时需要调整药物治疗方案。
-     * type : 2
+     * bloodPressures : [{"id":56566,"uploadTime":"2017-03-17 15:57:19","uploadItems":"血压/血糖/脉搏","isWarning":true,"morningSystolicPressure":90,"morningSystolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 100）异常.","mspState":2,"morningDiastolicPressure":90,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":90,"prState":0,"checkTime":"2017-02-10 02:00:00","warning":true},{"id":56562,"uploadTime":"2017-03-13 09:52:32","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":false,"morningSystolicPressure":80,"morningSystolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 100）异常.","mspState":2,"morningDiastolicPressure":120,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":33,"pulseRateWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 50）异常.","prState":2,"checkTime":"2017-03-02 02:00:00","warning":false},{"id":56561,"uploadTime":"2017-03-13 09:51:04","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":true,"morningSystolicPressure":90,"morningSystolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 100）异常.","mspState":2,"morningDiastolicPressure":120,"morningDiastolicPressureWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.","mdpState":1,"pulseRate":60,"prState":0,"checkTime":"2017-03-01 01:00:00","warning":true},{"id":55185,"uploadTime":"2017-02-21 19:08:21","uploadItems":"血压/心电图/检查报告.","isWarning":false,"morningSystolicPressure":111,"mspState":0,"checkTime":"2017-02-21 19:08:21","warning":false},{"id":55184,"uploadTime":"2017-02-21 19:01:15","uploadItems":"血压/心电图","isWarning":false,"morningSystolicPressure":122,"mspState":0,"checkTime":"2017-02-21 19:01:15","warning":false},{"id":55183,"uploadTime":"2017-02-21 19:00:27","uploadItems":"血压/心电图","isWarning":false,"morningSystolicPressure":122,"mspState":0,"checkTime":"2017-02-21 19:00:27","warning":false}]
+     * bloodSugars : [{"id":56566,"uploadTime":"2017-03-17 15:57:19","uploadItems":"血压/血糖/脉搏","isWarning":true,"fastBloodSugar":90,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","fbsState":1,"postPrandilaSugar":90,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","ppsState":1,"randomBloodSugar":90,"randomBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.","rbsState":1,"checkTime":"2017-02-10 02:00:00","warning":true},{"id":56562,"uploadTime":"2017-03-13 09:52:32","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":false,"fastBloodSugar":5,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","fbsState":2,"postPrandilaSugar":6,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","ppsState":2,"randomBloodSugar":7,"rbsState":0,"checkTime":"2017-03-02 02:00:00","warning":false},{"id":56561,"uploadTime":"2017-03-13 09:51:04","uploadItems":"血压/心率/血糖/尿酸/血脂/脉搏/血氧饱和度","isWarning":true,"fastBloodSugar":5,"fastBloodSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","fbsState":2,"postPrandilaSugar":6,"postPrandilaSugarWarning":"广州市老年慢性疾病管理团队提示您：该项指标（< 7.0）异常.","ppsState":2,"randomBloodSugar":7,"rbsState":0,"checkTime":"2017-03-01 01:00:00","warning":true}]
+     * bloodPressureText : 您本月测量血压数值明显过高，多次超出系统设定的报警值，提示您存在一定的健康风险，如果您目前合并有头晕、头痛、心悸、胸闷、气短等不适，请暂停手头工作稍事休息，我们的医生团队会直接电话联系您，请保持手机畅通。
+     * bloodSugarText : 您本月测量的血糖数值明显过高，多次超出系统设定的报警值,，提示您存在一定的健康风险，如果您目前合并有口干、头晕、心悸、肢体乏力等不适，请立即暂停手头工作，我们的医生团队会直接电话联系您，请保持手机畅通。
+     * type : 1
      */
 
     private int customerId;
@@ -42,8 +42,8 @@ public class QuaReport {
     private int allNumPressure;
     private int allNum;
     private String chronicDiseaseType;
-    private String pressureReportText;
-    private String sugarReportText;
+    private String bloodPressureText;
+    private String bloodSugarText;
     private int type;
     private List<RoutinesBean> routines;
     private List<BloodFatsBean> bloodFats;
@@ -146,20 +146,20 @@ public class QuaReport {
         this.chronicDiseaseType = chronicDiseaseType;
     }
 
-    public String getPressureReportText() {
-        return pressureReportText;
+    public String getBloodPressureText() {
+        return bloodPressureText;
     }
 
-    public void setPressureReportText(String pressureReportText) {
-        this.pressureReportText = pressureReportText;
+    public void setBloodPressureText(String bloodPressureText) {
+        this.bloodPressureText = bloodPressureText;
     }
 
-    public String getSugarReportText() {
-        return sugarReportText;
+    public String getBloodSugarText() {
+        return bloodSugarText;
     }
 
-    public void setSugarReportText(String sugarReportText) {
-        this.sugarReportText = sugarReportText;
+    public void setBloodSugarText(String bloodSugarText) {
+        this.bloodSugarText = bloodSugarText;
     }
 
     public int getType() {
@@ -376,21 +376,21 @@ public class QuaReport {
 
     public static class BloodPressuresBean {
         /**
-         * id : 56567
-         * uploadTime : 2017-03-17 16:04:40
+         * id : 56566
+         * uploadTime : 2017-03-17 15:57:19
          * uploadItems : 血压/血糖/脉搏
          * isWarning : true
-         * morningSystolicPressure : 222
-         * morningSystolicPressureWarning : 广州市老年慢性疾病管理团队提示您：该项指标（> 130）异常.
-         * mspState : 1
-         * morningDiastolicPressure : 222
+         * morningSystolicPressure : 90
+         * morningSystolicPressureWarning : 广州市老年慢性疾病管理团队提示您：该项指标（< 100）异常.
+         * mspState : 2
+         * morningDiastolicPressure : 90
          * morningDiastolicPressureWarning : 广州市老年慢性疾病管理团队提示您：该项指标（> 80）异常.
          * mdpState : 1
-         * pulseRate : 222
-         * pulseRateWarning : 广州市老年慢性疾病管理团队提示您：该项指标（> 90）异常.
-         * prState : 1
-         * checkTime : 2016-12-24 21:00:00
+         * pulseRate : 90
+         * prState : 0
+         * checkTime : 2017-02-10 02:00:00
          * warning : true
+         * pulseRateWarning : 广州市老年慢性疾病管理团队提示您：该项指标（< 50）异常.
          */
 
         private int id;
@@ -404,10 +404,10 @@ public class QuaReport {
         private String morningDiastolicPressureWarning;
         private int mdpState;
         private int pulseRate;
-        private String pulseRateWarning;
         private int prState;
         private String checkTime;
         private boolean warning;
+        private String pulseRateWarning;
 
         public int getId() {
             return id;
@@ -497,14 +497,6 @@ public class QuaReport {
             this.pulseRate = pulseRate;
         }
 
-        public String getPulseRateWarning() {
-            return pulseRateWarning;
-        }
-
-        public void setPulseRateWarning(String pulseRateWarning) {
-            this.pulseRateWarning = pulseRateWarning;
-        }
-
         public int getPrState() {
             return prState;
         }
@@ -528,24 +520,32 @@ public class QuaReport {
         public void setWarning(boolean warning) {
             this.warning = warning;
         }
+
+        public String getPulseRateWarning() {
+            return pulseRateWarning;
+        }
+
+        public void setPulseRateWarning(String pulseRateWarning) {
+            this.pulseRateWarning = pulseRateWarning;
+        }
     }
 
     public static class BloodSugarsBean {
         /**
-         * id : 56567
-         * uploadTime : 2017-03-17 16:04:40
+         * id : 56566
+         * uploadTime : 2017-03-17 15:57:19
          * uploadItems : 血压/血糖/脉搏
          * isWarning : true
-         * fastBloodSugar : 222.0
+         * fastBloodSugar : 90.0
          * fastBloodSugarWarning : 广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.
          * fbsState : 1
-         * postPrandilaSugar : 222.0
+         * postPrandilaSugar : 90.0
          * postPrandilaSugarWarning : 广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.
          * ppsState : 1
-         * randomBloodSugar : 222.0
+         * randomBloodSugar : 90.0
          * randomBloodSugarWarning : 广州市老年慢性疾病管理团队提示您：该项指标（> 11.1）异常.
          * rbsState : 1
-         * checkTime : 2016-12-24 21:00:00
+         * checkTime : 2017-02-10 02:00:00
          * warning : true
          */
 

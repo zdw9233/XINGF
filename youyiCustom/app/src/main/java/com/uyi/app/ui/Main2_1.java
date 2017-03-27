@@ -3,7 +3,6 @@ package com.uyi.app.ui;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -35,6 +34,7 @@ import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.health.FollowUpPayActivity;
 import com.uyi.app.ui.home.fragment.HomeFragment2_1;
 import com.uyi.app.ui.personal_2_1.PersonalFragment2_1;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.NetUtils;
 import com.uyi.app.utils.T;
 import com.uyi.custom.app.R;
@@ -81,6 +81,8 @@ public class Main2_1 extends BaseFragmentActivity implements MessageConform.OnMe
     @ViewInject(R.id.main_tab_3_text)
     private TextView main_tab_3_text;
 
+    @ViewInject(R.id.couls_new)
+    private TextView couls_new;
 
     // 点击事件
     @OnClick({R.id.main_tab_1, R.id.main_tab_2, R.id.main_tab_3})
@@ -211,9 +213,10 @@ public class Main2_1 extends BaseFragmentActivity implements MessageConform.OnMe
             UserService.loadUserInfo(application);
             MessageService.loadMessagesAll(activity);
 //            replaceView(0);
+//            getNews();
             changeFragment(0);
-            mBeansReceiver = new BeansReceiver();
-            registerReceiver(mBeansReceiver, new IntentFilter("com.uyi.beans"));
+//            mBeansReceiver = new BeansReceiver();
+//            registerReceiver(mBeansReceiver, new IntentFilter("com.uyi.beans"));
         }
 
     }
@@ -333,13 +336,34 @@ public class Main2_1 extends BaseFragmentActivity implements MessageConform.OnMe
             startActivity(new Intent(Main2_1.this, FollowUpPayActivity.class));
         }
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNews();
 
+    }
+    public void getNews() {
+        RequestManager.getObject(Constens.DOCTOR_HEALTH_NEWS, activity, new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    L.e("MainNEW==",data.toString());
+                            if(data.getInt("consult")> 0){
+                                couls_new.setVisibility(View.VISIBLE);
+                            }else{
+                                couls_new.setVisibility(View.GONE);
+                            }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
     private class BeansReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            requestUpdateInfo();
+//            requestUpdateInfo();
         }
     }
 

@@ -17,8 +17,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
-            android:text="脂肪率" />
+            android:gravity="center"
+            android:text=" " />
 
         <TextView
             android:id="@+id/jcdx"
@@ -27,8 +27,8 @@
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
-            android:gravity="end"
-            android:text="脂肪率" />
+            android:gravity="center"
+            android:text=" " />
     </TableRow>
 
     <TableRow
@@ -43,8 +43,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
-            android:text="脂肪率" />
+            android:gravity="center"
+            android:text=" " />
 
         <TextView
             android:id="@+id/yw"
@@ -53,8 +53,8 @@
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
-            android:gravity="end"
-            android:text="脂肪率" />
+            android:gravity="center"
+            android:text=" " />
     </TableRow>
 
     <TableRow
@@ -69,8 +69,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="end"
-            android:text="脂肪率" />
+            android:gravity="center"
+            android:text=" " />
 
         <TextView
             android:id="@+id/ytb"
@@ -79,8 +79,8 @@
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
-            android:gravity="end"
-            android:text="脂肪率" />
+            android:gravity="center"
+            android:text=" " />
     </TableRow>
 
 </LinearLayout>

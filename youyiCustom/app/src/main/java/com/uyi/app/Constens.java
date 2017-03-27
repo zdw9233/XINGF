@@ -10,8 +10,7 @@ public abstract class Constens {
     public static int PHOTO_REQUEST_TAKEPHOTO = 10021;//相机
     public static int PHOTO_REQUEST_CUT = 10022;//裁剪
     public static int START_ALIPAY_FOR_RESULT = 10003;//阿里支付跳转界面
-
-
+    public static final String TEST =  "192.168.0.21:8080/ROOT";//本地测试
     public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String DATE_FORMAT_HH_MM_SS = "HH:mm:ss";
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -181,6 +180,11 @@ public abstract class Constens {
      * 查最新报告
      */
     public final static String DOCTOR_HEALTH_NEWS_REPORT = SERVER_URL + "/app/api/account/getRecentReport";
+    /**
+     * /**
+     * 查是否有新消息
+     */
+    public final static String DOCTOR_HEALTH_NEWS = SERVER_URL + "/app/api/account/getIsNews";
     /**
      * /**
      * 查风险评估列表

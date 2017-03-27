@@ -18,6 +18,8 @@ import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.MessageConform;
 import com.uyi.app.ui.personal.message.MessageActivity;
+import com.uyi.app.utils.JSONObjectUtils;
+import com.uyi.app.utils.L;
 import com.uyi.custom.app.R;
 import com.volley.ImageCacheManager;
 import com.volley.RequestManager;
@@ -36,6 +38,8 @@ public class PersonalFragment2_1 extends BaseFragment implements MessageConform.
     private RoundedImageView personal_head;
     @ViewInject(R.id.personal_servece)
     private TextView personal_servece;
+    @ViewInject(R.id.messge_new)
+    private TextView messge_new;
     private MessageConform conform;
     @Override
     protected int getLayoutResouesId() {
@@ -46,25 +50,33 @@ public class PersonalFragment2_1 extends BaseFragment implements MessageConform.
     protected void onInitLayoutAfter() {
 
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        RequestManager.getObject(Constens.ACCOUNT_DETAIL, getActivity(), new Response.Listener<JSONObject>() {
+    public void getNews() {
+        RequestManager.getObject(Constens.DOCTOR_HEALTH_NEWS, getActivity(), new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
-                    System.out.println(data.toString());
-                    ImageCacheManager.loadImage(data.getString("icon"), ImageCacheManager.getImageListener(personal_head, null, null));
-                    title_tab3.setText(data.getString("realName"));
+                    L.e("PersonNEW==",data.toString());
+                    if(data.getInt("message")> 0){
+                        messge_new.setVisibility(View.VISIBLE);
+                    }else{
+                        messge_new.setVisibility(View.GONE);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
-        RequestManager.getObject(String.format(Constens.LIFE_DEIT, UserInfoManager.getLoginUserInfo(getActivity()).userId), getActivity(), new Response.Listener<JSONObject>() {
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNews();
+        RequestManager.getObject(Constens.ACCOUNT_INFO, getActivity(), new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 try {
-                    personal_servece.setText(data.getJSONObject("serviceCount").getString("name"));
+                    L.e("ONE", data.toString());
+                    ImageCacheManager.loadImage(data.getString("icon"), ImageCacheManager.getImageListener(personal_head, null, null));
+                    title_tab3.setText(data.getString("realName"));
+                    personal_servece.setText(JSONObjectUtils.getString(data, "servicePackageName"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

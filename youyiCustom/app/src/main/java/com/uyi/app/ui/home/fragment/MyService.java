@@ -1,6 +1,8 @@
 package com.uyi.app.ui.home.fragment;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -126,26 +128,32 @@ public class MyService extends BaseActivity implements SwipeRefreshLayout.OnRefr
                                 for (int j = 0; j < datas.size(); j++) {
                                     if (datas.get(j).getExecuteBegin().substring(0, 4).equals(myDatas.get(i).getYear())) {
                                         MyServerce.ServerceMonth serverceMonth = new MyServerce.ServerceMonth();
-                                        serverceMonth.setMonth(datas.get(j).getExecuteBegin().substring(5, 10));
+                                        serverceMonth.setMonth(datas.get(j).getExecuteBegin().substring(5, datas.get(j).getExecuteBegin().length()));
                                         String str = "";
                                         for (int k = 0; k < datas.get(j).getEntryName().size(); k++) {
                                             if (datas.get(j).getEntryName().get(k).getStatus() == 0) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">未完成</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">未完成</font>" + ")" + "<br>";
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 1) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "、";
+                                                String url = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                                                        + getResources().getResourcePackageName(R.drawable.gou) + "/"
+                                                        + getResources().getResourceTypeName(R.drawable.gou) + "/"
+                                                        + getResources().getResourceEntryName(R.drawable.gou))+"";
+                                                String hmtl = " <img src='"+url+"'/><br>";
+                                                str += datas.get(j).getEntryName().get(k).getName()+hmtl;
+                                                L.e(hmtl);
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 2) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">待延期</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">待延期</font>" + ")" + "<br>";
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 3) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已延期</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已延期</font>" + ")" + "<br>";
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 4) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已失效</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已失效</font>" + ")" + "<br>";
                                             } else {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "<br>";
                                             }
 
                                         }
                                         if (!str.equals("")) {
-                                            str = str.substring(0, str.length() - 1);
+                                            str = str.substring(0, str.length() - 4);
                                         }
                                         serverceMonth.setData(str);
                                         sv.add(serverceMonth);
@@ -209,25 +217,30 @@ public class MyService extends BaseActivity implements SwipeRefreshLayout.OnRefr
                                 for (int j = 0; j < datas.size(); j++) {
                                     if (datas.get(j).getExecuteBegin().substring(0, 4).equals(myDatas.get(i).getYear())) {
                                         MyServerce.ServerceMonth serverceMonth = new MyServerce.ServerceMonth();
-                                        serverceMonth.setMonth(datas.get(j).getExecuteBegin().substring(5, 10));
+                                        serverceMonth.setMonth(datas.get(j).getExecuteBegin().substring(5, datas.get(j).getExecuteBegin().length()));
                                         String str = "";
                                         for (int k = 0; k < datas.get(j).getEntryName().size(); k++) {
                                             if (datas.get(j).getEntryName().get(k).getStatus() == 0) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">未完成</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">未完成</font>" + ")" + "<br>";
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 1) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "、";
+                                                String url = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                                                        + getResources().getResourcePackageName(R.drawable.gou) + "/"
+                                                        + getResources().getResourceTypeName(R.drawable.gou) + "/"
+                                                        + getResources().getResourceEntryName(R.drawable.gou))+"";
+                                                String hmtl = " <img src='"+url+"'/><br>";
+                                                str += datas.get(j).getEntryName().get(k).getName()+hmtl;
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 2) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">待延期</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">待延期</font>" + ")" + "<br>";
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 3) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已延期</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已延期</font>" + ")" + "<br>";
                                             } else if (datas.get(j).getEntryName().get(k).getStatus() == 4) {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已失效</font>" + ")" + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "(" + "<font color=\"#fb7070\">已失效</font>" + ")" + "<br>";
                                             } else {
-                                                str += datas.get(j).getEntryName().get(k).getName() + "、";
+                                                str += datas.get(j).getEntryName().get(k).getName() + "<br>";
                                             }
                                         }
                                         if (!str.equals("")) {
-                                            str = str.substring(0, str.length() - 1);
+                                            str = str.substring(0, str.length() - 4);
                                         }
                                         serverceMonth.setData(str);
                                         sv.add(serverceMonth);

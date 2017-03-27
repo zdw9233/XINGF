@@ -66,6 +66,8 @@ public class ConsultFragment2_1 extends BaseFragment implements EndlessRecyclerV
     private EndlessRecyclerView recyclerView;
     @ViewInject(R.id.swipeRefreshLayout)
     private SwipeRefreshLayout swipeRefreshLayout;
+    @ViewInject(R.id.messge_new)
+    private TextView messge_new;
     private LinearLayoutManager linearLayoutManager;
     private HealthyQuestionsAdapter2_1 healthyQuestionsAdapter;
     int choseType = 1;
@@ -241,7 +243,7 @@ public class ConsultFragment2_1 extends BaseFragment implements EndlessRecyclerV
     public void loadNextPage() {
         isLooding = false;
         if(choseType == 1){
-            Loading.bulid(getView().getContext(), null).show();
+            Loading.bulid(context, null).show();
         RequestManager.getObject(String.format(Constens.HEALTH_ADVICES,pageNo,pageSize),getActivity(), new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
 
@@ -277,7 +279,7 @@ public class ConsultFragment2_1 extends BaseFragment implements EndlessRecyclerV
         });
 
         }else if(choseType == 2){
-            Loading.bulid(getView().getContext(), null).show();
+            Loading.bulid(context, null).show();
             RequestManager.getObject(String.format(Constens.HEALTH_CONSULTS, "1", "1", pageNo, pageSize), getView().getContext(), new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject data) {
@@ -316,5 +318,26 @@ public class ConsultFragment2_1 extends BaseFragment implements EndlessRecyclerV
         }
 
 
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNews();
+    }
+    public void getNews() {
+        RequestManager.getObject(Constens.DOCTOR_HEALTH_NEWS, getActivity(), new Response.Listener<JSONObject>() {
+            public void onResponse(JSONObject data) {
+                try {
+                    L.e("consultNEW==", data.toString());
+                    if(data.getInt("message")> 0){
+                        messge_new.setVisibility(View.VISIBLE);
+                    }else{
+                        messge_new.setVisibility(View.GONE);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

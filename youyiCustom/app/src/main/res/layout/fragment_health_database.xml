@@ -397,8 +397,8 @@ android:background="@color/my_service_bg"
         android:paddingLeft="5dp"
         android:textColor="@color/tet_type_3" />
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="7dp"
+        android:layout_height="12dp"
        android:layout_gravity="center_vertical"
        android:layout_marginLeft="6dp"
       android:layout_marginRight="12dp"
@@ -432,8 +432,8 @@ android:background="@color/my_service_bg"
                 android:paddingLeft="5dp"
                 android:textColor="@color/tet_type_3" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="7dp"
+                    android:layout_height="12dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="12dp"

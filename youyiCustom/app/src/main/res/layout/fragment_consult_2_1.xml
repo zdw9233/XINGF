@@ -28,6 +28,15 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="12px"
             android:background="@drawable/nav_message_blue2x" />
+        <TextView
+            android:id="@+id/messge_new"
+            android:visibility="gone"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/red_bg"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
