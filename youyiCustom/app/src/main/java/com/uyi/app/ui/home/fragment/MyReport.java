@@ -79,10 +79,10 @@ public class MyReport extends BaseFragmentActivity {
     private RelativeLayout content4;
     @ViewInject(R.id.content5)
     private RelativeLayout content5;
-String monthStartTime  = "";
-    String monthEndTime  = "";
-    String quaStartTime  = "";
-    String quaEndTime  = "";
+    String monthStartTime = "";
+    String monthEndTime = "";
+    String quaStartTime = "";
+    String quaEndTime = "";
     @ViewInject(R.id.image1)
     private ImageView image1;
     @ViewInject(R.id.image2)
@@ -246,7 +246,7 @@ String monthStartTime  = "";
             case R.id.content2:
                 if (!isTop) {
                     if (news_2.getVisibility() == View.VISIBLE) {
-                        RequestManager.postObject(String.format(Constens.SETTING_REPORT,2, context2id), this, null, new Response.Listener<JSONObject>() {
+                        RequestManager.postObject(String.format(Constens.SETTING_REPORT, 2, context2id), this, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject jsonObject) {
                             }
@@ -274,7 +274,7 @@ String monthStartTime  = "";
                     startActivityForResult(intent2, 10003);
                 } else {
                     if (news_2.getVisibility() == View.VISIBLE) {
-                        RequestManager.postObject(String.format(Constens.SETTING_REPORT,2, context2id), this, null, new Response.Listener<JSONObject>() {
+                        RequestManager.postObject(String.format(Constens.SETTING_REPORT, 2, context2id), this, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject jsonObject) {
                             }
@@ -299,8 +299,8 @@ String monthStartTime  = "";
                 }
                 break;  //个人方案
             case R.id.content3:
-                if(news_2.getVisibility() == View.VISIBLE) {
-                    RequestManager.postObject(String.format(Constens.SETTING_REPORT,4,context3id), this, null, new Response.Listener<JSONObject>() {
+                if (news_3.getVisibility() == View.VISIBLE) {
+                    RequestManager.postObject(String.format(Constens.SETTING_REPORT, 4, context3id), this, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
 
@@ -319,14 +319,14 @@ String monthStartTime  = "";
                     });
                 }
                 Intent intent3 = new Intent();
-                intent3.putExtra("startDate",monthStartTime);
-                intent3.putExtra("endDate",monthEndTime);
-                intent3.setClass(getContext(),MonthReportDetailsActivity.class);
-                startActivityForResult(intent3,10003);
+                intent3.putExtra("startDate", monthStartTime);
+                intent3.putExtra("endDate", monthEndTime);
+                intent3.setClass(getContext(), MonthReportDetailsActivity.class);
+                startActivityForResult(intent3, 10003);
                 break;   //月度报告
             case R.id.content4:
-                if(news_2.getVisibility() == View.VISIBLE) {
-                    RequestManager.postObject(String.format(Constens.SETTING_REPORT,4,context4id), this, null, new Response.Listener<JSONObject>() {
+                if (news_4.getVisibility() == View.VISIBLE) {
+                    RequestManager.postObject(String.format(Constens.SETTING_REPORT, 4, context4id), this, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
 
@@ -345,10 +345,10 @@ String monthStartTime  = "";
                     });
                 }
                 Intent intent4 = new Intent();
-                intent4.putExtra("startDate",quaStartTime);
-                intent4.putExtra("endDate",quaEndTime);
-                intent4.setClass(getContext(),QuaReportDetailsActivity.class);
-                startActivityForResult(intent4,10003);
+                intent4.putExtra("startDate", quaStartTime);
+                intent4.putExtra("endDate", quaEndTime);
+                intent4.setClass(getContext(), QuaReportDetailsActivity.class);
+                startActivityForResult(intent4, 10003);
                 break;   //季度报告
             case R.id.content5:
                 if (news_5.getVisibility() == View.VISIBLE) {
@@ -458,7 +458,6 @@ String monthStartTime  = "";
                                         item2.put("customerName", jsonObject.getString("customerName"));
                                         item2.put("doctorId", jsonObject.getString("doctorId"));
                                         item2.put("doctorName", jsonObject.getString("doctorName"));
-                                        item2.put("attendingDoctor", jsonObject.getString("attendingDoctor"));
                                         item2.put("checked", jsonObject.getString("checked"));
                                         if (!jsonObject.getBoolean("checked")) {
                                             hasNewReport(2);
@@ -527,18 +526,19 @@ String monthStartTime  = "";
                                     try {
                                         hasReport(2);
                                         context2id = data.getJSONObject("topThreeJson").getInt("id");
-                                        if(!data.getJSONObject("topThreeJson").getBoolean("read")){
+                                        if (!data.getJSONObject("topThreeJson").getBoolean("read")) {
                                             hasNewReport(2);
                                         }
 //                                            hasNewReport(2);
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
+                                }
                             }
                             if (data.has("monthReport")) {
                                 hasReport(3);
                                 context3 = data.getJSONObject("monthReport");
+                                context3id = data.getJSONObject("monthReport").getInt("id");
                                 monthStartTime = data.getJSONObject("monthReport").getString("startTime");
                                 monthEndTime = data.getJSONObject("monthReport").getString("endTime");
                                 if (!context3.getBoolean("checked")) {
@@ -593,6 +593,7 @@ String monthStartTime  = "";
                     }
                 });
     }
+
     private void getNews1() {
         RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_NEWS_REPORT),
                 this, new Response.Listener<JSONObject>() {
@@ -617,9 +618,9 @@ String monthStartTime  = "";
                                     item.put("checked", jsonObject.getString("checked"));
                                     if (!jsonObject.getBoolean("checked")) {
                                         hasNewReport(1);
-                                    }else{
+                                    } else {
                                         news_1.setVisibility(View.GONE);
-                                        if( image1_bag.getAnimation() != null)
+                                        if (image1_bag.getAnimation() != null)
                                             image1_bag.clearAnimation();
                                     }
                                     if (jsonObject.has("percentageASVCD")) {
@@ -678,13 +679,12 @@ String monthStartTime  = "";
                                         item2.put("customerName", jsonObject.getString("customerName"));
                                         item2.put("doctorId", jsonObject.getString("doctorId"));
                                         item2.put("doctorName", jsonObject.getString("doctorName"));
-                                        item2.put("attendingDoctor", jsonObject.getString("attendingDoctor"));
                                         item2.put("checked", jsonObject.getString("checked"));
                                         if (!jsonObject.getBoolean("checked")) {
                                             hasNewReport(2);
-                                        }else{
+                                        } else {
                                             news_2.setVisibility(View.GONE);
-                                            if( image2_bag.getAnimation() != null)
+                                            if (image2_bag.getAnimation() != null)
                                                 image2_bag.clearAnimation();
                                         }
                                         if (jsonObject.has("personalHealthManagementTemplateJson")) {
@@ -751,11 +751,11 @@ String monthStartTime  = "";
                                     try {
                                         hasReport(2);
                                         context2id = data.getJSONObject("topThreeJson").getInt("id");
-                                        if(!data.getJSONObject("topThreeJson").getBoolean("read")){
+                                        if (!data.getJSONObject("topThreeJson").getBoolean("read")) {
                                             hasNewReport(2);
-                                        }else{
+                                        } else {
                                             news_2.setVisibility(View.GONE);
-                                            if( image2_bag.getAnimation() != null)
+                                            if (image2_bag.getAnimation() != null)
                                                 image2_bag.clearAnimation();
                                         }
 //                                            hasNewReport(2);
@@ -767,13 +767,14 @@ String monthStartTime  = "";
                             if (data.has("monthReport")) {
                                 hasReport(3);
                                 context3 = data.getJSONObject("monthReport");
+                                context3id = data.getJSONObject("monthReport").getInt("id");
                                 monthStartTime = data.getJSONObject("monthReport").getString("startTime");
                                 monthEndTime = data.getJSONObject("monthReport").getString("endTime");
                                 if (!context3.getBoolean("checked")) {
                                     hasNewReport(3);
-                                }else{
+                                } else {
                                     news_3.setVisibility(View.GONE);
-                                    if( image3_bag.getAnimation() != null)
+                                    if (image3_bag.getAnimation() != null)
                                         image3_bag.clearAnimation();
                                 }
                                 time3.setText(context3.getString("endTime").substring(0, 10));
@@ -786,9 +787,9 @@ String monthStartTime  = "";
                                 context4id = data.getJSONObject("seasonReport").getInt("id");
                                 if (!context4.getBoolean("checked")) {
                                     hasNewReport(4);
-                                }else{
+                                } else {
                                     news_4.setVisibility(View.GONE);
-                                    if( image4_bag.getAnimation() != null)
+                                    if (image4_bag.getAnimation() != null)
                                         image4_bag.clearAnimation();
                                 }
                                 time4.setText(context4.getString("endTime").substring(0, 10));
@@ -798,9 +799,9 @@ String monthStartTime  = "";
                                 context5 = data.getJSONObject("diagnosisReportJson");
                                 if (!context5.getBoolean("checked")) {
                                     hasNewReport(5);
-                                }else{
+                                } else {
                                     news_5.setVisibility(View.GONE);
-                                    if( image5_bag.getAnimation() != null)
+                                    if (image5_bag.getAnimation() != null)
                                         image5_bag.clearAnimation();
                                 }
                                 time5.setText(context5.getString("createTime").substring(0, 10));
@@ -815,6 +816,7 @@ String monthStartTime  = "";
                     }
                 });
     }
+
     @Override
     protected void onInitLayoutAfter() {
         choseType = 1;

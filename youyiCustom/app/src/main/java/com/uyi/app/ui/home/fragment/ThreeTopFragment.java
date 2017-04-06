@@ -131,6 +131,11 @@ public class ThreeTopFragment extends BaseFragment implements BaseRecyclerAdapte
                                 item.put("updateTime", jsonObject.getString("updateTime"));
                                 item.put("checked", jsonObject.getString("checked"));
                                 item.put("status", jsonObject.getString("status"));
+                                if(jsonObject.has("attendingDoctor")){
+                                    item.put("attendingDoctor", jsonObject.getString("attendingDoctor"));
+                                }else{
+                                    item.put("attendingDoctor","");
+                                }
                                 item.put("doctorName", jsonObject.getString("doctorName"));
                                 datas.add(item);
                             }

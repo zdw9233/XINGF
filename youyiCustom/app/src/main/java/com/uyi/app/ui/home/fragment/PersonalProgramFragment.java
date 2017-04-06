@@ -154,7 +154,9 @@ public class PersonalProgramFragment extends BaseFragment implements BaseRecycle
                                 item.put("customerName", jsonObject.getString("customerName"));
                                 item.put("doctorId", jsonObject.getString("doctorId"));
                                 item.put("doctorName", jsonObject.getString("doctorName"));
+                                if(jsonObject.has("attendingDoctor"))
                                 item.put("attendingDoctor", jsonObject.getString("attendingDoctor"));
+                                else    item.put("attendingDoctor","");
                                 item.put("checked", jsonObject.getString("checked"));
                                 if(jsonObject.has("personalHealthManagementTemplateJson")){
                                     if(jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("id")){

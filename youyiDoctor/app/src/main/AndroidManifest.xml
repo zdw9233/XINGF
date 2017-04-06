@@ -459,6 +459,18 @@
             android:name="com.uyi.app.ui.health.ElectrocarDiogramDetailsActivity"
             android:screenOrientation="portrait"
             />
+        <!--  系统更新界面  -->
+        <activity android:name=".PackageInstallerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="application/vnd.android.package-archive" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.uyi.app.ui.personal.messagemanager.fragment.MessageDoctorListFragment"
             android:screenOrientation="portrait"

@@ -1,12 +1,6 @@
 
 package com.uyi.app.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.DecimalFormat;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +10,12 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class StorageUtils {
 
@@ -103,14 +103,19 @@ public class StorageUtils {
 
     public static void installAPK(Context context, final String url) {
 
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//       // String fileName = FILE_ROOT + NetworkUtils.getFileNameFromUrl(url);
+//        intent.setDataAndType(Uri.fromFile(new File(url)),
+//                "application/vnd.android.package-archive");
+//        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.setClassName("com.android.packageinstaller",
+//                "com.android.packageinstaller.PackageInstallerActivity");
+//        context.startActivity(intent);
         Intent intent = new Intent(Intent.ACTION_VIEW);
-       // String fileName = FILE_ROOT + NetworkUtils.getFileNameFromUrl(url);
-        intent.setDataAndType(Uri.fromFile(new File(url)),
-                "application/vnd.android.package-archive");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setClassName("com.android.packageinstaller",
-                "com.android.packageinstaller.PackageInstallerActivity");
+        intent.addCategory("android.intent.category.DEFAULT");
+        intent.setDataAndType(Uri.fromFile(new File(url)), "application/vnd.android.package-archive");
+        //跳转到系统的安装应用页面
         context.startActivity(intent);
     }
     

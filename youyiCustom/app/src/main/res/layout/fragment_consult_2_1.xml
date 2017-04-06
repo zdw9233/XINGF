@@ -80,7 +80,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
 
-                    android:text="问医生"
+                    android:text="咨询医生"
                     android:textColor="@color/tet_type_9"
                     android:textSize="18sp" />
 

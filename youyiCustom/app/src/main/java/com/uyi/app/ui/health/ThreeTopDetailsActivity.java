@@ -51,7 +51,11 @@ public class ThreeTopDetailsActivity extends BaseActivity {
                     public void onResponse(JSONObject data) {
                         L.e(data.toString());
                         try {
-                            doctor.setText(data.getString("attendingDoctor"));
+                            if(data.has("attendingDoctor")){
+                                doctor.setText(data.getString("attendingDoctor"));
+                            }else{
+                                doctor.setText("");
+                            }
                             lururen.setText(data.getString("doctorName"));
                             yonhuxingming.setText(data.getString("customerName"));
                             lurushijian.setText(data.getString("updateTime"));
