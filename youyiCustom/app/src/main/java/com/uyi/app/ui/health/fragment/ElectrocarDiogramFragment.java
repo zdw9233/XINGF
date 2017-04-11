@@ -101,7 +101,7 @@ public class ElectrocarDiogramFragment extends BaseFragment implements EndlessRe
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
                         item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime").substring(0,10));
+                        item.put("uploadTime", jsonObject.getString("uploadTime").replace(" ","\n"));
                         JSONArray array1 = array.getJSONObject(i).getJSONArray("ecg");
                         for (int j = 0; j < array1.length(); j++) {
                             Map<String, Object> item1 = new HashMap<String, Object>();

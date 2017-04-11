@@ -100,7 +100,7 @@
         android:id="@+id/lay1"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:background="?attr/selectableItemBackground">
+        android:background="@drawable/sel_new_white_btn_bg2">
         <ImageView
             android:id="@+id/image1"
             android:layout_width="22dp"
@@ -134,7 +134,7 @@
         android:id="@+id/lay2"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:background="?attr/selectableItemBackground">
+        android:background="@drawable/sel_new_white_btn_bg2">
         <ImageView
             android:id="@+id/image6"
             android:layout_width="22dp"
@@ -169,7 +169,7 @@
             android:id="@+id/lay3"
     android:layout_width="match_parent"
     android:layout_height="59dp"
-    android:background="?attr/selectableItemBackground">
+            android:background="@drawable/sel_new_white_btn_bg2">
     <ImageView
         android:id="@+id/image5"
         android:layout_width="22dp"
@@ -205,7 +205,7 @@
             android:id="@+id/lay4"
     android:layout_width="match_parent"
     android:layout_height="59dp"
-    android:background="?attr/selectableItemBackground">
+            android:background="@drawable/sel_new_white_btn_bg2">
     <ImageView
         android:id="@+id/image14"
         android:layout_width="22dp"
@@ -240,7 +240,7 @@
         android:id="@+id/lay5"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:background="?attr/selectableItemBackground">
+        android:background="@drawable/sel_new_white_btn_bg2">
         <ImageView
             android:id="@+id/image3"
             android:layout_width="22dp"
@@ -274,7 +274,7 @@
         android:id="@+id/lay6"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:background="?attr/selectableItemBackground">
+        android:background="@drawable/sel_new_white_btn_bg2">
         <ImageView
             android:id="@+id/image2"
             android:layout_width="22dp"

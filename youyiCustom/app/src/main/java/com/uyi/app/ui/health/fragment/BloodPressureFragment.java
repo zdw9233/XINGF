@@ -98,7 +98,7 @@ public class BloodPressureFragment extends BaseFragment implements EndlessRecycl
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
                         item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime").substring(0,10));
+                        item.put("uploadTime", jsonObject.getString("uploadTime").replace(" ","\n"));
                         if(jsonObject.has("morningSystolicPressure")){
                             item.put("morningSystolicPressure", jsonObject.getString("morningSystolicPressure"));
                         }else{

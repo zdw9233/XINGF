@@ -56,6 +56,7 @@ public class PersonalPagerAdapter extends PagerAdapter {
             innerScrollView.setVisibility(View.GONE);
             content.setVisibility(View.GONE);
         } else if (position == 1) {
+            lay.setBackgroundResource(R.color.white);
             lay.setEnabled(false);
             if (pagerData == null) {
                 content.setText("您最近还没有测试！");
@@ -64,6 +65,7 @@ public class PersonalPagerAdapter extends PagerAdapter {
                 ImageUtil.load(url = pagerData.getBloodPressure_pic(), img);
             }
         } else if (position == 2) {
+            lay.setBackgroundResource(R.color.white);
             lay.setEnabled(false);
             if (pagerData == null) {
                 content.setText("您最近还没有测试！");

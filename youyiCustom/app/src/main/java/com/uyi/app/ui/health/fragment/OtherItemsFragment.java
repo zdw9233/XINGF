@@ -98,7 +98,7 @@ public class OtherItemsFragment extends BaseFragment implements EndlessRecyclerV
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
                         item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime").substring(0,10));
+                        item.put("uploadTime", jsonObject.getString("uploadTime").replace(" ","\n"));
                         if(jsonObject.has("urineAcid")){
                             item.put("urineAcid", jsonObject.getString("urineAcid"));
                         }else{
