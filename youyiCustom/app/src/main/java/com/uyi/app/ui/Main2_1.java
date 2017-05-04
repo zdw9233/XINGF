@@ -327,9 +327,7 @@ public class Main2_1 extends BaseFragmentActivity implements MessageConform.OnMe
             unregisterReceiver(mBeansReceiver);
         super.onDestroy();
     }
-
     private BeansReceiver mBeansReceiver;
-
     @Override
     public void onClick(MessageConform.Result result, Object object) {
         if (result == MessageConform.Result.OK) {
@@ -373,7 +371,6 @@ public class Main2_1 extends BaseFragmentActivity implements MessageConform.OnMe
                 try {
                     data.getString("beans");
                     UserInfo loginUserInfo = UserInfoManager.getLoginUserInfo(Main2_1.this);
-
                     loginUserInfo.beans = Integer.parseInt(data.getString("beans"));
                     UserInfoManager.setLoginUserInfo(Main2_1.this, loginUserInfo);
                 } catch (Exception e) {

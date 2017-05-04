@@ -1,6 +1,5 @@
 package com.uyi.app.ui.personal.customer;
 
-import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,8 +16,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.UserInfoManager;
-import com.uyi.app.ui.consult.CustomInfoActivity;
-import com.uyi.app.ui.consult.HistoryConsultActivity;
+import com.uyi.app.adapter.BaseRecyclerAdapter;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
@@ -26,9 +24,9 @@ import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.personal.customer.adapter.CustomerAdapter;
-import com.uyi.app.ui.personal.customer.adapter.CustomerAdapter.OnItemCustomerClickListenner;
+import com.uyi.app.ui.personal.customer.adapter.CustomerAdapter2_1;
 import com.uyi.app.utils.L;
+import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -50,7 +48,7 @@ import java.util.Map;
  *
  */
 @ContentView(R.layout.customer)
-public class CustomerActivity extends BaseActivity implements OnRefreshListener, Pager,   OnEditorActionListener, OnItemCustomerClickListenner {
+public class CustomerActivity extends BaseActivity implements OnRefreshListener, Pager,   OnEditorActionListener,BaseRecyclerAdapter.OnItemClickListener{
 	
 	@ViewInject(R.id.headerView) private HeaderView headerView;
 	
@@ -61,7 +59,7 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 	@ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
 	
 	private LinearLayoutManager linearLayoutManager;
-	private CustomerAdapter customerAdapter;
+	private CustomerAdapter2_1 customerAdapter;
 	private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
 	String num = "";
 	String name = "";
@@ -74,9 +72,9 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 			peoplenum.setVisibility(View.GONE);
 		}
 		linearLayoutManager = new LinearLayoutManager(activity);
-		customerAdapter = new CustomerAdapter(activity);
+		customerAdapter = new CustomerAdapter2_1(activity);
 		customerAdapter.setDatas(datas);
-		customerAdapter.setOnItemCustomerClickListenner(this);
+		customerAdapter.setOnItemClickListener(this);
 		recyclerView.setLayoutManager(linearLayoutManager);
 		recyclerView.addItemDecoration(new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL_LIST));
 		recyclerView.setItemAnimator(new DefaultItemAnimator()); 
@@ -175,17 +173,7 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 
 
 	@Override
-	public void click(Map<String, Object> item, View view, int type) {
-		int id =   (int) item.get("id");
-		if(type == 1){
-			Intent intent = new Intent(activity, CustomInfoActivity.class);
-			intent.putExtra("customerId", id);
-			startActivity(intent);
-		}else if(type == 2){
-			Intent intent = new Intent(activity, HistoryConsultActivity.class);
-			intent.putExtra("customerId", id);
-			startActivity(intent);
-		}
+	public void onItemClick(int position, Object data) {
+		T.show(activity,"1",0);
 	}
-
 }

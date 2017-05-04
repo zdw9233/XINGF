@@ -17,6 +17,7 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.utils.JSONObjectUtils;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
@@ -75,6 +76,7 @@ public class LoginActivity extends BaseActivity {
         if (v.getId() == R.id.login_get_password) {
             startActivity(new Intent(activity, GetPasswordActivity.class));
         } else if (v.getId() == R.id.login_submit) {
+            L.e("getdata+++++++++++++++++++++1" );
             String account = login_username.getText().toString();
             final String password = login_password.getText().toString();
             if (ValidationUtils.isNull(account) || ValidationUtils.isNull(password)) {
@@ -84,10 +86,11 @@ public class LoginActivity extends BaseActivity {
             JSONObject params = new JSONObject();
             params.put("account", account);
             params.put("password", password);
+            L.e(""+ params.toString());
             RequestManager.postObject(Constens.LOGIN_URL, activity, params, new Response.Listener<JSONObject>() {
                 public void onResponse(JSONObject data) {
                     UserInfo userInfo = new UserInfo();
-                    System.out.print("getdata+++++++++++++++++++++" + data.toString());
+                    L.e("getdata+++++++++++++++++++++" + data.toString());
                     try {
                         userInfo.authToken = data.getString("authToken");
                         userInfo.type = data.getInt("type");
