@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -16,7 +17,6 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.questions.adapter.HealthyQuestionsDetailsAdapter;
@@ -43,14 +43,10 @@ import java.util.Map;
  */
 @ContentView(R.layout.healthy_questions_detals)
 public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pager {
-
-	@ViewInject(R.id.headerView) private HeaderView headerView;
+	@ViewInject(R.id.lay) private ScrollView lay;
 	@ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
-	
 	@ViewInject(R.id.healthy_questions_details_content) private EditText healthy_questions_details_content;
 	@ViewInject(R.id.healthy_questions_details_submit) private Button healthy_questions_details_submit;
-	
-	
 	private LinearLayoutManager linearLayoutManager;
 	private HealthyQuestionsDetailsAdapter healthyQuestionsAdapter;
 	private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
@@ -59,7 +55,6 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 	@Override
 	protected void onInitLayoutAfter() {
 		id = getIntent().getStringExtra("id");
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("健康咨询").setTitleColor(getResources().getColor(R.color.blue));
 		linearLayoutManager = new LinearLayoutManager(activity);
 		healthyQuestionsAdapter = new HealthyQuestionsDetailsAdapter(activity);
 		healthyQuestionsAdapter.setDatas(datas);
@@ -74,8 +69,11 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 	
 	
 	
-	@OnClick(R.id.healthy_questions_details_submit)
+	@OnClick({R.id.healthy_questions_details_submit,R.id.back})
 	public void click(View v){
+		if(v.getId() == R.id.back){
+			finish();
+		}else{
 		String content = healthy_questions_details_content.getText().toString();
 		if(ValidationUtils.isNull(content)){
 			T.showShort(activity, "资料填写不完整!");
@@ -101,11 +99,12 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		}
 	}
 
 	@Override
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
+		lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
 	}
 
 	@Override

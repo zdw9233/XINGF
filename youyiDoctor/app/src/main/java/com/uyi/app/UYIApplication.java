@@ -13,6 +13,8 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * uyi
@@ -33,8 +35,8 @@ public class UYIApplication extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-//        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
-//        JPushInterface.init(this);            // 初始化 JPush
+        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);            // 初始化 JPush
         Fresco.initialize(this);
     }
 

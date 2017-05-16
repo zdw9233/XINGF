@@ -33,7 +33,6 @@ import com.uyi.app.ErrorCode;
 import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.custom.BaseActivity;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
@@ -64,8 +63,6 @@ public class UpdateUserInfoActivity extends BaseActivity {
     private PopupWindow mSetPhotoPop;
     @ViewInject(R.id.updata_user_main)
     private LinearLayout mMainView;
-    @ViewInject(R.id.headerView)
-    private HeaderView headerView;
     // 个人资料
     @ViewInject(R.id.header_image)
     private RoundedImageView header_image;
@@ -89,8 +86,6 @@ public class UpdateUserInfoActivity extends BaseActivity {
 
     @Override
     protected void onInitLayoutAfter() {
-        headerView.showLeftReturn(true).showTitle(true).setTitle("修改资料")
-                .setTitleColor(getResources().getColor(R.color.blue));
         userInfo = UserInfoManager.getLoginUserInfo(activity);
         if (userInfo != null) {
             ImageCacheManager.loadImage(userInfo.icon, ImageCacheManager.getImageListener(header_image, null, null));
@@ -173,10 +168,10 @@ public class UpdateUserInfoActivity extends BaseActivity {
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-        headerView.setKitkat(systemBarConfig);
+        mMainView.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
     }
 
-    @OnClick({R.id.update_submit, R.id.update_colse})
+    @OnClick({R.id.update_submit, R.id.update_colse,R.id.back})
     public void clickInfo(View view) {
         if (view.getId() == R.id.update_submit) {
             try {
@@ -222,6 +217,8 @@ public class UpdateUserInfoActivity extends BaseActivity {
             }
         } else if (view.getId() == R.id.update_colse) {
             onBackPressed();
+        }else if (view.getId() == R.id.back) {
+         finish();
         }
 
     }

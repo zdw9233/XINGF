@@ -1,14 +1,17 @@
 package com.uyi.app.ui.consult;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.adapter.BaseRecyclerAdapter.OnItemClickListener;
 import com.uyi.app.model.bean.Consult;
@@ -17,19 +20,17 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 
 
 /**
@@ -40,10 +41,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 @ContentView(R.layout.fragment_consultation)
 public class HistoryConsultActivity extends BaseActivity implements OnItemClickListener<Consult>, Pager, OnRefreshListener {
-
-	
-@ViewInject(R.id.headerView) private HeaderView headerView; 
-	
+	@ViewInject(R.id.lay) private LinearLayout lay;
 	private ArrayList<Consult> datas = new ArrayList<Consult>();
 	@ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView; 
 	@ViewInject(R.id.swipeRefreshLayout) private SwipeRefreshLayout swipeRefreshLayout;
@@ -55,7 +53,6 @@ public class HistoryConsultActivity extends BaseActivity implements OnItemClickL
 	@Override
 	protected void onInitLayoutAfter() {
 		customerId = getIntent().getIntExtra("customerId", 0);
-		headerView.showLeftReturn(true).showTitle(true).setTitle("历史咨询").setTitleColor(getResources().getColor(R.color.blue)).showRight(true);
 		linearLayoutManager = new LinearLayoutManager(activity);
 		historyConsultAdapter = new HistoryConsultAdapter(activity);
 		historyConsultAdapter.setOnItemClickListener(this);
@@ -75,9 +72,14 @@ public class HistoryConsultActivity extends BaseActivity implements OnItemClickL
 
 	@Override
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
+		lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
 	}
-
+@OnClick(R.id.back)
+private void click(View view){
+	if(view.getId()==R.id.back){
+		finish();
+	}
+}
 	@Override
 	public void onRefresh() {
 		pageNo = 1;

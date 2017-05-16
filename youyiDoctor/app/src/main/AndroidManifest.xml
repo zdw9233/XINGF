@@ -119,6 +119,14 @@
             android:screenOrientation="portrait"
             />
         <activity
+            android:name="com.uyi.app.ui.dataStatistics.DataStatisticsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.uyi.app.ui.doctorMessege.DoctorMessegeActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
             android:name="com.uyi.app.ui.newCalendar.StrokeRCDetailsActivity"
             android:screenOrientation="portrait"
             />

@@ -113,12 +113,15 @@ public class LoginActivity extends BaseActivity {
                         }
                         UserInfoManager.setLoginUserInfo(activity, userInfo);
                         Set<String> tags = new HashSet<String>();
+
                         tags.add("bulletin");
                         tags.add("message_doctor_" + userInfo.userId);
                         JPushInterface.setTags(activity, tags, null);
                         setResult(RESULT_OK);
                         finish();
-                    } catch (JSONException e) {
+                    } catch (Exception e) {
+                        setResult(RESULT_OK);
+                        finish();
                         e.printStackTrace();
                     }
                 }

@@ -234,7 +234,14 @@ public abstract class Constens {
      * 8: 健康问答数
      */
     public final static String ACCOUNT_STATISTICS = SERVER_URL + "/app/api/doctor/statistics/%s";
-
+    /**
+    * 获取首页提示数字
+     */
+    public final static String ACCOUNT_MESSGE = SERVER_URL + "/app/api/doctor/statistical";
+    /**
+     * 统计数据接口
+     */
+    public final static String ACCOUNT_STATISTICAL_DATA = SERVER_URL + "/app/api/doctor/statisticalData";
     /**
      * 健康报告图表
      * ${type}
@@ -544,6 +551,10 @@ public abstract class Constens {
      * 查询所有健康团队
      */
     public final static String HEALTH_GROUPS_ALL = SERVER_URL + "/app/api/account/query/health/groups?name=%s&cityId=%s&page=%s&pageSize=%s";
+    /**
+     * 医生获取待办
+     */
+    public final static String NEXT_TO_DO_LIST = SERVER_URL + "/app/api/doctor/getListByService?name=%s&executionItemType=%s&page=%s&pageSize=%s";
     /**
      * 查询医生消息
      */

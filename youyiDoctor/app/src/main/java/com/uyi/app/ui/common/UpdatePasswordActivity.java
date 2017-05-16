@@ -1,7 +1,9 @@
 package com.uyi.app.ui.common;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -11,7 +13,6 @@ import com.uyi.app.Constens;
 import com.uyi.app.ErrorCode;
 import com.uyi.app.UYIApplication;
 import com.uyi.app.ui.custom.BaseActivity;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.dialog.MessageConform;
@@ -23,10 +24,8 @@ import com.uyi.doctor.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -36,9 +35,7 @@ import android.widget.EditText;
  */
 @ContentView(R.layout.update_password)
 public class UpdatePasswordActivity extends BaseActivity implements MessageConform.OnMessageClick{
-
-	@ViewInject(R.id.headerView) 						private HeaderView headerView;
-	
+	@ViewInject(R.id.lay) private LinearLayout lay;
 	@ViewInject(R.id.update_password_password) 			private EditText update_password_password;
 	@ViewInject(R.id.update_password_newpassword) 		private EditText update_password_newpassword;
 	@ViewInject(R.id.update_password_newpasswords) 		private EditText update_password_newpasswords;
@@ -47,11 +44,14 @@ public class UpdatePasswordActivity extends BaseActivity implements MessageConfo
 	
 	@Override
 	protected void onInitLayoutAfter() {
-		headerView.showLeftReturn(true).showTitle(true).setTitle("修改密码").setTitleColor(getResources().getColor(R.color.blue));
 	}
 	
-	@OnClick(R.id.update_password_submit)
+	@OnClick({R.id.update_password_submit,R.id.back})
 	public void click(View view){
+		if(view.getId() == R.id.back){
+			finish();
+		}else if(view.getId() == R.id.update_password_submit){
+
 		String cpwd = update_password_password.getText().toString();
 		String pwd =  update_password_newpassword.getText().toString();
 		String pwds = update_password_newpasswords.getText().toString();
@@ -107,11 +107,13 @@ public class UpdatePasswordActivity extends BaseActivity implements MessageConfo
 		} catch (JSONException e1) {
 			e1.printStackTrace();
 		}
+
+		}
 	}
 	
 	@Override
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
+		lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
 	}
 
 

@@ -1,8 +1,12 @@
 package com.uyi.app.ui.common;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
@@ -10,7 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.uyi.app.Constens;
-import com.uyi.app.ui.Main;
+import com.uyi.app.ui.Main2_1;
 import com.uyi.app.utils.ImageUtil;
 import com.uyi.doctor.app.R;
 import com.volley.RequestErrorListener;
@@ -22,8 +26,6 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import cn.jpush.android.api.JPushInterface;
-
 /**
  * Created by ThinkPad on 2016/6/29.
  */
@@ -31,16 +33,17 @@ import cn.jpush.android.api.JPushInterface;
 
 
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends Activity {
 private SimpleDraweeView welcomePictrue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_welcome);
-        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
-        JPushInterface.init(this);            // 初始化 JPush
-        final Intent it = new Intent(this, Main.class); //你要转向的Activit
+//        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
+//        JPushInterface.init(this);            // 初始化 JPush
+//        setBrightnessMode(this,1);
+        final Intent it = new Intent(this, Main2_1.class); //你要转向的Activit
         RequestManager.getObject(String.format(Constens.WELCOME_PICTRUE,"Android"), this,null,new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
 
@@ -85,5 +88,23 @@ private SimpleDraweeView welcomePictrue;
 
 
 
+    }
+    private void setBrightnessMode(Context context, int mode) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.System.canWrite(context)) {
+                    Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, mode);
+                } else {
+                    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                    intent.setData(Uri.parse("package:" + context.getPackageName()));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            } else {
+                Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, mode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

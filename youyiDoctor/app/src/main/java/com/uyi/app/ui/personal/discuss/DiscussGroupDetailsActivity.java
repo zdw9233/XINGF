@@ -1,15 +1,17 @@
 package com.uyi.app.ui.personal.discuss;
 
-import java.util.HashMap;
-import java.util.Map;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.android.volley.VolleyError;
 import com.android.volley.Request.Method;
 import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -19,7 +21,6 @@ import com.uyi.app.UserInfoManager;
 import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.consult.ConsultDetailsActivity;
 import com.uyi.app.ui.custom.BaseActivity;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
@@ -30,15 +31,12 @@ import com.volley.ImageCacheManager;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -48,11 +46,8 @@ import android.widget.TextView;
  */
 @ContentView(R.layout.discuss_group_details)
 public class DiscussGroupDetailsActivity extends BaseActivity {
-
-	@ViewInject(R.id.headerView) private HeaderView headerView; 
-	
-	@ViewInject(R.id.discuss_group_details_query) private Button discuss_group_details_query; 
-	
+	@ViewInject(R.id.lay) private LinearLayout lay;
+	@ViewInject(R.id.discuss_group_details_query) private Button discuss_group_details_query;
 	@ViewInject(R.id.discuss_group_details_consult_layout) private LinearLayout discuss_group_details_consult_layout;
 	
 	@ViewInject(R.id.discuss_group_details_caiyong) private Button discuss_group_details_caiyong; 
@@ -74,7 +69,6 @@ public class DiscussGroupDetailsActivity extends BaseActivity {
 	@Override
 	protected void onInitLayoutAfter() {
 		userInfo = UserInfoManager.getLoginUserInfo(activity);
-		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("讨论组详情").setTitleColor(getResources().getColor(R.color.blue));
 		consultId = getIntent().getIntExtra("id", 0);
 		isMyConsult = getIntent().getBooleanExtra("isMyConsult", false);
 		status = getIntent().getIntExtra("status", 0);
@@ -155,8 +149,11 @@ public class DiscussGroupDetailsActivity extends BaseActivity {
 		}
 	}
 	
-	@OnClick({R.id.discuss_group_details_query,R.id.discuss_group_details_fabiao,R.id.discuss_group_details_caiyong})
+	@OnClick({R.id.discuss_group_details_query,R.id.discuss_group_details_fabiao,R.id.discuss_group_details_caiyong,R.id.back})
 	public void click(View v){
+		if(v.getId() == R.id.back){
+			finish();
+		}else
 		if(v.getId() == R.id.discuss_group_details_query){
 			Intent intent = new Intent(activity, ConsultDetailsActivity.class);
 			intent.putExtra("id", consultId);
@@ -220,7 +217,7 @@ public class DiscussGroupDetailsActivity extends BaseActivity {
 
 	@Override
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
+		lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
 	}
 
 }

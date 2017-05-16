@@ -6,11 +6,45 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.uyi.app.ui.custom.HeaderView
-        android:id="@+id/headerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.uyi.app.ui.custom.HeaderView>
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/blue">
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="返回"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableLeft="@drawable/nav_back_white"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="修改资料"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_style_18"
+            android:gravity="center"/>
+        <LinearLayout
+            android:id="@+id/messege"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|right"
 
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="12dp"
+                android:visibility="invisible"
+                android:background="@drawable/nav_message_white"/>
+        </LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/update_user_info_layout_one"
         android:layout_width="match_parent"

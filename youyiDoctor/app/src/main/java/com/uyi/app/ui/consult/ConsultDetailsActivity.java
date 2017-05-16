@@ -25,7 +25,6 @@ import com.uyi.app.model.bean.UserInfo;
 import com.uyi.app.ui.common.ViewPagerImageActivity;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.FlowRadioGroup;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.RoundedImageView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
 import com.uyi.app.ui.dialog.Loading;
@@ -55,9 +54,9 @@ import java.util.List;
  */
 @ContentView(R.layout.consult_details)
 public class ConsultDetailsActivity extends BaseActivity implements OnClickListener {
-	
-	@ViewInject(R.id.headerView) private HeaderView headerView; 
-	@ViewInject(R.id.consult_details_layout) private ScrollView consult_details_layout; 
+	@ViewInject(R.id.lay) private LinearLayout lay;
+	@ViewInject(R.id.back) private LinearLayout back;
+	@ViewInject(R.id.consult_details_layout) private ScrollView consult_details_layout;
 	
 	@ViewInject(R.id.consult_details_logo) private RoundedImageView consult_details_logo; 
 	@ViewInject(R.id.consult_details_name) private TextView consult_details_name; 
@@ -132,7 +131,6 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 	@Override
 	protected void onInitLayoutAfter() {
 		consult_details_layout.setVisibility(View.INVISIBLE);
-		headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("互动详情").setTitleColor(getResources().getColor(R.color.blue));
 		id = getIntent().getIntExtra("id", 0);
 		if(id == 0){
 			onBackPressed();
@@ -482,9 +480,13 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 		R.id.consult_ditails_fanhuihuanzhe,
 		R.id.consult_ditails_jianchashijian,
 		R.id.consult_details_discuss,
-		R.id.consult_details_submit})
+		R.id.consult_details_submit,
+	R.id.back})
 	public void oclick(View v){
-		if(v.getId() == R.id.consult_ditails_zhijiechuli){
+		if(v.getId() == R.id.back){
+			finish();
+		}
+		else if(v.getId() == R.id.consult_ditails_zhijiechuli){
 			chuliLayout(3);
 		}else if(v.getId() == R.id.consult_ditails_shuifang){
 			chuliLayout(5);
@@ -630,7 +632,7 @@ public class ConsultDetailsActivity extends BaseActivity implements OnClickListe
 
 	@Override
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
+		lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
 	}
 	 
 	
