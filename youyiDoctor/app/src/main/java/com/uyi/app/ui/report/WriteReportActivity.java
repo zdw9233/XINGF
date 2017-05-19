@@ -3,13 +3,13 @@ package com.uyi.app.ui.report;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.ui.custom.BaseActivity;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.doctor.app.R;
 
@@ -20,8 +20,7 @@ import java.util.Locale;
  */
 @ContentView(R.layout.activity_write_report)
 public class WriteReportActivity extends BaseActivity {
-    @ViewInject(R.id.headerView)
-    private HeaderView headerView;
+    @ViewInject(R.id.lay) private LinearLayout lay;
     @ViewInject(R.id.jb)
     private EditText jb;
     @ViewInject(R.id.maxXy)
@@ -50,8 +49,11 @@ public class WriteReportActivity extends BaseActivity {
             "④减少脂肪摄入 ⑤戒烟限酒，每日白酒不超过100ml，红酒不超过200ml，尽量避免饮用啤酒及高度白酒  \n" +
             "⑥增加运动，运动有利于减轻体重和改善胰岛素抵抗，提高心血管适应调节能力，稳定血压水平，较好的运动方式是低或中等强度的慢跑、步行或游泳，一般每周3~5次，每次20~60分钟。鉴于您所提供的体检报告针对高血压并发症的筛查还有所欠缺，我们建议您择期再复查%s，这些检查项目有助于发现心脑血管相关的危险因素和靶器官损害，在您完成体检后，请及时将报告上传至APP，我们的医生团队也会根据您自身情况做出对比和解读。";
 
-    @OnClick(R.id.commit_report)
+    @OnClick({R.id.commit_report,R.id.back})
     public void onClick(View v) {
+        if(v.getId() == R.id.back){
+            finish();
+        }else if(v.getId() == R.id.commit_report){
         String jibing = jb.getText().toString();
         String maxXy = this.maxXy.getText().toString();
         String lxxy = this.lxxy.getText().toString();
@@ -72,15 +74,15 @@ public class WriteReportActivity extends BaseActivity {
         intent.putExtra("comment4", comment4);
         setResult(0x200, intent);
         finish();
+        }
     }
 
     @Override
     protected void onInitLayoutAfter() {
-        headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("详细报告").setTitleColor(getResources().getColor(R.color.blue));
     }
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-        headerView.setKitkat(systemBarConfig);
+        lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
     }
 }

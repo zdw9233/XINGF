@@ -7,14 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
+import com.uyi.app.ui.common.fragment.FragmentCustomjksjk;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.health.FragmentHealthListManager;
-import com.uyi.app.ui.health.HealthDatabaseActivity;
 import com.uyi.app.ui.health.adapter.OxygenAdapter;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -85,7 +85,7 @@ public class OxygenFragment  extends BaseFragment implements EndlessRecyclerView
     public void loadNextPage() {
         isLooding = false;
         Loading.bulid(getActivity(), null).show();
-        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, FragmentHealthListManager.customer, HealthDatabaseActivity.startDate, HealthDatabaseActivity.endDate, pageNo, pageSize,"4"), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, CustomerActivity.customer, FragmentCustomjksjk.startDate, FragmentCustomjksjk.endDate, pageNo, pageSize,"4"), this, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 Loading.bulid(getActivity(), null).dismiss();
                 try {

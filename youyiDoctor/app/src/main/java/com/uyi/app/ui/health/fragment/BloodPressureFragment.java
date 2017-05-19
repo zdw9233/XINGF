@@ -7,14 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
+import com.uyi.app.ui.common.fragment.FragmentCustomjksjk;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.health.FragmentHealthListManager;
-import com.uyi.app.ui.health.HealthDatabaseActivity;
 import com.uyi.app.ui.health.adapter.BloodPressureAdapter;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -49,15 +49,6 @@ public class BloodPressureFragment extends BaseFragment implements EndlessRecycl
     protected void onInitLayoutAfter() {
         linearLayoutManager = new LinearLayoutManager(getActivity());
         bloodPressureAdapter = new BloodPressureAdapter(getActivity());
-//        healthDatabaseAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<Map<String, Object>>() {
-//            @Override
-//            public void onItemClick(int position, Map<String, Object> data) {
-//                String id = data.get("id").toString();
-//                Intent intent = new Intent(getActivity(), HealthDatabaseDetails.class);
-//                intent.putExtra("id", id);
-//                startActivity(intent);
-//            }
-//        });
         bloodPressureAdapter.setDatas(datas);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
@@ -85,7 +76,7 @@ public class BloodPressureFragment extends BaseFragment implements EndlessRecycl
     public void loadNextPage() {
         isLooding = false;
         Loading.bulid(getActivity(), null).show();
-        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS,  FragmentHealthListManager.customer,HealthDatabaseActivity.startDate, HealthDatabaseActivity.endDate, pageNo, pageSize,"1"), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS,  CustomerActivity.customer, FragmentCustomjksjk.startDate, FragmentCustomjksjk.endDate, pageNo, pageSize,"1"), this, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 Loading.bulid(getActivity(), null).dismiss();
                 try {

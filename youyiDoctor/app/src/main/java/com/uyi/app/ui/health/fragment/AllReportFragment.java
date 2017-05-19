@@ -9,15 +9,15 @@ import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.uyi.app.Constens;
 import com.uyi.app.adapter.BaseRecyclerAdapter;
+import com.uyi.app.ui.common.fragment.FragmentCustomjksjk;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.health.FragmentHealthListManager;
-import com.uyi.app.ui.health.HealthDatabaseActivity;
 import com.uyi.app.ui.health.HealthDatabaseDetails;
 import com.uyi.app.ui.health.adapter.HealthDatabaseAdapter;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.utils.L;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -87,7 +87,7 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
     public void loadNextPage() {
         isLooding = false;
         Loading.bulid(getActivity(), null).show();
-        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, FragmentHealthListManager.customer,HealthDatabaseActivity.startDate, HealthDatabaseActivity.endDate, pageNo, pageSize,"0"), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Constens.HEALTH_CHECK_INFOS, CustomerActivity.customer, FragmentCustomjksjk.startDate, FragmentCustomjksjk.endDate, pageNo, pageSize,"0"), this, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject data) {
                 Loading.bulid(getActivity(), null).dismiss();
                 try {

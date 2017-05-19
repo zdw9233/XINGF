@@ -239,6 +239,10 @@ public abstract class Constens {
      */
     public final static String ACCOUNT_MESSGE = SERVER_URL + "/app/api/doctor/statistical";
     /**
+     * 获取首页团队信息
+     */
+    public final static String ACCOUNT_TEAM = SERVER_URL + "/app/api/doctor/getDoctorSlidingData";
+    /**
      * 统计数据接口
      */
     public final static String ACCOUNT_STATISTICAL_DATA = SERVER_URL + "/app/api/doctor/statisticalData";
@@ -467,7 +471,7 @@ public abstract class Constens {
      * 医生查看健康管理列表
      */
 //	public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
-    public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&page=%s&pageSize=%s";
+    public final static String DOCTOR_HEALTH_MANAGER = SERVER_URL + "/app/api/doctor/group/customer/check/infos?name=%s&orderByHealthData=%s&orderByHealthInfo=%s&page=%s&pageSize=%s";
     /**
      * /**
      * 查风险评估列表

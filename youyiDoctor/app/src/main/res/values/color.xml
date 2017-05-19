@@ -21,7 +21,8 @@
     <color name="green">#00BB00</color>
     <color name="help_button_view">#ffcccccc</color>
     <!-- 蓝色 -->
-    <color name="blue">#0ea6fa</color>
+    <!--<color name="blue">#0ea6fa</color>-->
+    <color name="blue">#6788f9</color>
     <color name="blue1">#1fb7fb</color>
     <!-- 浅黑 -->
     <color name="footer_somber">#999999</color>

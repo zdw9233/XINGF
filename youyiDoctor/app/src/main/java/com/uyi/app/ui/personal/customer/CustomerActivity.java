@@ -1,5 +1,6 @@
 package com.uyi.app.ui.personal.customer;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
@@ -21,12 +23,12 @@ import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
 import com.uyi.app.ui.custom.EndlessRecyclerView.Pager;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
+import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
+import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.personal.customer.adapter.CustomerAdapter2_1;
 import com.uyi.app.utils.L;
-import com.uyi.app.utils.T;
 import com.uyi.app.utils.ValidationUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -39,6 +41,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -48,29 +51,35 @@ import java.util.Map;
  *
  */
 @ContentView(R.layout.customer)
-public class CustomerActivity extends BaseActivity implements OnRefreshListener, Pager,   OnEditorActionListener,BaseRecyclerAdapter.OnItemClickListener{
-	
-	@ViewInject(R.id.headerView) private HeaderView headerView;
-	
+public class CustomerActivity extends BaseActivity implements OnRefreshListener, Pager,   OnEditorActionListener,BaseRecyclerAdapter.OnItemClickListener<Map<String, Object>> ,AbstractSpinerAdapter.IOnItemSelectListener {
+
+	@ViewInject(R.id.lay) private LinearLayout lay;
 	@ViewInject(R.id.search_layout_search) private ImageView search_layout_search;
 	@ViewInject(R.id.search_layout_edit) private EditText search_layout_edit;
 	@ViewInject(R.id.search_layout_search_text) private TextView search_layout_search_text;
 	@ViewInject(R.id.peoplenum) private TextView peoplenum;
+	@ViewInject(R.id.paixu) private TextView paixu;
 	@ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
-	
+	public static int customer;
 	private LinearLayoutManager linearLayoutManager;
 	private CustomerAdapter2_1 customerAdapter;
 	private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
 	String num = "";
 	String name = "";
+	int pxnum1 = 0;
+	int pxnum2 = 3;
+	private SpinerPopWindow spinerPopWindow;
+
 	
 	@Override
 	protected void onInitLayoutAfter() {
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("用户").setTitleColor(getResources().getColor(R.color.blue));
 		int type = UserInfoManager.getLoginUserInfo(activity).type;
 		if(type == 2){
 			peoplenum.setVisibility(View.GONE);
 		}
+		spinerPopWindow = new SpinerPopWindow(activity);
+		spinerPopWindow.setItemListener(this);
+		spinerPopWindow.refreshData(zbString, 1);
 		linearLayoutManager = new LinearLayoutManager(activity);
 		customerAdapter = new CustomerAdapter2_1(activity);
 		customerAdapter.setDatas(datas);
@@ -89,7 +98,7 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 
 	@Override
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
+		lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
 	}
 
 	@Override
@@ -116,7 +125,7 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 		}
 		isLooding = false;
 		Loading.bulid(activity, null).show();
-		RequestManager.getObject(String.format(Constens.DOCTOR_QUERY_CUSTOMERS,name,pageNo,pageSize),activity, new Response.Listener<JSONObject>() {
+		RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_MANAGER,name,pxnum1,pxnum2,pageNo,pageSize),activity, new Response.Listener<JSONObject>() {
 			public void onResponse(JSONObject data) {
 				Loading.bulid(activity, null).dismiss();
 				L.e("data==",data.toString());
@@ -124,7 +133,7 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 					totalPage = data.getInt("pages");
 					if(data.has("total")){
 						num = data.getString("total");
-						peoplenum.setText("管理人数："+num);
+						peoplenum.setText(""+num);
 					}
 
 					JSONArray  array = data.getJSONArray("results");
@@ -134,11 +143,14 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 						Map<String,Object> item = new HashMap<String,Object>();
 						JSONObject jsonObject = array.getJSONObject(i);
 						item.put("id", jsonObject.getInt("id"));
-						item.put("realName", jsonObject.getString("realName"));
+						item.put("name", jsonObject.getString("name"));
 						item.put("icon", jsonObject.getString("icon"));
-						item.put("age", jsonObject.getInt("age"));
 						item.put("gender", jsonObject.getString("gender"));
-						item.put("status", jsonObject.getString("status"));
+						item.put("servicePackageName", jsonObject.getString("servicePackageName"));//服务包
+						item.put("age", jsonObject.getInt("age"));
+						item.put("consultationCount", jsonObject.getInt("consultationCount"));//咨询数
+//						item.put("status", jsonObject.getString("status"));
+						item.put("followUpTeam", jsonObject.getString("followUpTeam"));//三甲
 						datas.add(item);
 					}
 				} catch (JSONException e) {
@@ -165,15 +177,76 @@ public class CustomerActivity extends BaseActivity implements OnRefreshListener,
 		return false;
 	}
 	
-	@OnClick(R.id.search_layout_search_text)
+	@OnClick({R.id.search_layout_search_text,R.id.back,R.id.paixu})
 	public void click(View view){
-		 name = search_layout_edit.getText().toString();
-		  onRefresh();
+		if(view.getId() == R.id.search_layout_search_text){
+			name = search_layout_edit.getText().toString();
+			onRefresh();
+		}else if(view.getId() == R.id.back){
+			finish();
+		}else if(view.getId() == R.id.paixu) {
+			spinerPopWindow.setWidth(paixu.getWidth());
+			spinerPopWindow.refreshData(zbString, 0);
+			spinerPopWindow.showAsDropDown(paixu);
+		}
+
 	}
+
+
 
 
 	@Override
-	public void onItemClick(int position, Object data) {
-		T.show(activity,"1",0);
+	public void onItemClick(int position, Map<String, Object> data) {
+		customer = (int) data.get("id");
+		Intent intent = new Intent(this, CustomerDetailsActivity.class);
+		intent.putExtra("name", data.get("name").toString());
+		intent.putExtra("icon", data.get("icon").toString());
+		intent.putExtra("gender", data.get("gender").toString());
+		intent.putExtra("servicePackageName", data.get("servicePackageName").toString());
+		intent.putExtra("age", data.get("age").toString());
+		intent.putExtra("consultationCount", data.get("consultationCount").toString());
+		startActivity(intent);
 	}
+
+	@Override
+	public void onItemClick(int pos) {
+		switch (pos){
+			case 0:
+				pxnum1 = 0;
+				pxnum2 = 3;
+				paixu.setText(zbString.get(pos));
+				onRefresh();
+				break;
+			case 1:
+				pxnum1 = 3;
+				pxnum2 = 0;
+				paixu.setText(zbString.get(pos));
+				onRefresh();
+				break;
+			case 2:
+				pxnum1 = 0;
+				pxnum2 = 1;
+				paixu.setText(zbString.get(pos));
+				onRefresh();
+				break;
+			case 3:
+				pxnum1 = 0;
+				pxnum2 = 2;
+				paixu.setText(zbString.get(pos));
+				onRefresh();
+				break;
+
+		}
+
+
+	}
+	List<String> zbString = new ArrayList<String>() {
+		public List<String> $() {
+			add("用户姓名倒序");
+			add("用户姓名升序");
+			add("更新时间倒序");
+			add("更新时间升序");
+			return this;
+		}
+	}.$();
 }

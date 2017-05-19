@@ -3,6 +3,7 @@ package com.uyi.app.ui.personal.standard;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
@@ -12,9 +13,8 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.ErrorCode;
 import com.uyi.app.ui.custom.BaseActivity;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager.SystemBarConfig;
-import com.uyi.app.ui.health.FragmentHealthListManager;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.app.utils.L;
 import com.uyi.app.utils.T;
@@ -34,8 +34,7 @@ import org.json.JSONObject;
  */
 @ContentView(R.layout.alarm_standard)
 public class AlarmStandardActivity extends BaseActivity {
-
-@ViewInject(R.id.headerView) private HeaderView headerView;
+	@ViewInject(R.id.lay) private LinearLayout lay;
 	
 @ViewInject(R.id.sousuoya_left) private EditText sousuoya_left;
 	@ViewInject(R.id.sousuoya_right) private EditText sousuoya_right;
@@ -68,8 +67,7 @@ public class AlarmStandardActivity extends BaseActivity {
 	
 	@Override
 	protected void onInitLayoutAfter() {
-		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("报警标准").setTitleColor(getResources().getColor(R.color.blue));
-		RequestManager.getObject(String.format(Constens.COSTOM_HEALTH_WARNING_DATA, FragmentHealthListManager.customer), activity, new Listener<JSONObject>() {
+		RequestManager.getObject(String.format(Constens.COSTOM_HEALTH_WARNING_DATA, CustomerActivity.customer), activity, new Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject data) {
 				L.d(TAG, data.toString());
@@ -113,122 +111,127 @@ public class AlarmStandardActivity extends BaseActivity {
 	
 	
 	
-	@OnClick(R.id.health_database_add_submit)
+	@OnClick({R.id.health_database_add_submit,R.id.back})
 	public void click(View view){
-		try {
-		JSONObject params = new JSONObject();
-			if(!ValidationUtils.isNull(sousuoya_left.getText().toString())){
-				params.put("spLow", sousuoya_left.getText().toString());
-			}
-			if(!ValidationUtils.isNull(sousuoya_right.getText().toString())){
-				params.put("spHigh", sousuoya_right.getText().toString());
-			}
-			
-			
-			if(params.has("spLow") && params.has("spHigh")){//
-				if(Integer.parseInt(params.getString("spHigh")) <= Integer.parseInt(params.getString("spLow"))){
-					T.showShort(activity, "收缩压最低值不能大于或者等于最高值");
-					return;
+		if(view.getId() == R.id.back){
+			finish();
+		}else if(view.getId() == R.id.health_database_add_submit){
+			try {
+				JSONObject params = new JSONObject();
+				if(!ValidationUtils.isNull(sousuoya_left.getText().toString())){
+					params.put("spLow", sousuoya_left.getText().toString());
 				}
-			}
-			
-			
-			if(!ValidationUtils.isNull(shuzhangya_left.getText().toString())){
-				params.put("dpLow", shuzhangya_left.getText().toString());
-			}
-			if(!ValidationUtils.isNull(shuzhangya_right.getText().toString())){
-				params.put("dpHigh", shuzhangya_right.getText().toString());
-			}
-			
-			if(params.has("dpLow") && params.has("dpHigh")){//
-				if(Integer.parseInt(params.getString("dpHigh")) <= Integer.parseInt(params.getString("dpLow"))){
-					T.showShort(activity, "舒张压最低值不能大于或者等于最高值");
-					return;
+				if(!ValidationUtils.isNull(sousuoya_right.getText().toString())){
+					params.put("spHigh", sousuoya_right.getText().toString());
 				}
-			}
-			
-			//*
-			if(!ValidationUtils.isNull(kongfuxuetang_left.getText().toString())){
-				params.put("fbsLow", kongfuxuetang_left.getText().toString());
-			}
-			
-			//*
-			if(!ValidationUtils.isNull(kongfuxuetang_right.getText().toString())){
-				params.put("fbsHigh", kongfuxuetang_right.getText().toString());
-			}
-			//*
-			if(!ValidationUtils.isNull(chanying2xiaoshi_left.getText().toString())){
-				params.put("pbsLow", chanying2xiaoshi_left.getText().toString());
-			}
-			//*
-			if(!ValidationUtils.isNull(chanying2xiaoshi_right.getText().toString())){
-				params.put("pbsHigh", chanying2xiaoshi_right.getText().toString());
-			}
-			
-			if(!ValidationUtils.isNull(jinxixinglv_left.getText().toString())){
-				params.put("hrLow", jinxixinglv_left.getText().toString());
-			}
-			if(!ValidationUtils.isNull(jinxixinglv_right.getText().toString())){
-				params.put("hrHigh", jinxixinglv_right.getText().toString());
-			}
-			if(!ValidationUtils.isNull(niaosuan.getText().toString())){
-				params.put("uaThreshold", niaosuan.getText().toString());
-			}
-			
-			
-			if(!ValidationUtils.isNull(zongduanguchun.getText().toString())){
-				params.put("bfChol", zongduanguchun.getText().toString());
-			}
-			if(!ValidationUtils.isNull(ganyoushanzhi.getText().toString())){
-				params.put("bfTg", ganyoushanzhi.getText().toString());
-			}
-			if(!ValidationUtils.isNull(dimiduzhidanbai.getText().toString())){
-				params.put("bfLdl", dimiduzhidanbai.getText().toString());
-			}
-			if(!ValidationUtils.isNull(gaomiduzhidanbai.getText().toString())){
-				params.put("bfHdl", gaomiduzhidanbai.getText().toString());
-			}
-			
-			if(!ValidationUtils.isNull(maibo_left.getText().toString())){
-				params.put("pulseRateLow", maibo_left.getText().toString());
-			}
-			
-			if(!ValidationUtils.isNull(maibo_right.getText().toString())){
-				params.put("pulseRateHigh", maibo_right.getText().toString());
-			}
-			
-			if(!ValidationUtils.isNull(baohedu.getText().toString())){
-				params.put("spo", baohedu.getText().toString());
-			}
-			if(!ValidationUtils.isNull(suijixuetang_left.getText().toString())){
-				params.put("rbsLow", suijixuetang_left.getText().toString());
-			}
-			if(!ValidationUtils.isNull(suijixuetang_right.getText().toString())){
-				params.put("rbsHigh", suijixuetang_right.getText().toString());
-			}
-			L.e("parse==",params.toString());
-			RequestManager.postObject(String.format(Constens.COSTOM_HEALTH_WARNING_DATA, FragmentHealthListManager.customer), activity, params, new Listener<JSONObject>() {
-				public void onResponse(JSONObject data) {
-					T.showShort(activity, "修改成功!");
-				}
-			}, new RequestErrorListener() {
-				public void requestError(VolleyError e) {
-					if(e.networkResponse != null){
-						T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
-					}else{
-						T.showShort(activity, "修改成功!");
+
+
+				if(params.has("spLow") && params.has("spHigh")){//
+					if(Integer.parseInt(params.getString("spHigh")) <= Integer.parseInt(params.getString("spLow"))){
+						T.showShort(activity, "收缩压最低值不能大于或者等于最高值");
+						return;
 					}
 				}
-			});
-		} catch (JSONException e) {
-			e.printStackTrace();
+
+
+				if(!ValidationUtils.isNull(shuzhangya_left.getText().toString())){
+					params.put("dpLow", shuzhangya_left.getText().toString());
+				}
+				if(!ValidationUtils.isNull(shuzhangya_right.getText().toString())){
+					params.put("dpHigh", shuzhangya_right.getText().toString());
+				}
+
+				if(params.has("dpLow") && params.has("dpHigh")){//
+					if(Integer.parseInt(params.getString("dpHigh")) <= Integer.parseInt(params.getString("dpLow"))){
+						T.showShort(activity, "舒张压最低值不能大于或者等于最高值");
+						return;
+					}
+				}
+
+				//*
+				if(!ValidationUtils.isNull(kongfuxuetang_left.getText().toString())){
+					params.put("fbsLow", kongfuxuetang_left.getText().toString());
+				}
+
+				//*
+				if(!ValidationUtils.isNull(kongfuxuetang_right.getText().toString())){
+					params.put("fbsHigh", kongfuxuetang_right.getText().toString());
+				}
+				//*
+				if(!ValidationUtils.isNull(chanying2xiaoshi_left.getText().toString())){
+					params.put("pbsLow", chanying2xiaoshi_left.getText().toString());
+				}
+				//*
+				if(!ValidationUtils.isNull(chanying2xiaoshi_right.getText().toString())){
+					params.put("pbsHigh", chanying2xiaoshi_right.getText().toString());
+				}
+
+				if(!ValidationUtils.isNull(jinxixinglv_left.getText().toString())){
+					params.put("hrLow", jinxixinglv_left.getText().toString());
+				}
+				if(!ValidationUtils.isNull(jinxixinglv_right.getText().toString())){
+					params.put("hrHigh", jinxixinglv_right.getText().toString());
+				}
+				if(!ValidationUtils.isNull(niaosuan.getText().toString())){
+					params.put("uaThreshold", niaosuan.getText().toString());
+				}
+
+
+				if(!ValidationUtils.isNull(zongduanguchun.getText().toString())){
+					params.put("bfChol", zongduanguchun.getText().toString());
+				}
+				if(!ValidationUtils.isNull(ganyoushanzhi.getText().toString())){
+					params.put("bfTg", ganyoushanzhi.getText().toString());
+				}
+				if(!ValidationUtils.isNull(dimiduzhidanbai.getText().toString())){
+					params.put("bfLdl", dimiduzhidanbai.getText().toString());
+				}
+				if(!ValidationUtils.isNull(gaomiduzhidanbai.getText().toString())){
+					params.put("bfHdl", gaomiduzhidanbai.getText().toString());
+				}
+
+				if(!ValidationUtils.isNull(maibo_left.getText().toString())){
+					params.put("pulseRateLow", maibo_left.getText().toString());
+				}
+
+				if(!ValidationUtils.isNull(maibo_right.getText().toString())){
+					params.put("pulseRateHigh", maibo_right.getText().toString());
+				}
+
+				if(!ValidationUtils.isNull(baohedu.getText().toString())){
+					params.put("spo", baohedu.getText().toString());
+				}
+				if(!ValidationUtils.isNull(suijixuetang_left.getText().toString())){
+					params.put("rbsLow", suijixuetang_left.getText().toString());
+				}
+				if(!ValidationUtils.isNull(suijixuetang_right.getText().toString())){
+					params.put("rbsHigh", suijixuetang_right.getText().toString());
+				}
+				L.e("parse==",params.toString());
+				RequestManager.postObject(String.format(Constens.COSTOM_HEALTH_WARNING_DATA, CustomerActivity.customer), activity, params, new Listener<JSONObject>() {
+					public void onResponse(JSONObject data) {
+						T.showShort(activity, "修改成功!");
+					}
+				}, new RequestErrorListener() {
+					public void requestError(VolleyError e) {
+						if(e.networkResponse != null){
+							T.showShort(activity, ErrorCode.getErrorByNetworkResponse(e.networkResponse));
+						}else{
+							T.showShort(activity, "修改成功!");
+						}
+					}
+				});
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}
+
 	}
 	
 
 	@Override
 	protected void onBuildVersionGT_KITKAT(SystemBarConfig systemBarConfig) {
-		headerView.setKitkat(systemBarConfig);
+		lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
 	}
 
 }

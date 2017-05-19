@@ -205,7 +205,7 @@ android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
-                    
+
                       <LinearLayout
                           	android:id="@+id/custom_jiankang_info"
                     		android:layout_width="match_parent"
@@ -232,7 +232,7 @@ android:visibility="gone"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
                 			</LinearLayout>
-                    		
+
                     		 <LinearLayout
 	                    		android:layout_width="match_parent"
 	                    		android:layout_height="wrap_content"
@@ -253,7 +253,7 @@ android:visibility="gone"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
                 			</LinearLayout>
-                    		
+
                     		 <LinearLayout
 	                    		android:layout_width="match_parent"
 	                    		android:layout_height="wrap_content"
@@ -274,8 +274,8 @@ android:visibility="gone"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
                 			</LinearLayout>
-                			
-                    		 
+
+
                     		  <LinearLayout
 	                    		android:layout_width="match_parent"
 	                    		android:layout_height="wrap_content"
@@ -296,7 +296,7 @@ android:visibility="gone"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
                 			</LinearLayout>
-                    		
+
                     		   <LinearLayout
                     		       android:id="@+id/custom_huaiyun_liuchan_layout"
 	                    		android:layout_width="match_parent"
@@ -318,7 +318,7 @@ android:visibility="gone"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
                 			</LinearLayout>
-                    		  
+
                     		     <LinearLayout
                     		           android:id="@+id/custom_yuejing_layout"
 	                    		android:layout_width="match_parent"
@@ -340,8 +340,8 @@ android:visibility="gone"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
                 			</LinearLayout>
-                			
-                    		     
+
+
                     		   <LinearLayout
 	                    		android:layout_width="match_parent"
 	                    		android:layout_height="wrap_content"
@@ -402,9 +402,9 @@ android:visibility="gone"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
-                			</LinearLayout>    
-                			
-                    		       
+                			</LinearLayout>
+
+
                     		            <LinearLayout
 	                    		android:layout_width="match_parent"
 	                    		android:layout_height="wrap_content"
@@ -424,9 +424,9 @@ android:visibility="gone"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
-                			</LinearLayout>    
-                    		       
-                    		       
+                			</LinearLayout>
+
+
                     		         <LinearLayout
 	                    		android:layout_width="match_parent"
 	                    		android:layout_height="wrap_content"
@@ -907,8 +907,8 @@ android:visibility="gone"
                     		          android:textSize="@dimen/font_style_10"
                     		          android:textColor="@color/blue"
                     		          android:text=" " />
-                			</LinearLayout>   
-                			
+                			</LinearLayout>
+
                               
                               
 
@@ -920,7 +920,7 @@ android:visibility="gone"
         </LinearLayout>
 
         <ImageView
-          
+
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"

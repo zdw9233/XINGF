@@ -10,7 +10,7 @@ import com.uyi.app.Constens;
 import com.uyi.app.ui.custom.BaseFragment;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.health.FragmentHealthListManager;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.ui.report.model.Report;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
@@ -62,7 +62,7 @@ public class HealthReportFragment extends BaseFragment {
                     object.put("comment3", report.getComment3());
                     object.put("comment4", report.getComment4());
                     object.put("editStatus","DONE");
-                    object.put("cusid", FragmentHealthListManager.customer);
+                    object.put("cusid", CustomerActivity.customer);
                     object.put("bloodPressure_pic", report.bloodPressure_pic);
                     object.put("BloodSugar_pic", report.bloodSugar_pic);
                 } catch (JSONException e) {
@@ -92,7 +92,7 @@ public class HealthReportFragment extends BaseFragment {
                     object1.put("comment3", report1.getComment3());
                     object1.put("comment4", report1.getComment4());
                     object1.put("editStatus","EDITING");
-                    object1.put("cusid", FragmentHealthListManager.customer);
+                    object1.put("cusid", CustomerActivity.customer);
                     object1.put("bloodPressure_pic", report1.bloodPressure_pic);
                     object1.put("BloodSugar_pic", report1.bloodSugar_pic);
                 } catch (JSONException e) {

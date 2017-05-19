@@ -16,11 +16,11 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.ErrorCode;
 import com.uyi.app.ui.custom.BaseActivity;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.custom.spiner.AbstractSpinerAdapter;
 import com.uyi.app.ui.custom.spiner.SpinerPopWindow;
 import com.uyi.app.ui.dialog.Loading;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.utils.T;
 import com.uyi.doctor.app.R;
 import com.volley.RequestErrorListener;
@@ -36,9 +36,9 @@ import java.util.List;
  * Created by ThinkPad on 2016/9/18.
  */
 @ContentView(R.layout.activity_new_personal_program_new)
-public class GreatePersonalProgramActivity extends BaseActivity implements AbstractSpinerAdapter.IOnItemSelectListener{
-    @ViewInject(R.id.headerView)
-    private HeaderView headerView;
+public class GreatePersonalProgramActivity extends BaseActivity implements AbstractSpinerAdapter.IOnItemSelectListener {
+    @ViewInject(R.id.lay)
+    private LinearLayout lay;
     @ViewInject(R.id.doctor)
     private TextView doctor;
     @ViewInject(R.id.lururen)
@@ -113,7 +113,6 @@ public class GreatePersonalProgramActivity extends BaseActivity implements Abstr
 
     @Override
     protected void onInitLayoutAfter() {
-        headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("新建个人方案").setTitleColor(getResources().getColor(R.color.blue));
         spinerPopWindow = new SpinerPopWindow(this);
         spinerPopWindow.setItemListener(this);
         spinerPopWindow.refreshData(wxfa_str, 1);
@@ -151,7 +150,7 @@ public class GreatePersonalProgramActivity extends BaseActivity implements Abstr
         layout2.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.wxys_chose, R.id.submit, R.id.sl1, R.id.sl2, R.id.sl3, R.id.sl4, R.id.sl5, R.id.sl6, R.id.sl7})
+    @OnClick({R.id.wxys_chose, R.id.submit, R.id.sl1, R.id.sl2, R.id.sl3, R.id.sl4, R.id.sl5, R.id.sl6, R.id.sl7, R.id.back})
     public void onClick(View v) {
         if (v.getId() == R.id.wxys_chose) {
             spinerPopWindow.setWidth(wxys_chose.getWidth());
@@ -165,6 +164,8 @@ public class GreatePersonalProgramActivity extends BaseActivity implements Abstr
                     xygljy.setText(s1);
                 }
             }).setNegativeButton("取消", null).show();
+        } else if (v.getId() == R.id.back) {
+            finish();
         } else if (v.getId() == R.id.sl2) {
             new AlertDialog.Builder(GreatePersonalProgramActivity.this).setTitle("示例").setMessage(s2).setPositiveButton("使用", new DialogInterface.OnClickListener() {
                 @Override
@@ -218,7 +219,7 @@ public class GreatePersonalProgramActivity extends BaseActivity implements Abstr
                 personalHealthManagementTemplateJson.put("exerciseAdvice", ydjy.getText().toString());
                 personalHealthManagementTemplateJson.put("personalHabitsSuggest", grxgjy.getText().toString());
                 JSONObject params = new JSONObject();
-                params.put("customerId", FragmentHealthListManager.customer + "");
+                params.put("customerId", CustomerActivity.customer + "");
                 params.put("personalHealthManagementTemplateJson", personalHealthManagementTemplateJson);
                 RequestManager.postObject(Constens.CREACT_PERSONAL_PROGRAM, activity, params, new Response.Listener<JSONObject>() {
                     public void onResponse(JSONObject data) {
@@ -246,7 +247,7 @@ public class GreatePersonalProgramActivity extends BaseActivity implements Abstr
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-        headerView.setKitkat(systemBarConfig);
+        lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
     }
 
     @Override
@@ -255,6 +256,7 @@ public class GreatePersonalProgramActivity extends BaseActivity implements Abstr
         selectedType = wxfa_type[pos];
         getExample();
     }
+
     List<String> wxfa_str = new ArrayList<String>() {
         public List<String> $() {
             add("默认");

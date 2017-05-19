@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.android.volley.Response;
@@ -17,10 +18,9 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.uyi.app.Constens;
 import com.uyi.app.ui.custom.BaseFragmentActivity;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
-import com.uyi.app.ui.health.FragmentHealthListManager;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.ui.report.model.Report;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -37,12 +37,10 @@ import java.util.Locale;
 @ContentView(R.layout.activity_report)
 public class ReportActivity extends BaseFragmentActivity {
     private List<Fragment> fragments;
-
+    @ViewInject(R.id.lay) private LinearLayout lay;
     private Fragment currentFragment;
     @ViewInject(R.id.jkbg)
     private View jkbg;
-    @ViewInject(R.id.header)
-    private HeaderView headerView;
     @ViewInject(R.id.write_report)
     private Button write_report;
     private Report mReport;
@@ -60,11 +58,16 @@ public class ReportActivity extends BaseFragmentActivity {
             R.id.xdt,       //心电图
             R.id.zytzjb,    //中医体质鉴别
             R.id.jkbg,   //健康报告
+            R.id.back,   //健康报告
             R.id.write_report       //健康报告
     })
     public void onClick(View view) {
         if (view.getId() == R.id.write_report) {
             startActivityForResult(new Intent(this, WriteReportActivity.class), 0x100);
+            return;
+        }
+        if (view.getId() == R.id.back) {
+        finish();
             return;
         }
         if (currentView != null) {
@@ -107,7 +110,6 @@ public class ReportActivity extends BaseFragmentActivity {
             }
         }
 //        old = reportId != 0;
-        headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("详细报告").setTitleColor(getResources().getColor(R.color.blue));
         fragments = new ArrayList<>();
         fragments.add(new RoutineFragment());
         fragments.add(new TrendMapFragment());
@@ -123,7 +125,7 @@ public class ReportActivity extends BaseFragmentActivity {
 
     private void requestReportDetail() {
 //        int userId = UserInfoManager.getLoginUserInfo(this).userId;
-        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, FragmentHealthListManager.customer, FragmentHealthListManager.customer, reportId), this, new Response.Listener<JSONObject>() {
+        RequestManager.getObject(String.format(Locale.CHINA, Constens.GET_REPORT_DETAIL, CustomerActivity.customer, CustomerActivity.customer, reportId), this, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Loading.bulid(ReportActivity.this, null).dismiss();
@@ -160,7 +162,7 @@ public class ReportActivity extends BaseFragmentActivity {
 
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-        headerView.setKitkat(systemBarConfig);
+        lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
     }
 
     private void changeFragment(int position) {

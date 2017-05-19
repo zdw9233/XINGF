@@ -2,26 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/lay"
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <com.uyi.app.ui.custom.HeaderView
-        android:id="@+id/headerView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </com.uyi.app.ui.custom.HeaderView>
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/blue">
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="首页"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableLeft="@drawable/nav_back_white"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="患者管理"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_style_18"
+            android:gravity="center"/>
+        <LinearLayout
+            android:id="@+id/messege"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|right"
+
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginRight="12dp"
+                android:visibility="invisible"
+                android:background="@drawable/nav_message_white"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <include layout="@layout/search_layout" />
-    <TextView
-        android:id="@+id/peoplenum"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="共"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/peoplenum"
+            android:layout_width="wrap_content"
+            android:text="--"
+            android:textColor="@color/blue"
+            android:layout_height="wrap_content"
+        />
+        <TextView
 
-        <com.uyi.app.ui.custom.EndlessRecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="个用户"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="排序："
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/paixu"
+            android:layout_width="120dp"
+            android:text="用户姓名倒序"
+            android:gravity="center"
+            android:textColor="@color/blue"
+            android:layout_marginRight="15dp"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+    <com.uyi.app.ui.custom.EndlessRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
 </LinearLayout>

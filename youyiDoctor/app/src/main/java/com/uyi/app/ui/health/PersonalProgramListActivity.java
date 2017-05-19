@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -17,10 +18,10 @@ import com.uyi.app.adapter.BaseRecyclerAdapter;
 import com.uyi.app.ui.custom.BaseActivity;
 import com.uyi.app.ui.custom.DividerItemDecoration;
 import com.uyi.app.ui.custom.EndlessRecyclerView;
-import com.uyi.app.ui.custom.HeaderView;
 import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.PersonalProgramAdapter;
+import com.uyi.app.ui.personal.customer.CustomerActivity;
 import com.uyi.app.utils.SerializableMap;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -38,7 +39,7 @@ import java.util.Map;
  */
 @ContentView(R.layout.activity_preview_personal_program)
 public class PersonalProgramListActivity extends BaseActivity implements BaseRecyclerAdapter.OnItemClickListener<Map<String,Object>>, EndlessRecyclerView.Pager, SwipeRefreshLayout.OnRefreshListener{
-    @ViewInject(R.id.headerView) private HeaderView headerView;
+    @ViewInject(R.id.lay) private LinearLayout lay;
     @ViewInject(R.id.new_report) private Button new_report;
     @ViewInject(R.id.recyclerView) private EndlessRecyclerView recyclerView;
     @ViewInject(R.id.swipeRefreshLayout) private SwipeRefreshLayout swipeRefreshLayout;
@@ -47,7 +48,6 @@ public class PersonalProgramListActivity extends BaseActivity implements BaseRec
     private ArrayList<Map<String,Object>> datas = new ArrayList<Map<String,Object>>();
     @Override
     protected void onInitLayoutAfter() {
-        headerView.showLeftReturn(true).showTitle(true).showRight(true).setTitle("个人方案").setTitleColor(getResources().getColor(R.color.blue));
         linearLayoutManager = new LinearLayoutManager(this);
         healthDatabaseAdapter = new PersonalProgramAdapter(this);
         healthDatabaseAdapter.setOnItemClickListener(this);
@@ -65,18 +65,21 @@ public class PersonalProgramListActivity extends BaseActivity implements BaseRec
         swipeRefreshLayout.setOnRefreshListener(this);
         onRefresh();
     }
-    @OnClick({R.id.new_report})
+    @OnClick({R.id.new_report,R.id.back})
     public void onClick(View v){
         if(v.getId() == R.id.new_report){
             Intent intent = new Intent();
             intent.setClass(PersonalProgramListActivity.this,GreatePersonalProgramActivity.class);
             startActivityForResult(intent, 10003);
 
+        }else if(v.getId() == R.id.back){
+          finish();
+
         }
     }
     @Override
     protected void onBuildVersionGT_KITKAT(SystemBarTintManager.SystemBarConfig systemBarConfig) {
-        headerView.setKitkat(systemBarConfig);
+        lay.setPadding(0, systemBarConfig.getStatusBarHeight(), 0, 0);
     }
 
     @Override
@@ -116,7 +119,7 @@ public class PersonalProgramListActivity extends BaseActivity implements BaseRec
         isLooding = false;
         Loading.bulid(activity, null).show();
 //        System.out.println(UserInfoManager.getLoginUserInfo(activity).toString());
-        RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_PERSON_PROGRAM, FragmentHealthListManager.customer, pageNo, pageSize),
+        RequestManager.getObject(String.format(Constens.DOCTOR_HEALTH_PERSON_PROGRAM, CustomerActivity.customer, pageNo, pageSize),
                 activity, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {
