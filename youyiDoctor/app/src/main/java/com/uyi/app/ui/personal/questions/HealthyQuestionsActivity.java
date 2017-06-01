@@ -133,7 +133,7 @@ public class HealthyQuestionsActivity extends BaseActivity implements OnItemClic
 				}
 				healthyQuestionsAdapter.notifyDataSetChanged();
 				swipeRefreshLayout.setRefreshing(false);
-				if(pageNo <= totalPage){
+				if(pageNo < totalPage){
 					isLooding = true;
 					pageNo ++;
 				}else{

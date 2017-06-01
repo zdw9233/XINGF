@@ -1,12 +1,12 @@
 package com.uyi.app.ui.personal.notice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.Response;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -25,13 +25,13 @@ import com.uyi.app.ui.personal.notice.adapter.NoticeAdapter;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
-import android.widget.LinearLayout;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 自己发布的公告
@@ -139,7 +139,7 @@ public class NoticeActivity extends BaseActivity implements OnItemClickListener<
 				}
 				noticeAdapter.notifyDataSetChanged();
 				swipeRefreshLayout.setRefreshing(false);
-				if(pageNo <= totalPage){
+				if(pageNo < totalPage){
 					isLooding = true;
 					pageNo ++;
 				}else{

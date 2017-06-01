@@ -116,7 +116,7 @@ public class OtherItemsFragment extends BaseFragment implements EndlessRecyclerV
                 otherItemsAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

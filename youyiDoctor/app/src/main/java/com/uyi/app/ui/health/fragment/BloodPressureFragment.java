@@ -117,7 +117,7 @@ public class BloodPressureFragment extends BaseFragment implements EndlessRecycl
                 bloodPressureAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

@@ -48,11 +48,11 @@ public class CustomerAdapter extends BaseRecyclerAdapter<Map<String, Object>> {
 			hodler.item_customer_name.setText(data.get("realName").toString());
 			hodler.item_customer_age.setText("年龄："+data.get("age"));
 			hodler.item_customer_gender.setText("性别："+UYIUtils.convertGender(data.get("gender").toString()));
-			if(data.get("status").equals("DEAD")){
-				hodler.siwang.setVisibility(View.VISIBLE);
-			}else{
-				hodler.siwang.setVisibility(View.INVISIBLE);
-			}
+//			if(data.get("status").equals("DEAD")){
+//				hodler.siwang.setVisibility(View.VISIBLE);
+//			}else{
+//				hodler.siwang.setVisibility(View.INVISIBLE);
+//			}
 			if(onItemCustomerClickListenner != null){
 				hodler.item_customer_info.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {

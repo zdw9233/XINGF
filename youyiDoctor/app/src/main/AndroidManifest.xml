@@ -109,6 +109,7 @@
         <activity
             android:name="com.uyi.app.ui.nextbedone.NextToDoneActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified|adjustPan"
             />
         <activity
             android:name="com.uyi.app.ui.physicianInteraction.PhysicianInteractionActivity"
@@ -116,6 +117,10 @@
             />
         <activity
             android:name="com.uyi.app.ui.personal.customer.CustomerDetailsActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.uyi.app.ui.seachCommom.SearchCustomerActivity"
             android:screenOrientation="portrait"
             />
         <activity

@@ -126,7 +126,7 @@ public class OxygenFragment  extends BaseFragment implements EndlessRecyclerView
                 oxygenAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

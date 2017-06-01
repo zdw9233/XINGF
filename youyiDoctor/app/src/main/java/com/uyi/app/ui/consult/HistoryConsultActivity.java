@@ -131,7 +131,7 @@ private void click(View view){
 				historyConsultAdapter.notifyDataSetChanged();
 				swipeRefreshLayout.setRefreshing(false);
 				
-				if(pageNo <= totalPage){
+				if(pageNo < totalPage){
 					isLooding = true;
 					pageNo ++;
 				}else{

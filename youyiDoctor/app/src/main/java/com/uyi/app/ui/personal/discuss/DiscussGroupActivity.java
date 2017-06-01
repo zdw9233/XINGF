@@ -1,10 +1,10 @@
 package com.uyi.app.ui.personal.discuss;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.android.volley.Response.Listener;
 import com.lidroid.xutils.view.annotation.ContentView;
@@ -24,11 +24,11 @@ import com.uyi.app.utils.JSONObjectUtils;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 
@@ -108,7 +108,7 @@ public class DiscussGroupActivity extends BaseActivity implements Pager, OnRefre
 				}
 				discussGroupAdapter.notifyDataSetChanged();
 				swipeRefreshLayout.setRefreshing(false);
-				if(pageNo <= totalPage){
+				if(pageNo < totalPage){
 					isLooding = true;
 					pageNo ++;
 				}else{

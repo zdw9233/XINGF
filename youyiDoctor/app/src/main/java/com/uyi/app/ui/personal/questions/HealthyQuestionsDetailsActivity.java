@@ -150,7 +150,7 @@ public class HealthyQuestionsDetailsActivity extends BaseActivity implements Pag
 					e.printStackTrace();
 				}
 				healthyQuestionsAdapter.notifyDataSetChanged();
-				if(pageNo <= totalPage){
+				if(pageNo < totalPage){
 					isLooding = true;
 					pageNo ++;
 				}else{

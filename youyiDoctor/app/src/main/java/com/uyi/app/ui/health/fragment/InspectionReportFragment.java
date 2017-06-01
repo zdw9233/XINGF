@@ -126,7 +126,7 @@ public class InspectionReportFragment extends BaseFragment implements EndlessRec
                 inspectionReportAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

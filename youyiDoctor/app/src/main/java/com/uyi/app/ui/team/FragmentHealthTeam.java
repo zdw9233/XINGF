@@ -184,7 +184,7 @@ String name;
                     swipeRefreshLayout.setRefreshing(false);
                     if (mLoading != null && mLoading.isShowing())
                         mLoading.dismiss();
-                    if (pageNo <= totalPage) {
+                    if (pageNo < totalPage) {
                         isLooding = true;
                         pageNo++;
                     } else {

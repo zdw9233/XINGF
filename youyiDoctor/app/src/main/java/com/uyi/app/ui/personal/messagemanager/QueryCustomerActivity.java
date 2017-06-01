@@ -157,7 +157,7 @@ public class QueryCustomerActivity extends BaseActivity implements OnItemClickLi
                     e.printStackTrace();
                 }
                 queryCustomerAdapter.notifyDataSetChanged();
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

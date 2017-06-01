@@ -182,7 +182,7 @@ public class FragmentConsultation extends BaseFragment implements Pager, OnRefre
                 consultationAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

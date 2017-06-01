@@ -199,7 +199,7 @@ public class FragmentHealthDatabase extends BaseFragment implements OnTabChanage
                 healthDatabaseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {

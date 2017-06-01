@@ -559,6 +559,11 @@ public abstract class Constens {
      * 医生获取待办
      */
     public final static String NEXT_TO_DO_LIST = SERVER_URL + "/app/api/doctor/getListByService?name=%s&executionItemType=%s&page=%s&pageSize=%s";
+
+    /**
+     * 医生获取待办详情
+     */
+    public final static String NEXT_TO_DO_DETAILS = SERVER_URL + "/app/api/doctor/getDoTheWorks?customerId=%s&type=%s";
     /**
      * 查询医生消息
      */

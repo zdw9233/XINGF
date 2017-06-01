@@ -110,7 +110,7 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
                 healthDatabaseAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
-                if (pageNo <= totalPage) {
+                if (pageNo < totalPage) {
                     isLooding = true;
                     pageNo++;
                 } else {
