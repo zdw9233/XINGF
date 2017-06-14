@@ -47,7 +47,7 @@ public class ElectrocarDiogramDetailsActivity extends BaseActivity implements Vi
     protected void onInitLayoutAfter() {
         inflater  = LayoutInflater.from(activity);
         mViewPager.addOnPageChangeListener(this);
-        headerView.showTitle(true).showLeftReturn(true).showRight(true).setTitle("心电图详情").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showTitle(true).showLeftReturn(true).showRight(false).setTitle("心电图详情").setTitleColor(getResources().getColor(R.color.blue));
 
         String id = getIntent().getStringExtra("id");
         if(id == null){

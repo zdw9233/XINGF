@@ -97,7 +97,7 @@ public class BloodSugarFragment extends BaseFragment implements EndlessRecyclerV
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
                         item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime").substring(0,10));
+                        item.put("uploadTime", jsonObject.getString("uploadTime"));
                         if(jsonObject.has("fastBloodSugar")){
                             item.put("fastBloodSugar", jsonObject.getString("fastBloodSugar"));
                         }else{

@@ -37,7 +37,7 @@ public class BloodPressureAdapter extends BaseRecyclerAdapter<Map<String,Object>
 			Holder hodler = (Holder)viewHolder;
 			hodler.title1.setText(data.get("uploadTime").toString());
 			if(!data.get("morningSystolicPressure").equals("NULL")){
-				hodler.title2.setText(data.get("morningSystolicPressure").toString()+"mm/Hg");
+				hodler.title2.setText(data.get("morningSystolicPressure").toString()+"");
 				if(!data.get("morningSystolicPressureWarning").equals("NULL")){
 					//获取资源图片
 					Drawable leftDrawable = context.getResources().getDrawable(R.drawable.warning);
@@ -61,7 +61,7 @@ public class BloodPressureAdapter extends BaseRecyclerAdapter<Map<String,Object>
 			}
 
 			if(!data.get("morningDiastolicPressure").equals("NULL")){
-				hodler.title3.setText(data.get("morningDiastolicPressure").toString()+"mm/Hg");
+				hodler.title3.setText(data.get("morningDiastolicPressure").toString()+"");
 				if(!data.get("morningDiastolicPressureWarning").equals("NULL")){
 					//获取资源图片
 					Drawable leftDrawable = context.getResources().getDrawable(R.drawable.warning);
@@ -83,6 +83,29 @@ public class BloodPressureAdapter extends BaseRecyclerAdapter<Map<String,Object>
 				hodler.title3.setText("--");
 				hodler.title3.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			}
+			if(!data.get("pulseRate").equals("NULL")){
+				hodler.title4.setText(data.get("pulseRate").toString()+"");
+				if(!data.get("pulseRateWarning").equals("NULL")){
+					//获取资源图片
+					Drawable leftDrawable = context.getResources().getDrawable(R.drawable.warning);
+					//设置图片的尺寸，奇数位置后减前得到宽度，偶数位置后减前得到高度。
+					leftDrawable.setBounds(0, 0, 20, 20);
+					//设置图片在TextView中的位置
+					hodler.title4.setCompoundDrawables(leftDrawable, null, null, null);
+//					hodler.title2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.warning, 0, 0, 0);
+				}else{
+					//获取资源图片
+					Drawable leftDrawable = context.getResources().getDrawable(R.drawable.success_icon);
+					//设置图片的尺寸，奇数位置后减前得到宽度，偶数位置后减前得到高度。
+					leftDrawable.setBounds(0, 0, 20, 20);
+					//设置图片在TextView中的位置
+					hodler.title4.setCompoundDrawables(leftDrawable, null, null, null);
+//					hodler.title2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.success_icon, 0, 0, 0);
+				}
+			}else{
+				hodler.title4.setText("--");
+				hodler.title4.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+			}
 
 
 		}
@@ -93,11 +116,13 @@ public class BloodPressureAdapter extends BaseRecyclerAdapter<Map<String,Object>
 			title1 = (TextView) v.findViewById(R.id.title1);
 			title2 = (TextView) v.findViewById(R.id.title2);
 			title3 = (TextView) v.findViewById(R.id.title3);
+			title4 = (TextView) v.findViewById(R.id.title4);
 
 		}
 		private TextView    title1;
         private TextView title2;
         private TextView title3;
+		private TextView title4;
     }
 
 }

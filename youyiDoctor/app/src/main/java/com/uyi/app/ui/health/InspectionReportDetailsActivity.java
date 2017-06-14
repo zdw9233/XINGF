@@ -49,7 +49,7 @@ public class InspectionReportDetailsActivity extends BaseActivity implements Vie
     protected void onInitLayoutAfter() {
         inflater  = LayoutInflater.from(activity);
         mViewPager.addOnPageChangeListener(this);
-        headerView.showTitle(true).showLeftReturn(true).showRight(true).setTitle("检查报告详情").setTitleColor(getResources().getColor(R.color.blue));
+        headerView.showTitle(true).showLeftReturn(true).showRight(false).setTitle("检查报告详情").setTitleColor(getResources().getColor(R.color.blue));
 
         String id = getIntent().getStringExtra("id");
         if(id == null){

@@ -1,8 +1,11 @@
 package com.uyi.app.ui.personal.message;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
@@ -27,12 +30,9 @@ import com.uyi.doctor.app.R;
 import com.volley.RequestErrorListener;
 import com.volley.RequestManager;
 
-import android.content.Intent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.webkit.WebView;
-import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -89,8 +89,8 @@ public class MessageDetailsActivity extends BaseActivity implements OnClickListe
 			child.setTextSize(12);
 			child.setText("删除");
 			headerView.getRightLayout().addView(child);
+			headerView.getRightLayout().setOnClickListener(this);
 		}
-		headerView.getRightLayout().setOnClickListener(this);
 		headerView.showLeftReturn(true).showRight(true).showTitle(true).setTitle("详情内容").setTitleColor(getResources().getColor(R.color.blue)).showRight(true) ;
 		Loading.bulid(activity, null).show();
 		

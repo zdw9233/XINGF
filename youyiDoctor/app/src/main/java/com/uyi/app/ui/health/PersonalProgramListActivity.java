@@ -22,6 +22,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.PersonalProgramAdapter;
 import com.uyi.app.ui.personal.customer.CustomerActivity;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.SerializableMap;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -123,8 +124,8 @@ public class PersonalProgramListActivity extends BaseActivity implements BaseRec
                 activity, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {
-                        System.out.print("_________________________________"+data.toString());
                         try {
+                            L.e(data.toString());
                             Loading.bulid(activity, null).dismiss();
                             totalPage = data.getInt("pages");
                             JSONArray array = data.getJSONArray("results");
@@ -188,6 +189,11 @@ public class PersonalProgramListActivity extends BaseActivity implements BaseRec
                                         item.put("verifyStatus", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("verifyStatus"));
                                     }else{
                                         item.put("verifyStatus", "");
+                                    }
+                                    if(jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("verifyMsg")){
+                                        item.put("verifyMsg", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("verifyMsg"));
+                                    }else{
+                                        item.put("verifyMsg", "NULL");
                                     }
                                 }
 

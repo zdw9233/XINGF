@@ -161,7 +161,30 @@
                     android:textColor="#ff8000"
                     android:textSize="14dp" />
             </LinearLayout>
-
+            <LinearLayout
+                android:id="@+id/nopass"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="match_parent"
+                    android:text="未通过原因:"
+                    android:textSize="14dp"
+                    android:gravity="right|center_vertical"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:id="@+id/nopasstext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginLeft="10dp"
+                    android:textSize="13dp"
+                    android:textColor="#ff8000"/>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_wxys"
                 android:layout_width="match_parent"

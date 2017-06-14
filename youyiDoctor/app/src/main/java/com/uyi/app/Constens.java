@@ -36,6 +36,7 @@ public abstract class Constens {
      * 测试服地址
      */
     public final static String SERVER_URL = "http://121.42.142.228:8080";
+//    public final static String SERVER_URL = "http://192.168.0.30:8080";
 
     /**
      * 生产服地址

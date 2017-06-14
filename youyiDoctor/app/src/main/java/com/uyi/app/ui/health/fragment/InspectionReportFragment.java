@@ -100,7 +100,7 @@ public class InspectionReportFragment extends BaseFragment implements EndlessRec
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
                         item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime").substring(0,10));
+                        item.put("uploadTime", jsonObject.getString("uploadTime"));
                         if(jsonObject.has("checkItem")){
                             item.put("checkItem", jsonObject.getString("checkItem"));
                         }else{

@@ -88,7 +88,7 @@ public class BloodPressureFragment extends BaseFragment implements EndlessRecycl
                         Map<String, Object> item = new HashMap<String, Object>();
                         JSONObject jsonObject = array.getJSONObject(i);
                         item.put("id", jsonObject.getInt("id"));
-                        item.put("uploadTime", jsonObject.getString("uploadTime").substring(0,10));
+                        item.put("uploadTime", jsonObject.getString("uploadTime"));
                         if(jsonObject.has("morningSystolicPressure")){
                             item.put("morningSystolicPressure", jsonObject.getString("morningSystolicPressure"));
                         }else{
@@ -99,6 +99,11 @@ public class BloodPressureFragment extends BaseFragment implements EndlessRecycl
                         }else{
                             item.put("morningDiastolicPressure","NULL");
                         }
+                        if(jsonObject.has("pulseRate")){
+                            item.put("pulseRate", jsonObject.getString("pulseRate"));
+                        }else{
+                            item.put("pulseRate","NULL");
+                        }
                         if(jsonObject.has("morningSystolicPressureWarning")){
                             item.put("morningSystolicPressureWarning", jsonObject.getString("morningSystolicPressureWarning"));
                         }else{
@@ -108,6 +113,11 @@ public class BloodPressureFragment extends BaseFragment implements EndlessRecycl
                             item.put("morningDiastolicPressureWarning", jsonObject.getString("morningDiastolicPressureWarning"));
                         }else{
                             item.put("morningDiastolicPressureWarning","NULL");
+                        }
+                        if(jsonObject.has("pulseRateWarning")){
+                            item.put("pulseRateWarning", jsonObject.getString("pulseRateWarning"));
+                        }else{
+                            item.put("pulseRateWarning","NULL");
                         }
                         datas.add(item);
                     }

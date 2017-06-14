@@ -57,6 +57,7 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
                 String id = data.get("id").toString();
                 Intent intent = new Intent(getActivity(), HealthDatabaseDetails.class);
                 intent.putExtra("id", id);
+                intent.putExtra("isWarning", (Boolean) data.get("isWarning"));
                 startActivity(intent);
             }
         });
@@ -70,7 +71,7 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         swipeRefreshLayout.setOnRefreshListener(this);
-        onRefresh();
+//        onRefresh();
     }
 
     @Override
@@ -118,6 +119,12 @@ public class AllReportFragment extends BaseFragment implements EndlessRecyclerVi
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onRefresh();
     }
 
     @Override

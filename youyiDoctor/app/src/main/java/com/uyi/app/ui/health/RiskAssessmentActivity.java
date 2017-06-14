@@ -22,6 +22,7 @@ import com.uyi.app.ui.custom.SystemBarTintManager;
 import com.uyi.app.ui.dialog.Loading;
 import com.uyi.app.ui.health.adapter.RiskAssessmentAdapter;
 import com.uyi.app.ui.personal.customer.CustomerActivity;
+import com.uyi.app.utils.L;
 import com.uyi.app.utils.SerializableMap;
 import com.uyi.doctor.app.R;
 import com.volley.RequestManager;
@@ -122,8 +123,8 @@ public void onClick(View v){
                 activity, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject data) {
-                        System.out.print("__________________data_______________"+data.toString());
                         try {
+                            L.e(data.toString());
                             Loading.bulid(activity, null).dismiss();
                             totalPage = data.getInt("pages");
                             JSONArray array = data.getJSONArray("results");
@@ -131,6 +132,12 @@ public void onClick(View v){
                                 Map<String, Object> item = new HashMap<String, Object>();
                                 JSONObject jsonObject = array.getJSONObject(i);
                                 item.put("verifyStatus", jsonObject.getString("verifyStatus"));
+                                if(jsonObject.has("verifyMsg")){
+                                    item.put("verifyMsg", jsonObject.getString("verifyMsg"));
+                                }else{
+                                    item.put("verifyMsg", "NULL");
+                                }
+
                                 item.put("id", jsonObject.getString("id"));
                                 item.put("createTime", jsonObject.getString("createTime"));
                                 item.put("doc_name", jsonObject.getString("doc_name"));
