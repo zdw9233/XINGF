@@ -193,7 +193,7 @@ public class PersonalProgramListActivity extends BaseActivity implements BaseRec
                                     if(jsonObject.getJSONObject("personalHealthManagementTemplateJson").has("verifyMsg")){
                                         item.put("verifyMsg", jsonObject.getJSONObject("personalHealthManagementTemplateJson").getString("verifyMsg"));
                                     }else{
-                                        item.put("verifyMsg", "NULL");
+                                        item.put("verifyMsg", "");
                                     }
                                 }
 

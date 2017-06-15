@@ -135,7 +135,7 @@ public void onClick(View v){
                                 if(jsonObject.has("verifyMsg")){
                                     item.put("verifyMsg", jsonObject.getString("verifyMsg"));
                                 }else{
-                                    item.put("verifyMsg", "NULL");
+                                    item.put("verifyMsg", "");
                                 }
 
                                 item.put("id", jsonObject.getString("id"));
