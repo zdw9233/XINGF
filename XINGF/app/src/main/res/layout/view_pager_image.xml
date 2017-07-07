@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- ExtendedViewPager is a custom view and must be referred to by its full package name in XML -->
+	<com.uyi.xinf.ui.custom.ExtendedViewPager
+	    android:id="@+id/view_pager"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" />
+	
+	<TextView
+	    android:id="@+id/fanhui"
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:padding="5dp"
+	    android:layout_marginBottom="10dp"
+	    android:textSize="16sp"
+	    android:visibility="gone"
+	  android:text="返回"
+	  android:textColor="@color/red"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" />
+
+</RelativeLayout>

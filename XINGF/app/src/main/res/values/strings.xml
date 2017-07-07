@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--项目名称-->
+    <string name="app_name">新丰</string>
+
+    <!--首页Tab-->
+    <string name="main_tab1">健康管理</string>
+    <string name="main_tab2">健康问题</string>
+    <string name="main_tab3">绑定设备</string>
+    <string name="main_tab4">统计数据</string>
+    <string name="all_consultation">one</string>
+    <string name="follow">one</string>
+    <string name="line_check">one</string>
+
+    <!--常用-->
+    <string name="back">返回</string>
+    <string name="looding_all">已加载完全部信息</string>
+    <string name="e_date_message">结束时间不能小于开始时间</string>
+    <string name="s_date_message">开始时间不能小于当前日期</string>
+    
+</resources>

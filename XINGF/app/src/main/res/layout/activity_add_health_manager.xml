@@ -1,0 +1,2936 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <include layout="@layout/lay_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+
+                android:text="基本信息"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:background="@color/help_button_view"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="现住址："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_xzz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="户籍地址："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_hjdz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="居委会："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_jwh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="街道办："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_jdb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="责任医生："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_zrys"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="责任医生电话："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_zrysdh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="建档机构："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_jdjg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="建档机构电话："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_jdjgdh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="用户姓名："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="性别："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_sex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text="男"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="出生日期："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_beathday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="身份证号："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_idcard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="工作单位："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_workunit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="本人电话："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_phonenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="联系人姓名："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_contactsname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="联系人电话："
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/et_contactsphonenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="常住类型："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_household"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text="户籍"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="78dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="名族："
+                    android:textSize="13sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/mz_rb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:checked="true"
+                            android:text="汉族"/>
+                        <RadioButton
+                            android:id="@+id/mz_rb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="少数名族"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="14sp"/>
+                    </RadioGroup>
+                    <EditText
+                        android:id="@+id/mz_et_name"
+                        android:layout_width="wrap_content"
+                        android:minHeight="20dp"
+                        android:minWidth="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_vertical"
+                        android:visibility="gone"
+                        android:hint="名称"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/hui_stroke" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="血型："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_bloodtype"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text="A型"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="RH："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_rh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text="阴性"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="文化程度："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_education"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text="研究生"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="婚姻状况："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_marriage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text="未婚"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="职业："
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tt_ocupation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/hui_stroke"
+                        android:gravity="center"
+                        android:minHeight="30dp"
+                        android:text="国家机关、党群组织、企业、事业单位负责人"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="78dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="医疗费用支付方式："
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/paytype_cb1"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="城镇职工基本医疗保险"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <CheckBox
+                                    android:id="@+id/paytype_cb2"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="城镇居民基本医疗保险"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/paytype_cb3"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="新型农村合作医疗"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <CheckBox
+                                    android:id="@+id/paytype_cb4"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="贫困救助"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/paytype_cb5"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="商业医疗保险"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <CheckBox
+                                    android:id="@+id/paytype_cb6"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="全公费"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/paytype_cb7"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="全自费"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/paytype_cb8"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="其他"
+                                    android:layout_gravity="center_vertical"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/paytype_cb8_et"
+                                        android:visibility="gone"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:background="@drawable/hui_stroke"
+                                        android:gravity="center"
+                                        android:hint="名称"
+                                        android:minHeight="20dp"
+                                        android:minWidth="100dp"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="78dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="药物过敏史："
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/ywgms_cb1"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="无"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <CheckBox
+                                    android:id="@+id/ywgms_cb2"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="青霉素"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/ywgms_cb3"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="磺胺"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <CheckBox
+                                    android:id="@+id/ywgms_cb4"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="链霉素"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/ywgms_cb5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="其他"
+                                    android:layout_gravity="center_vertical"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/ywgms_cb5_et"
+                                        android:visibility="gone"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:background="@drawable/hui_stroke"
+                                        android:gravity="center"
+                                        android:hint="名称"
+                                        android:minHeight="20dp"
+                                        android:minWidth="100dp"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="78dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:text="暴露史："
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/bls_cb1"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="无"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <CheckBox
+                                    android:id="@+id/bls_cb2"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="化学品"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <CheckBox
+                                    android:id="@+id/bls_cb3"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="毒物"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                                <CheckBox
+                                    android:id="@+id/bls_cb4"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="射线"
+                                    android:textColor="@color/tet_type_6"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="既往史"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:background="@color/help_button_view"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="疾病："
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <CheckBox
+                            android:id="@+id/jb_cb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="无疾病"
+                            android:textColor="@color/tet_type_6"
+                            android:textSize="12sp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <CheckBox
+        android:id="@+id/jb_cb2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="高血压"
+        android:textColor="@color/tet_type_6"
+        android:textSize="12sp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/jb_cb2_time"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:hint="确诊时间"
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/hui_stroke" />
+    </LinearLayout>
+</LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="糖尿病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb3_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="冠心病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb4_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="慢性阻塞性肺疾病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb5_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/jb_cb6"
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_height="wrap_content"
+                                android:text="恶性肿瘤"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/jb_cb6_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                                <EditText
+                                    android:id="@+id/jb_cb6_et_name"
+                                    android:layout_width="wrap_content"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:visibility="gone"
+                                    android:hint="名称"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <CheckBox
+                            android:id="@+id/jb_cb7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="脑卒中"
+                            android:textColor="@color/tet_type_6"
+                            android:textSize="12sp" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/jb_cb7_time"
+                                android:layout_width="100dp"
+                                android:layout_height="20dp"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:layout_gravity="center_vertical"
+                                android:hint="确诊时间"
+                                android:visibility="gone"
+                                android:layout_marginLeft="10dp"
+                                android:background="@drawable/hui_stroke" />
+                        </LinearLayout>
+                    </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="严重精神障碍"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb8_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="结核病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb9_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="肝炎"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb10_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他法定传染病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb11_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:layout_gravity="center_vertical"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="职业病"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb12_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                                <EditText
+                                    android:id="@+id/jb_cb12_et_name"
+                                    android:layout_width="wrap_content"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:hint="名称"
+                                    android:visibility="gone"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/jb_cb13"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他病症"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/jb_cb13_time"
+                                    android:layout_width="100dp"
+                                    android:layout_height="20dp"
+                                    android:textSize="12sp"
+                                    android:gravity="center"
+                                    android:hint="确诊时间"
+                                    android:visibility="gone"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                                <EditText
+                                    android:id="@+id/jb_cb13_et_name"
+                                    android:layout_width="wrap_content"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:hint="名称"
+                                    android:visibility="gone"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="top"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"
+                android:text="手术:"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/ss_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:checked="true"
+                        android:text="无"/>
+                    <RadioButton
+                        android:id="@+id/ss_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="有"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="14sp"/>
+                </RadioGroup>
+                <LinearLayout
+                    android:id="@+id/lay_ss"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ss_tt_time1"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:hint="确诊时间"
+                        android:background="@drawable/hui_stroke" />
+                    <EditText
+                        android:id="@+id/ss_et_name1"
+                        android:layout_width="wrap_content"
+                        android:minHeight="20dp"
+                        android:minWidth="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:hint="名称"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/hui_stroke" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ss_tt_time2"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:hint="确诊时间"
+                        android:background="@drawable/hui_stroke" />
+                    <EditText
+                        android:id="@+id/ss_et_name2"
+                        android:layout_width="wrap_content"
+                        android:minHeight="20dp"
+                        android:minWidth="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:hint="名称"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/hui_stroke" />
+                </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="78dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="top"
+
+                    android:textSize="13sp"
+                    android:layout_marginTop="5dp"
+                    android:text="外伤:"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/ws_rb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:checked="true"
+                            android:text="无"/>
+                        <RadioButton
+                            android:id="@+id/ws_rb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="有"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="14sp"/>
+                    </RadioGroup>
+                    <LinearLayout
+                        android:id="@+id/lay_ws"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ws_tt_time1"
+                            android:layout_width="100dp"
+                            android:layout_height="20dp"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:hint="确诊时间"
+                            android:background="@drawable/hui_stroke" />
+                        <EditText
+                            android:id="@+id/ws_et_name1"
+                            android:layout_width="wrap_content"
+                            android:minHeight="20dp"
+                            android:minWidth="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:hint="名称"
+                            android:gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/hui_stroke" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/ws_tt_time2"
+                            android:layout_width="100dp"
+                            android:layout_height="20dp"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:layout_gravity="center_vertical"
+                            android:hint="确诊时间"
+                            android:background="@drawable/hui_stroke" />
+                        <EditText
+                            android:id="@+id/ws_et_name2"
+                            android:layout_width="wrap_content"
+                            android:minHeight="20dp"
+                            android:minWidth="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:hint="名称"
+                            android:gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/hui_stroke" />
+                    </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="78dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="top"
+                    android:textSize="13sp"
+                    android:layout_marginTop="5dp"
+                    android:text="输血:"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/sx_rb1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:checked="true"
+                            android:text="无"/>
+                        <RadioButton
+                            android:id="@+id/sx_rb2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="有"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="14sp"/>
+                    </RadioGroup>
+                    <LinearLayout
+                        android:id="@+id/lay_sx"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/sx_tt_time1"
+                                android:layout_width="100dp"
+                                android:layout_height="20dp"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:layout_gravity="center_vertical"
+                                android:hint="确诊时间"
+                                android:background="@drawable/hui_stroke" />
+                            <EditText
+                                android:id="@+id/sx_et_name1"
+                                android:layout_width="wrap_content"
+                                android:minHeight="20dp"
+                                android:minWidth="100dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:hint="名称"
+                                android:gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:background="@drawable/hui_stroke" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/sx_tt_time2"
+                                android:layout_width="100dp"
+                                android:layout_height="20dp"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:layout_gravity="center_vertical"
+                                android:hint="确诊时间"
+                                android:background="@drawable/hui_stroke" />
+                            <EditText
+                                android:id="@+id/sx_et_name2"
+                                android:layout_width="wrap_content"
+                                android:minHeight="20dp"
+                                android:minWidth="100dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:hint="名称"
+                                android:gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:background="@drawable/hui_stroke" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="家族史"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:background="@color/help_button_view"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="父亲："
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/fq_cb1"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="无"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/fq_cb2"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="高血压"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/fq_cb3"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="糖尿病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/fq_cb4"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="冠心病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/fq_cb5"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="慢性阻塞性肺疾病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/fq_cb6"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="恶性肿瘤"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/fq_cb7"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="脑卒中"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/fq_cb8"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="严重精神障碍"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/fq_cb9"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="结核病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/fq_cb10"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="肝炎"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/fq_cb11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="先天畸形"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/fq_cb12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/fq_cb12_et"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke"
+                                    android:gravity="center"
+                                    android:hint="名称"
+                                    android:visibility="gone"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="母亲："
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/mq_cb1"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="无"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/mq_cb2"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="高血压"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/mq_cb3"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="糖尿病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/mq_cb4"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="冠心病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/mq_cb5"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="慢性阻塞性肺疾病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/mq_cb6"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="恶性肿瘤"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/mq_cb7"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="脑卒中"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/mq_cb8"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="严重精神障碍"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/mq_cb9"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="结核病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/mq_cb10"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="肝炎"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/mq_cb11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="先天畸形"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/mq_cb12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/mq_cb12_et"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke"
+                                    android:gravity="center"
+                                    android:hint="名称"
+                                    android:visibility="gone"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="兄弟姐妹："
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/xdjm_cb1"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="无"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/xdjm_cb2"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="高血压"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/xdjm_cb3"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="糖尿病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/xdjm_cb4"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="冠心病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/xdjm_cb5"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="慢性阻塞性肺疾病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/xdjm_cb6"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="恶性肿瘤"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/xdjm_cb7"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="脑卒中"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/xdjm_cb8"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="严重精神障碍"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/xdjm_cb9"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="结核病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/xdjm_cb10"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="肝炎"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/xdjm_cb11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="先天畸形"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/xdjm_cb12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/xdjm_cb12_et"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke"
+                                    android:gravity="center"
+                                    android:hint="名称"
+                                    android:visibility="gone"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:text="子女："
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/zn_cb1"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="无"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/zn_cb2"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="高血压"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/zn_cb3"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="糖尿病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/zn_cb4"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="冠心病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/zn_cb5"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="慢性阻塞性肺疾病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/zn_cb6"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="恶性肿瘤"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/zn_cb7"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="脑卒中"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/zn_cb8"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="严重精神障碍"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/zn_cb9"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="结核病"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/zn_cb10"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="肝炎"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/zn_cb11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="先天畸形"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/zn_cb12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/zn_cb12_et"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke"
+                                    android:gravity="center"
+                                    android:hint="名称"
+                                    android:visibility="gone"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="遗传病史"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:background="@color/help_button_view"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="83dp"
+                android:orientation="horizontal">
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/ycbs_rb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:checked="true"
+                        android:text="无"/>
+                    <RadioButton
+                        android:id="@+id/ycbs_rb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="有"
+                        android:layout_marginLeft="20dp"/>
+                </RadioGroup>
+                <EditText
+                    android:id="@+id/ycbs_rb_name"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/hui_stroke"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:hint="名称"
+                    android:minHeight="20dp"
+                    android:minWidth="100dp"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="残疾情况"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:background="@color/help_button_view"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="78dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/cjqk_cb1"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="无残疾"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/cjqk_cb2"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="视力残疾"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/cjqk_cb3"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="听力残疾"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/cjqk_cb4"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="言语残疾"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/cjqk_cb5"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="肢体残疾"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <CheckBox
+                                android:id="@+id/cjqk_cb6"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="智力残疾"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/cjqk_cb7"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="精神残疾"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <CheckBox
+                                android:id="@+id/cjqk_cb8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="其他残疾"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/tet_type_6"
+                                android:textSize="12sp" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/cjqk_cb8_et"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:background="@drawable/hui_stroke"
+                                    android:gravity="center"
+                                    android:hint="名称"
+                                    android:visibility="gone"
+                                    android:minHeight="20dp"
+                                    android:minWidth="100dp"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="生活环境"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:background="@color/help_button_view"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="厨房排风设施："
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tt_cfpfss"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/hui_stroke"
+                    android:gravity="center"
+                    android:minHeight="30dp"
+                    android:text="无"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="燃料类型："
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tt_rllx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/hui_stroke"
+                    android:gravity="center"
+                    android:minHeight="30dp"
+                    android:text="液化气"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="饮水："
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tt_ys"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/hui_stroke"
+                    android:gravity="center"
+                    android:minHeight="30dp"
+                    android:text="自来水"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:text="厕所："
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tt_cs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/hui_stroke"
+                    android:gravity="center"
+                    android:minHeight="30dp"
+                    android:text="卫生厕所"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+
+                    android:text="禽畜栏："
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tt_qcl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/hui_stroke"
+                    android:gravity="center"
+                    android:minHeight="30dp"
+                    android:text="无"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                android:text="提交"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_marginBottom="30dp"
+                android:textColor="@color/white"
+                android:background="@drawable/blue_bg_6radius"
+                android:layout_height="44dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
