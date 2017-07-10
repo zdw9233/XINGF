@@ -15,7 +15,7 @@
 
     <!--常用-->
     <string name="back">返回</string>
-    <string name="looding_all">已加载完全部信息</string>
+    <string name="looding_all">已加载完全部信息!</string>
     <string name="e_date_message">结束时间不能小于开始时间</string>
     <string name="s_date_message">开始时间不能小于当前日期</string>
     
